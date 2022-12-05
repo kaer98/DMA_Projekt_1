@@ -5,12 +5,11 @@ package tui;
 /**
  * Class for controlling orders
  *
- *@auther Rasmus,Cawan,Frederik,Oskar
+ *@author Rasmus,Cawan,Frederik,Oskar
  *@version 1.0
  *
  */
 public class OrderMenu {
-	
 	public void start() {
         int choice = writeMenu();
         switch(choice) {
@@ -18,6 +17,12 @@ public class OrderMenu {
         	//some thing
         	break;
         case 2:
+        	if(MainMenu.isManager()==true) {
+        		System.out.println("manager");
+        	}
+        	else {
+        		System.out.println("no entry");
+        	}
         	break;
         default:
         	MainMenu.start();  

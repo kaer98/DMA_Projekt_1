@@ -4,7 +4,7 @@ package tui;
 /**
  * Main Class
  *
- *@auther Rasmus,Cawan,Frederik,Oskar
+ *@author Rasmus,Cawan,Frederik,Oskar
  *@version 1.0
  *
  */

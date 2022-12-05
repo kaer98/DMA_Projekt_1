@@ -7,7 +7,7 @@ import java.util.ArrayList;
 	/**
 	 * Class for making ui menus
 	 *
-	 *@auther Rasmus,Cawan,Frederik,Oskar
+	 *@author Rasmus,Cawan,Frederik,Oskar
 	 *@version 1.0
 	 *
 	 */
