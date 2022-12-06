@@ -17,7 +17,7 @@ public class OrderMenu {
         	//some thing
         	break;
         case 2:
-        	if(MainMenu.isManager()==true) {
+        	if(Login.isManager()==true) {
         		System.out.println("manager");
         	}
         	else {

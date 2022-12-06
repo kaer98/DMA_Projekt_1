@@ -10,10 +10,8 @@ package tui;
  */
 public class Main {
 
-	@SuppressWarnings("static-access")
 	public static void main(String[] args) {
-		MainMenu menu = new MainMenu();
-		menu.start();
+		Login.start();
 	}
 
 }

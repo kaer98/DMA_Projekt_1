@@ -10,7 +10,6 @@ package tui;
  */
 public class MainMenu {
 	private static OrderMenu orderMenu;
-	private static Boolean manager;
 	
 	public MainMenu() {
 		//this.manager = false;
@@ -18,10 +17,6 @@ public class MainMenu {
 	}
 
 	 public static void start() {
-		 	int log = writeLogin();
-		 	if(log==1) {
-		 		setManager();
-		 	}
 	        int choice = writeMainMenu();
 	        switch(choice) {
 	        case 1:
@@ -30,11 +25,11 @@ public class MainMenu {
 	        case 2:
 	        	break;
 	        default:
-	        	System.out.println("bye");       
+	        	Login.start();       
 	       }
 	 	}
 	    private static int writeMainMenu(){
-	        TextMenu menu = new TextMenu("\n ###Hovedmenu###", "Afslut programmet");
+	        TextMenu menu = new TextMenu("\n ###Hovedmenu###", "Log ud");
 	        menu.addOption("Lav ordre");
 	        menu.addOption("Lav tilbud");
 	        menu.addOption("Opret nyt produkt");
@@ -44,21 +39,8 @@ public class MainMenu {
 	        
 	        return menu.prompt();
 	    }
-	    private static int writeLogin() {
-	    	TextMenu menu = new TextMenu("\n ###Login###", "Afslut");
-	    	menu.addOption("Manager");
-	    	menu.addOption("Salgsassisnt");
-	    	
-	    	return menu.prompt();
-	    }
-	    private static void setManager() {
-	    	manager = true;
-	    }
-	    public static boolean isManager() {
-	    	if(manager == null) {
-	    		manager = false;
-	    	}
-	    	return manager;
-	    }
+	   
+	    
+	    
 	    
 	 }
