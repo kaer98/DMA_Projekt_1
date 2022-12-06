@@ -30,17 +30,11 @@ public class MainMenu {
 	 	}
 	    private static int writeMainMenu(){
 	        TextMenu menu = new TextMenu("\n ###Hovedmenu###", "Log ud");
-	        menu.addOption("Lav ordre");
-	        menu.addOption("Lav tilbud");
-	        menu.addOption("Opret nyt produkt");
-	        menu.addOption("Find ordre");
-	        menu.addOption("Find firmakunde");
-	        menu.addOption("Find enkelt produkt");
+	        menu.addOption("Ordre menu");
+	        menu.addOption("Produkt menu");
+	        menu.addOption("Kunde menu");
 	        
 	        return menu.prompt();
 	    }
-	   
-	    
-	    
 	    
 	 }

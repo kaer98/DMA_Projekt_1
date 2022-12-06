@@ -11,7 +11,8 @@ package tui;
 public class Main {
 
 	public static void main(String[] args) {
-		Login.start();
+		Login login = new Login();
+		login.start();
 	}
 
 }
