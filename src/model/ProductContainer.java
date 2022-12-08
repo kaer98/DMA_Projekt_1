@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class ProductContainer {
 
-private static ProductContainer instance = null;
+private static ProductContainer instance;
 private ArrayList<Product> container;
 
 	
@@ -26,7 +26,6 @@ private ArrayList<Product> container;
 	public ArrayList<Product> getAll(){
 		return container;
 	}
-	
 	
 	public Product findProductByBarcode(String searchString) {
 		int index = 0; 
@@ -82,5 +81,4 @@ private ArrayList<Product> container;
 		addNewProduct("Indbygningsvask 56x53", "DIY department", 2, 4, 6, 550, 849);
 		addNewProduct("Blandingsbatteri køkken HVID", "DIY department", 2, 4, 6, 1200, 1799);
 	}
-
 }
