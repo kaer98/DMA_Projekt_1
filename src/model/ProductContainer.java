@@ -23,14 +23,13 @@ private ArrayList<Product> container;
 	}
 	
 	public void addNewProduct(String description, String location, int quantity, int minQuantity, int maxQuantity,
-			double costPrice, double retailPrice, double tradeAllowance) {
-		Product p = new Product(description, location, quantity, minQuantity, maxQuantity, costPrice, retailPrice, tradeAllowance);
+			double costPrice, double retailPrice) {
+		Product p = new Product(description, location, quantity, minQuantity, maxQuantity, costPrice, retailPrice);
 		container.add(p);
 	}
-	
-	public double 
 
-	addNewProduct("Træ 2x4m", "Timber department", 200, 50, 300, 100, 124.99, 24.99);
-	addNewProduct(, "")
+	addNewProduct("Træ 200x400", "Timber department", 200, 50, 300, 100, 124.99);
+	addNewProduct("Gipsplade 90x240", "Timber department", 50, 20, 150, 70, 125);
+	addNewProduct("Krydsfiner 122x244", "Timber department", 50, 25, 200, 650, 920)
 	
 }

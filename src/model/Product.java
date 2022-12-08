@@ -6,7 +6,7 @@ public class Product {
 	private double costPrice, retailPrice, tradeAllowance;
 	
 	public Product(String barcode, String description, String location, int quantity, int minQuantity, int maxQuantity,
-			double costPrice, double retailPrice, double tradeAllowance) {
+			double costPrice, double retailPrice) {
 		this.barcode = barcode;
 		this.description = description;
 		this.location = location;
@@ -15,7 +15,7 @@ public class Product {
 		this.maxQuantity = maxQuantity;
 		this.costPrice = costPrice;
 		this.retailPrice = retailPrice;
-		this.tradeAllowance = tradeAllowance;
+		this.tradeAllowance = calTradeAllowance();
 	}
 	public String getBarcode() {
 		return barcode;
@@ -68,8 +68,8 @@ public class Product {
 	public double getTradeAllowance() {
 		return tradeAllowance;
 	}
-	public void setTradeAllowance(double tradeAllowance) {
-		this.tradeAllowance = tradeAllowance;
+	public double calTradeAllowance() {
+		return retailPrice - costPrice;
 	}
 	
 
