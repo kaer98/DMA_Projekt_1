@@ -9,7 +9,6 @@ public class Product {
 			double costPrice, double retailPrice) {
 		++barcodecount;
 		this.barcode = barcode();
-
 		this.description = description;
 		this.location = location;
 		this.quantity = quantity;
@@ -22,7 +21,7 @@ public class Product {
 	public String getBarcode() {
 		return barcode;
 	}
-	public String barcode() {
+	private String barcode() {
 		String rbarcode = String.format("%08d", barcodecount);
 		return rbarcode;
 	}
