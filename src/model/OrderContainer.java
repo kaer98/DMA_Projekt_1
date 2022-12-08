@@ -24,4 +24,12 @@ public class OrderContainer {
 	public void addNewOrder(Employee employee) {
 		container.add(new Order(employee));
 	}
+	
+	public void printOrders(){
+		for (int i = 0; i < container.size();i++){ 		      
+	          System.out.println(container.get(i)); 		
+		}   
+	}
+	
+	
 }
