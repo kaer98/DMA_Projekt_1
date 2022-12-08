@@ -21,4 +21,5 @@ private ArrayList<Product> container;
 	public void addProduct(Product product) {
 		container.add(product);
 	}
+	
 }
