@@ -29,8 +29,10 @@ private ArrayList<Product> container;
 		container.add(p);
 	}
 
-	addNewProduct("Træ 200x400", "Timber department", 200, 50, 300, 100, 124.99);
-	addNewProduct("Gipsplade 90x240", "Timber department", 50, 20, 150, 70, 125);
-	addNewProduct("Krydsfiner 122x244", "Timber department", 50, 25, 200, 650, 920)
-	
+	public void fill() {
+		addNewProduct("Træ 200x400", "Timber department", 200, 50, 300, 100, 124.99);
+		addNewProduct("Gipsplade 90x240", "Timber department", 50, 20, 150, 70, 125);
+		addNewProduct("Krydsfiner 122x244", "Timber department", 50, 25, 200, 650, 920);
+		
+	}
 }
