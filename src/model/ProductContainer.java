@@ -1,6 +1,5 @@
 package model;
 
-import java.nio.file.Files;
 import java.util.ArrayList;
 
 public class ProductContainer {
