@@ -1,5 +1,6 @@
 package tui;
 import controller.OrderController;
+import model.Order;
 
 
 /**
@@ -24,6 +25,9 @@ public class OrderMenu {
         		done = addOrder();
         		
         	}
+        		int i = orderController.getOrders().size();
+        		System.out.println(orderController.getOrders().get(i-1).getEmployee().getName());
+        	
         	start();
         	break;
         case 2:

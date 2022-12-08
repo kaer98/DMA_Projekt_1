@@ -10,6 +10,10 @@ public class PartOrder {
 		this.quantity = quantity;
 	} 
 	
+	public String getProductName() {
+		return product.getDescription();
+	}
+	
 	public double getTotal() {
 		return product.getRetailPrice()*quantity;
 	}

@@ -25,10 +25,8 @@ public class OrderContainer {
 		container.add(new Order(employee));
 	}
 	
-	public void printOrders(){
-		for (int i = 0; i < container.size();i++){ 		      
-	          System.out.println(container.get(i)); 		
-		}   
+	public ArrayList<Order> getOrders(){
+		return container;   
 	}
 	
 	

@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+
 import model.*;
 import tui.*;
 /**
@@ -33,7 +35,9 @@ private Order order;
 	public Product findProductByBarcode(String searchString) {
 		return productController.findProductByBarcode(searchString);
 	}
-	
+	public ArrayList<Order> getOrders(){
+		return orderContainer.getOrders();
+	}
 	
 	
 	

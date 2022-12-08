@@ -10,6 +10,7 @@ private ArrayList<Product> container;
 	
 	private ProductContainer() {
 		container = new ArrayList<>();
+		fill();
 	}
 	
 	public static ProductContainer getInstance() {

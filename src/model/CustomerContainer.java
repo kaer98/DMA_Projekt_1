@@ -9,6 +9,7 @@ private ArrayList<Customer> container;
 	
 	private CustomerContainer() {
 		container = new ArrayList<>();
+		fill();
 	}
 	
 	public static CustomerContainer getInstance() {
