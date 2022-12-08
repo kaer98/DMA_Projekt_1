@@ -30,9 +30,9 @@ public class OrderMenu {
  	}
     private int writeMenu(){
         TextMenu menu = new TextMenu("\n ###Order###", "Tilbage");
-        menu.addOption("Firmakunde");
-        menu.addOption("Opret Firmakunde");
-        menu.addOption("Kontant kunde");
+        menu.addOption("Opret ordre");
+        menu.addOption("Find ordre");
+        menu.addOption("Slet ordre");
         
         return menu.prompt();
     }

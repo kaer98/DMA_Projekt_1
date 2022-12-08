@@ -10,22 +10,29 @@ package tui;
  */
 public class MainMenu {
 	private static OrderMenu orderMenu;
+	private static ProductMenu productMenu;
+	private static CustomerMenu customerMenu;
 	
 	public MainMenu() {
 		//this.manager = false;
 		orderMenu = new OrderMenu();
+		productMenu = new ProductMenu();
+		customerMenu = new CustomerMenu();
 	}
 
 	 public static void start() {
 	        int choice = writeMainMenu();
 	        switch(choice) {
+	        case 0:
+	        	Login.start();  
 	        case 1:
 	        	orderMenu.start();
 	        	break;
 	        case 2:
+	        	productMenu.start();
 	        	break;
-	        default:
-	        	Login.start();       
+	        case 3: 
+	        	customerMenu.start();    
 	       }
 	 	}
 	    private static int writeMainMenu(){

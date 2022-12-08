@@ -1,18 +1,25 @@
 package tui;
 
-import model.SAContainer;
-import model.SalesAssistant;
+import model.EContainer;
+import model.Employee;
 import java.util.ArrayList;
 
+/**
+ * Login Class
+ *
+ *@author Rasmus,Cawan,Frederik,Oskar
+ *@version 1.0
+ *
+ */
 public class Login {
 	private static Boolean manager;
-	private SAContainer sAC;
-	private static ArrayList<SalesAssistant> staff;
+	private EContainer employeeContainer;
+	private static ArrayList<Employee> staff;
 	private static String staffName;
 
 	public Login() {
-		sAC = SAContainer.getInstance();
-		staff = sAC.getAll();
+		employeeContainer = EContainer.getInstance();
+		staff = employeeContainer.getAll();
 	}
 
 	public static void start() {
@@ -34,7 +41,7 @@ public class Login {
 	}
 	private static int writeLogin() {
 		TextMenu menu = new TextMenu("\n ###Login###");
-		for(SalesAssistant sa : staff) {
+		for(Employee sa : staff) {
 			menu.addOption(sa.getName());
 		}
 		return menu.prompt();
