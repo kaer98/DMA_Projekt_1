@@ -30,7 +30,7 @@ public class Customer {
 	public String getCvr() {
 		return cvr;
 	}
-	public void setCvrNoOrCprNo(String cvr) {
+	public void setCvr(String cvr) {
 		this.cvr = cvr;
 	}
 	public String getCountry() {

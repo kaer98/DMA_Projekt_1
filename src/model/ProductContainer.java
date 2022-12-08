@@ -22,8 +22,27 @@ private ArrayList<Product> container;
 	public void addProduct(Product product) {
 		container.add(product);
 	}
+
 	public ArrayList<Product> getAll(){
 		return container;
+	}
+	
+	
+	public Product findProductByBarcode(String searchString) {
+		int index = 0; 
+		boolean found = false;
+		Product returnProduct = null;
+		while(index < container.size() && !found) {
+			if(container.get(index).getBarcode().contains(searchString)){
+				found = true;
+				returnProduct = container.get(index);
+			} 
+			else {
+				index++;
+			}
+		}
+		return returnProduct;
+
 	}
 
 	public void addNewProduct(String description, String location, int quantity, int minQuantity, int maxQuantity,

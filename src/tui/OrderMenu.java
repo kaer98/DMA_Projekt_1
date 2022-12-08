@@ -26,8 +26,8 @@ public class OrderMenu {
         		start();
         	case 1:
         		String s = Input.inputString("Barcode: ");
-        		orderController.findProductByBarcode(s);
-        		orderController.addPartOrder(s, Input.inputInt("\nhvor mange: "));
+        		
+        		orderController.addPartOrder(orderController.findProductByBarcode(s), Input.inputInt("\nhvor mange: "));
         		break;
         	}
         	break;
@@ -60,6 +60,6 @@ public class OrderMenu {
     	return menu.prompt();
     }
     
-    private int 
+    //private int 
 
 }

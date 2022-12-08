@@ -21,7 +21,7 @@ public class ProductController {
 	public ArrayList<Product> getAll(){
 		return products;
 	}
-	public Product findProductByName() {
-		return productContainer.findProductByName();
+	public Product findProductByBarcode(String searchString) {
+		return productContainer.findProductByBarcode(searchString);
 	}
 }

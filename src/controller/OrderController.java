@@ -30,8 +30,8 @@ private Order order;
 		order.addPartOrder(product, quantity);
 	}
 	
-	public Product findProductByBarcode() {
-		return productController.findProductByBarcode();
+	public Product findProductByBarcode(String searchString) {
+		return productController.findProductByBarcode(searchString);
 	}
 	
 	

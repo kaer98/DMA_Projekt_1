@@ -22,6 +22,69 @@ private ArrayList<Customer> container;
 		container.add(customer);
 	}
 	
+    public Customer findCustomerByName(String name){
+        Customer customer = null;
+        int index = 0;
+        boolean found = false;
+        while(index < container.size() && !found){
+            customer = container.get(index);
+            if(customer.getName().equals(name)){
+                found = true;
+            }
+            else{
+                 index++;
+                }
+         }
+        if (found){
+            return container.get(index);
+        }
+        else{   
+        	return null;
+        }
+    }
+
+    public Customer findCustomerByPhoneNo(String phoneNo){
+        Customer customer = null;
+        int index = 0;
+        boolean found = false;
+        while(index < container.size() && !found){
+            customer = container.get(index);
+            if(customer.getPhoneNo().equals(phoneNo)){
+                found = true;
+            }
+            else{
+                 index++;
+                }
+         }
+        if (found){
+            return container.get(index);
+        }
+        else{   
+        	return null;
+        }
+    }
+    
+    public Customer findCustomerByCvr(String Cvr){
+        Customer customer = null;
+        int index = 0;
+        boolean found = false;
+        while(index < container.size() && !found){
+            customer = container.get(index);
+            if(customer.getCvr().equals(Cvr)){
+                found = true;
+            }
+            else{
+                 index++;
+                }
+         }
+        if (found){
+            return container.get(index);
+        }
+        else{   
+        	return null;
+        }
+    }
+	
 	public void addNewCustomer(String name, String cvr, String country, String postalCode, String city, String adress,
 			String phoneNo, String mailAdress, double discount) {
 		Customer c = new Customer (name, cvr, country, postalCode, city, adress, phoneNo, mailAdress, discount);
@@ -39,7 +102,7 @@ public void fill() {
     addNewCustomer("Thomas", "55555555", "Danmark", "5000","Middelfart", "Thomas vej 5", "55555555", "thomas@ucn.dk", 0.23);
     addNewCustomer("John", "12121212", "Danmark", "2000", "Rødekro", "John vej 2", "25252525", "john@ucn.dk", 0.25);
     
-    
+
     
     
     
