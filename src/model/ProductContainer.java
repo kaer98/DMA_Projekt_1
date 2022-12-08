@@ -6,6 +6,7 @@ public class ProductContainer {
 
 private static ProductContainer instance = null;
 private ArrayList<Product> container;
+
 	
 	private ProductContainer() {
 		container = new ArrayList<>();
