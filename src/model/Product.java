@@ -2,12 +2,14 @@ package model;
 
 public class Product {
 	private String barcode, description, location; 
-	private int quantity, minQuantity, maxQuantity;
+	private int quantity, minQuantity, maxQuantity, barcodecount;
 	private double costPrice, retailPrice, tradeAllowance;
 	
-	public Product(String barcode, String description, String location, int quantity, int minQuantity, int maxQuantity,
+	public Product(String description, String location, int quantity, int minQuantity, int maxQuantity,
 			double costPrice, double retailPrice) {
-		this.barcode = barcode;
+		++barcodecount;
+		this.barcode = barcode();
+
 		this.description = description;
 		this.location = location;
 		this.quantity = quantity;
@@ -20,8 +22,9 @@ public class Product {
 	public String getBarcode() {
 		return barcode;
 	}
-	public void setBarcode(String barcode) {
-		this.barcode = barcode;
+	public String barcode() {
+		String rbarcode = String.format("%08d", barcodecount);
+		return rbarcode;
 	}
 	public String getDescription() {
 		return description;
@@ -71,6 +74,7 @@ public class Product {
 	public double calTradeAllowance() {
 		return retailPrice - costPrice;
 	}
+	
 	
 
 }
