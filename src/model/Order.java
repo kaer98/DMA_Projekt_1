@@ -9,10 +9,9 @@ public class Order {
 	private Customer customer;
 	private Employee employee;
 	
-	public Order(Customer customer, Employee employee) {
+	public Order(Employee employee) {
 		parts = new ArrayList<>();
 		this.dateTime = LocalDate.now();
-		this.customer = customer;
 		this.employee = employee;
 	}
 	

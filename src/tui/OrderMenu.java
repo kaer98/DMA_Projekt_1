@@ -1,5 +1,5 @@
 package tui;
-
+import controller.OrderController;
 
 
 /**
@@ -10,11 +10,26 @@ package tui;
  *
  */
 public class OrderMenu {
+	private OrderController orderController;
+	
+	public OrderMenu() {
+		orderController = new OrderController();
+	}
 	public void start() {
         int choice = writeMenu();
         switch(choice) {
         case 1:
-        	//some thing
+        	int orderChoice =ordermenu();
+        	orderController.makeOrder();
+        	switch(orderChoice) {
+        	case 0:
+        		start();
+        	case 1:
+        		String s = Input.inputString("Barcode: ");
+        		orderController.findProductByBarcode(s);
+        		orderController.addPartOrder(s, Input.inputInt("\nhvor mange: "));
+        		break;
+        	}
         	break;
         case 2:
         	if(Login.isManager()==true) {
@@ -36,5 +51,15 @@ public class OrderMenu {
         
         return menu.prompt();
     }
+    
+    private int ordermenu() {
+    	TextMenu menu = new TextMenu("\n ###Opret Order###", "afbrud");
+    	menu.addOption("Tilføj nyt Product");
+    	menu.addOption("færdig");
+    	
+    	return menu.prompt();
+    }
+    
+    private int 
 
 }

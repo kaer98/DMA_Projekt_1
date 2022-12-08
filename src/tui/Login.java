@@ -16,6 +16,7 @@ public class Login {
 	private EContainer employeeContainer;
 	private static ArrayList<Employee> staff;
 	private static String staffName;
+	private static Employee employee;
 
 	public Login() {
 		employeeContainer = EContainer.getInstance();
@@ -26,6 +27,7 @@ public class Login {
 		int choice =writeLogin();
 		staffName =staff.get(choice-1).getName();
 		manager = staff.get(choice-1).isManager();
+		employee = staff.get(choice-1);
 		MainMenu menu = new MainMenu();
 		menu.start();
 	}
@@ -45,5 +47,11 @@ public class Login {
 			menu.addOption(sa.getName());
 		}
 		return menu.prompt();
+	}
+	public static String getEmployeeName() {
+		return staffName;
+	}
+	public static Employee getEmployee() {
+		return employee;
 	}
 }

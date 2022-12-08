@@ -17,8 +17,11 @@ public class OrderContainer {
 		}
 		return instance;
 	}
-	
 	public void addOrder(Order order) {
 		container.add(order);
+	}
+	
+	public void addNewOrder(Employee employee) {
+		container.add(new Order(employee));
 	}
 }

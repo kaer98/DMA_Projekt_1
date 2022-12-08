@@ -22,13 +22,17 @@ private ArrayList<Product> container;
 	public void addProduct(Product product) {
 		container.add(product);
 	}
-	
+	public ArrayList<Product> getAll(){
+		return container;
+	}
 
 	public void addNewProduct(String description, String location, int quantity, int minQuantity, int maxQuantity,
 			double costPrice, double retailPrice) {
 		Product p = new Product(description, location, quantity, minQuantity, maxQuantity, costPrice, retailPrice);
 		container.add(p);
 	}
+	
+	
 
 	public void fill() {
 		addNewProduct("Træ 200x400", "Timber department", 200, 50, 300, 100, 124.99);
