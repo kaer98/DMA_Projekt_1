@@ -7,12 +7,12 @@ package model;
  *
  */
 public class Customer {
-	private String name, cvrNoOrCprNo, country, postalCode, city, adress, phoneNo, mailAdress;
+	private String name, cvr, country, postalCode, city, adress, phoneNo, mailAdress;
 	private double discount;
-	public Customer(String name, String cvrNoOrCprNo, String country, String postalCode, String city, String adress,
+	public Customer(String name, String cvr, String country, String postalCode, String city, String adress,
 			String phoneNo, String mailAdress, double discount) {
 		this.name = name;
-		this.cvrNoOrCprNo = cvrNoOrCprNo;
+		this.cvr = cvr;
 		this.country = country;
 		this.postalCode = postalCode;
 		this.city = city;
@@ -27,11 +27,11 @@ public class Customer {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getCvrNoOrCprNo() {
-		return cvrNoOrCprNo;
+	public String getCvr() {
+		return cvr;
 	}
-	public void setCvrNoOrCprNo(String cvrNoOrCprNo) {
-		this.cvrNoOrCprNo = cvrNoOrCprNo;
+	public void setCvrNoOrCprNo(String cvr) {
+		this.cvr = cvr;
 	}
 	public String getCountry() {
 		return country;
