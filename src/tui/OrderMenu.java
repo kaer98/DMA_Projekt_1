@@ -19,17 +19,12 @@ public class OrderMenu {
         int choice = writeMenu();
         switch(choice) {
         case 1:
-        	int orderChoice =ordermenu();
-        	orderController.makeOrder();
-        	switch(orderChoice) {
-        	case 0:
-        		start();
-        	case 1:
-        		String s = Input.inputString("Barcode: ");
+        	boolean done = false;
+        	while(!done) {
+        		done = addOrder();
         		
-        		orderController.addPartOrder(orderController.findProductByBarcode(s), Input.inputInt("\nhvor mange: "));
-        		break;
         	}
+        	start();
         	break;
         case 2:
         	if(Login.isManager()==true) {
@@ -58,6 +53,25 @@ public class OrderMenu {
     	menu.addOption("færdig");
     	
     	return menu.prompt();
+    }
+    
+    private boolean addOrder() {
+    	boolean done = false;
+    	int orderChoice =ordermenu();
+    	orderController.makeOrder();
+    	switch(orderChoice) {
+    	case 0:
+    		start();
+    	case 1:
+    		String s = Input.inputString("Barcode: ");
+    		orderController.addPartOrder(orderController.findProductByBarcode(s), Input.inputInt("\nhvor mange: "));
+    		break;
+    	case 2: 
+    		orderController.addOrder();
+    		done = true;
+    		
+    	}
+    	return done;
     }
     
     //private int 

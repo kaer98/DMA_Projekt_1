@@ -17,7 +17,7 @@ private ProductController productController;
 private Order order;
 	public OrderController() {
 		orderContainer = OrderContainer.getInstance();
-		
+		productController = new ProductController();
 	}
 	public void makeOrder() {
 		order = new Order(Login.getEmployee());

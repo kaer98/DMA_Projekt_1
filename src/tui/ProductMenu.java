@@ -1,8 +1,14 @@
 package tui;
 
+import controller.ProductController;
 public class ProductMenu {
-
+	private ProductController productController;
+	
+	public ProductMenu() {
+		productController = new ProductController();
+	}
 	public void start(){
+		
 		int choice = writeProductMenu();
 		switch(choice) {
 		case 0:
