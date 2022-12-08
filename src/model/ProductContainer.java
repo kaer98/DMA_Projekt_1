@@ -1,5 +1,6 @@
 package model;
 
+import java.nio.file.Files;
 import java.util.ArrayList;
 
 public class ProductContainer {
@@ -23,6 +24,22 @@ private ArrayList<Product> container;
 		container.add(product);
 	}
 	
+	
+	public Product findProductByBarcode(String searchString) {
+		int index = 0; 
+		boolean found = false;
+		Product returnProduct = null;
+		while(index < container.size() && !found) {
+			if(container.get(index).getBarcode().contains(searchString)){
+				found = true;
+				returnProduct = container.get(index);
+			} 
+			else {
+				index++;
+			}
+		}
+		return returnProduct;
+	}
 
 	public void addNewProduct(String description, String location, int quantity, int minQuantity, int maxQuantity,
 			double costPrice, double retailPrice) {
