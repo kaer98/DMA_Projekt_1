@@ -9,7 +9,7 @@ package model;
 public class Employee {
 	private boolean manager;
 	private String name, phoneNo, mailAdress;
-	private int salary, noSales, totalSales;
+	private int salary, noOfSales, totalSales;
 	
 	public Employee(Boolean manager, String name, String phoneNo, String mailAdress, int salary) {
 		this.name = name;
@@ -17,7 +17,7 @@ public class Employee {
 		this.manager = manager;
 		this.mailAdress = mailAdress;
 		this.salary = salary;
-		noSales = 0;
+		noOfSales = 0;
 		totalSales = 0;
 	}
 	
@@ -45,12 +45,12 @@ public class Employee {
 		this.salary = salary;
 	}
 
-	public int getNoSales() {
-		return noSales;
+	public int getNoOfSales() {
+		return noOfSales;
 	}
 
-	public void setNoSales(int noSales) {
-		this.noSales = noSales;
+	public void setNoOfSales(int noSales) {
+		this.noOfSales = noSales;
 	}
 
 	public int getTotalSales() {

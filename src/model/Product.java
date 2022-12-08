@@ -2,12 +2,14 @@ package model;
 
 public class Product {
 	private String barcode, description, location; 
-	private int quantity, minQuantity, maxQuantity;
+	private int quantity, minQuantity, maxQuantity, barcodecount;
 	private double costPrice, retailPrice, tradeAllowance;
 	
-	public Product(String barcode, String description, String location, int quantity, int minQuantity, int maxQuantity,
-			double costPrice, double retailPrice, double tradeAllowance) {
-		this.barcode = barcode;
+	public Product(String description, String location, int quantity, int minQuantity, int maxQuantity,
+			double costPrice, double retailPrice) {
+		++barcodecount;
+		this.barcode = barcode();
+
 		this.description = description;
 		this.location = location;
 		this.quantity = quantity;
@@ -15,13 +17,14 @@ public class Product {
 		this.maxQuantity = maxQuantity;
 		this.costPrice = costPrice;
 		this.retailPrice = retailPrice;
-		this.tradeAllowance = tradeAllowance;
+		this.tradeAllowance = calTradeAllowance();
 	}
 	public String getBarcode() {
 		return barcode;
 	}
-	public void setBarcode(String barcode) {
-		this.barcode = barcode;
+	public String barcode() {
+		String rbarcode = String.format("%08d", barcodecount);
+		return rbarcode;
 	}
 	public String getDescription() {
 		return description;
@@ -68,9 +71,10 @@ public class Product {
 	public double getTradeAllowance() {
 		return tradeAllowance;
 	}
-	public void setTradeAllowance(double tradeAllowance) {
-		this.tradeAllowance = tradeAllowance;
+	public double calTradeAllowance() {
+		return retailPrice - costPrice;
 	}
+	
 	
 
 }
