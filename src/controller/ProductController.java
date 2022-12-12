@@ -26,4 +26,8 @@ public class ProductController {
 		product = productContainer.findProductByBarcode(searchString);
 		return product;
 	}
+	
+	public int getQuantity(int i) {
+		return getQuantity(i);
+	}
 }

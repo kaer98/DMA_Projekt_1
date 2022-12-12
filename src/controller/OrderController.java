@@ -54,8 +54,7 @@ public class OrderController {
 	public ArrayList<PartOrder> getParts() {
 		return parts;
 	}
-	
-
-
-
-}
+	public int getQuantity(int i) {
+		return productController.getQuantity(i);
+	}
+	}
