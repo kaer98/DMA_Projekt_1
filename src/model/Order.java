@@ -79,9 +79,14 @@ public class Order {
 		parts.add(partOrder);
 	}
 	
-	public void addNewPartOrder(Product product, int quantity) {
-		parts.add(new PartOrder(product, quantity));
+	public void addNewPartOrderQ(Product product, int quantity) {
+		parts.add(new PartOrderQ(product, quantity));
 	}
+	
+	public void addNewPartOrderAppliance(Product product, String serialNo) {
+		parts.add(new PartOrderAppliance(product, serialNo));
+	}
+	
 	public void createInvoice() {
 		double subTotal = 0;
 		System.out.println("Vestbjerg Byggecenter A/S");

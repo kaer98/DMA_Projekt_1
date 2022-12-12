@@ -5,9 +5,8 @@ public class PartOrder {
 	private Product product;
 	private int quantity;
 
-	public PartOrder(Product product, int quantity) {
+	public PartOrder(Product product) {
 		this.product = product;
-		this.quantity = quantity;
 	} 
 	
 	public String getProductName() {
@@ -20,7 +19,7 @@ public class PartOrder {
 	public int getQuantity() {
 		return quantity;
 	}
-	public Product getProduct() {
+	public Product getProduct(){
 		return product;
 	}
 }

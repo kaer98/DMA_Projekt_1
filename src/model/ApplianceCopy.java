@@ -4,7 +4,7 @@ public class ApplianceCopy {
 	private Appliance appliance;
 	private String serialNo;
 	
-	  // Constructor for creating a BookCopy of Book
+	  // Constructor for creating a Appliance copy of appliance
 	  public ApplianceCopy(Appliance appliance, String serialNo) {
 	    this.appliance = appliance;
 	    this.serialNo = serialNo;
@@ -27,5 +27,4 @@ public class ApplianceCopy {
 		this.serialNo = serialNo;
 	}
 	  
-	 
-	}
+}

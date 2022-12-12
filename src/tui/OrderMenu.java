@@ -2,7 +2,7 @@ package tui;
 import controller.OrderController;
 import model.Order;
 import model.PartOrder;
-
+import model.PartOrderQ;
 
 import java.util.ArrayList;
 
@@ -80,7 +80,7 @@ public class OrderMenu {
 		case 1:
 			String pro = Input.inputString("Barcode");
 			int amount = Input.inputInt("\nhvor mange");
-			po.add(new PartOrder(orderController.findProductByBarcode(pro), amount));
+			po.add(new PartOrderQ(orderController.findProductByBarcode(pro), amount));
 			orderController.findProductByBarcode(pro).updateQuantity(amount);
 			break;
 		case 2:
