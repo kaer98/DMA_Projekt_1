@@ -15,4 +15,8 @@ public class PartOrder {
 	public Product getProduct(){
 		return product;
 	}
+	
+	public double getTotal() {
+		return product.getRetailPrice()*PartOrderQ.getQuantity();
+	}
 }

@@ -2,11 +2,11 @@ package model;
 
 public class Product {
 	private String barcode, description, location; 
-	private int minQuantity, maxQuantity;
+	private int quantity, minQuantity, maxQuantity;
 	private static int barcodeCount;
 	private double costPrice, retailPrice, tradeAllowance;
 	
-	public Product(String description, String location, int quantity, int minQuantity, double costPrice, double retailPrice) {
+	public Product(String description, String location, int quantity, int minQuantity, int maxQuantity, double costPrice, double retailPrice) {
 		++barcodeCount;
 		this.barcode = barcode();
 		this.description = description;
@@ -64,11 +64,17 @@ public class Product {
 	public double getTradeAllowance() {
 		return tradeAllowance;
 	}
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 	public double calTradeAllowance() {
 		return retailPrice - costPrice;
 	}
-	
-
-	
+	public void updateQuantity(int amount) {
+		this.setQuantity(this.getQuantity() - amount);
+	}
 
 }
