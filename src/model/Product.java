@@ -75,6 +75,9 @@ public class Product {
 		return retailPrice - costPrice;
 	}
 	
+	public void updateQuantity(int amount) {
+		this.quantity -= amount;
+	}
 	
 
 }

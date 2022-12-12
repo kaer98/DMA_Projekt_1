@@ -30,4 +30,7 @@ public class ProductController {
 	public int getQuantity(int i) {
 		return getQuantity(i);
 	}
+	public void updateQuantity(int amount, int i) {
+		productContainer.updateQuantity(i,amount);
+	}
 }

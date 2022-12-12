@@ -57,4 +57,7 @@ public class OrderController {
 	public int getQuantity(int i) {
 		return productController.getQuantity(i);
 	}
+	public void updateQuantity(int amount, int i) {
+		productController.updateQuantity(i, amount);
+	}
 	}
