@@ -89,7 +89,7 @@ public class Order {
 		System.out.println("By");
 		System.out.println("CVR-nr.:");
 		System.out.println();
-		System.out.println("Dato:" + dateTime +" 					Fakturanr.:"+ orderNo);
+		System.out.println("Dato: " + dateTime +" 					Fakturanr.:"+ orderNo);
 		System.out.println();
 		System.out.println("Faktura");
 		for(PartOrder parts : getParts()) {
