@@ -1,6 +1,6 @@
 package model;
 
-public class Product {
+public abstract class Product {
 	private String barcode, description, location; 
 	private int quantity, minQuantity, maxQuantity;
 	private static int barcodeCount;

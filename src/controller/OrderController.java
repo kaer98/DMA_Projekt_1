@@ -36,8 +36,12 @@ public class OrderController {
 	public void addPartOrder(Order o, PartOrder p) {
 		o.addPartOrder(p);
 	}
-	public void addNewPartOrder(Product product, int quantity) {
-		order.addNewPartOrder(product, quantity);
+	public void addNewPartOrderQ(Product product, int quantity) {
+		order.addNewPartOrderQ(product, quantity);
+	}
+	
+	public void addNewPartOrderAppliance(Product product, String serialNo) {
+		order.addNewPartOrderAppliance(product, serialNo);
 	}
 
 	public Product findProductByBarcode(String searchString) {
