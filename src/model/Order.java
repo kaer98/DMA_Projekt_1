@@ -83,6 +83,7 @@ public class Order {
 		parts.add(new PartOrder(product, quantity));
 	}
 	public void createInvoice() {
+		double subTotal = 0;
 		System.out.println("Vestbjerg Byggecenter A/S");
 		System.out.println("Adresse");
 		System.out.println("By");
@@ -91,13 +92,14 @@ public class Order {
 		System.out.println("Dato:					Fakturanr.:"+ orderNo);
 		System.out.println();
 		System.out.println("Faktura");
-		System.out.println("Beskrivelse: " + product "Antal: " + amount, "Stk. Pris", "Pris" + totalPrice);
-		System.out.println();
-		System.out.println("Produkt" + product, "Antal"+  amount, "Stk. Pris" + retailPrice, "Pris" + totalPrice);
+		for(PartOrder parts : getParts()) {
+			System.out.println("/nBeskrivelse: " + parts.getProductName() + "Antal: " + parts.getQuantity() + "Stk. Pris" + parts.getProduct().getRetailPrice() + "Pris" + parts.getTotal());
+			subTotal += parts.getTotal();
+		}
 		System.out.println("");
 		System.out.println("Subtotal: "+ subTotal);
-		System.out.println("Moms (25.00%)" + moms);
-		System.out.println("Total DKK" +sum);
+		System.out.println("Moms (25.00%)" + subTotal * 0.25);
+		System.out.println("Total DKK" + subTotal * 1.25);
 
 	}
 	
