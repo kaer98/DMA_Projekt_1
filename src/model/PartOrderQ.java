@@ -15,6 +15,4 @@ public class PartOrderQ extends PartOrder{
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-
-
 }
