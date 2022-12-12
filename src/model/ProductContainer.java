@@ -61,6 +61,10 @@ private ArrayList<Product> container;
 		return container.get(i).getQuantity();
 	}
 	
+	public void updateQuantity(int amount, int i) {
+		container.get(i).updateQuantity(amount);
+	}
+	
 	
 
 	public void fill() {

@@ -16,12 +16,14 @@ public class OrderController {
 
 	private OrderContainer orderContainer;
 	private ProductController productController;
+	private CustomerController customerController;
 	private Order order;
 	private ArrayList<PartOrder> parts;
 	private Product product;
 	public OrderController() {
 		orderContainer = OrderContainer.getInstance();
 		productController = new ProductController();
+		customerController = new CustomerController();
 		parts = new ArrayList<>();
 	}
 	public Order makeOrder() {
@@ -57,4 +59,13 @@ public class OrderController {
 	public int getQuantity(int i) {
 		return productController.getQuantity(i);
 	}
+
+	public void updateQuantity(int i, int amount) {
+		productController.updateQuantity(i, amount);
 	}
+
+	public Customer findCustomerByPhoneNo(String searchString) {
+		return customerController.findCustomerByPhoneNo(searchString);
+
+	}
+}
