@@ -45,7 +45,7 @@ private ArrayList<Product> container;
 			System.out.println("not found");
 		}
 		else {
-			System.out.println("found" + returnProduct.getDescription());
+			System.out.println("found: " + returnProduct.getDescription());
 		}
 		return returnProduct;
 

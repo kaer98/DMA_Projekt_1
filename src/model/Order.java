@@ -89,17 +89,17 @@ public class Order {
 		System.out.println("By");
 		System.out.println("CVR-nr.:");
 		System.out.println();
-		System.out.println("Dato:					Fakturanr.:"+ orderNo);
+		System.out.println("Dato:" + dateTime +" 					Fakturanr.:"+ orderNo);
 		System.out.println();
 		System.out.println("Faktura");
 		for(PartOrder parts : getParts()) {
-			System.out.println("/nBeskrivelse: " + parts.getProductName() + "Antal: " + parts.getQuantity() + "Stk. Pris" + parts.getProduct().getRetailPrice() + "Pris" + parts.getTotal());
+			System.out.println("\nBeskrivelse: " + parts.getProductName() + " Antal: " + parts.getQuantity() + " Stk. Pris: " + parts.getProduct().getRetailPrice() + " Pris: " + parts.getTotal());
 			subTotal += parts.getTotal();
 		}
 		System.out.println("");
 		System.out.println("Subtotal: "+ subTotal);
-		System.out.println("Moms (25.00%)" + subTotal * 0.25);
-		System.out.println("Total DKK" + subTotal * 1.25);
+		System.out.println("Moms (25.00%): " + subTotal * 0.25);
+		System.out.println("Total DKK: " + subTotal * 1.25);
 
 	}
 	
