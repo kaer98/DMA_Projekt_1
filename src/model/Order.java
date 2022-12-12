@@ -9,7 +9,7 @@ public class Order {
 	private Customer customer;
 	private Employee employee;
 	private static int orderNo;
-	private boolean finalized;
+	private String finalized;
 	private double total, discount;
 	
 	public Order(Employee employee) {
@@ -17,15 +17,19 @@ public class Order {
 		this.dateTime = LocalDate.now();
 		this.employee = employee;
 		++this.orderNo;
-		this.finalized = false;
+		this.finalized = "intet";
 	}
 	
 	public int getOrderNo() {
 		return orderNo;
 	}
 	
-	public void setFinal(boolean b) {
-		finalized = b;
+	public void setFinal(String string) {
+		finalized = string;
+	}
+	
+	public String getFinal() {
+		return finalized;
 	}
 	
 	public double getTotal() {
