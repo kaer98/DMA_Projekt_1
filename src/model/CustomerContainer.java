@@ -7,7 +7,7 @@ public class CustomerContainer {
 private static CustomerContainer instance = null;
 private ArrayList<Customer> container;
 	
-    // Private constructor that creates a new ArrayList and calls the "fill" method to populate the ArrayList with Customer objects. 
+    // Private constructor that creates a new ArrayList and calls the "fill" method to add to the ArrayList with Customer objects. 
 	private CustomerContainer() {
 		container = new ArrayList<>();
 		fill();
