@@ -8,20 +8,38 @@ public class Order {
 	private LocalDate dateTime;
 	private Customer customer;
 	private Employee employee;
-	private int orderNo;
+	private static int orderNo;
+	private boolean finalized;
+	private double total, discount;
 	
 	public Order(Employee employee) {
 		this.parts = new ArrayList<>();
 		this.dateTime = LocalDate.now();
 		this.employee = employee;
 		++this.orderNo;
+		this.finalized = false;
 	}
 	
 	public int getOrderNo() {
 		return orderNo;
 	}
-
-	public void setOrderNo(int orderNo) {
+	
+	public void setFinal(boolean b) {
+		finalized = b;
+	}
+	
+	public double getTotal() {
+		total = 0;
+		for(PartOrder p : parts) {
+			total += p.getTotal();
+		}
+		return total;
+	}
+	
+	public double getTotalWDiscount() {
+		return getTotal()*discount;
+	}
+	public void  setOrderNo(int orderNo) {
 		this.orderNo = orderNo;
 	}
 
