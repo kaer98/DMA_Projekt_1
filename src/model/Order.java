@@ -92,10 +92,12 @@ public class Order {
 		System.out.println("Adresse");
 		System.out.println("By");
 		System.out.println("CVR-nr.:");
+		System.out.println("Medarbejder: "+ employee);
 		System.out.println();
 		System.out.println("Dato: " + dateTime +" 					Fakturanr. "+ orderNo);
 		System.out.println();
 		System.out.println("Faktura");
+		System.out.println("Betalingsdato: "+ dateTime.plusDays(14) 					"Tilbud: " + getFinal);
 		for(PartOrder parts : getParts()) {
 			System.out.println("\nBeskrivelse: " + parts.getProductName() + " Antal: " + parts.getQuantity() + " Stk. Pris: " + parts.getProduct().getRetailPrice() + " Pris: " + parts.getTotal());
 			subTotal += parts.getTotal();
