@@ -29,7 +29,7 @@ private ArrayList<Customer> container;
         boolean found = false;
         while(index < container.size() && !found){
             customer = container.get(index);
-            if(customer.getName().equals(name)){
+            if(customer.getName().contains(name)){
                 found = true;
             }
             else{

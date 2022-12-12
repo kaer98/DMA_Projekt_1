@@ -1,5 +1,6 @@
 package model;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -11,6 +12,7 @@ public class Order {
 	private static int orderNo;
 	private String finalized;
 	private double total, discount;
+	private static final DecimalFormat dfSharp = new DecimalFormat("#.##");
 	
 	public Order(Employee employee) {
 		this.parts = new ArrayList<>();
@@ -43,7 +45,7 @@ public class Order {
 	public double getTotalWDiscount() {
 		return getTotal()*discount;
 	}
-	public void  setOrderNo(int orderNo) {
+	public void setOrderNo(int orderNo) {
 		this.orderNo = orderNo;
 	}
 
@@ -87,7 +89,6 @@ public class Order {
 		parts.add(new PartOrder(product, quantity));
 	}
 	public void createInvoice() {
-		double subTotal = 0;
 		System.out.println("Vestbjerg Byggecenter A/S");
 		System.out.println("Adresse");
 		System.out.println("By");
@@ -101,14 +102,21 @@ public class Order {
 		System.out.println("Kunde: "+ customer.getName() + " Kundes telefon: "+ customer.getPhoneNo());
 		System.out.println("Kunde e-mail: "+ customer.getMalAddress() + " Kunde adresse "+ customer.getAddress());
 		for(PartOrder parts : getParts()) {
-			System.out.println("\nBeskrivelse: " + parts.getProductName() + " Antal: " + parts.getQuantity() + " Stk. Pris: " + parts.getProduct().getRetailPrice() + " Pris: " + parts.getTotal());
-			subTotal += parts.getTotal();
+			System.out.println("\nBeskrivelse: " + parts.getProductName() + " Antal: " + parts.getQuantity() + " Stk. Pris: " + parts.getProduct().getRetailPrice() + " Pris: " + dfSharp.format(parts.getTotal()));
 		}
 		System.out.println("");
-		System.out.println("Subtotal: "+ subTotal);
-		System.out.println("Moms (25.00%): " + subTotal * 0.25);
-		System.out.println("Total DKK: " + subTotal * 1.25);
+		System.out.println("Subtotal: "+ dfSharp.format(getSubTotal()));
+		System.out.println("Moms (25.00%): " + dfSharp.format(getSubTotal() * 0.25));
+		System.out.println("Total DKK: " + dfSharp.format(getSubTotal() * 1.25));
 
+	}
+	public double getSubTotal() {
+		double subTotal = 0;
+		for(PartOrder parts : getParts()) {
+			subTotal += parts.getTotal();
+		}
+		return subTotal;
+		
 	}
 	
 	

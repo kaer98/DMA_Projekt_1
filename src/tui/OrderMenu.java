@@ -82,7 +82,6 @@ public class OrderMenu {
 			break;
 		case 2: 
 			order.setParts(po);
-			orderController.addOrder(order);
 			done = true;
 			int choice2 = offerMenu();
 			switch(choice2) {
@@ -96,7 +95,11 @@ public class OrderMenu {
 				order.setFinal("Betalt");
 				break;
 			}
+			order.getEmployee().tickSale();
+			order.getEmployee().setTotalSales(order.getSubTotal());
+			orderController.addOrder(order);
 			order.createInvoice();
+			
 			break;
 		}
 		return done;

@@ -9,7 +9,8 @@ package model;
 public class Employee extends Person {
 	private boolean manager;
 	private String name, phoneNo, mailAddress, country, postalCode, city, address, cvr;
-	private int salary, noOfSales, totalSales;
+	private int salary, noOfSales;
+	private double totalSales;
 	
 	public Employee(String name, String phoneNo, String mailAddress, String country, String postalCode, String city,
 			String address, Boolean manager, int salary) {
@@ -34,16 +35,19 @@ public class Employee extends Person {
 		return noOfSales;
 	}
 
+	public void tickSale() {
+		noOfSales++;
+	}
 	public void setNoOfSales(int noSales) {
 		this.noOfSales = noSales;
 	}
 
-	public int getTotalSales() {
+	public double getTotalSales() {
 		return totalSales;
 	}
 
-	public void setTotalSales(int totalSales) {
-		this.totalSales = totalSales;
+	public void setTotalSales(double totalSales) {
+		this.totalSales += totalSales;
 	}
 
 	public boolean isManager() {
