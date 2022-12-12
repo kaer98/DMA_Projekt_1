@@ -38,6 +38,9 @@ private Order order;
 	public ArrayList<Order> getOrders(){
 		return orderContainer.getOrders();
 	}
+	public int getQuantity(int i) {
+		return getQuantity(i);
+	}
 	
 	
 	

@@ -7,6 +7,10 @@ public class ProductMenu {
 	public ProductMenu() {
 		productController = new ProductController();
 	}
+	public int getQuantity(int i) {
+		return getQuantity(i);
+	}
+	
 	public void start(){
 		
 		int choice = writeProductMenu();
