@@ -60,7 +60,7 @@ public class OrderController {
 		return productController.getQuantity(i);
 	}
 
-	public void updateQuantity(int amount, int i) {
+	public void updateQuantity(int i, int amount) {
 		productController.updateQuantity(i, amount);
 	}
 

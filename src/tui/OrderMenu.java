@@ -82,7 +82,10 @@ public class OrderMenu {
     	case 0:
     		start();
     	case 1:
-    		po.add(new PartOrder(orderController.findProductByBarcode(Input.inputString("Barcode")), Input.inputInt("\nhvor mange")));
+    		String pro = Input.inputString("Barcode");
+    		int amount = Input.inputInt("\nhvor mange");
+    		po.add(new PartOrder(orderController.findProductByBarcode(pro), amount));
+    		orderController.findProductByBarcode(pro).updateQuantity(amount);
     		break;
     	case 2:
     		order.setFinal(true);
@@ -92,7 +95,6 @@ public class OrderMenu {
     		break;
     	case 4: 
     		order.setParts(po);
-    		
     		orderController.addOrder(order);
     		done = true;
     		break;
