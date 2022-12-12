@@ -43,7 +43,8 @@ public class Order {
 	}
 	
 	public double getTotalWDiscount() {
-		return getTotal()*discount;
+		double total = getTotal() * (1-getCustomer().getDiscount());
+		return total;
 	}
 	public void setOrderNo(int orderNo) {
 		this.orderNo = orderNo;
@@ -94,6 +95,7 @@ public class Order {
 	}
 	
 	public void createInvoice() {
+		double discount = 0;
 		System.out.println("Vestbjerg Byggecenter A/S");
 		System.out.println("Adresse");
 		System.out.println("By");
@@ -107,23 +109,23 @@ public class Order {
 		System.out.println("Kunde: "+ customer.getName() + " Kundes telefon: "+ customer.getPhoneNo());
 		System.out.println("Kunde e-mail: "+ customer.getMalAddress() + " Kunde adresse "+ customer.getAddress());
 		for(PartOrder parts : getParts()) {
+			if(parts.getQuantity()!=0)
 			System.out.println("\nBeskrivelse: " + parts.getProductName() + " Antal: " + parts.getQuantity() + " Stk. Pris: " + parts.getProduct().getRetailPrice() + " Pris: " + dfSharp.format(parts.getTotal()));
 		}
 		System.out.println("");
-		System.out.println("Subtotal: "+ dfSharp.format(getSubTotal()));
-		System.out.println("Moms (25.00%): " + dfSharp.format(getSubTotal() * 0.25));
-		System.out.println("Total DKK: " + dfSharp.format(getSubTotal() * 1.25));
-
-	}
-	public double getSubTotal() {
-		double subTotal = 0;
-		for(PartOrder parts : getParts()) {
-			subTotal += parts.getTotal();
+		System.out.println("Subtotal: "+ dfSharp.format(getTotal()));
+		if(customer.getDiscount()!=0) {
+			discount = getTotal()*(customer.getDiscount());
+			System.out.println(" -"+(customer.getDiscount()*100)+"% rabat");
+			System.out.println(discount);
 		}
-		return subTotal;
-		
+		System.out.println("Moms (25.00%): " + (getTotalWDiscount() * 0.25)+ " af " + getTotalWDiscount());
+		System.out.println("Total DKK: " + (getTotalWDiscount() * 1.25));
+
+	}
+
 	}
 	
 	
 
-}
+

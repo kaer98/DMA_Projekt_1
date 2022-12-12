@@ -68,15 +68,18 @@ public class OrderMenu {
 			else {
 			System.out.println(p.getDescription());
 			System.out.println(p.getQuantity()+" på lager");
+			System.out.println("Pris: " + p.getRetailPrice() + "kr");
 			}
 			}
 			int amount = 0;
-			while(amount <=0 || amount>p.getQuantity()) {
+			do {
 				amount = Input.inputInt("\nHvor mange: ");
 				if(amount>p.getQuantity()) {
 					System.out.println("Der er kun: "+ p.getQuantity() + " på lager");
 				}
 			}
+			while(amount <0 || amount>p.getQuantity());
+				
 			po.add(new PartOrderQ(p, amount));
 			p.updateQuantity(amount);
 			break;
@@ -96,7 +99,7 @@ public class OrderMenu {
 				break;
 			}
 			order.getEmployee().tickSale();
-			order.getEmployee().setTotalSales(order.getSubTotal());
+			order.getEmployee().setTotalSales(order.getTotal());
 			orderController.addOrder(order);
 			order.createInvoice();
 			
