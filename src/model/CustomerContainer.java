@@ -102,6 +102,7 @@ public void fill() {
     addNewCustomer("Ole", "88888888", "Danmark", "1000", "Skagen", "Ole vej 9", "98765432", "ole@ucn.dk", 0.40);
     addNewCustomer("Thomas", "55555555", "Danmark", "5000","Middelfart", "Thomas vej 5", "55555555", "thomas@ucn.dk", 0.23);
     addNewCustomer("John", "12121212", "Danmark", "2000", "Rødekro", "John vej 2", "25252525", "john@ucn.dk", 0.25);
+    addNewCustomer("KONTANTKUNDE","00000000","Danmark", "0000","KONTANT SALG", "","00000000","",0);
     
 
     
