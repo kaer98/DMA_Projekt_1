@@ -77,7 +77,7 @@ public class OrderMenu {
 					System.out.println("Der er kun: "+ p.getQuantity() + " på lager");
 				}
 			}
-			po.add(new PartOrder(p, amount));
+			po.add(new PartOrderQ(p, amount));
 			p.updateQuantity(amount);
 			break;
 		case 2: 
