@@ -29,8 +29,11 @@ public class OrderMenu {
 			boolean done = false;
 			order = orderController.makeOrder();
 			po.clear();
+			while(order.getCustomer()==null) {
 			String s =Input.inputString("skriv Telefon Nummer på kunden (00000000 hvis kontantkunde)");
 			order.setCustomer(orderController.findCustomerByPhoneNo(s));
+			}
+			System.out.println(order.getCustomer().getName());
 			while(!done) {
 				done = addOrder();	
 			}
@@ -48,28 +51,10 @@ public class OrderMenu {
 			MainMenu.start();  
 		}
 	}
-	private int writeMenu(){
-		TextMenu menu = new TextMenu("\n ###Order###", "Tilbage");
-		menu.addOption("Opret ordre");
-		menu.addOption("Find ordre");
-		menu.addOption("Slet ordre");
-
-		return menu.prompt();
-	}
-
-	private int ordermenu() {
-		TextMenu menu = new TextMenu("\n ###Opret Order###", "afbrud");
-		menu.addOption("Tilføj nyt Product");
-		menu.addOption("færdig");
-
-		return menu.prompt();
-	}
-
+	
 	private boolean addOrder() {
 		boolean done = false;
 		int orderChoice = ordermenu();
-
-		orderController.newList();
 		switch(orderChoice) {
 		case 0:
 			start();
@@ -117,6 +102,25 @@ public class OrderMenu {
 		return done;
 	}
 
+	
+	private int writeMenu(){
+		TextMenu menu = new TextMenu("\n ###Order###", "Tilbage");
+		menu.addOption("Opret ordre");
+		menu.addOption("Find ordre");
+		menu.addOption("Slet ordre");
+
+		return menu.prompt();
+	}
+
+	private int ordermenu() {
+		TextMenu menu = new TextMenu("\n ###Opret Order###", "afbrud");
+		menu.addOption("Tilføj nyt Product");
+		menu.addOption("færdig");
+
+		return menu.prompt();
+	}
+
+	
 	private int offerMenu() {
 		TextMenu menu = new TextMenu("\n ###Hvordan skal salget laves?###");
 		menu.addOption("Lav som tilbud");
