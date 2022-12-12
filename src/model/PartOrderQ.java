@@ -2,8 +2,10 @@ package model;
 
 public class PartOrderQ extends PartOrder{
 	private int quantity;
+	private Product product;
 	public PartOrderQ(Product product, int quantity) {
-		super(product, quantity);
+		super(product);
+		this.quantity = quantity;
 	}
 
 	public double getTotal() {
@@ -11,4 +13,5 @@ public class PartOrderQ extends PartOrder{
 	}
 	public int getQuantity() {
 		return quantity;
+}
 }
