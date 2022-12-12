@@ -1,5 +1,6 @@
 package model;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -9,23 +10,28 @@ public class Order {
 	private Customer customer;
 	private Employee employee;
 	private static int orderNo;
-	private boolean finalized;
+	private String finalized;
 	private double total, discount;
+	private static final DecimalFormat dfSharp = new DecimalFormat("#.##");
 	
 	public Order(Employee employee) {
 		this.parts = new ArrayList<>();
 		this.dateTime = LocalDate.now();
 		this.employee = employee;
 		++this.orderNo;
-		this.finalized = false;
+		this.finalized = "intet";
 	}
 	
 	public int getOrderNo() {
 		return orderNo;
 	}
 	
-	public void setFinal(boolean b) {
-		finalized = b;
+	public void setFinal(String string) {
+		finalized = string;
+	}
+	
+	public String getFinal() {
+		return finalized;
 	}
 	
 	public double getTotal() {
@@ -39,7 +45,7 @@ public class Order {
 	public double getTotalWDiscount() {
 		return getTotal()*discount;
 	}
-	public void  setOrderNo(int orderNo) {
+	public void setOrderNo(int orderNo) {
 		this.orderNo = orderNo;
 	}
 
@@ -88,24 +94,34 @@ public class Order {
 	}
 	
 	public void createInvoice() {
-		double subTotal = 0;
 		System.out.println("Vestbjerg Byggecenter A/S");
 		System.out.println("Adresse");
 		System.out.println("By");
 		System.out.println("CVR-nr.:");
+		System.out.println("Medarbejder: "+ employee.getName());
 		System.out.println();
 		System.out.println("Dato: " + dateTime +" 					Fakturanr.:"+ orderNo);
 		System.out.println();
 		System.out.println("Faktura");
+		System.out.println("Betalingsdato: "+ dateTime.plusDays(14) +" 					Tilbud: " + getFinal());
+		System.out.println("Kunde: "+ customer.getName() + " Kundes telefon: "+ customer.getPhoneNo());
+		System.out.println("Kunde e-mail: "+ customer.getMalAddress() + " Kunde adresse "+ customer.getAddress());
 		for(PartOrder parts : getParts()) {
-			System.out.println("\nBeskrivelse: " + parts.getProductName() + " Antal: " + parts.getQuantity() + " Stk. Pris: " + parts.getProduct().getRetailPrice() + " Pris: " + parts.getTotal());
-			subTotal += parts.getTotal();
+			System.out.println("\nBeskrivelse: " + parts.getProductName() + " Antal: " + parts.getQuantity() + " Stk. Pris: " + parts.getProduct().getRetailPrice() + " Pris: " + dfSharp.format(parts.getTotal()));
 		}
 		System.out.println("");
-		System.out.println("Subtotal: "+ subTotal);
-		System.out.println("Moms (25.00%): " + subTotal * 0.25);
-		System.out.println("Total DKK: " + subTotal * 1.25);
+		System.out.println("Subtotal: "+ dfSharp.format(getSubTotal()));
+		System.out.println("Moms (25.00%): " + dfSharp.format(getSubTotal() * 0.25));
+		System.out.println("Total DKK: " + dfSharp.format(getSubTotal() * 1.25));
 
+	}
+	public double getSubTotal() {
+		double subTotal = 0;
+		for(PartOrder parts : getParts()) {
+			subTotal += parts.getTotal();
+		}
+		return subTotal;
+		
 	}
 	
 	

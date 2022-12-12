@@ -41,12 +41,6 @@ private ArrayList<Product> container;
 				index++;
 			}
 		}
-		if(returnProduct==null) {
-			System.out.println("not found");
-		}
-		else {
-			System.out.println("found: " + returnProduct.getDescription());
-		}
 		return returnProduct;
 
 	}
