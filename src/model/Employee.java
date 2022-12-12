@@ -6,36 +6,21 @@ package model;
  *@version 1.0
  *
  */
-public class Employee {
+public class Employee extends Person {
 	private boolean manager;
-	private String name, phoneNo, mailAdress;
+	private String name, phoneNo, mailAddress, country, postalCode, city, address, cvr;
 	private int salary, noOfSales, totalSales;
 	
-	public Employee(Boolean manager, String name, String phoneNo, String mailAdress, int salary) {
-		this.name = name;
-		this.phoneNo = phoneNo;
+	public Employee(String name, String phoneNo, String mailAddress, String country, String postalCode, String city,
+			String address, Boolean manager, int salary) {
+		
+		super(name, phoneNo, mailAddress, country, postalCode, city, address);
 		this.manager = manager;
-		this.mailAdress = mailAdress;
 		this.salary = salary;
 		noOfSales = 0;
 		totalSales = 0;
 	}
 	
-	public String getPhoneNo() {
-		return phoneNo;
-	}
-
-	public void setPhoneNo(String phoneNo) {
-		this.phoneNo = phoneNo;
-	}
-
-	public String getMailAdress() {
-		return mailAdress;
-	}
-
-	public void setMailAdress(String mailAdress) {
-		this.mailAdress = mailAdress;
-	}
 
 	public int getSalary() {
 		return salary;
@@ -61,9 +46,6 @@ public class Employee {
 		this.totalSales = totalSales;
 	}
 
-	public String getName() {
-		return name;
-	}
 	public boolean isManager() {
 		return manager;
 	}

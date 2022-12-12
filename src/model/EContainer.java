@@ -18,8 +18,9 @@ public class EContainer {
 		return instance;
 	}
 	
-	public void addEmployee(boolean manager, String name, String phoneNo, String mailAdress, int salary) {
-		container.add(new Employee(manager, name, phoneNo, mailAdress, salary));
+	public void addEmployee(String name, String phoneNo, String mailAddress, String country, String postalCode, String city,
+			String address, Boolean manager, int salary) {
+		container.add(new Employee(name, phoneNo, mailAddress, country, postalCode, city, address, manager, salary));
 	}
 	
 	public ArrayList<Employee> getAll() {
@@ -27,10 +28,10 @@ public class EContainer {
 	}
 	
 	public void fill() {
-		addEmployee(true, "Jens", "34567891", "jens@live.com", 999);
-		addEmployee(false, "Jesper", "12345678", "jesper@gmail.com", 888);
-		addEmployee(false, "Klaus", "23456789", "klaus@hotmail.dk", 777);
-		addEmployee(false, "Ole", "45678912", "ole@yahoo.dk", 666);
+		addEmployee("Jens", "34567891", "jens@live.com", "Denmark", "9000", "Aalborg", "Østre Havnegade", true, 999);
+		addEmployee("Jesper", "12345678", "jesper@gmail.com", "Denmark", "9000", "Aalborg", "Tæt på skole", false, 999);
+		addEmployee("Klaus", "23456789", "klaus@hotmail.dk", "Denmark", "9000", "Aalborg", "Islandsgade", false, 999);
+		addEmployee("Ole", "45678912", "ole@yahoo.dk", "Denmark", "9000", "Aalborg", "Kennedy Street", false, 999);
 		
 	}
 	
