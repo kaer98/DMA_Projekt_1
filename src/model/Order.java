@@ -93,6 +93,10 @@ public class Order {
 		parts.add(new PartOrderAppliance(product, serialNo));
 	}
 	
+	public void addNewPartOrder(Product product, int||String number){
+		if()
+	}
+	
 	public void createInvoice() {
 		System.out.println("Vestbjerg Byggecenter A/S");
 		System.out.println("Adresse");

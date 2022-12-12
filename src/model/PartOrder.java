@@ -1,13 +1,11 @@
 package model;
 
-public class PartOrder {
+public abstract class PartOrder {
 
 	private Product product;
-
 	public PartOrder(Product product) {
 		this.product = product;
 	} 
-	
 	public String getProductName() {
 		return product.getDescription();
 	}
@@ -16,7 +14,7 @@ public class PartOrder {
 		return product;
 	}
 	
-	public double getTotal() {
-		return product.getRetailPrice()*PartOrderQ.getQuantity();
-	}
+	public abstract int getQuantity();
+	
+	public abstract double getTotal();
 }

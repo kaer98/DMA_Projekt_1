@@ -15,5 +15,14 @@ public class PartOrderAppliance extends PartOrder{
 	public void setSerialNo(String serialNo) {
 		this.serialNo = serialNo;
 	}
+
+	@Override
+	public double getTotal() {
+		return getProduct().getRetailPrice();
+	}
+	
+	public int getQuantity() {
+		return 1;
+	}
 	
 }
