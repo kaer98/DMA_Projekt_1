@@ -14,31 +14,48 @@ import tui.*;
 
 public class OrderController {
 
-private OrderContainer orderContainer;
-private ProductController productController;
-private Order order;
+	private OrderContainer orderContainer;
+	private ProductController productController;
+	private Order order;
+	private ArrayList<PartOrder> parts;
+	private Product product;
 	public OrderController() {
 		orderContainer = OrderContainer.getInstance();
 		productController = new ProductController();
+		parts = new ArrayList<>();
 	}
-	public void makeOrder() {
-		order = new Order(Login.getEmployee());
+	public Order makeOrder() {
+		return order = new Order(Login.getEmployee());
 	}
-	public void addOrder() {
+	public void addOrder(Order order) {
 		orderContainer.addOrder(order);		
-		}
-		
-	public void addPartOrder(Product product, int quantity) {
-		order.addPartOrder(product, quantity);
 	}
 	
+	public void addPartOrder(Order o, PartOrder p) {
+		o.addPartOrder(p);
+	}
+	public void addNewPartOrder(Product product, int quantity) {
+		order.addNewPartOrder(product, quantity);
+	}
+
 	public Product findProductByBarcode(String searchString) {
-		return productController.findProductByBarcode(searchString);
+		product = productController.findProductByBarcode(searchString);
+		return product;
 	}
 	public ArrayList<Order> getOrders(){
 		return orderContainer.getOrders();
 	}
+	public void newList() {
+		parts.clear();
+	}
+	public void addToList(PartOrder partOrder) {
+		parts.add(partOrder);
+	}
+	public ArrayList<PartOrder> getParts() {
+		return parts;
+	}
 	
-	
-	
+
+
+
 }

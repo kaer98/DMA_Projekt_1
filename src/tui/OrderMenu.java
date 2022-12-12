@@ -1,6 +1,10 @@
 package tui;
 import controller.OrderController;
 import model.Order;
+import model.PartOrder;
+import model.Product;
+
+import java.util.ArrayList;
 
 
 /**
@@ -12,22 +16,24 @@ import model.Order;
  */
 public class OrderMenu {
 	private OrderController orderController;
-	
+	private Order order;
+	private ArrayList<PartOrder> po;
 	public OrderMenu() {
 		orderController = new OrderController();
+		po = new ArrayList<>();
 	}
 	public void start() {
         int choice = writeMenu();
         switch(choice) {
         case 1:
         	boolean done = false;
+        	po.clear();
         	while(!done) {
-        		done = addOrder();
-        		
+        		done = addOrder();	
         	}
-        		int i = orderController.getOrders().size();
-        		System.out.println(orderController.getOrders().get(i-1).getEmployee().getName());
-        	
+        	for(int i = 0; i<=orderController.getOrders().get(0).getParts().size()-1;i++) {
+        		System.out.println(orderController.getOrders().get(0).getParts().get(i).getProductName());
+        	}
         	start();
         	break;
         case 2:
@@ -61,17 +67,18 @@ public class OrderMenu {
     
     private boolean addOrder() {
     	boolean done = false;
-    	int orderChoice =ordermenu();
-    	orderController.makeOrder();
+    	int orderChoice = ordermenu();
+    	order = orderController.makeOrder();
+    	orderController.newList();
     	switch(orderChoice) {
     	case 0:
     		start();
     	case 1:
-    		String s = Input.inputString("Barcode: ");
-    		orderController.addPartOrder(orderController.findProductByBarcode(s), Input.inputInt("\nhvor mange: "));
+    		po.add(new PartOrder(orderController.findProductByBarcode(Input.inputString("Barcode")), Input.inputInt("\nhvor mange")));
     		break;
     	case 2: 
-    		orderController.addOrder();
+    		order.setParts(po);
+    		orderController.addOrder(order);
     		done = true;
     		
     	}

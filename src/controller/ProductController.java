@@ -11,8 +11,9 @@ import model.ProductContainer;
  *
  */
 public class ProductController {
-	public ArrayList<Product> products;
-	public ProductContainer productContainer;
+	private ArrayList<Product> products;
+	private ProductContainer productContainer;
+	private Product product;
 	
 	public ProductController() {
 		productContainer = ProductContainer.getInstance();
@@ -22,6 +23,7 @@ public class ProductController {
 		return products;
 	}
 	public Product findProductByBarcode(String searchString) {
-		return productContainer.findProductByBarcode(searchString);
+		product = productContainer.findProductByBarcode(searchString);
+		return product;
 	}
 }

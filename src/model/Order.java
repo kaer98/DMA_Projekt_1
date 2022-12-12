@@ -8,13 +8,23 @@ public class Order {
 	private LocalDate dateTime;
 	private Customer customer;
 	private Employee employee;
+	private int orderNo;
 	
 	public Order(Employee employee) {
-		parts = new ArrayList<>();
+		this.parts = new ArrayList<>();
 		this.dateTime = LocalDate.now();
 		this.employee = employee;
+		++this.orderNo;
 	}
 	
+	public int getOrderNo() {
+		return orderNo;
+	}
+
+	public void setOrderNo(int orderNo) {
+		this.orderNo = orderNo;
+	}
+
 	public ArrayList<PartOrder> getParts() {
 		return parts;
 	}
@@ -46,10 +56,15 @@ public class Order {
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
-
-	public void addPartOrder(Product product, int quantity) {
+	
+	public void addPartOrder(PartOrder partOrder) {
+		parts.add(partOrder);
+	}
+	
+	public void addNewPartOrder(Product product, int quantity) {
 		parts.add(new PartOrder(product, quantity));
 	}
+	
 	
 	
 

@@ -2,12 +2,13 @@ package model;
 
 public class Product {
 	private String barcode, description, location; 
-	private int quantity, minQuantity, maxQuantity, barcodecount;
+	private int quantity, minQuantity, maxQuantity;
+	private static int barcodeCount;
 	private double costPrice, retailPrice, tradeAllowance;
 	
 	public Product(String description, String location, int quantity, int minQuantity, int maxQuantity,
 			double costPrice, double retailPrice) {
-		++barcodecount;
+		++barcodeCount;
 		this.barcode = barcode();
 		this.description = description;
 		this.location = location;
@@ -22,7 +23,7 @@ public class Product {
 		return barcode;
 	}
 	private String barcode() {
-		String rbarcode = String.format("%08d", barcodecount);
+		String rbarcode = String.format("%08d", barcodeCount);
 		return rbarcode;
 	}
 	public String getDescription() {
