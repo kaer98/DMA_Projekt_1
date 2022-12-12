@@ -7,7 +7,7 @@ package model;
  *
  */
 public class Customer extends Person {
-	private String name, phoneNo, mailAddress, country, postalCode, city, address, cvr;
+	private String cvr;
 	private double discount;
 	public Customer(String name, String phoneNo, String mailAddress, String country, String postalCode, String city,
 			String address, String cvr, double discount) {

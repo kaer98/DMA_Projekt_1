@@ -8,7 +8,6 @@ package model;
  */
 public class Employee extends Person {
 	private boolean manager;
-	private String name, phoneNo, mailAddress, country, postalCode, city, address, cvr;
 	private int salary, noOfSales;
 	private double totalSales;
 	
