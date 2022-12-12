@@ -2,7 +2,7 @@ package tui;
 import controller.OrderController;
 import model.Order;
 import model.PartOrder;
-
+import model.Product;
 
 import java.util.ArrayList;
 
@@ -26,8 +26,6 @@ public class OrderMenu {
 		int choice = writeMenu();
 		switch(choice) {
 		case 1:
-
-
 			boolean done = false;
 			order = orderController.makeOrder();
 			po.clear();
@@ -62,8 +60,6 @@ public class OrderMenu {
 	private int ordermenu() {
 		TextMenu menu = new TextMenu("\n ###Opret Order###", "afbrud");
 		menu.addOption("Tilføj nyt Product");
-		menu.addOption("lav som tilbud");
-		menu.addOption("lav som Ordre");
 		menu.addOption("færdig");
 
 		return menu.prompt();
@@ -78,27 +74,55 @@ public class OrderMenu {
 		case 0:
 			start();
 		case 1:
-			String pro = Input.inputString("Barcode");
-			int amount = Input.inputInt("\nhvor mange");
-			po.add(new PartOrder(orderController.findProductByBarcode(pro), amount));
-			orderController.findProductByBarcode(pro).updateQuantity(amount);
+			Product p =null;
+			while(p==null) {
+			p = orderController.findProductByBarcode(Input.inputString("Barcode: "));
+			if(p==null) {
+				System.out.println("Produkt ikke fundet! prøv igen");
+			}
+			else {
+			System.out.println(p.getDescription());
+			System.out.println(p.getQuantity()+" på lager");
+			}
+			}
+			int amount = 0;
+			while(amount <=0 || amount>p.getQuantity()) {
+				amount = Input.inputInt("\nHvor mange: ");
+				if(amount>p.getQuantity()) {
+					System.out.println("Der er kun: "+ p.getQuantity() + " på lager");
+				}
+			}
+			po.add(new PartOrder(p, amount));
+			p.updateQuantity(amount);
 			break;
-		case 2:
-			order.setFinal(true);
-			break;
-		case 3:
-			order.setFinal(false);
-			break;
-		case 4: 
+		case 2: 
 			order.setParts(po);
 			orderController.addOrder(order);
 			done = true;
+			int choice2 = offerMenu();
+			switch(choice2) {
+			case 1:
+				order.setFinal("Tilbud");
+				break;
+			case 2:
+				order.setFinal("Faktura");
+				break;
+			case 3: 
+				order.setFinal("Betalt");
+				break;
+			}
 			order.createInvoice();
 			break;
 		}
 		return done;
 	}
 
-	//private int 
+	private int offerMenu() {
+		TextMenu menu = new TextMenu("\n ###Hvordan skal salget laves?###");
+		menu.addOption("Lav som tilbud");
+		menu.addOption("lav som faktura");
+		menu.addOption("lav som salg");
+		return menu.prompt();
+	}
 
 }

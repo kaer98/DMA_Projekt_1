@@ -9,7 +9,7 @@ public class Order {
 	private Customer customer;
 	private Employee employee;
 	private static int orderNo;
-	private boolean finalized;
+	private String finalized;
 	private double total, discount;
 	
 	public Order(Employee employee) {
@@ -17,16 +17,13 @@ public class Order {
 		this.dateTime = LocalDate.now();
 		this.employee = employee;
 		++this.orderNo;
-		this.finalized = false;
+		this.finalized = "intet";
 	}
 	
 	public int getOrderNo() {
 		return orderNo;
 	}
 	
-	public void setFinal(boolean b) {
-		finalized = b;
-	}
 	
 	public double getTotal() {
 		total = 0;
@@ -78,6 +75,13 @@ public class Order {
 	public void addPartOrder(PartOrder partOrder) {
 		parts.add(partOrder);
 	}
+	public String getFinal() {
+		return finalized;
+	}
+	
+	public void setFinal(String finalize) {
+		this.finalized = finalize;
+	}
 	
 	public void addNewPartOrder(Product product, int quantity) {
 		parts.add(new PartOrder(product, quantity));
@@ -89,7 +93,7 @@ public class Order {
 		System.out.println("By");
 		System.out.println("CVR-nr.:");
 		System.out.println();
-		System.out.println("Dato: " + dateTime +" 					Fakturanr.:"+ orderNo);
+		System.out.println("Dato: " + dateTime +" 					Fakturanr. "+ orderNo);
 		System.out.println();
 		System.out.println("Faktura");
 		for(PartOrder parts : getParts()) {
