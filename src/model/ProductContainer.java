@@ -47,7 +47,7 @@ private ArrayList<Product> container;
 
 	public void addNewProduct(String description, String location, int quantity, int minQuantity, int maxQuantity,
 			double costPrice, double retailPrice) {
-		Product p = new Product(description, location, quantity, minQuantity, maxQuantity, costPrice, retailPrice);
+		Product p = new SimpleProduct(description, location, quantity, minQuantity, maxQuantity, costPrice, retailPrice);
 		container.add(p);
 	}
 	

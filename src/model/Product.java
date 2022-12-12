@@ -9,6 +9,7 @@ public abstract class Product {
 	public Product(String description, String location, int quantity, int minQuantity, int maxQuantity, double costPrice, double retailPrice) {
 		++barcodeCount;
 		this.barcode = barcode();
+		this.quantity = quantity;
 		this.description = description;
 		this.location = location;
 		this.minQuantity = minQuantity;

@@ -122,36 +122,6 @@ public class OrderMenu {
 
 		return menu.prompt();
 	}
-
-	private boolean addOrder() {
-		boolean done = false;
-		int orderChoice = ordermenu();
-
-		orderController.newList();
-		switch(orderChoice) {
-		case 0:
-			start();
-		case 1:
-			String pro = Input.inputString("Barcode");
-			int amount = Input.inputInt("\nhvor mange");
-			po.add(new PartOrderQ(orderController.findProductByBarcode(pro), amount));
-			orderController.findProductByBarcode(pro).updateQuantity(amount);
-			break;
-		case 2:
-			order.setFinal(true);
-			break;
-		case 3:
-			order.setFinal(false);
-			break;
-		case 4: 
-			order.setParts(po);
-			orderController.addOrder(order);
-			done = true;
-			order.createInvoice();
-			break;
-		}
-		return done;
-}
 	
 	private int offerMenu() {
 		TextMenu menu = new TextMenu("\n ###Hvordan skal salget laves?###");
