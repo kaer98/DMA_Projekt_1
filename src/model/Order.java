@@ -9,7 +9,7 @@ public class Order {
 	private Customer customer;
 	private Employee employee;
 	private static int orderNo;
-	private String finalized;
+	private boolean finalized;
 	private double total, discount;
 	
 	public Order(Employee employee) {
@@ -17,13 +17,16 @@ public class Order {
 		this.dateTime = LocalDate.now();
 		this.employee = employee;
 		++this.orderNo;
-		this.finalized = "intet";
+		this.finalized = false;
 	}
 	
 	public int getOrderNo() {
 		return orderNo;
 	}
 	
+	public void setFinal(boolean b) {
+		finalized = b;
+	}
 	
 	public double getTotal() {
 		total = 0;
@@ -75,13 +78,6 @@ public class Order {
 	public void addPartOrder(PartOrder partOrder) {
 		parts.add(partOrder);
 	}
-	public String getFinal() {
-		return finalized;
-	}
-	
-	public void setFinal(String finalize) {
-		this.finalized = finalize;
-	}
 	
 	public void addNewPartOrder(Product product, int quantity) {
 		parts.add(new PartOrder(product, quantity));
@@ -92,12 +88,14 @@ public class Order {
 		System.out.println("Adresse");
 		System.out.println("By");
 		System.out.println("CVR-nr.:");
-		System.out.println("Medarbejder: "+ employee);
+		System.out.println("Medarbejder: "+ employee.getName());
 		System.out.println();
-		System.out.println("Dato: " + dateTime +" 					Fakturanr. "+ orderNo);
+		System.out.println("Dato: " + dateTime +" 					Fakturanr.:"+ orderNo);
 		System.out.println();
 		System.out.println("Faktura");
-		System.out.println("Betalingsdato: "+ dateTime.plusDays(14) 					"Tilbud: " + getFinal);
+		System.out.println("Betalingsdato: "+ dateTime.plusDays(14) +" 					Tilbud: " + getFinal());
+		System.out.println("Kunde: "+ customer.getName() + " Kundes telefon: "+ customer.getPhoneNo());
+		System.out.println("Kunde e-mail: "+ customer.getMalAddress() + " Kunde adresse "+ customer.getAddress());
 		for(PartOrder parts : getParts()) {
 			System.out.println("\nBeskrivelse: " + parts.getProductName() + " Antal: " + parts.getQuantity() + " Stk. Pris: " + parts.getProduct().getRetailPrice() + " Pris: " + parts.getTotal());
 			subTotal += parts.getTotal();
