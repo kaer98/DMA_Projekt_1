@@ -1,7 +1,7 @@
 package tui;
 
 public class CustomerMenu {
-	
+	// Start method to display menu
 	public void start(){
 		int choice = writeCustomerMenu();
 		switch(choice) {
@@ -10,7 +10,7 @@ public class CustomerMenu {
 		case 1:
 			//
 			break;
-		case 2:
+		case 2:z
 			break;
 		case 3:
 			break;
