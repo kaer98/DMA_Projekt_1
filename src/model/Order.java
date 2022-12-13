@@ -22,9 +22,8 @@ public class Order {
 		this.finalized = "intet";
 	}
 	
-	/* From line 29-87 we have added our getters and setters, which were needed for our createInvoice() method at the bottom.
-	 * 
-	 */
+	 
+	  //Getters and setters
 	
 	public int getOrderNo() {
 		return orderNo;
