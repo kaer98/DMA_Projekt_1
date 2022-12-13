@@ -21,7 +21,7 @@ public class Employee extends Person {
 		totalSales = 0;
 	}
 	
-
+    // Get and Set methods for Salary, noOfSales and totalSales
 	public int getSalary() {
 		return salary;
 	}
@@ -33,14 +33,14 @@ public class Employee extends Person {
 	public int getNoOfSales() {
 		return noOfSales;
 	}
-
+    // tickSale method that ++ noOfSales
 	public void tickSale() {
 		noOfSales++;
 	}
 	public void setNoOfSales(int noSales) {
 		this.noOfSales = noSales;
 	}
-
+    
 	public double getTotalSales() {
 		return totalSales;
 	}
@@ -48,7 +48,7 @@ public class Employee extends Person {
 	public void setTotalSales(double totalSales) {
 		this.totalSales += totalSales;
 	}
-
+    // isManager method that determines access to other menus
 	public boolean isManager() {
 		return manager;
 	}

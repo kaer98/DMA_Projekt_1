@@ -5,8 +5,7 @@ public class ApplianceCopy {
 	private String serialNo;
 	
 	  // Constructor for creating a Appliance copy of appliance
-	  public ApplianceCopy(Appliance appliance, String serialNo) {
-	    this.appliance = appliance;
+	  public ApplianceCopy(String serialNo) {
 	    this.serialNo = serialNo;
 	    
 	  }
