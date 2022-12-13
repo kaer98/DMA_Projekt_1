@@ -83,8 +83,8 @@ public abstract class Product {
 	
 	public abstract ApplianceCopy findApplianceCopyBySerialNo(String serialNo);
 	 
-	public void updateQuantity(int amount) {
-		this.setQuantity(this.getQuantity() - amount);
-	}
+	public abstract void updateQuantity(int amount);
+	public abstract void updateQuantity(String string);
+		
 
 }

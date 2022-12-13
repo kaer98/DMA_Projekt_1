@@ -113,11 +113,15 @@ public class Order {
 		System.out.println("Faktura");
 		System.out.println("Betalingsdato: "+ dateTime.plusDays(14) +" 					Tilbud: " + getFinal());
 		System.out.println("Kunde: "+ customer.getName() + " \nKundes telefon: "+ customer.getPhoneNo());
-		System.out.println("Kundes e-mail: "+ customer.getMalAddress() + " \nKundes adresse "+ customer.getAddress());
+		System.out.println("Kundes e-mail: "+ customer.getMalAddress() + " \nKundes adresse: "+ customer.getAddress());
 		System.out.println("Kundes CVR-nr: " + customer.getCvr());
 		for(PartOrder parts : getParts()) {
-			if(parts.getQuantity()!=0)
-			System.out.println("\nBeskrivelse: " + parts.getProductName() + " Antal: " + parts.getQuantity() + " Stk. Pris: " + parts.getProduct().getRetailPrice() + " Pris: " + dfSharp.format(parts.getTotal()));
+			if(parts.getQuantity()!=0 && parts.getProduct().isAppliance()==false)
+			System.out.println("Beskrivelse: " + parts.getProductName() + " Antal: " + parts.getQuantity() + " Stk. Pris: " + parts.getProduct().getRetailPrice() + " Pris: " + dfSharp.format(parts.getTotal()));
+			if(parts.getProduct().isAppliance()==true) {
+				System.out.println("Beskrivelse: " + parts.getProductName() + " Pris: " + dfSharp.format(parts.getTotal()));
+				System.out.println("serienummer: "+ parts.getCopy().getSerialNo());
+			}
 		}
 		System.out.println("");
 		System.out.println("Subtotal: "+ dfSharp.format(getTotal()));
