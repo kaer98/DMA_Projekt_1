@@ -1,5 +1,6 @@
 package tui;
 import controller.OrderController;
+import model.ApplianceCopy;
 import model.Order;
 import model.PartOrder;
 import model.PartOrderQ;
@@ -61,6 +62,7 @@ public class OrderMenu {
 			start();
 		case 1:
 			Product p =null;
+			ApplianceCopy ac = null;
 			while(p==null) {
 			p = orderController.findProductByBarcode(Input.inputString("Barcode: "));
 			if(p==null) {
@@ -71,8 +73,19 @@ public class OrderMenu {
 			System.out.println(p.getQuantity()+" på lager");
 			System.out.println("Pris: " + p.getRetailPrice() + "kr");
 			
-			if(p.isAppliance()) {
-				po.add(new PartOrderAppliance(p.findApplianceCopyBySerialNo(Input.inputString("Serienummer: "))));
+			if(p.isAppliance()==true) {
+				while(ac==null) {
+				String s = Input.inputString("Serienummer: ");
+				ac = p.findApplianceCopyBySerialNo(s);
+				if(ac==null) {
+					System.out.println("serienummer ikke fundet. prøv igen");
+				}
+				else {
+					po.add(new PartOrderAppliance(ac));
+					p.updateQuantity(s);	
+				}
+				
+				}
 			}
 			else {
 			

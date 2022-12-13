@@ -5,6 +5,7 @@ public class ApplianceCopy {
 	private Appliance appliance;
 	private String serialNo;
 	private int count;
+	
 
 
 	// Constructor for creating a Appliance copy of appliance
@@ -27,11 +28,18 @@ public class ApplianceCopy {
 	public String getSerialNo() {
 		return serialNo;
 	}
-
+	
+	public String getDescription() {
+		return appliance.getDescription();
+	}
+	
 	public void setSerialNo(String serialNo) {
 		this.serialNo = serialNo;
 	}
-
+	
+	public double getRetailPrice() {
+		return appliance.getRetailPrice();
+	}
 	private String genSerialNo() {
 		String returnString = (appliance.getDescription().substring(0, 4)+count);
 		return returnString;
