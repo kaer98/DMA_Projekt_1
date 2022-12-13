@@ -22,6 +22,10 @@ public class Order {
 		this.finalized = "intet";
 	}
 	
+	/* From line 29-87 we have added our getters and setters, which were needed for our createInvoice() method at the bottom.
+	 * 
+	 */
+	
 	public int getOrderNo() {
 		return orderNo;
 	}
@@ -82,6 +86,10 @@ public class Order {
 		this.employee = employee;
 	}
 	
+	/* From line 93-103 we have created methods to add a partOrder, adding a new quantity to a partOrder
+	 * and lastly a method to add appliances to our partOrder
+	 */
+	
 	public void addPartOrder(PartOrder partOrder) {
 		parts.add(partOrder);
 	}
@@ -93,6 +101,12 @@ public class Order {
 	public void addNewPartOrderAppliance(Product product, String serialNo) {
 		parts.add(new PartOrderAppliance(product, serialNo));
 	}
+	/* The method createInvoice() is used to create an invoice for our clients.
+	 * The method uses dfSharp to round up our prices to two decimals.
+	 * The method also calculates our total order price, and calculates our VAT price (25%).
+	 * It also uses dateTime to get the current date on our invoice, and can calculate the payment date using dateTime.plusDays(x amount of days)
+	*/ 
+	
 	
 	public void createInvoice() {
 		double discount = 0;
@@ -107,7 +121,8 @@ public class Order {
 		System.out.println("Faktura");
 		System.out.println("Betalingsdato: "+ dateTime.plusDays(14) +" 					Tilbud: " + getFinal());
 		System.out.println("Kunde: "+ customer.getName() + " Kundes telefon: "+ customer.getPhoneNo());
-		System.out.println("Kunde e-mail: "+ customer.getMalAddress() + " Kunde adresse "+ customer.getAddress());
+		System.out.println("Kundes e-mail: "+ customer.getMalAddress() + " Kundes adresse "+ customer.getAddress());
+		System.out.println("Kundes CVR-nr: " + customer.getCvr());
 		for(PartOrder parts : getParts()) {
 			if(parts.getQuantity()!=0)
 			System.out.println("\nBeskrivelse: " + parts.getProductName() + " Antal: " + parts.getQuantity() + " Stk. Pris: " + parts.getProduct().getRetailPrice() + " Pris: " + dfSharp.format(parts.getTotal()));

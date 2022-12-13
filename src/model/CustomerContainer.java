@@ -7,22 +7,23 @@ public class CustomerContainer {
 private static CustomerContainer instance = null;
 private ArrayList<Customer> container;
 	
+    // Private constructor that creates a new ArrayList and calls the "fill" method to add to the ArrayList with Customer objects. 
 	private CustomerContainer() {
 		container = new ArrayList<>();
 		fill();
 	}
-	
+	// Get instance method that returns a Singleton
 	public static CustomerContainer getInstance() {
 		if(instance == null) {
 			instance = new CustomerContainer();
 		}
 		return instance;
 	}
-	
+	// addCustomer method that adds a Customer to ArrayList
 	public void addCustomer(Customer customer) {
 		container.add(customer);
 	}
-	
+	// findCustomerByName takes in a (String name) and returns the Customer with the given name if it is visible in ArrayList through a while-loop.
     public Customer findCustomerByName(String name){
         Customer customer = null;
         int index = 0;
@@ -43,7 +44,7 @@ private ArrayList<Customer> container;
         	return null;
         }
     }
-
+   // findCustomerByPhoneNo takes in a (String phoneNo) and returns the Customer with the given phoneNo if it is visible in the ArrayList through a while-loop.
     public Customer findCustomerByPhoneNo(String phoneNo){
         Customer customer = null;
         int index = 0;
@@ -64,7 +65,7 @@ private ArrayList<Customer> container;
         	return null;
         }
     }
-    
+// findCustomerByCvr takes in a (String Cvr) and returns the Customer with the given Cvr if it is visible in the ArrayList through a while-loop.
     public Customer findCustomerByCvr(String Cvr){
         Customer customer = null;
         int index = 0;
@@ -85,13 +86,14 @@ private ArrayList<Customer> container;
         	return null;
         }
     }
-	
+	// addNewCustomer method with parameters to create new Customer and add to ArrayList. 
 	public void addNewCustomer(String name, String cvr, String country, String postalCode, String city, String adress,
 			String phoneNo, String mailAdress, double discount) {
 		Customer c = new Customer (name, cvr, country, postalCode, city, adress, phoneNo, mailAdress, discount);
 		container.add(c);
 	}	
-public void fill() {
+// Fill method that fills Customer objects to ArrayList. 
+	public void fill() {
 	addNewCustomer("Jens", "11111111", "Danmark", "9000", "Aalborg", "Jens vej 1", "12345678", "jens0@ucn.dk", 0.10);
 	addNewCustomer("Jonas", "22222222", "Danmark", "8000", "København", "Jonas vej 2", "88888888", "jonas@ucn.dk", 0.20);
 	addNewCustomer("Jeppe", "33333333", "Danmark", "7000", "Odense", "Jeppe vej 3", "11111111", "jeppe@ucn.dk", 0.50);

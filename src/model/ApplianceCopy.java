@@ -10,7 +10,7 @@ public class ApplianceCopy {
 	    this.serialNo = serialNo;
 	    
 	  }
-
+    // Get and Set methods for fields appliance and serialNo
 	public Appliance getAppliance() {
 		return appliance;
 	}
@@ -28,3 +28,4 @@ public class ApplianceCopy {
 	}
 	  
 }
+    // Purpose of this class is to create a copy of an "Appliance" object, with a new serial number

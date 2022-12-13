@@ -3,12 +3,13 @@ package model;
 public class  Appliance extends Product {
 	private String serialNo;
 	
+	// Constructor that takes in several parameters to initialize an Appliance object:
 	public Appliance(String description, String location, int quantity, int minQuantity, int maxQuantity,
 			double costPrice, double retailPrice, String serialNo) {
 		super(description, location, quantity, minQuantity, maxQuantity, costPrice, retailPrice);
 		this.serialNo=serialNo;
 	}
-
+// Get and Set methods for field "serialNo"
 	public String getSerialNo() {
 		return serialNo;
 	}
