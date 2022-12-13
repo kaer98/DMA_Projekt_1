@@ -10,6 +10,7 @@ public class  Appliance extends Product {
 			double costPrice, double retailPrice) {
 		super(description, location, quantity, minQuantity, maxQuantity, costPrice, retailPrice);
 		appliances = new ArrayList<ApplianceCopy>();
+		
 	}
 
 // Get method for appliances
@@ -25,10 +26,18 @@ public class  Appliance extends Product {
 		appliances.add(applianceCopy);
 	}
 	
-	public void addNewApplianceCopy(String serialNo) {
-		ApplianceCopy applianceCopy = new ApplianceCopy (serialNo);
+	public void addNewApplianceCopy() {
+		ApplianceCopy applianceCopy = new ApplianceCopy (this);
 		appliances.add(applianceCopy);
 	}	
+	
+	public void newAppliancecopy(String description, String location, int quantity, int minQuantity, int maxQuantity,
+			double costPrice, double retailPrice) {
+		for(int i=0;i<quantity;i++) {
+			ApplianceCopy a = new ApplianceCopy(this);
+			addApplianceCopy(a);
+		}
+	}
 	
 	// findApplianceCopyBySerialNo takes in a (String serialNo) and returns the ApplianceCopy with the given serialNo if it is visible in the ArrayList through a while-loop.
     public ApplianceCopy findApplianceCopyBySerialNo(String serialNo){
