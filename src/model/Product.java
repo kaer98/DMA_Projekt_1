@@ -5,6 +5,7 @@ public abstract class Product {
 	private int quantity, minQuantity, maxQuantity;
 	private static int barcodeCount;
 	private double costPrice, retailPrice, tradeAllowance;
+	private boolean appliance;
 	
 	public Product(String description, String location, int quantity, int minQuantity, int maxQuantity, double costPrice, double retailPrice) {
 		++barcodeCount;
@@ -70,12 +71,18 @@ public abstract class Product {
 	public int getQuantity() {
 		return quantity;
 	}
+	public boolean isAppliance() {
+		return appliance;
+	}
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 	public double calTradeAllowance() {
 		return retailPrice - costPrice;
 	}
+	
+	public abstract ApplianceCopy findApplianceCopyBySerialNo(String serialNo);
+	 
 	public void updateQuantity(int amount) {
 		this.setQuantity(this.getQuantity() - amount);
 	}

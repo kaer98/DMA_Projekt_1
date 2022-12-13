@@ -94,8 +94,8 @@ public class Order {
 		parts.add(new PartOrderQ(product, quantity));
 	}
 	
-	public void addNewPartOrderAppliance(Product product, String serialNo) {
-		parts.add(new PartOrderAppliance(product, serialNo));
+	public void addNewPartOrderAppliance(ApplianceCopy product) {
+		parts.add(new PartOrderAppliance(product));
 	}
 	/* createInvoice() is used to create an invoice. 
 	*/ 
@@ -112,8 +112,8 @@ public class Order {
 		System.out.println();
 		System.out.println("Faktura");
 		System.out.println("Betalingsdato: "+ dateTime.plusDays(14) +" 					Tilbud: " + getFinal());
-		System.out.println("Kunde: "+ customer.getName() + " Kundes telefon: "+ customer.getPhoneNo());
-		System.out.println("Kundes e-mail: "+ customer.getMalAddress() + " Kundes adresse "+ customer.getAddress());
+		System.out.println("Kunde: "+ customer.getName() + " \nKundes telefon: "+ customer.getPhoneNo());
+		System.out.println("Kundes e-mail: "+ customer.getMalAddress() + " \nKundes adresse "+ customer.getAddress());
 		System.out.println("Kundes CVR-nr: " + customer.getCvr());
 		for(PartOrder parts : getParts()) {
 			if(parts.getQuantity()!=0)

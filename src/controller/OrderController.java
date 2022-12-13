@@ -40,8 +40,8 @@ public class OrderController {
 		order.addNewPartOrderQ(product, quantity);
 	}
 	
-	public void addNewPartOrderAppliance(Product product, String serialNo) {
-		order.addNewPartOrderAppliance(product, serialNo);
+	public void addNewPartOrderAppliance(ApplianceCopy product) {
+		order.addNewPartOrderAppliance(product);
 	}
 
 	public Product findProductByBarcode(String searchString) {

@@ -4,12 +4,14 @@ import java.util.ArrayList;
 public class  Appliance extends Product {
 	
 	private ArrayList<ApplianceCopy> appliances;
+	private boolean appliance;
 
 	// Constructor that takes in several parameters to initialize an Appliance object:
 	public Appliance(String description, String location, int quantity, int minQuantity, int maxQuantity,
 			double costPrice, double retailPrice) {
 		super(description, location, quantity, minQuantity, maxQuantity, costPrice, retailPrice);
 		appliances = new ArrayList<ApplianceCopy>();
+		appliance = true;
 		
 	}
 
@@ -26,15 +28,15 @@ public class  Appliance extends Product {
 		appliances.add(applianceCopy);
 	}
 	
-	public void addNewApplianceCopy() {
-		ApplianceCopy applianceCopy = new ApplianceCopy (this);
+	public void addNewApplianceCopy(int count) {
+		ApplianceCopy applianceCopy = new ApplianceCopy (this, count);
 		appliances.add(applianceCopy);
 	}	
 	
 	public void newAppliancecopy(String description, String location, int quantity, int minQuantity, int maxQuantity,
 			double costPrice, double retailPrice) {
 		for(int i=0;i<quantity;i++) {
-			ApplianceCopy a = new ApplianceCopy(this);
+			ApplianceCopy a = new ApplianceCopy(this,i);
 			addApplianceCopy(a);
 		}
 	}
@@ -59,5 +61,8 @@ public class  Appliance extends Product {
         else{   
         	return null;
         }
+    }
+    public void updateQuantity(int amount) {
+    	
     }
 }

@@ -1,20 +1,13 @@
 package model;
 
 public class PartOrderAppliance extends PartOrder{
-	private String serialNo;
+	private ApplianceCopy appliancecopy;
 	
-	public PartOrderAppliance(Product product, String serialNo) {
-		super(product);
-		this.serialNo = serialNo;
+	public PartOrderAppliance(ApplianceCopy product) {
+		super();
+		this.appliancecopy = product;
 	}
 
-	public String getSerialNo() {
-		return serialNo;
-	}
-
-	public void setSerialNo(String serialNo) {
-		this.serialNo = serialNo;
-	}
 
 	@Override
 	public double getTotal() {

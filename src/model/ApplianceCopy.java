@@ -1,19 +1,21 @@
 package model;
 
-import java.util.Random;
+
 public class ApplianceCopy {
 	private Appliance appliance;
 	private String serialNo;
-	Random rand;
-	
-	  // Constructor for creating a Appliance copy of appliance
-	  public ApplianceCopy(Appliance appliance) {
-	    this.serialNo = genSerialNo();
-	    this.appliance = appliance;
-	    rand = new Random();
-	    
-	  }
-    // Get and Set methods for fields appliance and serialNo
+	private int count;
+
+
+	// Constructor for creating a Appliance copy of appliance
+	public ApplianceCopy(Appliance appliance,int count) {
+		this.appliance = appliance;
+		this.count = count;  
+		this.serialNo = genSerialNo();
+
+
+	}
+	// Get and Set methods for fields appliance and serialNo
 	public Appliance getAppliance() {
 		return appliance;
 	}
@@ -29,10 +31,10 @@ public class ApplianceCopy {
 	public void setSerialNo(String serialNo) {
 		this.serialNo = serialNo;
 	}
-	  
+
 	private String genSerialNo() {
-		String returnString = (""+rand.nextInt(100000000, 999999999));
+		String returnString = (appliance.getDescription().substring(0, 4)+count);
 		return returnString;
 	}
 }
-    // Purpose of this class is to create a copy of an "Appliance" object, with a new serial number
+// Purpose of this class is to create a copy of an "Appliance" object, with a new serial number

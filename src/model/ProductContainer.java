@@ -62,7 +62,8 @@ private ArrayList<Product> container;
 	
 	public void addNewAppliance(String description, String location, int quantity, int minQuantity, int maxQuantity,
 			double costPrice, double retailPrice) {
-		Product  p = new Appliance
+		Product  p = new Appliance(description, location, quantity, minQuantity, maxQuantity, costPrice, retailPrice);
+		container.add(p);
 	}
 	
 	// List of Products
