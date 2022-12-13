@@ -44,8 +44,8 @@ public class OrderController {
 		order.addNewPartOrderAppliance(product);
 	}
 
-	public Product findProductByBarcode(String searchString) {
-		product = productController.findProductByBarcode(searchString);
+	public Product findProductByBarcode(String barcode) {
+		product = productController.findProductByBarcode(barcode);
 		return product;
 	}
 	public ArrayList<Order> getOrders(){
@@ -68,8 +68,8 @@ public class OrderController {
 		productController.updateQuantity(i, amount);
 	}
 
-	public Customer findCustomerByPhoneNo(String searchString) {
-		return customerController.findCustomerByPhoneNo(searchString);
+	public Customer findCustomerByPhoneNo(String phoneNo) {
+		return customerController.findCustomerByPhoneNo(phoneNo);
 
 	}
 }
