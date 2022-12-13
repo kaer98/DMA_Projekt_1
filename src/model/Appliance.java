@@ -5,7 +5,7 @@ public class  Appliance extends Product {
 	
 	private ArrayList<ApplianceCopy> appliances;
 	private String serialNo;
-	// Constructor that takes in several parameters to initialize an Appliance object:
+	// Constructor with parameters to initialize Appliance object:
 	public Appliance(String description, String location, int quantity, int minQuantity, int maxQuantity,
 			double costPrice, double retailPrice) {
 		super(description, location, quantity, minQuantity, maxQuantity, costPrice, retailPrice);
@@ -30,7 +30,7 @@ public class  Appliance extends Product {
 		appliances.add(applianceCopy);
 	}	
 	
-	// findApplianceCopyBySerialNo takes in a (String serialNo) and returns the ApplianceCopy with the given serialNo if it is visible in the ArrayList through a while-loop.
+	// findApplianceCopyBySerialNo takes (String serialNo) and returns ApplianceCopy with given serialNo if its visible in ArrayList through a while-loop.
     public ApplianceCopy findApplianceCopyBySerialNo(String serialNo){
         ApplianceCopy applianceCopy = null;
         int index = 0;

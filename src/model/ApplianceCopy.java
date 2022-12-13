@@ -4,7 +4,7 @@ public class ApplianceCopy {
 	private Appliance appliance;
 	private String serialNo;
 	
-	  // Constructor for creating a Appliance copy of appliance
+	  // Constructor for creating copy of appliance
 	  public ApplianceCopy(String serialNo) {
 	    this.serialNo = serialNo;
 	    
@@ -27,4 +27,4 @@ public class ApplianceCopy {
 	}
 	  
 }
-    // Purpose of this class is to create a copy of an "Appliance" object, with a new serial number
+    // Purpose of this class is to create a copy of "Appliance" object, with a new serial number

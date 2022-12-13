@@ -7,7 +7,7 @@ public class PartOrderQ extends PartOrder{
 		super(product);
 		this.quantity = quantity;
 	}
-
+    // Get and Set methods for quantity 
 	public int getQuantity() {
 		return quantity;
 	}
@@ -16,7 +16,7 @@ public class PartOrderQ extends PartOrder{
 		this.quantity = quantity;
 	}
 
-	@Override
+	// @Override getTotal method from PartOrder to get price of Product * quantity of product ordered
 	public double getTotal() {
 		return getProduct().getRetailPrice()*quantity;
 	}

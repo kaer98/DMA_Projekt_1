@@ -12,22 +12,23 @@ private ArrayList<Product> container;
 		container = new ArrayList<>();
 		fill();
 	}
-	
+	// Static getInstance method that returns instance of ProductContainer
+	// if instance == null a new instance of ProductContainer will be created and assigned to instance field.
 	public static ProductContainer getInstance() {
 		if(instance == null) {
 			instance = new ProductContainer();
 		}
 		return instance;
 	}
-	
+	// addProduct method to add product to container
 	public void addProduct(Product product) {
 		container.add(product);
 	}
-
+    // getAll method to return products in container
 	public ArrayList<Product> getAll(){
 		return container;
 	}
-	
+	// findProductByBarcode to find product by barcode through a while-loop
 	public Product findProductByBarcode(String searchString) {
 		int index = 0; 
 		boolean found = false;
@@ -44,7 +45,7 @@ private ArrayList<Product> container;
 		return returnProduct;
 
 	}
-
+    // addNewProduct method to create and add new Product object to container
 	public void addNewProduct(String description, String location, int quantity, int minQuantity, int maxQuantity,
 			double costPrice, double retailPrice) {
 		Product p = new SimpleProduct(description, location, quantity, minQuantity, maxQuantity, costPrice, retailPrice);
@@ -60,7 +61,7 @@ private ArrayList<Product> container;
 	}
 	
 	
-
+    // fill method to fill Product objects to container
 	public void fill() {
 		addNewProduct("Træ 200x400", "Timber department", 200, 50, 300, 100, 124.99);
 		addNewProduct("Gipsplade 90x240", "Timber department", 50, 20, 150, 70, 125);

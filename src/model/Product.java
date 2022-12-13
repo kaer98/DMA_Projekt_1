@@ -18,8 +18,7 @@ public abstract class Product {
 		this.retailPrice = retailPrice;
 		this.tradeAllowance = calTradeAllowance();
 	}
-	
-	// getters and setters for Product
+	// Get and Set methods for Product
 	public String getBarcode() {
 		return barcode;
 	}
@@ -73,6 +72,7 @@ public abstract class Product {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+
 	public double calTradeAllowance() {
 		return retailPrice - costPrice;
 	}

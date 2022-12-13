@@ -7,7 +7,7 @@ public class CustomerContainer {
 private static CustomerContainer instance = null;
 private ArrayList<Customer> container;
 	
-    // Private constructor that creates a new ArrayList and calls the "fill" method to add to the ArrayList with Customer objects. 
+    // Private constructor that creates a new ArrayList and calls fill method to add to ArrayList with Customer objects. 
 	private CustomerContainer() {
 		container = new ArrayList<>();
 		fill();
@@ -23,7 +23,7 @@ private ArrayList<Customer> container;
 	public void addCustomer(Customer customer) {
 		container.add(customer);
 	}
-	// findCustomerByName takes in a (String name) and returns the Customer with the given name if it is visible in ArrayList through a while-loop.
+	// findCustomerByName takes in(String name) and returns the Customer with the given name if its visible in ArrayList through a while-loop.
     public Customer findCustomerByName(String name){
         Customer customer = null;
         int index = 0;
@@ -44,7 +44,7 @@ private ArrayList<Customer> container;
         	return null;
         }
     }
-   // findCustomerByPhoneNo takes in a (String phoneNo) and returns the Customer with the given phoneNo if it is visible in the ArrayList through a while-loop.
+   // findCustomerByPhoneNo takes in (String phoneNo) and returns the Customer with the given phoneNo if its visible in ArrayList through a while-loop.
     public Customer findCustomerByPhoneNo(String phoneNo){
         Customer customer = null;
         int index = 0;
@@ -65,7 +65,7 @@ private ArrayList<Customer> container;
         	return null;
         }
     }
-// findCustomerByCvr takes in a (String Cvr) and returns the Customer with the given Cvr if it is visible in the ArrayList through a while-loop.
+// findCustomerByCvr takes in (String Cvr) and returns the Customer with the given Cvr if its visible in ArrayList through a while-loop.
     public Customer findCustomerByCvr(String Cvr){
         Customer customer = null;
         int index = 0;
@@ -86,7 +86,7 @@ private ArrayList<Customer> container;
         	return null;
         }
     }
-	// addNewCustomer method with parameters to create new Customer and add to ArrayList. 
+	// addNewCustomer method to create new Customer and add to ArrayList. 
 	public void addNewCustomer(String name, String phoneNo, String mailAdress, String postalCode, String city, String adress,
 			String country, String cvr, double discount) {
 		Customer c = new Customer (name, phoneNo, mailAdress, country, postalCode, city, adress, cvr, discount);

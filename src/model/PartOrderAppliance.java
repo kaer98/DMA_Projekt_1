@@ -7,7 +7,7 @@ public class PartOrderAppliance extends PartOrder{
 		super(product);
 		this.serialNo = serialNo;
 	}
-
+    // Get and Set methods for SerialNo 
 	public String getSerialNo() {
 		return serialNo;
 	}
@@ -16,7 +16,7 @@ public class PartOrderAppliance extends PartOrder{
 		this.serialNo = serialNo;
 	}
 
-	@Override
+	// @Override from PartOrder 
 	public double getTotal() {
 		return getProduct().getRetailPrice();
 	}

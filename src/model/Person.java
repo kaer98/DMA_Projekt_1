@@ -14,7 +14,7 @@ public abstract class Person {
 		this.city = city;
 		this.address = address;
 	}
-
+    // Get and Set methods
 	public String getName() {
 		return name;
 	}
@@ -70,7 +70,8 @@ public abstract class Person {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
+
+	// No abstract methods so classes can extend Person
 	
 }
 
