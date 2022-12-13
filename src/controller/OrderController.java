@@ -68,8 +68,8 @@ public class OrderController {
 		productController.updateQuantity(i, amount);
 	}
 
-	public Customer findCustomerByPhoneNo(String searchString) {
-		return customerController.findCustomerByPhoneNo(searchString);
+	public Customer findCustomerByPhoneNo(String phoneNo) {
+		return customerController.findCustomerByPhoneNo(phoneNo);
 
 	}
 }
