@@ -91,5 +91,9 @@ private ArrayList<Product> container;
 		addNewProduct("Indbygningsvask 56x53", "DIY department", 2, 4, 6, 550, 849);
 		addNewProduct("Blandingsbatteri køkken HVID", "DIY department", 2, 4, 6, 1200, 1799);
 		addNewAppliance("Opvaskemaskine 57x60x82", "DIY department", 2, 4, 6, 2400, 4350);
+		addNewAppliance("Kølefryseskab 226/111L HVID", "DIY department", 2, 3, 4, 3967, 5299);
+		addNewAppliance("Kummefryser 99L HVID", "DIY department", 2, 5, 8, 975, 1399);
+		addNewAppliance("Samsung skabsfryser 323L SORT", "DIY department", 2, 3, 5, 8499, 10999);
+		
 	}
 }
