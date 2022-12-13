@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class  Appliance extends Product {
 	
 	private ArrayList<ApplianceCopy> appliances;
-	
+	private String serialNo;
 	// Constructor that takes in several parameters to initialize an Appliance object:
 	public Appliance(String description, String location, int quantity, int minQuantity, int maxQuantity,
 			double costPrice, double retailPrice) {

@@ -89,7 +89,7 @@ private ArrayList<Customer> container;
 	// addNewCustomer method with parameters to create new Customer and add to ArrayList. 
 	public void addNewCustomer(String name, String phoneNo, String mailAdress, String postalCode, String city, String adress,
 			String country, String cvr, double discount) {
-		Customer c = new Customer (name, phoneNo, mailAdress, postalCode, city, adress, country, cvr, discount);
+		Customer c = new Customer (name, phoneNo, mailAdress, country, postalCode, city, adress, cvr, discount);
 		container.add(c);
 	}	
 // Fill method that fills Customer objects to ArrayList. 
@@ -104,7 +104,7 @@ private ArrayList<Customer> container;
     addNewCustomer("Ole", "88888888", "Danmark", "1000", "Skagen", "Ole vej 9", "98765432", "ole@ucn.dk", 0.40);
     addNewCustomer("Thomas", "55555555", "Danmark", "5000","Middelfart", "Thomas vej 5", "55555555", "thomas@ucn.dk", 0.23);
     addNewCustomer("John", "12121212", "Danmark", "2000", "Rødekro", "John vej 2", "25252525", "john@ucn.dk", 0.25);
-    addNewCustomer("KONTANTKUNDE","00000000","Danmark", "0000","KONTANT SALG", "","00000000","",0);
+    addNewCustomer("KONTANTKUNDE","00000000","Danmark", "0000","KONTANT SALG", "","00000000","intet@intet.dk",0);
     
 
     
