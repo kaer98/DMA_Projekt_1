@@ -12,12 +12,43 @@ public class  Appliance extends Product {
 		appliances = new ArrayList<ApplianceCopy>();
 	}
 
-// Get and Set methods for field "serialNo"
+// Get method for appliances
     public ArrayList<ApplianceCopy> getApplianceCopy(){
         return appliances;
     }
+    
+    public int getApplianceQuantity(){
+        return appliances.size();
+    }
 
-	public void addApplianceCopy(String serialNo) {
-		this.serialNo = serialNo;
+	public void addApplianceCopy(ApplianceCopy applianceCopy) {
+		appliances.add(applianceCopy);
 	}
+	
+	public void addNewApplianceCopy(String serialNo) {
+		ApplianceCopy applianceCopy = new ApplianceCopy (serialNo);
+		appliances.add(applianceCopy);
+	}	
+	
+	// findApplianceCopyBySerialNo takes in a (String serialNo) and returns the ApplianceCopy with the given serialNo if it is visible in the ArrayList through a while-loop.
+    public ApplianceCopy findApplianceCopyBySerialNo(String serialNo){
+        ApplianceCopy applianceCopy = null;
+        int index = 0;
+        boolean found = false;
+        while(index < appliances.size() && !found){
+            applianceCopy = appliances.get(index);
+            if(applianceCopy.getSerialNo().equals(serialNo)){
+                found = true;
+            }
+            else{
+                 index++;
+                }
+         }
+        if (found){
+            return appliances.get(index);
+        }
+        else{   
+        	return null;
+        }
+    }
 }
