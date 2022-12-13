@@ -12,22 +12,22 @@ private ArrayList<Product> container;
 		container = new ArrayList<>();
 		fill();
 	}
-	
+	// Singleton method
 	public static ProductContainer getInstance() {
 		if(instance == null) {
 			instance = new ProductContainer();
 		}
 		return instance;
 	}
-	
+	// adds product to ArrayList.
 	public void addProduct(Product product) {
 		container.add(product);
 	}
-
+	// returns content of ArrayList
 	public ArrayList<Product> getAll(){
 		return container;
 	}
-	
+	// search pattern using searchString
 	public Product findProductByBarcode(String searchString) {
 		int index = 0; 
 		boolean found = false;
@@ -44,12 +44,13 @@ private ArrayList<Product> container;
 		return returnProduct;
 
 	}
-
+	// creates new SimpleProduct
 	public void addNewProduct(String description, String location, int quantity, int minQuantity, int maxQuantity,
 			double costPrice, double retailPrice) {
 		Product p = new SimpleProduct(description, location, quantity, minQuantity, maxQuantity, costPrice, retailPrice);
 		container.add(p);
 	}
+	
 	
 	public int getQuantity(int i) {
 		return container.get(i).getQuantity();
@@ -64,7 +65,7 @@ private ArrayList<Product> container;
 		Product  p = new Appliance
 	}
 	
-
+	// List of Products
 	public void fill() {
 		addNewProduct("Træ 200x400", "Timber department", 200, 50, 300, 100, 124.99);
 		addNewProduct("Gipsplade 90x240", "Timber department", 50, 20, 150, 70, 125);
@@ -84,14 +85,15 @@ private ArrayList<Product> container;
 		addNewProduct("Vægskab 120x160 HVID", "DIY department", 2, 10, 20, 1000, 1400);
 		addNewProduct("Underskab 120x160 HVID", "DIY department", 2, 10, 20, 1100, 1500);
 		addNewProduct("Bordplade Finer 186x3.8", "DIY department", 2, 5, 10, 600, 1000);
-		addNewProduct("Induktionskogeplade 59x52", "DIY department", 2, 3, 6, 1200, 1800);
+		addNewAppliance("Induktionskogeplade 59x52", "DIY department", 2, 3, 6, 1200, 1800);
 		addNewProduct("Vægmonteret emhætte 90x47", "DIY department", 2, 3, 5, 1500, 1999);
-		addNewProduct("Varmluftovn 72l", "DIY department", 2, 3, 5, 6500, 7500);
-		addNewProduct("Opvaskemaskine 55x90", "DIY department", 2, 3, 5, 2700, 3799);
+		addNewAppliance("Varmluftovn 72l", "DIY department", 2, 3, 5, 6500, 7500);
+		addNewAppliance("Opvaskemaskine 55x90", "DIY department", 2, 3, 5, 2700, 3799);
 		addNewProduct("LED-spot 2,2W", "DIY department", 8, 16, 30, 40, 99);
 		addNewProduct("Køkkenø 126x79x90", "DIY department", 2, 4, 6, 2800, 3599);
 		addNewProduct("Reol 254x40x190 HVID", "DIY department", 2, 4, 6, 1800, 2475);
 		addNewProduct("Indbygningsvask 56x53", "DIY department", 2, 4, 6, 550, 849);
 		addNewProduct("Blandingsbatteri køkken HVID", "DIY department", 2, 4, 6, 1200, 1799);
+		addNewAppliance("Opvaskemaskine 57x60x82", "DIY department", 2, 4, 6, 2400, 4350);
 	}
 }

@@ -87,31 +87,24 @@ private ArrayList<Customer> container;
         }
     }
 	// addNewCustomer method with parameters to create new Customer and add to ArrayList. 
-	public void addNewCustomer(String name, String phoneNo, String mailAdress, String postalCode, String city, String adress,
-			String country, String cvr, double discount) {
-		Customer c = new Customer (name, phoneNo, mailAdress, country, postalCode, city, adress, cvr, discount);
+	public void addNewCustomer(String name, String phoneNo, String mailAddress, String country, String postalCode, String city, String address,
+			 String cvr, double discount) {
+		Customer c = new Customer (name, phoneNo, mailAddress, country, postalCode, city, address, cvr, discount);
 		container.add(c);
 	}	
+	
 // Fill method that fills Customer objects to ArrayList. 
 	public void fill() {
-	addNewCustomer("Jens", "11111111", "Danmark", "9000", "Aalborg", "Jens vej 1", "12345678", "jens0@ucn.dk", 0.10);
-	addNewCustomer("Jonas", "22222222", "Danmark", "8000", "København", "Jonas vej 2", "88888888", "jonas@ucn.dk", 0.20);
-	addNewCustomer("Jeppe", "33333333", "Danmark", "7000", "Odense", "Jeppe vej 3", "11111111", "jeppe@ucn.dk", 0.50);
-    addNewCustomer("Ole", "88888888", "Danmark", "1000", "Skagen", "Ole vej 9", "98765432", "ole@ucn.dk", 0.40);
-    addNewCustomer("Ib", "01010101", "Danmark", "8888", "Herning", "Ib vej 2", "00110121", "ib@ucn.dk", 0.22);
-    addNewCustomer("Christian", "77777777", "Danmark", "7777", "Århus", "Christian vej 7", "7777777", "christian@ucn.dk", 0.15);
-    addNewCustomer("Michael", "81818181", "Danmark", "8111", "Brovst", "Michael vej 8", "81818181", "michael@ucn.dk", 0.22);
-    addNewCustomer("Ole", "88888888", "Danmark", "1000", "Skagen", "Ole vej 9", "98765432", "ole@ucn.dk", 0.40);
-    addNewCustomer("Thomas", "55555555", "Danmark", "5000","Middelfart", "Thomas vej 5", "55555555", "thomas@ucn.dk", 0.23);
-    addNewCustomer("John", "12121212", "Danmark", "2000", "Rødekro", "John vej 2", "25252525", "john@ucn.dk", 0.25);
-    addNewCustomer("KONTANTKUNDE","00000000","Danmark", "0000","KONTANT SALG", "","00000000","intet@intet.dk",0);
-    
-
-    
-    
-    
-
-
-
-}				
+	addNewCustomer("Jens", "12345678", "jens0@ucn.dk", "Danmark", "9000", "Aalborg", "Jens vej 1", "11111111",  0.10);
+	addNewCustomer("Jonas", "88888888", "jonas@ucn.dk", "Danmark", "8000", "København", "Jonas vej 2", "22222222",  0.20);
+	addNewCustomer("Jeppe", "11111111", "jeppe@ucn.dk", "Danmark", "7000", "Odense", "Jeppe vej 3", "33333333",  0.50);
+    addNewCustomer("Ole", "88888888", "ole@ucn.dk", "Danmark", "1000", "Skagen", "Ole vej 9", "44444444",  0.40);
+    addNewCustomer("Ib", "01010101", "ib@ucn.dk", "Danmark", "8888", "Herning", "Ib vej 2", "5555555", 0.22);
+    addNewCustomer("Christian", "77777777", "christian@ucn.dk", "Danmark", "7777", "Århus", "Christian vej 7", "66666666", 0.15);
+    addNewCustomer("Michael", "81818181", "michael@ucn.dk", "Danmark", "8111", "Brovst", "Michael vej 8", "77777777", 0.22);
+    addNewCustomer("Ole", "88888888", "ole@ucn.dk", "Danmark", "1000", "Skagen", "Ole vej 9", "98765432", 0.40);
+    addNewCustomer("Thomas", "55555555", "thomas@ucn.dk", "Danmark", "5000","Middelfart", "Thomas vej 5", "55555555", 0.23);
+    addNewCustomer("John", "12121212", "john@ucn.dk", "Danmark", "2000", "Rødekro", "John vej 2", "25252525", 0.25);
+    addNewCustomer("KONTANTKUNDE","00000000", "","Danmark", "0000","KONTANT SALG", "","00000000",0);
+	}
 }
