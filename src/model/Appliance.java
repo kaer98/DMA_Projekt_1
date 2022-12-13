@@ -1,20 +1,23 @@
 package model;
+import java.util.ArrayList;
 
 public class  Appliance extends Product {
-	private String serialNo;
+	
+	private ArrayList<ApplianceCopy> appliances;
 	
 	// Constructor that takes in several parameters to initialize an Appliance object:
 	public Appliance(String description, String location, int quantity, int minQuantity, int maxQuantity,
-			double costPrice, double retailPrice, String serialNo) {
+			double costPrice, double retailPrice) {
 		super(description, location, quantity, minQuantity, maxQuantity, costPrice, retailPrice);
-		this.serialNo=serialNo;
-	}
-// Get and Set methods for field "serialNo"
-	public String getSerialNo() {
-		return serialNo;
+		appliances = new ArrayList<ApplianceCopy>();
 	}
 
-	public void setSerialNo(String serialNo) {
+// Get and Set methods for field "serialNo"
+    public ArrayList<ApplianceCopy> getApplianceCopy(){
+        return appliances;
+    }
+
+	public void addApplianceCopy(String serialNo) {
 		this.serialNo = serialNo;
 	}
 }
