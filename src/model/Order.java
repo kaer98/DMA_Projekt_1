@@ -22,8 +22,7 @@ public class Order {
 		this.finalized = "intet";
 	}
 	
-	/* From line 29-87 we have added our getters and setters, which were needed for our createInvoice() method at the bottom.
-	 * 
+	/* Getters and setters for Order 
 	 */
 	
 	public int getOrderNo() {
@@ -86,8 +85,7 @@ public class Order {
 		this.employee = employee;
 	}
 	
-	/* From line 93-103 we have created methods to add a partOrder, adding a new quantity to a partOrder
-	 * and lastly a method to add appliances to our partOrder
+	/* The following methods adds partOrders/changes the quantity/ adds appliance
 	 */
 	
 	public void addPartOrder(PartOrder partOrder) {
@@ -101,12 +99,8 @@ public class Order {
 	public void addNewPartOrderAppliance(Product product, String serialNo) {
 		parts.add(new PartOrderAppliance(product, serialNo));
 	}
-	/* The method createInvoice() is used to create an invoice for our clients.
-	 * The method uses dfSharp to round up our prices to two decimals.
-	 * The method also calculates our total order price, and calculates our VAT price (25%).
-	 * It also uses dateTime to get the current date on our invoice, and can calculate the payment date using dateTime.plusDays(x amount of days)
+	/* createInvoice() is used to create an invoice. 
 	*/ 
-	
 	
 	public void createInvoice() {
 		double discount = 0;
