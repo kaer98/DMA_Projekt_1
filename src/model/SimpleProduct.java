@@ -7,4 +7,10 @@ public class SimpleProduct extends Product {
 		super(description, location, quantity, minQuantity, maxQuantity, costPrice, retailPrice);
 	}
 
+	@Override
+	public ApplianceCopy findApplianceCopyBySerialNo(String serialNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }

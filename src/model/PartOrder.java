@@ -6,7 +6,9 @@ public abstract class PartOrder {
 	public PartOrder(Product product) {
 		this.product = product;
 	} 
-	// getProduct method that returns Product
+	public PartOrder() {
+		
+	}
 	public String getProductName() {
 		return product.getDescription();
 	}

@@ -3,6 +3,7 @@ import controller.OrderController;
 import model.Order;
 import model.PartOrder;
 import model.PartOrderQ;
+import model.PartOrderAppliance;
 import model.Product;
 import java.util.ArrayList;
 
@@ -34,7 +35,6 @@ public class OrderMenu {
 			order.setCustomer(orderController.findCustomerByPhoneNo(s));
 			}
 			System.out.println(order.getCustomer().getName());
-			System.out.println(order.getCustomer().getAddress()+order.getCustomer().getCountry()+order.getCustomer().getPhoneNo());
 			while(!done) {
 				done = addOrder();	
 			}
@@ -66,12 +66,16 @@ public class OrderMenu {
 			if(p==null) {
 				System.out.println("Produkt ikke fundet! prøv igen");
 			}
-			else {
+			}
 			System.out.println(p.getDescription());
 			System.out.println(p.getQuantity()+" på lager");
 			System.out.println("Pris: " + p.getRetailPrice() + "kr");
+			
+			if(p.isAppliance()) {
+				po.add(new PartOrderAppliance(p.findApplianceCopyBySerialNo(Input.inputString("Serienummer: "))));
 			}
-			}
+			else {
+			
 			int amount = 0;
 			do {
 				amount = Input.inputInt("\nHvor mange: ");
@@ -83,6 +87,7 @@ public class OrderMenu {
 				
 			po.add(new PartOrderQ(p, amount));
 			p.updateQuantity(amount);
+		}
 			break;
 		case 2: 
 			order.setParts(po);
