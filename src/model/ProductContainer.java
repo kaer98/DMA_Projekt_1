@@ -60,6 +60,10 @@ private ArrayList<Product> container;
 		container.get(i).updateQuantity(amount);
 	}
 	
+	public void addNewAppliance(String description, String location, int quantity, int minQuantity, int maxQuantity,
+			double costPrice, double retailPrice) {
+		Product  p = new Appliance
+	}
 	
 	// List of Products
 	public void fill() {
