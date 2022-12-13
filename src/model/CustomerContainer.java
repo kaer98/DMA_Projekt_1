@@ -92,6 +92,7 @@ private ArrayList<Customer> container;
 		Customer c = new Customer (name, phoneNo, mailAddress, country, postalCode, city, address, cvr, discount);
 		container.add(c);
 	}	
+	
 // Fill method that fills Customer objects to ArrayList. 
 	public void fill() {
 	addNewCustomer("Jens", "12345678", "jens0@ucn.dk", "Danmark", "9000", "Aalborg", "Jens vej 1", "11111111",  0.10);
@@ -105,13 +106,5 @@ private ArrayList<Customer> container;
     addNewCustomer("Thomas", "55555555", "thomas@ucn.dk", "Danmark", "5000","Middelfart", "Thomas vej 5", "55555555", 0.23);
     addNewCustomer("John", "12121212", "john@ucn.dk", "Danmark", "2000", "Rødekro", "John vej 2", "25252525", 0.25);
     addNewCustomer("KONTANTKUNDE","00000000", "","Danmark", "0000","KONTANT SALG", "","00000000",0);
-    
-
-    
-    
-    
-
-
-
-}				
+	}
 }

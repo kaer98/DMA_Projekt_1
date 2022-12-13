@@ -34,6 +34,7 @@ public class OrderMenu {
 			order.setCustomer(orderController.findCustomerByPhoneNo(s));
 			}
 			System.out.println(order.getCustomer().getName());
+			System.out.println(order.getCustomer().getAddress()+order.getCustomer().getCountry()+order.getCustomer().getPhoneNo());
 			while(!done) {
 				done = addOrder();	
 			}
