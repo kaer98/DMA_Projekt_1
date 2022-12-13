@@ -117,9 +117,9 @@ public class Order {
 		System.out.println("Kundes CVR-nr: " + customer.getCvr());
 		for(PartOrder parts : getParts()) {
 			if(parts.getQuantity()!=0 && parts.getProduct().isAppliance()==false)
-			System.out.println("Beskrivelse: " + parts.getProductName() + " Antal: " + parts.getQuantity() + " Stk. Pris: " + parts.getProduct().getRetailPrice() + " Pris: " + dfSharp.format(parts.getTotal()));
+			System.out.println("\nBeskrivelse: " + parts.getProductName() + " Antal: " + parts.getQuantity() + " Stk. Pris: " + parts.getProduct().getRetailPrice() + " Pris: " + dfSharp.format(parts.getTotal()));
 			if(parts.getProduct().isAppliance()==true) {
-				System.out.println("Beskrivelse: " + parts.getProductName() + " Pris: " + dfSharp.format(parts.getTotal()));
+				System.out.println("\nBeskrivelse: " + parts.getProductName() + " Pris: " + dfSharp.format(parts.getTotal()));
 				System.out.println("serienummer: "+ parts.getCopy().getSerialNo());
 			}
 		}
