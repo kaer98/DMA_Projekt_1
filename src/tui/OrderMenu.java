@@ -32,8 +32,8 @@ public class OrderMenu {
 			order = orderController.makeOrder();
 			po.clear();
 			while(order.getCustomer()==null) {
-			String s =Input.inputString("skriv Telefon Nummer på kunden (00000000 hvis kontantkunde)");
-			order.setCustomer(orderController.findCustomerByPhoneNo(s));
+				String s =Input.inputString("skriv Telefon Nummer på kunden (00000000 hvis kontantkunde)");
+				order.setCustomer(orderController.findCustomerByPhoneNo(s));
 			}
 			System.out.println(order.getCustomer().getName());
 			while(!done) {
@@ -53,7 +53,7 @@ public class OrderMenu {
 			MainMenu.start();  
 		}
 	}
-	
+
 	private boolean addOrder() {
 		boolean done = false;
 		int orderChoice = ordermenu();
@@ -64,43 +64,43 @@ public class OrderMenu {
 			Product p =null;
 			ApplianceCopy ac = null;
 			while(p==null) {
-			p = orderController.findProductByBarcode(Input.inputString("Barcode: "));
-			if(p==null) {
-				System.out.println("Produkt ikke fundet! prøv igen");
-			}
+				p = orderController.findProductByBarcode(Input.inputString("Barcode: "));
+				if(p==null) {
+					System.out.println("Produkt ikke fundet! prøv igen");
+				}
 			}
 			System.out.println(p.getDescription());
 			System.out.println(p.getQuantity()+" på lager");
 			System.out.println("Pris: " + p.getRetailPrice() + "kr");
-			
+
 			if(p.isAppliance()==true) {
 				while(ac==null) {
-				String s = Input.inputString("Serienummer: ");
-				ac = p.findApplianceCopyBySerialNo(s);
-				if(ac==null) {
-					System.out.println("serienummer ikke fundet. prøv igen");
-				}
-				else {
-					po.add(new PartOrderAppliance(ac));
-					p.updateQuantity(s);	
-				}
-				
+					String s = Input.inputString("Serienummer: ");
+					ac = p.findApplianceCopyBySerialNo(s);
+					if(ac==null) {
+						System.out.println("serienummer ikke fundet. prøv igen");
+					}
+					else {
+						po.add(new PartOrderAppliance(ac));
+						p.updateQuantity(s);	
+					}
+
 				}
 			}
 			else {
-			
-			int amount = 0;
-			do {
-				amount = Input.inputInt("\nHvor mange: ");
-				if(amount>p.getQuantity()) {
-					System.out.println("Der er kun: "+ p.getQuantity() + " på lager");
+
+				int amount = 0;
+				do {
+					amount = Input.inputInt("\nHvor mange: ");
+					if(amount>p.getQuantity()) {
+						System.out.println("Der er kun: "+ p.getQuantity() + " på lager");
+					}
 				}
+				while(amount <0 || amount>p.getQuantity());
+
+				po.add(new PartOrderQ(p, amount));
+				p.updateQuantity(amount);
 			}
-			while(amount <0 || amount>p.getQuantity());
-				
-			po.add(new PartOrderQ(p, amount));
-			p.updateQuantity(amount);
-		}
 			break;
 		case 2: 
 			order.setParts(po);
@@ -121,13 +121,13 @@ public class OrderMenu {
 			order.getEmployee().setTotalSales(order.getTotal());
 			orderController.addOrder(order);
 			order.createInvoice();
-			
+
 			break;
 		}
 		return done;
 	}
 
-	
+
 	private int writeMenu(){
 		TextMenu menu = new TextMenu("\n ###Order###", "Tilbage");
 		menu.addOption("Opret ordre");
@@ -144,7 +144,7 @@ public class OrderMenu {
 
 		return menu.prompt();
 	}
-	
+
 	private int offerMenu() {
 		TextMenu menu = new TextMenu("\n ###Hvordan skal salget laves?###");
 		menu.addOption("Lav som tilbud");
@@ -152,5 +152,6 @@ public class OrderMenu {
 		menu.addOption("lav som salg");
 		return menu.prompt();
 	}
+	
 
 }

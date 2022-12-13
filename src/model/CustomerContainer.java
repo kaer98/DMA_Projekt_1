@@ -83,7 +83,7 @@ private ArrayList<Customer> container;
             return container.get(index);
         }
         else{   
-        	return null;
+        	return null; 
         }
     }
 	// addNewCustomer method with parameters to create new Customer and add to ArrayList. 
