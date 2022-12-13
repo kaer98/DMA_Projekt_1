@@ -22,9 +22,7 @@ public class Order {
 		this.finalized = "intet";
 	}
 	
-	/* Getters and setters for Order 
-	 */
-	
+
 	public int getOrderNo() {
 		return orderNo;
 	}
