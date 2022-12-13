@@ -107,7 +107,7 @@ public class Order {
 	 * It also uses dateTime to get the current date on our invoice, and can calculate the payment date using dateTime.plusDays(x amount of days)
 	*/ 
 	
-	//TILFØJ KUNDES CVR NUMMER TIL FAKTURA!
+	
 	public void createInvoice() {
 		double discount = 0;
 		System.out.println("Vestbjerg Byggecenter A/S");
@@ -121,7 +121,8 @@ public class Order {
 		System.out.println("Faktura");
 		System.out.println("Betalingsdato: "+ dateTime.plusDays(14) +" 					Tilbud: " + getFinal());
 		System.out.println("Kunde: "+ customer.getName() + " Kundes telefon: "+ customer.getPhoneNo());
-		System.out.println("Kunde e-mail: "+ customer.getMalAddress() + " Kunde adresse "+ customer.getAddress());
+		System.out.println("Kundes e-mail: "+ customer.getMalAddress() + " Kundes adresse "+ customer.getAddress());
+		System.out.println("Kundes CVR-nr: " + customer.getCvr());
 		for(PartOrder parts : getParts()) {
 			if(parts.getQuantity()!=0)
 			System.out.println("\nBeskrivelse: " + parts.getProductName() + " Antal: " + parts.getQuantity() + " Stk. Pris: " + parts.getProduct().getRetailPrice() + " Pris: " + dfSharp.format(parts.getTotal()));
