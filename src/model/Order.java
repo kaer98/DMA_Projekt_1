@@ -11,14 +11,14 @@ public class Order {
 	private Employee employee;
 	private static int orderNo;
 	private String finalized;
-	private double total, discount;
+	private double total;
 	private static final DecimalFormat dfSharp = new DecimalFormat("#.##");
 	
 	public Order(Employee employee) {
 		this.parts = new ArrayList<>();
 		this.dateTime = LocalDate.now();
 		this.employee = employee;
-		++this.orderNo;
+		++Order.orderNo;
 		this.finalized = "intet";
 	}
 	
