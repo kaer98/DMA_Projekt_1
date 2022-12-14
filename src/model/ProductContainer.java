@@ -4,70 +4,43 @@ import java.util.ArrayList;
 
 public class ProductContainer {
 
-private static ProductContainer instance;
-private ArrayList<Product> container;
-
-	
-	private ProductContainer() {
-		container = new ArrayList<>();
-		fill();
-	}
+	private static ProductContainer instance;
 	// Singleton method.
 	public static ProductContainer getInstance() {
-		if(instance == null) {
+		if (instance == null) {
 			instance = new ProductContainer();
 		}
 		return instance;
 	}
+
+	private ArrayList<Product> container;
+
+	private ProductContainer() {
+		container = new ArrayList<>();
+		fill();
+	}
+
+	public void addNewAppliance(String description, String location, int quantity, int minQuantity, int maxQuantity,
+			double costPrice, double retailPrice) {
+		Product p = new Appliance(description, location, quantity, minQuantity, maxQuantity, costPrice, retailPrice);
+		container.add(p);
+	}
+
+	// addNewProduct method to create and add new Product object to container
+	// creates new SimpleProduct
+	public void addNewProduct(String description, String location, int quantity, int minQuantity, int maxQuantity,
+			double costPrice, double retailPrice) {
+		Product p = new SimpleProduct(description, location, quantity, minQuantity, maxQuantity, costPrice,
+				retailPrice);
+		container.add(p);
+	}
+
 	// adds product to ArrayList.
 	public void addProduct(Product product) {
 		container.add(product);
 	}
-	// returns content of ArrayList
-	public ArrayList<Product> getAll(){
-		return container;
-	}
-	// search pattern using searchString
-	public Product findProductByBarcode(String searchString) {
-		int index = 0; 
-		boolean found = false;
-		Product returnProduct = null;
-		while(index < container.size() && !found) {
-			if(container.get(index).getBarcode().contains(searchString)){
-				found = true;
-				returnProduct = container.get(index);
-			} 
-			else {
-				index++;
-			}
-		}
-		return returnProduct;
 
-	}
-    // addNewProduct method to create and add new Product object to container
-	// creates new SimpleProduct
-	public void addNewProduct(String description, String location, int quantity, int minQuantity, int maxQuantity,
-			double costPrice, double retailPrice) {
-		Product p = new SimpleProduct(description, location, quantity, minQuantity, maxQuantity, costPrice, retailPrice);
-		container.add(p);
-	}
-	
-	
-	public int getQuantity(int i) {
-		return container.get(i).getQuantity();
-	}
-	
-	public void updateQuantity(int amount, int i) {
-		container.get(i).updateQuantity(amount);
-	}
-	
-	public void addNewAppliance(String description, String location, int quantity, int minQuantity, int maxQuantity,
-			double costPrice, double retailPrice) {
-		Product  p = new Appliance(description, location, quantity, minQuantity, maxQuantity, costPrice, retailPrice);
-		container.add(p);
-	}
-	
-    // fill method to fill Product objects to container
+	// fill method to fill Product objects to container
 	public void fill() {
 		addNewProduct("Træ 200x400", "Timber department", 200, 50, 300, 100, 124.99);
 		addNewProduct("Gipsplade 90x240", "Timber department", 50, 20, 150, 70, 125);
@@ -103,5 +76,35 @@ private ArrayList<Product> container;
 		addNewAppliance("Vaskemaskine 8kg HVID", "DIY department", 3, 2, 6, 4600, 5999);
 		addNewAppliance("Tørretubmler 8kg HVID", "DIY department", 3, 2, 5, 3600, 4999);
 		addNewAppliance("Mikroovn 20L SORT", "DIY department", 5, 2, 10, 350, 699);
+	}
+
+	// search pattern using searchString
+	public Product findProductByBarcode(String searchString) {
+		int index = 0;
+		boolean found = false;
+		Product returnProduct = null;
+		while (index < container.size() && !found) {
+			if (container.get(index).getBarcode().contains(searchString)) {
+				found = true;
+				returnProduct = container.get(index);
+			} else {
+				index++;
+			}
+		}
+		return returnProduct;
+
+	}
+
+	// returns content of ArrayList
+	public ArrayList<Product> getAll() {
+		return container;
+	}
+
+	public int getQuantity(int i) {
+		return container.get(i).getQuantity();
+	}
+
+	public void updateQuantity(int amount, int i) {
+		container.get(i).updateQuantity(amount);
 	}
 }

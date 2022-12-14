@@ -1,28 +1,36 @@
 package model;
 
-public class PartOrderAppliance extends PartOrder{
+public class PartOrderAppliance extends PartOrder {
 	private ApplianceCopy applianceCopy;
-	
+
 	public PartOrderAppliance(ApplianceCopy product) {
 		super();
 		this.applianceCopy = product;
 	}
 
-	// @Override from PartOrder 
-	public double getTotal() {
-		return applianceCopy.getRetailPrice();
+	@Override
+	public ApplianceCopy getCopy() {
+		return applianceCopy;
 	}
-	
-	public String getProductName() {
-		return applianceCopy.getDescription();
-	}
-	public int getQuantity() {
-		return 1;
-	}
+
+	@Override
 	public Appliance getProduct() {
 		return applianceCopy.getAppliance();
 	}
-	public ApplianceCopy getCopy() {
-	return applianceCopy;
-}
+
+	@Override
+	public String getProductName() {
+		return applianceCopy.getDescription();
+	}
+
+	@Override
+	public int getQuantity() {
+		return 1;
+	}
+
+	// @Override from PartOrder
+	@Override
+	public double getTotal() {
+		return applianceCopy.getRetailPrice();
+	}
 }

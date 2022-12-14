@@ -1,18 +1,17 @@
 package tui;
 
-
 /**
  * Main Class
  *
- *@author Rasmus,Cawan,Frederik,Oskar
- *@version 1.0
+ * @author Rasmus,Cawan,Frederik,Oskar
+ * @version 1.0
  *
  */
 public class Main {
 
 	public static void main(String[] args) {
 		Login login = new Login();
-		login.start();
+		Login.start();
 	}
 
 }
