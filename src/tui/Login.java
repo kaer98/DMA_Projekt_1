@@ -16,6 +16,7 @@ public class Login {
 	private static ArrayList<Employee> staff;
 	private static String staffName;
 	private static Employee employee;
+	
 	public static Employee getEmployee() {
 		return employee;
 	}

@@ -3,8 +3,8 @@ package model;
 import java.util.ArrayList;
 
 public class OrderContainer {
-	// Singleton class
-	private static OrderContainer instance = null;
+	private static OrderContainer instance;
+	private ArrayList<Order> container;
 	// Create new instance if it doesn't exist
 	public static OrderContainer getInstance() {
 		if (instance == null) {
@@ -12,9 +12,7 @@ public class OrderContainer {
 		}
 		return instance;
 	}
-
-	private ArrayList<Order> container;
-
+	
 	private OrderContainer() {
 		container = new ArrayList<>();
 	}

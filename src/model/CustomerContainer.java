@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 public class CustomerContainer {
 
-	private static CustomerContainer instance = null;
+	private static CustomerContainer instance;
+	private ArrayList<Customer> container;
+
 	// Get instance method that returns a Singleton
 	public static CustomerContainer getInstance() {
 		if (instance == null) {
@@ -13,7 +15,6 @@ public class CustomerContainer {
 		return instance;
 	}
 
-	private ArrayList<Customer> container;
 
 	// Private constructor that creates a new ArrayList and calls fill method to add
 	// to ArrayList with Customer objects.
