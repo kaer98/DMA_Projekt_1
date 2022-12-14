@@ -151,11 +151,9 @@ public class OrderMenu {
 			start();
 			break;
 		case 2:
-			if (Login.isManager()) {
-				System.out.println("manager");
-			} else {
-				System.out.println("no entry");
-			}
+			orderController.fill();
+			System.out.println("Data genereret");
+			start();
 			break;
 		default:
 			MainMenu.start();
@@ -165,6 +163,7 @@ public class OrderMenu {
 	private int writeMenu() {
 		TextMenu menu = new TextMenu("\n ###Order###", "Tilbage");
 		menu.addOption("Opret ordre");
+		menu.addOption("Generer test data");
 		return menu.prompt();
 	}
 

@@ -17,7 +17,6 @@ public class ProductContainer {
 
 	private ProductContainer() {
 		container = new ArrayList<>();
-		fill();
 	}
 
 	public void addNewAppliance(String description, String location, int quantity, int minQuantity, int maxQuantity,
