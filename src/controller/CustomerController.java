@@ -13,9 +13,9 @@ public class CustomerController {
 	public CustomerController() {
 		container = CustomerContainer.getInstance();
 	}
-	
-	public Customer findCustomerByPhoneNo(String searchString) {
-		return container.findCustomerByPhoneNo(searchString);
+	// Method for finding customer by phoneNo in class CustomerContainer
+	public Customer findCustomerByPhoneNo(String phoneNo) {
+		return container.findCustomerByPhoneNo(phoneNo);
 	}
 	
 }

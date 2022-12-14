@@ -22,7 +22,7 @@ public class Login {
 		employeeContainer = EContainer.getInstance();
 		staff = employeeContainer.getAll();
 	}
-
+    
 	public static void start() {
 		int choice =writeLogin();
 		staffName =staff.get(choice-1).getName();

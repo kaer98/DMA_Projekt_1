@@ -20,4 +20,9 @@ public class PartOrderQ extends PartOrder{
 	public double getTotal() {
 		return getProduct().getRetailPrice()*quantity;
 	}
+	@Override
+	public ApplianceCopy getCopy() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

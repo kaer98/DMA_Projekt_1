@@ -12,5 +12,14 @@ public class SimpleProduct extends Product {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	public void updateQuantity(int amount) {
+		this.setQuantity(this.getQuantity() - amount);
+	}
+
+	@Override
+	public void updateQuantity(String string) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
