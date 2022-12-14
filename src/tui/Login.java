@@ -41,7 +41,7 @@ public class Login {
 		staffName = staff.get(choice - 1).getName();
 		manager = staff.get(choice - 1).isManager();
 		employee = staff.get(choice - 1);
-		MainMenu menu = new MainMenu();
+		new MainMenu();
 		MainMenu.start(); 
 	}
 

@@ -29,6 +29,10 @@ public class ProductController {
 	public void fill() {
 		productContainer.fill();
 	}
+	
+	public boolean isEmpty() {
+		return productContainer.isEmpty();
+	}
 
 	public ArrayList<Product> getAll() {
 		return products;

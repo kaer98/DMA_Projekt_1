@@ -31,6 +31,11 @@ public class OrderMenu {
 		int choice = writeMenu();
 		switch (choice) {
 		case 1:
+			if(orderController.productIsEmpty()) {
+				System.out.println("Der er ingen produkter, generer test data først!");
+				start(); 
+				break;
+			}else {
 			boolean done = false;
 			order = orderController.makeOrder();
 			po.clear();
@@ -44,6 +49,8 @@ public class OrderMenu {
 			}
 			start();
 			break;
+			}
+			
 		case 2:
 			orderController.fill();
 			System.out.println("Data genereret");
@@ -68,6 +75,10 @@ public class OrderMenu {
 				p = orderController.findProductByBarcode(Input.inputString("Barcode: "));
 				if (p == null) {
 					System.out.println("Produkt ikke fundet! prøv igen");
+				}
+				else if (p.getQuantity()<=0) {
+					System.out.println("Der er desværre ikke flere " + p.getDescription() + " på lager");
+					p=null;
 				}
 			}
 			System.out.println(p.getDescription());
@@ -151,7 +162,6 @@ public class OrderMenu {
 
 	private int payMenu() {
 		TextMenu menu = new TextMenu("\n ###Betaling###");
-		String s = "";
 		if (order.getCustomer().getCvr().contains("00000000")) {
 			menu.addOption("betal nu (" + order.getTotalWDiscount() * 1.25 + " kr)");
 		} else {

@@ -1,8 +1,6 @@
 package controller;
 
-import java.awt.Container;
 import java.util.ArrayList;
-
 import model.ApplianceCopy;
 import model.Customer;
 import model.Order;
@@ -80,6 +78,10 @@ public class OrderController {
 
 	public int getQuantity(int i) {
 		return productController.getQuantity(i);
+	}
+	
+	public boolean productIsEmpty() {
+		return productController.isEmpty();
 	}
 
 	public Order makeOrder() {

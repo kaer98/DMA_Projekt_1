@@ -105,4 +105,7 @@ public class ProductContainer {
 	public void updateQuantity(int amount, int i) {
 		container.get(i).updateQuantity(amount);
 	}
+	public boolean isEmpty() {
+		return container.isEmpty();
+	}
 }
