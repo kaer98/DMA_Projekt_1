@@ -14,52 +14,37 @@ public abstract class Person {
 		this.city = city;
 		this.address = address;
 	}
+	
+//getters for class Person
+	public String getName() {
+		return name;
+	}
+	
+	public String getPhoneNo() {
+		return phoneNo;
+	}
+
+	public String getMailAddress() {
+		return mailAddress;
+	}
+	
+	public String getCountry() {
+		return country;
+	}
+	
+	public String getPostalCode() {
+		return postalCode;
+	}
+	
+	public String getCity() {
+		return city;
+	}
 
 	public String getAddress() {
 		return address;
 	}
 
-	public String getCity() {
-		return city;
-	}
-
-	public String getCountry() {
-		return country;
-	}
-
-	public String getMalAddress() {
-		return mailAddress;
-	}
-
-	// Get and Set methods
-	public String getName() {
-		return name;
-	}
-
-	public String getPhoneNo() {
-		return phoneNo;
-	}
-
-	public String getPostalCode() {
-		return postalCode;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
-	}
-
-	public void setMalAddress(String malAddress) {
-		this.mailAddress = malAddress;
-	}
-
+	//setters for class Person
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -68,9 +53,27 @@ public abstract class Person {
 		this.phoneNo = phoneNo;
 	}
 
+	public void setMailAddress(String mailAddress) {
+		this.mailAddress = mailAddress;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
 	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
 	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	
 
 	// No abstract methods so classes can extend Person
 
