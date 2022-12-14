@@ -47,8 +47,8 @@ public class OrderController {
 		orderContainer.addOrder(order);
 	}
 
-	public void addPartOrder(Order o, PartOrder p) {
-		o.addPartOrder(p);
+	public void addPartOrder(Order o, PartOrder po) {
+		o.addPartOrder(po);
 	}
 
 	public void addToList(PartOrder partOrder) {
