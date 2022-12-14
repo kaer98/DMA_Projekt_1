@@ -15,7 +15,6 @@ public class CustomerContainer {
 		return instance;
 	}
 
-
 	// Private constructor that creates a new ArrayList and calls fill method to add
 	// to ArrayList with Customer objects.
 	private CustomerContainer() {
@@ -49,47 +48,6 @@ public class CustomerContainer {
 		addNewCustomer("John", "12121212", "john@ucn.dk", "Danmark", "2000", "Rødekro", "John vej 2", "25252525", 0.25);
 		addNewCustomer("KONTANTKUNDE", "00000000", "", "Danmark", "0000", "KONTANT SALG", "", "00000000", 0);
 		addNewCustomer("Jesper", "98758548", "jesper@gmail.com", "Danmark", "5260", "Odense S","Jesper vej 4", "00000000", 0.05);		
-	}
-
-	// findCustomerByCvr takes in (String Cvr) and returns the Customer with the given Cvr if its visible in ArrayList through a while-loop.
-	public Customer findCustomerByCvr(String Cvr) {
-		Customer customer = null;
-		int index = 0;
-		boolean found = false;
-		while (index < container.size() && !found) {
-			customer = container.get(index);
-			if (customer.getCvr().contains(Cvr)) {
-				found = true;
-			} else {
-				index++;
-			}
-		}
-		if (found) {
-			return container.get(index);
-		} else {
-			return null;
-		}
-	}
-
-	// findCustomerByName takes in(String name) and returns the Customer with the
-	// given name if its visible in ArrayList through a while-loop.
-	public Customer findCustomerByName(String name) {
-		Customer customer = null;
-		int index = 0;
-		boolean found = false;
-		while (index < container.size() && !found) {
-			customer = container.get(index);
-			if (customer.getName().contains(name)) {
-				found = true;
-			} else {
-				index++;
-			}
-		}
-		if (found) {
-			return container.get(index);
-		} else {
-			return null;
-		}
 	}
 
 	// findCustomerByPhoneNo takes in (String phoneNo) and returns the Customer with
