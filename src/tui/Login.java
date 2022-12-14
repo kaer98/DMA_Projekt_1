@@ -1,7 +1,6 @@
 package tui;
 
 import java.util.ArrayList;
-
 import controller.EmployeeController;
 import model.Employee;
 
@@ -42,7 +41,7 @@ public class Login {
 		manager = staff.get(choice - 1).isManager();
 		employee = staff.get(choice - 1);
 		MainMenu menu = new MainMenu();
-		MainMenu.start();
+		MainMenu.start(); 
 	}
 
 	private static int writeLogin() {
