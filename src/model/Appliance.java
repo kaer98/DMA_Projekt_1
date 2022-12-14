@@ -33,7 +33,7 @@ public class  Appliance extends Product {
 		appliances.add(applianceCopy);
 	}	
 	// findApplianceCopyBySerialNo takes (String serialNo) and returns ApplianceCopy with given serialNo if its visible in ArrayList through a while-loop.
-	public void newAppliancecopy(String description, String location, int quantity, int minQuantity, int maxQuantity,
+	public void newApplianceCopy(String description, String location, int quantity, int minQuantity, int maxQuantity,
 			double costPrice, double retailPrice) {
 		for(int i=0;i<quantity;i++) {
 			ApplianceCopy a = new ApplianceCopy(this,i);
