@@ -9,11 +9,11 @@ package model;
  */
 public class Employee extends Person {
 	private boolean manager;
-	private int salary, noOfSales;
-	private double totalSales;
+	private int noOfSales;
+	private double salary, totalSales;
 
 	public Employee(String name, String phoneNo, String mailAddress, String country, String postalCode, String city,
-			String address, Boolean manager, int salary) {
+			String address, Boolean manager, double salary) {
 
 		super(name, phoneNo, mailAddress, country, postalCode, city, address);
 		this.manager = manager;
@@ -27,7 +27,7 @@ public class Employee extends Person {
 	}
 
 	// Get and Set methods for Salary, noOfSales and totalSales
-	public int getSalary() {
+	public double getSalary() {
 		return salary;
 	}
 
@@ -44,7 +44,7 @@ public class Employee extends Person {
 		this.noOfSales = noSales;
 	}
 
-	public void setSalary(int salary) {
+	public void setSalary(double salary) {
 		this.salary = salary;
 	}
 
