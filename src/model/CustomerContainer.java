@@ -50,7 +50,7 @@ public class CustomerContainer {
 		addNewCustomer("Jesper", "98758548", "jesper@gmail.com", "Danmark", "5260", "Odense S","Jesper vej 4", "00000000", 0.05);		
 	}
 
-	// findCustomerByPhoneNo takes in (String phoneNo) and returns the Customer with
+	// findCustomerByPhoneNo takes in (String phoneNo) and returns the Customer with -
 	// the given phoneNo if its visible in ArrayList through a while-loop.
 	public Customer findCustomerByPhoneNo(String phoneNo) {
 		Customer customer = null;

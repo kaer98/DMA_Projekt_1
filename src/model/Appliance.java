@@ -61,8 +61,7 @@ public class Appliance extends Product {
 		return isAppliance;
 	}
 
-	// findApplianceCopyBySerialNo takes (String serialNo) and returns ApplianceCopy
-	// with given serialNo if its visible in ArrayList through a while-loop.
+	// for-loop iterates over quantity and creates new ApplianceCopy. Adds new objects to ApplianceCopy
 	public void newAppliancecopy(int quantity) {
 		for (int i = 0; i < quantity; i++) {
 			ApplianceCopy a = new ApplianceCopy(this, i);
