@@ -22,4 +22,7 @@ public class CustomerController {
 		return container.findCustomerByPhoneNo(phoneNo);
 	}
 
+	public void fill() {
+		container.fill();
+	}
 }

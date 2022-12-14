@@ -25,6 +25,10 @@ public class ProductController {
 		product = productContainer.findProductByBarcode(searchString);
 		return product;
 	}
+	
+	public void fill() {
+		productContainer.fill();
+	}
 
 	public ArrayList<Product> getAll() {
 		return products;

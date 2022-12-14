@@ -25,6 +25,7 @@ public class MainMenu {
 		TextMenu menu = new TextMenu("\n ###Hovedmenu###", "Log ud");
 		menu.addOption("Ordre menu");
 
+
 		return menu.prompt();
 	}
 

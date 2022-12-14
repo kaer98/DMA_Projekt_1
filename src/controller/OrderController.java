@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.Container;
 import java.util.ArrayList;
 
 import model.ApplianceCopy;
@@ -54,6 +55,11 @@ public class OrderController {
 		parts.add(po);
 	}
 
+	public void fill() {
+		productController.fill();
+		customerController.fill();
+	}
+	
 	public Customer findCustomerByPhoneNo(String phoneNo) {
 		return customerController.findCustomerByPhoneNo(phoneNo);
 
