@@ -55,7 +55,7 @@ public class Order {
 		if (getFinal() == "Tilbud")
 			System.out.println("Tilbud acceptdato: " + dateTime.plusDays(14) + " 					Type: " + getFinal());
 		System.out.println("Kunde: " + customer.getName() + " \nKundes telefon: " + customer.getPhoneNo());
-		System.out.println("Kundes e-mail: " + customer.getMalAddress() + " \nKundes adresse: " + customer.getAddress());
+		System.out.println("Kundes e-mail: " + customer.getMailAddress() + " \nKundes adresse: " + customer.getAddress());
 		System.out.println("Kundes CVR-nr: " + customer.getCvr());
 		for (PartOrder parts : getParts()) {
 			if (parts.getQuantity() != 0 && !parts.getProduct().isAppliance())
