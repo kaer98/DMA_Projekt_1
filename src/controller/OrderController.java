@@ -50,8 +50,8 @@ public class OrderController {
 		o.addPartOrder(po);
 	}
 
-	public void addToList(PartOrder partOrder) {
-		parts.add(partOrder);
+	public void addToList(PartOrder po) {
+		parts.add(po);
 	}
 
 	public Customer findCustomerByPhoneNo(String phoneNo) {
