@@ -39,10 +39,7 @@ public class Order {
 
 	public void createInvoice() {
 		double discount = 0;
-		System.out.println("Vestbjerg Byggecenter A/S");
-		System.out.println("Adresse");
-		System.out.println("By");
-		System.out.println("CVR-nr.: " + customer.getCvr());
+		System.out.println("#######Vestbjerg Byggecenter A/S#######");
 		System.out.println("Medarbejder: " + employee.getName());
 		System.out.println();
 		System.out.println("Dato: " + dateTime + " 					Fakturanr.:" + orderNo);
@@ -65,13 +62,13 @@ public class Order {
 				System.out.println("serienummer: " + parts.getCopy().getSerialNo());
 			}
 		}
-		System.out.println("");
-		System.out.println("Subtotal: " + dfSharp.format(getTotal()));
+		System.out.println(""); 
+		System.out.println("Subtotal: " + dfSharp.format(getTotal())+"kr");
 		if (customer.getDiscount() != 0) {
 			discount = getTotal() * (customer.getDiscount());
-			System.out.println("-" + (customer.getDiscount() * 100) + "% rabat" + "(" + discount + ")");
+			System.out.println("-" + (customer.getDiscount() * 100) + "% rabat " + "(" + discount + ")");
 		}
-		System.out.println("Moms (25.00%): " + (getTotalWDiscount() * 0.25) + " af " + getTotalWDiscount());
+		System.out.println("Moms (25%): " + dfSharp.format(getTotalWDiscount() * 0.25) + "kr af " + dfSharp.format(getTotalWDiscount())+"kr");
 		System.out.println("Total DKK: " + (dfSharp.format(getTotalWDiscount() * 1.25)));
 
 	}
