@@ -105,13 +105,18 @@ public class Order {
 		System.out.println("Vestbjerg Byggecenter A/S");
 		System.out.println("Adresse");
 		System.out.println("By");
-		System.out.println("CVR-nr.:");
+		System.out.println("CVR-nr.: " + customer.getCvr());
 		System.out.println("Medarbejder: "+ employee.getName());
 		System.out.println();
 		System.out.println("Dato: " + dateTime +" 					Fakturanr.:"+ orderNo);
 		System.out.println();
 		System.out.println("Faktura");
-		System.out.println("Betalingsdato: "+ dateTime.plusDays(14) +" 					Tilbud: " + getFinal());
+		if(getFinal()=="Salg")
+			System.out.println("Betalingsdato: "+ dateTime +" 					Type: " + getFinal());
+		if(getFinal()=="Faktura")
+		System.out.println("Betalingsdato: "+ dateTime.plusDays(14) +" 					Type: " + getFinal());
+		if(getFinal()=="Tilbud")
+			System.out.println("Tilbud acceptdato: "+ dateTime.plusDays(14) +" 					Type: " + getFinal());
 		System.out.println("Kunde: "+ customer.getName() + " \nKundes telefon: "+ customer.getPhoneNo());
 		System.out.println("Kundes e-mail: "+ customer.getMalAddress() + " \nKundes adresse: "+ customer.getAddress());
 		System.out.println("Kundes CVR-nr: " + customer.getCvr());
@@ -127,11 +132,10 @@ public class Order {
 		System.out.println("Subtotal: "+ dfSharp.format(getTotal()));
 		if(customer.getDiscount()!=0) {
 			discount = getTotal()*(customer.getDiscount());
-			System.out.println(" -"+(customer.getDiscount()*100)+"% rabat");
-			System.out.println(discount);
+			System.out.println("-"+(customer.getDiscount()*100)+"% rabat" + "("+discount+")");
 		}
 		System.out.println("Moms (25.00%): " + (getTotalWDiscount() * 0.25)+ " af " + getTotalWDiscount());
-		System.out.println("Total DKK: " + (getTotalWDiscount() * 1.25));
+		System.out.println("Total DKK: " + (dfSharp.format(getTotalWDiscount() * 1.25)));
 
 	}
 

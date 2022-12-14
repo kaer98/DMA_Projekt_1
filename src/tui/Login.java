@@ -4,6 +4,8 @@ import model.EContainer;
 import model.Employee;
 import java.util.ArrayList;
 
+import controller.EmployeeController;
+
 /**
  * Login Class
  *
@@ -13,14 +15,14 @@ import java.util.ArrayList;
  */
 public class Login {
 	private static Boolean manager;
-	private EContainer employeeContainer;
+	private EmployeeController controller;
 	private static ArrayList<Employee> staff;
 	private static String staffName;
 	private static Employee employee;
 
 	public Login() {
-		employeeContainer = EContainer.getInstance();
-		staff = employeeContainer.getAll();
+		controller = new EmployeeController();
+		staff = controller.getAll();
 	}
     
 	public static void start() {

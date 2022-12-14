@@ -1,6 +1,7 @@
 package tui;
 import controller.OrderController;
 import model.ApplianceCopy;
+import model.Customer;
 import model.Order;
 import model.PartOrder;
 import model.PartOrderQ;
@@ -110,18 +111,28 @@ public class OrderMenu {
 			case 1:
 				order.setFinal("Tilbud");
 				break;
-			case 2:
-				order.setFinal("Faktura");
-				break;
-			case 3: 
-				order.setFinal("Betalt");
+			case 2: 
+				order.setFinal("Salg(ikke Betalt)");
 				break;
 			}
-			order.getEmployee().tickSale();
-			order.getEmployee().setTotalSales(order.getTotal());
 			orderController.addOrder(order);
 			order.createInvoice();
-
+			if(order.getFinal()!="Tilbud") {
+			int choice1 = payMenu();
+			switch(choice1) {
+			case 1:
+				order.setFinal("Betalt");
+				order.getEmployee().tickSale();
+				order.getEmployee().setTotalSales(order.getTotal());
+				order.createInvoice();
+				break;
+			case 2: 
+				order.setFinal("Faktura");
+				order.getEmployee().tickSale();
+				order.getEmployee().setTotalSales(order.getTotal());
+				order.createInvoice();
+			}
+			}
 			break;
 		}
 		return done;
@@ -131,9 +142,6 @@ public class OrderMenu {
 	private int writeMenu(){
 		TextMenu menu = new TextMenu("\n ###Order###", "Tilbage");
 		menu.addOption("Opret ordre");
-		menu.addOption("Find ordre");
-		menu.addOption("Slet ordre");
-
 		return menu.prompt();
 	}
 
@@ -148,10 +156,21 @@ public class OrderMenu {
 	private int offerMenu() {
 		TextMenu menu = new TextMenu("\n ###Hvordan skal salget laves?###");
 		menu.addOption("Lav som tilbud");
-		menu.addOption("lav som faktura");
 		menu.addOption("lav som salg");
 		return menu.prompt();
 	}
 	
+	private int payMenu() {
+		TextMenu menu = new TextMenu("\n ###Betaling###");
+		String s = "";
+		if(order.getCustomer().getCvr().contains("00000000")) {
+		menu.addOption("betal nu (" + order.getTotalWDiscount()*1.25 +" kr)");	
+		}
+		else {
+			menu.addOption("betal nu (" + order.getTotalWDiscount()*1.25+ " kr)");
+			menu.addOption("faktura");
+		}
+		return menu.prompt();
+	}
 
 }

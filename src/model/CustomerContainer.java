@@ -51,7 +51,7 @@ private ArrayList<Customer> container;
         boolean found = false;
         while(index < container.size() && !found){
             customer = container.get(index);
-            if(customer.getPhoneNo().equals(phoneNo)){
+            if(customer.getPhoneNo().contains(phoneNo)){
                 found = true;
             }
             else{
@@ -72,7 +72,7 @@ private ArrayList<Customer> container;
         boolean found = false;
         while(index < container.size() && !found){
             customer = container.get(index);
-            if(customer.getCvr().equals(Cvr)){
+            if(customer.getCvr().contains(Cvr)){
                 found = true;
             }
             else{
