@@ -26,6 +26,34 @@ public class OrderMenu {
 		orderController = new OrderController();
 		po = new ArrayList<>();
 	}
+	
+	public void start() {
+		int choice = writeMenu();
+		switch (choice) {
+		case 1:
+			boolean done = false;
+			order = orderController.makeOrder();
+			po.clear();
+			while (order.getCustomer() == null) {
+				String s = Input.inputString("skriv Telefon Nummer på kunden (00000000 hvis kontantkunde)");
+				order.setCustomer(orderController.findCustomerByPhoneNo(s));
+			}
+			System.out.println(order.getCustomer().getName());
+			while (!done) {
+				done = addOrder();
+			}
+			start();
+			break;
+		case 2:
+			orderController.fill();
+			System.out.println("Data genereret");
+			start();
+			break;
+		default:
+			MainMenu.start();
+		}
+	}
+
 
 	private boolean addOrder() {
 		boolean done = false;
@@ -133,32 +161,6 @@ public class OrderMenu {
 		return menu.prompt();
 	}
 
-	public void start() {
-		int choice = writeMenu();
-		switch (choice) {
-		case 1:
-			boolean done = false;
-			order = orderController.makeOrder();
-			po.clear();
-			while (order.getCustomer() == null) {
-				String s = Input.inputString("skriv Telefon Nummer på kunden (00000000 hvis kontantkunde)");
-				order.setCustomer(orderController.findCustomerByPhoneNo(s));
-			}
-			System.out.println(order.getCustomer().getName());
-			while (!done) {
-				done = addOrder();
-			}
-			start();
-			break;
-		case 2:
-			orderController.fill();
-			System.out.println("Data genereret");
-			start();
-			break;
-		default:
-			MainMenu.start();
-		}
-	}
 
 	private int writeMenu() {
 		TextMenu menu = new TextMenu("\n ###Order###", "Tilbage");

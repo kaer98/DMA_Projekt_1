@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class ProductContainer {
 
 	private static ProductContainer instance;
+	private ArrayList<Product> container;
 	// Singleton method.
 	public static ProductContainer getInstance() {
 		if (instance == null) {
@@ -12,8 +13,6 @@ public class ProductContainer {
 		}
 		return instance;
 	}
-
-	private ArrayList<Product> container;
 
 	private ProductContainer() {
 		container = new ArrayList<>();
