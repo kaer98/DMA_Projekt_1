@@ -11,7 +11,7 @@ public class Customer extends Person {
 	private String cvr;
 	private double discount;
 
-	// Constructor with paramters to initialize Customer object:
+	// Constructor with parameters to initialize Customer object:
 	public Customer(String name, String phoneNo, String mailAddress, String country, String postalCode, String city,
 			String address, String cvr, double discount) {
 
