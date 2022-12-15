@@ -16,6 +16,10 @@ public class CustomerController {
 	public CustomerController() {
 		container = CustomerContainer.getInstance();
 	}
+	
+	public void addCustomer(Customer c) {
+		container.addCustomer(c);
+	}
 
 	// Method for finding customer by phoneNo in class CustomerContainer
 	public Customer findCustomerByPhoneNo(String phoneNo) {

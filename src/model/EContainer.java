@@ -3,8 +3,9 @@ package model;
 import java.util.ArrayList;
 
 // Singleton class
-public class EContainer {
+public class EContainer {	
 	private static EContainer instance;
+	private ArrayList<Employee> container;
 	// Method to create a new instance of class
 	public static EContainer getInstance() {
 		if (instance == null) {
@@ -12,8 +13,6 @@ public class EContainer {
 		}
 		return instance;
 	}
-
-	private ArrayList<Employee> container;
 
 	private EContainer() {
 		this.container = new ArrayList<>();

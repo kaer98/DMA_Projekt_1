@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import model.Product;
 import model.ProductContainer;
+import model.SimpleProduct;
 
 /**
  * Product controller Class
@@ -26,6 +27,10 @@ public class ProductController {
 		return product;
 	}
 	
+	public void addProduct(Product p) {
+		productContainer.addProduct(p);
+	}
+	
 	public void fill() {
 		productContainer.fill();
 	}
@@ -35,7 +40,7 @@ public class ProductController {
 	}
 
 	public ArrayList<Product> getAll() {
-		return products;
+		return productContainer.getAll();
 	}
 
 	public int getQuantity(int i) {
