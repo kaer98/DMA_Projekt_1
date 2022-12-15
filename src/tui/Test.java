@@ -66,10 +66,13 @@ private boolean success;
 		orderController.addOrder(o);
 		
 		//assert
-		for(Order order : orderController.getOrders()) {
+		int i = 0;
+		while(success==false && orderController.getOrders().size()>i) {
+		Order order = orderController.getOrders().get(i);
 			if(order.getCustomer().getName()==o.getCustomer().getName()) {
 				success = true;
-			}	
+			}
+			i++;
 		}
 		if(!success) {
 			fail("something went wrong");
