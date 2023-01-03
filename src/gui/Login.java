@@ -74,7 +74,7 @@ private EmployeeController ec;
 			btn.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent e) {
 					if(em.isManager() == true) {
-						AdminLogin adminLogin = new AdminLogin();
+						AdminLogin adminLogin = new AdminLogin(em);
 					adminLogin.setModal(true);
 					adminLogin.setVisible(true);
 					}

@@ -7,6 +7,9 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import model.Employee;
+
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
@@ -24,38 +27,27 @@ public class AdminLogin extends JDialog {
 	private JPasswordField passwordField;
 	private JButton btnOk;
 	private JButton btnCancel;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			AdminLogin dialog = new AdminLogin();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	private Employee em;
+	private JLabel lblWrongPass;
 
 	/**
 	 * Create the dialog.
 	 */
-	public AdminLogin() {
+	public AdminLogin(Employee em) {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		GridBagLayout gbl_contentPanel = new GridBagLayout();
 		gbl_contentPanel.columnWidths = new int[]{0, 0, 0};
-		gbl_contentPanel.rowHeights = new int[]{0, 0, 0, 0, 0};
+		gbl_contentPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
 		gbl_contentPanel.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPanel.setLayout(gbl_contentPanel);
 		{
 			JLabel lblNewLabel = new JLabel("Password:");
 			GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-			gbc_lblNewLabel.insets = new Insets(0, 0, 0, 5);
+			gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
 			gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
 			gbc_lblNewLabel.gridx = 0;
 			gbc_lblNewLabel.gridy = 3;
@@ -64,10 +56,18 @@ public class AdminLogin extends JDialog {
 		{
 			passwordField = new JPasswordField();
 			GridBagConstraints gbc_passwordField = new GridBagConstraints();
+			gbc_passwordField.insets = new Insets(0, 0, 5, 0);
 			gbc_passwordField.fill = GridBagConstraints.HORIZONTAL;
 			gbc_passwordField.gridx = 1;
 			gbc_passwordField.gridy = 3;
 			contentPanel.add(passwordField, gbc_passwordField);
+		}
+		{
+			lblWrongPass = new JLabel("");
+			GridBagConstraints gbc_lblWrongPass = new GridBagConstraints();
+			gbc_lblWrongPass.gridx = 1;
+			gbc_lblWrongPass.gridy = 4;
+			contentPanel.add(lblWrongPass, gbc_lblWrongPass);
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -78,12 +78,19 @@ public class AdminLogin extends JDialog {
 				btnOk.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						if(passwordField.equals(e.getPassword))
+						if(passwordField.getText().equals(em.getPassword())) {
+							POS frame = new POS();
+		                    frame.setVisible(true);
+		                    setVisible(false);
+							dispose();
+						}
+						else {
+						lblWrongPass.setText("Forkert Password, prøv igen.");
+						}
 					}
 				});
-				btnOk.setActionCommand("OK");
 				buttonPane.add(btnOk);
-				getRootPane().setDefaultButton(btnOk);
+				
 			}
 			{
 				btnCancel = new JButton("Cancel");
@@ -99,5 +106,7 @@ public class AdminLogin extends JDialog {
 			}
 		}
 	}
+
+
 
 }
