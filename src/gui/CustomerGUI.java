@@ -53,7 +53,7 @@ public class CustomerGUI extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			CustomerGUI dialog = new CustomerGUI();
+			CustomerGUI dialog = new CustomerGUI(null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -64,7 +64,7 @@ public class CustomerGUI extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public CustomerGUI() {
+	public CustomerGUI(Customer c) {
 		setBounds(150, 150, 675, 450);
 		getContentPane().setLayout(null);
 		contentPanel.setBounds(0, 0, 434, 11);
@@ -95,10 +95,20 @@ public class CustomerGUI extends JDialog {
 			}
 			{
 				btnSave = new JButton("Save");
+				btnSave.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						saveClicked();
+					}
+				});
 			}
 			buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 			{
 				btnOK = new JButton("OK");
+				btnOK.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						okClicked();
+					}
+				});
 				btnOK.setActionCommand("OK");
 				getRootPane().setDefaultButton(btnOK);
 			}
@@ -185,7 +195,7 @@ public class CustomerGUI extends JDialog {
 		getContentPane().add(lblNewLabel_9);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 293, 333, 107);
+		panel.setBounds(10, 314, 333, 86);
 		getContentPane().add(panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{216, 2, 0};
@@ -203,8 +213,11 @@ public class CustomerGUI extends JDialog {
 		panel.add(scrollPane, gbc_scrollPane);
 		
 		JList list = new JList();
-		list.setBounds(248, 32, 380, 230);
-		getContentPane().add(list);
+		GridBagConstraints gbc_list = new GridBagConstraints();
+		gbc_list.insets = new Insets(0, 0, 0, 5);
+		gbc_list.gridx = 0;
+		gbc_list.gridy = 1;
+		panel.add(list, gbc_list);
 		
 		JLabel lblNewLabel_1 = new JLabel("Discount.........");
 		lblNewLabel_1.setBounds(10, 276, 64, 15);
@@ -214,9 +227,21 @@ public class CustomerGUI extends JDialog {
 		txtDiscount.setBounds(74, 270, 85, 20);
 		getContentPane().add(txtDiscount);
 		txtDiscount.setColumns(10);
+		
+		init(c);
 	}
 	
-	private void displayMember() {
+	private void init(Customer c) {
+		this.currCustomer = c;
+		this.cCtrl = new CustomerController();
+		
+		if(currCustomer != null) {
+			displayCustomer();
+			cCtrl.findCustomerByPhoneNo(currCustomer.getPhoneNo());
+		}
+	}
+		
+	private void displayCustomer() {
 		this.txtName.setText(currCustomer.getName());
 		this.txtCVR.setText(currCustomer.getCvr());
 		this.txtEmail.setText(currCustomer.getMailAddress());
@@ -253,6 +278,32 @@ public class CustomerGUI extends JDialog {
 					+ "maybe " + name + " is already registered");
 		}
 		cancelClicked();
+	}
+	
+	private void saveClicked() {
+		String name = txtName.getText();
+		String cvr = txtCVR.getText();
+		String email = txtEmail.getText();
+		String phone = txtPhone.getText();
+		String address = txtAddress.getText();
+		String postalcode = txtPostalcode.getText();
+		String city = txtCity.getText();
+		String country = txtCountry.getText();
+		double discount = Double.parseDouble(txtDiscount.getText());
+		
+		try {
+			if(currCustomer == null) {
+				currCustomer = cCtrl.addNewCustomer(name, phone, email, country, postalcode,
+						city, address, cvr, discount);
+			} else {
+				cCtrl.updateCustomer(currCustomer.getPhoneNo(), name, phone, email, country, postalcode,
+				city, address, cvr, discount);
+			}
+			System.out.println(currCustomer);//TODO remove, this is for debugging/trying out
+		} catch(IllegalArgumentException iae) {
+			JOptionPane.showMessageDialog(this, "Email already in use (" + email + ") "
+					+ "maybe " + name + " is already registered");
+		}
 	}
 
 	private void cancelClicked() {
