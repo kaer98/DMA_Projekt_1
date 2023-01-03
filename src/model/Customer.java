@@ -38,5 +38,6 @@ public class Customer extends Person {
 	public void setDiscount(double discount) {
 		this.discount = discount;
 	}
+	
 
 }

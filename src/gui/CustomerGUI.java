@@ -1,4 +1,6 @@
 package gui;
+import model.Customer;
+import controller.CustomerController;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -21,24 +23,30 @@ import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import java.awt.GridBagConstraints;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+
 import java.awt.Insets;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CustomerGUI extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
+	private CustomerController cCtrl;
+	private Customer currCustomer;
 	private JTextField txtName;
 	private JTextField txtCVR;
 	private JTextField txtPhone;
 	private JTextField txtEmail;
 	private JTextField txtAddress;
-	private JButton btnOptions;
 	private JButton btnOK;
 	private JButton btnCancel;
 	private JButton btnSave;
 	private JTextField txtPostalcode;
 	private JTextField txtCity;
 	private JTextField txtCountry;
+	private JTextField txtDiscount;
 
 	/**
 	 * Launch the application.
@@ -74,28 +82,29 @@ public class CustomerGUI extends JDialog {
 		}
 		{
 			JPanel buttonPanel = new JPanel();
-			buttonPanel.setBounds(511, 345, 138, 55);
+			buttonPanel.setBounds(434, 367, 215, 33);
 			getContentPane().add(buttonPanel);
 			{
 				btnCancel = new JButton("Cancel");
+				btnCancel.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						cancelClicked();
+					}
+				});
 				btnCancel.setActionCommand("Cancel");
 			}
-			buttonPanel.setLayout(new GridLayout(0, 2, 0, 0));
-			{
-				btnOptions = new JButton("Options");
-			}
-			buttonPanel.add(btnOptions);
 			{
 				btnSave = new JButton("Save");
 			}
-			buttonPanel.add(btnSave);
-			buttonPanel.add(btnCancel);
+			buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 			{
 				btnOK = new JButton("OK");
 				btnOK.setActionCommand("OK");
 				getRootPane().setDefaultButton(btnOK);
 			}
 			buttonPanel.add(btnOK);
+			buttonPanel.add(btnSave);
+			buttonPanel.add(btnCancel);
 		}
 				
 		JLabel lblNewLabel_2 = new JLabel("Customer Info:");
@@ -104,75 +113,75 @@ public class CustomerGUI extends JDialog {
 		getContentPane().add(lblNewLabel_2);
 		
 		txtName = new JTextField();
-		txtName.setBounds(90, 30, 85, 20);
+		txtName.setBounds(74, 30, 85, 20);
 		getContentPane().add(txtName);
 		txtName.setColumns(10);
 		
 		txtCVR = new JTextField();
-		txtCVR.setBounds(90, 60, 85, 20);
+		txtCVR.setBounds(74, 60, 85, 20);
 		getContentPane().add(txtCVR);
 		txtCVR.setColumns(10);
 		
 		txtPhone = new JTextField();
-		txtPhone.setBounds(90, 90, 85, 20);
+		txtPhone.setBounds(74, 90, 85, 20);
 		getContentPane().add(txtPhone);
 		txtPhone.setColumns(10);
 		
 		txtEmail = new JTextField();
-		txtEmail.setBounds(90, 120, 85, 20);
+		txtEmail.setBounds(74, 120, 85, 20);
 		getContentPane().add(txtEmail);
 		txtEmail.setColumns(10);
 		
 		txtAddress = new JTextField();
-		txtAddress.setBounds(90, 150, 85, 20);
+		txtAddress.setBounds(74, 150, 85, 20);
 		getContentPane().add(txtAddress);
 		txtAddress.setColumns(10);
 		
 		JLabel name = new JLabel("Name.................");
-		name.setBounds(10, 36, 45, 15);
+		name.setBounds(10, 36, 64, 15);
 		getContentPane().add(name);
 		
-		JLabel lblNewLabel_3 = new JLabel("Phone...");
-		lblNewLabel_3.setBounds(10, 96, 45, 15);
+		JLabel lblNewLabel_3 = new JLabel("Phone.........");
+		lblNewLabel_3.setBounds(10, 96, 64, 15);
 		getContentPane().add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_4 = new JLabel("E-mail...");
-		lblNewLabel_4.setBounds(10, 126, 45, 15);
+		JLabel lblNewLabel_4 = new JLabel("E-mail.........");
+		lblNewLabel_4.setBounds(10, 126, 64, 15);
 		getContentPane().add(lblNewLabel_4);
 		
-		JLabel lblNewLabel_5 = new JLabel("Address...");
-		lblNewLabel_5.setBounds(10, 156, 45, 15);
+		JLabel lblNewLabel_5 = new JLabel("Address........");
+		lblNewLabel_5.setBounds(10, 156, 64, 15);
 		getContentPane().add(lblNewLabel_5);
 		
-		JLabel lblNewLabel_6 = new JLabel("CVR...");
-		lblNewLabel_6.setBounds(10, 66, 45, 15);
+		JLabel lblNewLabel_6 = new JLabel("CVR...........");
+		lblNewLabel_6.setBounds(10, 66, 64, 15);
 		getContentPane().add(lblNewLabel_6);
 		
 		JLabel lblNewLabel_7 = new JLabel("Postalcode...");
-		lblNewLabel_7.setBounds(10, 186, 45, 15);
+		lblNewLabel_7.setBounds(10, 186, 64, 15);
 		getContentPane().add(lblNewLabel_7);
 		
-		JLabel lblNewLabel_8 = new JLabel("City...");
-		lblNewLabel_8.setBounds(10, 216, 45, 15);
+		JLabel lblNewLabel_8 = new JLabel("City.............");
+		lblNewLabel_8.setBounds(10, 216, 64, 15);
 		getContentPane().add(lblNewLabel_8);
 		
 		txtPostalcode = new JTextField();
-		txtPostalcode.setBounds(90, 180, 85, 20);
+		txtPostalcode.setBounds(74, 180, 85, 20);
 		getContentPane().add(txtPostalcode);
 		txtPostalcode.setColumns(10);
 		
 		txtCity = new JTextField();
-		txtCity.setBounds(90, 210, 85, 20);
+		txtCity.setBounds(74, 210, 85, 20);
 		getContentPane().add(txtCity);
 		txtCity.setColumns(10);
 		
 		txtCountry = new JTextField();
-		txtCountry.setBounds(90, 240, 85, 20);
+		txtCountry.setBounds(74, 240, 85, 20);
 		getContentPane().add(txtCountry);
 		txtCountry.setColumns(10);
 		
-		JLabel lblNewLabel_9 = new JLabel("Country...");
-		lblNewLabel_9.setBounds(10, 246, 45, 15);
+		JLabel lblNewLabel_9 = new JLabel("Country.........");
+		lblNewLabel_9.setBounds(10, 246, 64, 15);
 		getContentPane().add(lblNewLabel_9);
 		
 		JPanel panel = new JPanel();
@@ -194,19 +203,61 @@ public class CustomerGUI extends JDialog {
 		panel.add(scrollPane, gbc_scrollPane);
 		
 		JList list = new JList();
-		GridBagConstraints gbc_list = new GridBagConstraints();
-		gbc_list.insets = new Insets(0, 0, 0, 5);
-		gbc_list.fill = GridBagConstraints.BOTH;
-		gbc_list.gridx = 0;
-		gbc_list.gridy = 1;
-		panel.add(list, gbc_list);
+		list.setBounds(248, 32, 380, 230);
+		getContentPane().add(list);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(10, 273, 84, 20);
-		getContentPane().add(panel_1);
+		JLabel lblNewLabel_1 = new JLabel("Discount.........");
+		lblNewLabel_1.setBounds(10, 276, 64, 15);
+		getContentPane().add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_10 = new JLabel("Orders");
-		lblNewLabel_10.setHorizontalAlignment(SwingConstants.LEFT);
-		panel_1.add(lblNewLabel_10);
+		txtDiscount = new JTextField();
+		txtDiscount.setBounds(74, 270, 85, 20);
+		getContentPane().add(txtDiscount);
+		txtDiscount.setColumns(10);
 	}
+	
+	private void displayMember() {
+		this.txtName.setText(currCustomer.getName());
+		this.txtCVR.setText(currCustomer.getCvr());
+		this.txtEmail.setText(currCustomer.getMailAddress());
+		this.txtPhone.setText(currCustomer.getPhoneNo());
+		this.txtAddress.setText(currCustomer.getAddress());
+		this.txtPostalcode.setText(currCustomer.getPostalCode());
+		this.txtCity.setText(currCustomer.getCity());
+		this.txtCountry.setText(currCustomer.getCity());
+
+	}
+	
+	private void okClicked() {
+		String name = txtName.getText();
+		String cvr = txtCVR.getText();
+		String email = txtEmail.getText();
+		String phone = txtPhone.getText();
+		String address = txtAddress.getText();
+		String postalcode = txtPostalcode.getText();
+		String city = txtCity.getText();
+		String country = txtCountry.getText();
+		double discount = Double.parseDouble(txtDiscount.getText());
+		
+		try {
+			if(currCustomer == null) {
+				currCustomer = cCtrl.addNewCustomer(name, phone, email, country, postalcode,
+						city, address, cvr, discount);
+			} else {
+				cCtrl.updateCustomer(currCustomer.getPhoneNo(), name, phone, email, country, postalcode,
+				city, address, cvr, discount);
+			}
+			System.out.println(currCustomer);//TODO remove, this is for debugging/trying out
+		} catch(IllegalArgumentException iae) {
+			JOptionPane.showMessageDialog(this, "Email already in use (" + email + ") "
+					+ "maybe " + name + " is already registered");
+		}
+		cancelClicked();
+	}
+
+	private void cancelClicked() {
+		this.dispose();
+		this.setVisible(false);
+	}
+	
 }

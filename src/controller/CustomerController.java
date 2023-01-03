@@ -35,4 +35,19 @@ public class CustomerController {
 	public void fill() {
 		container.fill();
 	}
+	
+	public Customer addNewCustomer(String name, String phoneNo, String mailAddress, String country, String postalCode,
+			String city, String address, String cvr, double discount) {
+		Customer c = container.addNewCustomer(name, phoneNo, mailAddress, country, postalCode,
+				city, address, cvr, discount);
+		
+		return c;
+	}
+
+	public void updateCustomer(String phoneNo, String name, String phone, String email, String country,
+			String postalcode, String city, String address, String cvr, double discount) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }

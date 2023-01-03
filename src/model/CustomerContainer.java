@@ -28,12 +28,13 @@ public class CustomerContainer {
 
 	// addNewCustomer method with parameters to create new Customer and add to
 	// ArrayList.
-	public void addNewCustomer(String name, String phoneNo, String mailAddress, String country, String postalCode,
+	public Customer addNewCustomer(String name, String phoneNo, String mailAddress, String country, String postalCode,
 			String city, String address, String cvr, double discount) {
 		Customer c = new Customer(name, phoneNo, mailAddress, country, postalCode, city, address, cvr, discount);
 		container.add(c);
+		return c;
 	}
-	
+
 	public ArrayList<Customer> getAll(){
 		return container;
 	}
