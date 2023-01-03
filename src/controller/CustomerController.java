@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+
 import model.Customer;
 import model.CustomerContainer;
 
@@ -24,6 +26,10 @@ public class CustomerController {
 	// Method for finding customer by phoneNo in class CustomerContainer
 	public Customer findCustomerByPhoneNo(String phoneNo) {
 		return container.findCustomerByPhoneNo(phoneNo);
+	}
+	
+	public ArrayList<Customer> getAll(){
+		return container.getAll();
 	}
 
 	public void fill() {

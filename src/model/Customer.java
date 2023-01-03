@@ -25,6 +25,7 @@ public class Customer extends Person {
 	public String getCvr() {
 		return cvr;
 	}
+	
 
 	public double getDiscount() {
 		return discount;

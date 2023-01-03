@@ -33,6 +33,10 @@ public class CustomerContainer {
 		Customer c = new Customer(name, phoneNo, mailAddress, country, postalCode, city, address, cvr, discount);
 		container.add(c);
 	}
+	
+	public ArrayList<Customer> getAll(){
+		return container;
+	}
 
 	// Fill method that fills Customer objects to ArrayList.
 	public void fill() {
