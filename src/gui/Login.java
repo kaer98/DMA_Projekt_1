@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class login extends JFrame {
+public class ogin extends JFrame {
 
 	private JPanel contentPane;
 
