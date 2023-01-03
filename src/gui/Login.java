@@ -10,6 +10,8 @@ import java.awt.Container;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+
 import controller.EmployeeController;
 import model.EContainer;
 import model.Employee;
@@ -67,12 +69,19 @@ private EmployeeController ec;
 	private void makeButtons() {
 		Iterator<Employee> it = ec.getAll().iterator();
 		while(it.hasNext()) {
-			Employee e = it.next();
-			JButton btn = new JButton(e.getName());  
+			Employee em = it.next();
+			JButton btn = new JButton(em.getName());  
 			btn.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent e) {
+					if(em.isManager() == true) {
+						AdminLogin adminLogin = new AdminLogin();
+					adminLogin.setModal(true);
+					adminLogin.setVisible(true);
+					}
+					else {
 					POS frame = new POS();
                     frame.setVisible(true);
+					}
 				}
 			}); 
 			panel.add(btn);
