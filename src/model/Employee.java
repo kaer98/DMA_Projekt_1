@@ -11,19 +11,26 @@ public class Employee extends Person {
 	private boolean manager;
 	private int noOfSales;
 	private double salary, totalSales;
+	private String password;
 
 	public Employee(String name, String phoneNo, String mailAddress, String country, String postalCode, String city,
-			String address, Boolean manager, double salary) {
+			String address, Boolean manager, double salary, String password) {
 
 		super(name, phoneNo, mailAddress, country, postalCode, city, address);
 		this.manager = manager;
 		this.salary = salary;
 		noOfSales = 0;
 		totalSales = 0;
+		this.password = password;
+		
+		
 	}
 
 	public int getNoOfSales() {
 		return noOfSales;
+	}
+	public String getPassword() {
+		return password;
 	}
 
 	// Get and Set methods for Salary, noOfSales and totalSales

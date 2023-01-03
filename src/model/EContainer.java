@@ -21,16 +21,16 @@ public class EContainer {
 
 	// addEmployee method to add new Employee objects to container list
 	public void addEmployee(String name, String phoneNo, String mailAddress, String country, String postalCode,
-			String city, String address, Boolean manager, int salary) {
-		container.add(new Employee(name, phoneNo, mailAddress, country, postalCode, city, address, manager, salary));
+			String city, String address, Boolean manager, int salary, String password) {
+		container.add(new Employee(name, phoneNo, mailAddress, country, postalCode, city, address, manager, salary, password));
 	}
 
 	// Fill method to fill container list with Employee objects
 	public void fill() {
-		addEmployee("Jens", "34567891", "jens@live.com", "Denmark", "9000", "Aalborg", "Østre Havnegade", true, 999);
-		addEmployee("Jesper", "12345678", "jesper@gmail.com", "Denmark", "9000", "Aalborg", "Tæt på skole", false, 999);
-		addEmployee("Klaus", "23456789", "klaus@hotmail.dk", "Denmark", "9000", "Aalborg", "Islandsgade", false, 999);
-		addEmployee("Ole", "45678912", "ole@yahoo.dk", "Denmark", "9000", "Aalborg", "Kennedy Street", false, 999);
+		addEmployee("Jens", "34567891", "jens@live.com", "Denmark", "9000", "Aalborg", "Østre Havnegade", true, 999, "PENIS");
+		addEmployee("Jesper", "12345678", "jesper@gmail.com", "Denmark", "9000", "Aalborg", "Tæt på skole", false, 999, "");
+		addEmployee("Klaus", "23456789", "klaus@hotmail.dk", "Denmark", "9000", "Aalborg", "Islandsgade", false, 999, "");
+		addEmployee("Ole", "45678912", "ole@yahoo.dk", "Denmark", "9000", "Aalborg", "Kennedy Street", false, 999, "");
 
 	}
 
