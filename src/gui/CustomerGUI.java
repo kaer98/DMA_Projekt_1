@@ -1,5 +1,6 @@
 package gui;
 import model.Customer;
+import model.Order;
 import controller.CustomerController;
 
 import java.awt.BorderLayout;
@@ -47,7 +48,7 @@ public class CustomerGUI extends JDialog {
 	private JTextField txtCity;
 	private JTextField txtCountry;
 	private JTextField txtDiscount;
-	private JList list;
+	private JList<Order> list;
 	/**
 	 * Launch the application.
 	 */
@@ -258,6 +259,9 @@ public class CustomerGUI extends JDialog {
 		this.currCustomer = c;
 		this.cCtrl = new CustomerController();
 		
+		OrderListCellRenderer ocr = new OrderListCellRenderer();
+		list.setCellRenderer(ocr);
+		
 		if(currCustomer != null) {
 			displayCustomer();
 		}
@@ -296,8 +300,8 @@ public class CustomerGUI extends JDialog {
 			}
 			System.out.println(currCustomer);//TODO remove, this is for debugging/trying out
 		} catch(IllegalArgumentException iae) {
-			JOptionPane.showMessageDialog(this, "Email already in use (" + email + ") "
-					+ "maybe " + name + " is already registered");
+			JOptionPane.showMessageDialog(this, "Phone no. is already in use " + phone 
+					+ " maybe " + name + " is already registered");
 		}
 		cancelClicked();
 	}
@@ -323,7 +327,7 @@ public class CustomerGUI extends JDialog {
 			}
 			System.out.println(currCustomer);//TODO remove, this is for debugging/trying out
 		} catch(IllegalArgumentException iae) {
-			JOptionPane.showMessageDialog(this, "Email already in use (" + email + ") "
+			JOptionPane.showMessageDialog(this, "Phone no. is already in use (" + phone + ") "
 					+ "maybe " + name + " is already registered");
 		}
 	}
