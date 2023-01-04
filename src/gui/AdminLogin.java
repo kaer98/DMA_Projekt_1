@@ -8,6 +8,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controller.EmployeeController;
 import model.Employee;
 
 import javax.swing.JLabel;
@@ -28,13 +29,16 @@ public class AdminLogin extends JDialog {
 	private JButton btnOk;
 	private JButton btnCancel;
 	private JLabel lblWrongpass;
-
+	private Employee em;
+	private EmployeeController ec;
 	
 
 	/**
 	 * Create the dialog.
 	 */
-	public AdminLogin(Employee em) {
+	public AdminLogin(Employee em, EmployeeController ec) {
+		this.em = em;
+		this.ec = ec;
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -79,11 +83,11 @@ public class AdminLogin extends JDialog {
 				btnOk.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						if(passwordField.equals(em.getPassword())){
-							POS frame = new POS();
+						if(passwordField.getText().equals(em.getPassword())){
+							POS frame = new POS(em);
 		                    frame.setVisible(true);
 		                    setModal(false);
-		                    setVisible(false);
+		                    setVisible(false); 
 							}
 						else {
 							lblWrongpass.setText("forkert kode, prøv igen!");

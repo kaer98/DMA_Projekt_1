@@ -74,14 +74,15 @@ private EmployeeController ec;
 			btn.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent e) {
 					if(em.isManager() == true) {
-						AdminLogin adminLogin = new AdminLogin(em);
+						AdminLogin adminLogin = new AdminLogin(em, ec);
 					adminLogin.setModal(true);
 					adminLogin.setVisible(true);
 					}
 					else {
-					POS frame = new POS();
+					POS frame = new POS(em);
                     frame.setVisible(true);
 					}
+					setVisible(false);
 				}
 			}); 
 			panel.add(btn);
