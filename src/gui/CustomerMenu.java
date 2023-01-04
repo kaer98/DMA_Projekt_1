@@ -41,7 +41,6 @@ public class CustomerMenu extends JFrame {
 	private JPanel panel_1;
 	private JTextField textField;
 	private JButton btnSearch;
-	private JList<Customer> cJList;
 	private ArrayList<Customer> cList;
 	/**
 	 * Launch the application.
@@ -123,7 +122,6 @@ public class CustomerMenu extends JFrame {
 	private void init() {
 		cc = new CustomerController();
 		cc.fill();
-		cJList = new JList<Customer>();
 		displayCustomers();
 		
 	}
@@ -131,8 +129,6 @@ public class CustomerMenu extends JFrame {
 	private void displayCustomers() {
 		ctm = new CustomerTM(cc.getAll());
 		table.setModel(ctm);
-		CustomerListCellRenderer ccr = new CustomerListCellRenderer();
-		cJList.setCellRenderer(ccr);
 	}
 	
 	private void searchClicked() {
@@ -155,7 +151,6 @@ public class CustomerMenu extends JFrame {
 	}
 	
 		private void editClicked(){
-			
 			Customer c = ctm.getSelectedMember(table.getSelectedRow());
 			CustomerGUI cGUI = new CustomerGUI(c);
 			cGUI.setVisible(true);
