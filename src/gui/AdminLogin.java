@@ -7,6 +7,9 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import model.Employee;
+
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
@@ -25,23 +28,12 @@ public class AdminLogin extends JDialog {
 	private JButton btnOk;
 	private JButton btnCancel;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			AdminLogin dialog = new AdminLogin();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	
 
 	/**
 	 * Create the dialog.
 	 */
-	public AdminLogin() {
+	public AdminLogin(Employee em) {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -78,7 +70,9 @@ public class AdminLogin extends JDialog {
 				btnOk.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						if(passwordField.equals(e.getPassword))
+						if(passwordField.equals(em.getPassword())){
+							
+						}
 					}
 				});
 				btnOk.setActionCommand("OK");
