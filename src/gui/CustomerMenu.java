@@ -26,6 +26,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ListSelectionModel;
 public class CustomerMenu extends JFrame {
 
 	private JPanel contentPane;
@@ -74,6 +75,7 @@ public class CustomerMenu extends JFrame {
 		contentPane.add(scrollPane, BorderLayout.CENTER);
 		
 		table = new JTable();
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(table);
 		
 		panel = new JPanel();
@@ -153,7 +155,8 @@ public class CustomerMenu extends JFrame {
 	}
 	
 		private void editClicked(){
-			Customer c = cJList.getSelectedValue();
+			
+			Customer c = ctm.getSelectedMember(table.getSelectedRow());
 			CustomerGUI cGUI = new CustomerGUI(c);
 			cGUI.setVisible(true);
 		}

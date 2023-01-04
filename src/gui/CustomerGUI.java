@@ -275,7 +275,8 @@ public class CustomerGUI extends JDialog {
 		this.txtAddress.setText(currCustomer.getAddress());
 		this.txtPostalcode.setText(currCustomer.getPostalCode());
 		this.txtCity.setText(currCustomer.getCity());
-		this.txtCountry.setText(currCustomer.getCity());
+		this.txtCountry.setText(currCustomer.getCountry());
+		this.txtDiscount.setText(""+currCustomer.getDiscount());
 
 	}
 	
@@ -295,10 +296,10 @@ public class CustomerGUI extends JDialog {
 				currCustomer = cCtrl.addNewCustomer(name, phone, email, country, postalcode,
 						city, address, cvr, discount);
 			} else {
-				cCtrl.updateCustomer(currCustomer.getPhoneNo(), name, phone, email, country, postalcode,
-				city, address, cvr, discount);
+				cCtrl.updateCustomer(currCustomer.getId(), name, phone, email, country, postalcode,
+				city, address, cvr, discount); 
 			}
-			System.out.println(currCustomer);//TODO remove, this is for debugging/trying out
+			System.out.println(currCustomer.getName());//TODO remove, this is for debugging/trying out
 		} catch(IllegalArgumentException iae) {
 			JOptionPane.showMessageDialog(this, "Phone no. is already in use " + phone 
 					+ " maybe " + name + " is already registered");
@@ -322,7 +323,7 @@ public class CustomerGUI extends JDialog {
 				currCustomer = cCtrl.addNewCustomer(name, phone, email, country, postalcode,
 						city, address, cvr, discount);
 			} else {
-				cCtrl.updateCustomer(currCustomer.getPhoneNo(), name, phone, email, country, postalcode,
+				cCtrl.updateCustomer(currCustomer.getId(), name, phone, email, country, postalcode,
 				city, address, cvr, discount);
 			}
 			System.out.println(currCustomer);//TODO remove, this is for debugging/trying out
@@ -336,5 +337,6 @@ public class CustomerGUI extends JDialog {
 		this.dispose();
 		this.setVisible(false);
 	}
+	
 	
 }

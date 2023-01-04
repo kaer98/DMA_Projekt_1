@@ -44,9 +44,9 @@ public class CustomerController {
 		return c;
 	}
 
-	public void updateCustomer(String phoneNo, String name, String phone, String email, String country,
+	public void updateCustomer(int id, String name, String phone, String email, String country,
 			String postalcode, String city, String address, String cvr, double discount) {
-		// TODO Auto-generated method stub
+		container.updateCustomer(id, name, cvr, phone, email, address, postalcode, city, country, discount);
 		
 	}
 	
