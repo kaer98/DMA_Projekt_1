@@ -1,5 +1,6 @@
 package gui;
 import model.Customer;
+import model.Order;
 import controller.CustomerController;
 
 import java.awt.BorderLayout;
@@ -47,13 +48,13 @@ public class CustomerGUI extends JDialog {
 	private JTextField txtCity;
 	private JTextField txtCountry;
 	private JTextField txtDiscount;
-
+	private JList<Order> list;
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			CustomerGUI dialog = new CustomerGUI();
+			CustomerGUI dialog = new CustomerGUI(null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -64,8 +65,8 @@ public class CustomerGUI extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public CustomerGUI() {
-		setBounds(150, 150, 675, 450);
+	public CustomerGUI(Customer c) {
+		setBounds(150, 150, 450, 450);
 		getContentPane().setLayout(null);
 		contentPanel.setBounds(0, 0, 434, 11);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -82,10 +83,44 @@ public class CustomerGUI extends JDialog {
 		}
 		{
 			JPanel buttonPanel = new JPanel();
-			buttonPanel.setBounds(434, 367, 215, 33);
+			buttonPanel.setBounds(344, 308, 80, 92);
 			getContentPane().add(buttonPanel);
+			GridBagLayout gbl_buttonPanel = new GridBagLayout();
+			gbl_buttonPanel.columnWidths = new int[]{0, 0, 0, 0, 0};
+			gbl_buttonPanel.rowHeights = new int[]{0, 0, 0, 0};
+			gbl_buttonPanel.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
+			gbl_buttonPanel.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+			buttonPanel.setLayout(gbl_buttonPanel);
+			{
+				btnOK = new JButton("OK");
+				GridBagConstraints gbc_btnOK = new GridBagConstraints();
+				gbc_btnOK.fill = GridBagConstraints.HORIZONTAL;
+				gbc_btnOK.insets = new Insets(0, 0, 5, 5);
+				gbc_btnOK.gridx = 1;
+				gbc_btnOK.gridy = 0;
+				buttonPanel.add(btnOK, gbc_btnOK);
+				btnOK.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						okClicked();
+					}
+				});
+				btnOK.setActionCommand("OK");
+				getRootPane().setDefaultButton(btnOK);
+			}
+			btnSave = new JButton("Save");
+			GridBagConstraints gbc_btnSave = new GridBagConstraints();
+			gbc_btnSave.fill = GridBagConstraints.HORIZONTAL;
+			gbc_btnSave.insets = new Insets(0, 0, 5, 5);
+			gbc_btnSave.gridx = 1;
+			gbc_btnSave.gridy = 1;
+			buttonPanel.add(btnSave, gbc_btnSave);
 			{
 				btnCancel = new JButton("Cancel");
+				GridBagConstraints gbc_btnCancel = new GridBagConstraints();
+				gbc_btnCancel.insets = new Insets(0, 0, 0, 5);
+				gbc_btnCancel.gridx = 1;
+				gbc_btnCancel.gridy = 2;
+				buttonPanel.add(btnCancel, gbc_btnCancel);
 				btnCancel.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						cancelClicked();
@@ -93,18 +128,11 @@ public class CustomerGUI extends JDialog {
 				});
 				btnCancel.setActionCommand("Cancel");
 			}
-			{
-				btnSave = new JButton("Save");
-			}
-			buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			{
-				btnOK = new JButton("OK");
-				btnOK.setActionCommand("OK");
-				getRootPane().setDefaultButton(btnOK);
-			}
-			buttonPanel.add(btnOK);
-			buttonPanel.add(btnSave);
-			buttonPanel.add(btnCancel);
+			btnSave.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					saveClicked();
+				}
+			});
 		}
 				
 		JLabel lblNewLabel_2 = new JLabel("Customer Info:");
@@ -113,31 +141,31 @@ public class CustomerGUI extends JDialog {
 		getContentPane().add(lblNewLabel_2);
 		
 		txtName = new JTextField();
-		txtName.setBounds(74, 30, 85, 20);
+		txtName.setBounds(74, 30, 270, 20);
 		getContentPane().add(txtName);
 		txtName.setColumns(10);
 		
 		txtCVR = new JTextField();
-		txtCVR.setBounds(74, 60, 85, 20);
+		txtCVR.setBounds(74, 60, 270, 20);
 		getContentPane().add(txtCVR);
 		txtCVR.setColumns(10);
 		
 		txtPhone = new JTextField();
-		txtPhone.setBounds(74, 90, 85, 20);
+		txtPhone.setBounds(74, 90, 270, 20);
 		getContentPane().add(txtPhone);
 		txtPhone.setColumns(10);
 		
 		txtEmail = new JTextField();
-		txtEmail.setBounds(74, 120, 85, 20);
+		txtEmail.setBounds(74, 120, 270, 20);
 		getContentPane().add(txtEmail);
 		txtEmail.setColumns(10);
 		
 		txtAddress = new JTextField();
-		txtAddress.setBounds(74, 150, 85, 20);
+		txtAddress.setBounds(74, 150, 270, 20);
 		getContentPane().add(txtAddress);
 		txtAddress.setColumns(10);
 		
-		JLabel name = new JLabel("Name.................");
+		JLabel name = new JLabel("Name.............");
 		name.setBounds(10, 36, 64, 15);
 		getContentPane().add(name);
 		
@@ -166,17 +194,17 @@ public class CustomerGUI extends JDialog {
 		getContentPane().add(lblNewLabel_8);
 		
 		txtPostalcode = new JTextField();
-		txtPostalcode.setBounds(74, 180, 85, 20);
+		txtPostalcode.setBounds(74, 180, 270, 20);
 		getContentPane().add(txtPostalcode);
 		txtPostalcode.setColumns(10);
 		
 		txtCity = new JTextField();
-		txtCity.setBounds(74, 210, 85, 20);
+		txtCity.setBounds(74, 210, 270, 20);
 		getContentPane().add(txtCity);
 		txtCity.setColumns(10);
 		
 		txtCountry = new JTextField();
-		txtCountry.setBounds(74, 240, 85, 20);
+		txtCountry.setBounds(74, 240, 270, 20);
 		getContentPane().add(txtCountry);
 		txtCountry.setColumns(10);
 		
@@ -185,7 +213,7 @@ public class CustomerGUI extends JDialog {
 		getContentPane().add(lblNewLabel_9);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 293, 333, 107);
+		panel.setBounds(10, 321, 334, 79);
 		getContentPane().add(panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{216, 2, 0};
@@ -202,21 +230,44 @@ public class CustomerGUI extends JDialog {
 		gbc_scrollPane.gridy = 0;
 		panel.add(scrollPane, gbc_scrollPane);
 		
-		JList list = new JList();
-		list.setBounds(248, 32, 380, 230);
-		getContentPane().add(list);
+		list = new JList();
+		GridBagConstraints gbc_list = new GridBagConstraints();
+		gbc_list.insets = new Insets(0, 0, 0, 5);
+		gbc_list.gridx = 0;
+		gbc_list.gridy = 1;
+		panel.add(list, gbc_list);
 		
 		JLabel lblNewLabel_1 = new JLabel("Discount.........");
 		lblNewLabel_1.setBounds(10, 276, 64, 15);
 		getContentPane().add(lblNewLabel_1);
 		
 		txtDiscount = new JTextField();
-		txtDiscount.setBounds(74, 270, 85, 20);
+		txtDiscount.setBounds(74, 270, 270, 20);
 		getContentPane().add(txtDiscount);
 		txtDiscount.setColumns(10);
+		
+		JLabel lblNewLabel_10 = new JLabel("Orderlist:");
+		lblNewLabel_10.setBounds(10, 308, 64, 14);
+		getContentPane().add(lblNewLabel_10);
+		{
+		}
+		
+		init(c);
 	}
 	
-	private void displayMember() {
+	private void init(Customer c) {
+		this.currCustomer = c;
+		this.cCtrl = new CustomerController();
+		
+		OrderListCellRenderer ocr = new OrderListCellRenderer();
+		list.setCellRenderer(ocr);
+		
+		if(currCustomer != null) {
+			displayCustomer();
+		}
+	}
+		
+	private void displayCustomer() {
 		this.txtName.setText(currCustomer.getName());
 		this.txtCVR.setText(currCustomer.getCvr());
 		this.txtEmail.setText(currCustomer.getMailAddress());
@@ -249,10 +300,36 @@ public class CustomerGUI extends JDialog {
 			}
 			System.out.println(currCustomer);//TODO remove, this is for debugging/trying out
 		} catch(IllegalArgumentException iae) {
-			JOptionPane.showMessageDialog(this, "Email already in use (" + email + ") "
-					+ "maybe " + name + " is already registered");
+			JOptionPane.showMessageDialog(this, "Phone no. is already in use " + phone 
+					+ " maybe " + name + " is already registered");
 		}
 		cancelClicked();
+	}
+	
+	private void saveClicked() {
+		String name = txtName.getText();
+		String cvr = txtCVR.getText();
+		String email = txtEmail.getText();
+		String phone = txtPhone.getText();
+		String address = txtAddress.getText();
+		String postalcode = txtPostalcode.getText();
+		String city = txtCity.getText();
+		String country = txtCountry.getText();
+		double discount = Double.parseDouble(txtDiscount.getText());
+		
+		try {
+			if(currCustomer == null) {
+				currCustomer = cCtrl.addNewCustomer(name, phone, email, country, postalcode,
+						city, address, cvr, discount);
+			} else {
+				cCtrl.updateCustomer(currCustomer.getPhoneNo(), name, phone, email, country, postalcode,
+				city, address, cvr, discount);
+			}
+			System.out.println(currCustomer);//TODO remove, this is for debugging/trying out
+		} catch(IllegalArgumentException iae) {
+			JOptionPane.showMessageDialog(this, "Phone no. is already in use (" + phone + ") "
+					+ "maybe " + name + " is already registered");
+		}
 	}
 
 	private void cancelClicked() {
