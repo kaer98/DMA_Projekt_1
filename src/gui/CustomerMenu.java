@@ -18,6 +18,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 public class CustomerMenu extends JFrame {
 
 	private JPanel contentPane;
@@ -83,6 +85,12 @@ public class CustomerMenu extends JFrame {
 		contentPane.add(panel_1, BorderLayout.NORTH);
 		
 		textField = new JTextField();
+		textField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				searchClicked();
+			}
+		});
 		panel_1.add(textField);
 		textField.setColumns(10);
 		

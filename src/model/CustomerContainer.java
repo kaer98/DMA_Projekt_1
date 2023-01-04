@@ -20,7 +20,19 @@ public class CustomerContainer {
 	private CustomerContainer() {
 		container = new ArrayList<>();
 	}
-
+	
+	public void updateCustomer(int id, String name, String cvr, String phone, String email, String adress, String postalcode, String city, String country, double discount) {
+		container.get(findCustomerIndex(id)).setName(name);
+		container.get(findCustomerIndex(id)).setCvr(cvr);
+		container.get(findCustomerIndex(id)).setPhoneNo(phone);
+		container.get(findCustomerIndex(id)).setMailAddress(email);
+		container.get(findCustomerIndex(id)).setAddress(adress);
+		container.get(findCustomerIndex(id)).setPostalCode(postalcode);
+		container.get(findCustomerIndex(id)).setCity(city);
+		container.get(findCustomerIndex(id)).setCountry(country);
+		container.get(findCustomerIndex(id)).setDiscount(discount);
+	}
+	
 	// addCustomer method that adds a Customer to ArrayList
 	public void addCustomer(Customer customer) {
 		container.add(customer);
@@ -38,6 +50,7 @@ public class CustomerContainer {
 	public ArrayList<Customer> getAll(){
 		return container;
 	}
+	
 
 	// Fill method that fills Customer objects to ArrayList.
 	public void fill() {
@@ -74,5 +87,18 @@ public class CustomerContainer {
 		} else {
 			return null;
 		}
+	}
+	public int findCustomerIndex(int id) {
+		int i = 0;
+		boolean found = false;
+		while(i<container.size() && !found) {
+			if(container.get(i).getId()==id) {
+				found = true;
+			}
+			else {
+				i++;
+			}
+		}
+		return i;		
 	}
 }
