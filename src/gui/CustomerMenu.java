@@ -1,6 +1,9 @@
 package gui;
 
 import java.awt.EventQueue;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -11,6 +14,7 @@ import javax.swing.JButton;
 
 import controller.*;
 import model.Customer;
+import model.Order;
 
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -20,6 +24,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 public class CustomerMenu extends JFrame {
 
 	private JPanel contentPane;
@@ -34,6 +40,7 @@ public class CustomerMenu extends JFrame {
 	private JPanel panel_1;
 	private JTextField textField;
 	private JButton btnSearch;
+	private JList<Customer> cJList;
 	private ArrayList<Customer> cList;
 	/**
 	 * Launch the application.
@@ -75,7 +82,12 @@ public class CustomerMenu extends JFrame {
 		btnAdd = new JButton("New button");
 		panel.add(btnAdd);
 		
-		btnEdit = new JButton("New button");
+		btnEdit = new JButton("EDIT");
+		btnEdit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				editClicked();
+			}
+		});
 		panel.add(btnEdit);
 		
 		btnDelete = new JButton("New button");
@@ -101,7 +113,7 @@ public class CustomerMenu extends JFrame {
 				searchClicked();
 			}
 		});
-		panel_1.add(btnSearch);
+		panel_1.add(btnSearch);		
 		
 		init();
 	}
@@ -109,6 +121,7 @@ public class CustomerMenu extends JFrame {
 	private void init() {
 		cc = new CustomerController();
 		cc.fill();
+		cJList = new JList<Customer>();
 		displayCustomers();
 		
 	}
@@ -116,7 +129,10 @@ public class CustomerMenu extends JFrame {
 	private void displayCustomers() {
 		ctm = new CustomerTM(cc.getAll());
 		table.setModel(ctm);
+		CustomerListCellRenderer ccr = new CustomerListCellRenderer();
+		cJList.setCellRenderer(ccr);
 	}
+	
 	private void searchClicked() {
 		cList = new ArrayList<>();
 		String s = textField.getText().toLowerCase();
@@ -135,5 +151,12 @@ public class CustomerMenu extends JFrame {
 		table.setModel(ct);
 		}
 	}
+	
+		private void editClicked(){
+			Customer c = cJList.getSelectedValue();
+			CustomerGUI cGUI = new CustomerGUI(c);
+			cGUI.setVisible(true);
+		}
+	
 
 }

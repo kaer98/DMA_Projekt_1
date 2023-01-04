@@ -50,4 +50,7 @@ public class CustomerController {
 		
 	}
 	
+	public int findCustomerIndex(int id) {
+		return container.findCustomerIndex(id);
+	}
 }

@@ -48,7 +48,7 @@ public class CustomerGUI extends JDialog {
 	private JTextField txtCity;
 	private JTextField txtCountry;
 	private JTextField txtDiscount;
-	private JList<Order> list;
+	private JList<Order> oList;
 	/**
 	 * Launch the application.
 	 */
@@ -230,12 +230,12 @@ public class CustomerGUI extends JDialog {
 		gbc_scrollPane.gridy = 0;
 		panel.add(scrollPane, gbc_scrollPane);
 		
-		list = new JList();
+		oList = new JList<Order>();
 		GridBagConstraints gbc_list = new GridBagConstraints();
 		gbc_list.insets = new Insets(0, 0, 0, 5);
 		gbc_list.gridx = 0;
 		gbc_list.gridy = 1;
-		panel.add(list, gbc_list);
+		panel.add(oList, gbc_list);
 		
 		JLabel lblNewLabel_1 = new JLabel("Discount.........");
 		lblNewLabel_1.setBounds(10, 276, 64, 15);
@@ -260,7 +260,7 @@ public class CustomerGUI extends JDialog {
 		this.cCtrl = new CustomerController();
 		
 		OrderListCellRenderer ocr = new OrderListCellRenderer();
-		list.setCellRenderer(ocr);
+		oList.setCellRenderer(ocr);
 		
 		if(currCustomer != null) {
 			displayCustomer();
