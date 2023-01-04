@@ -27,6 +27,7 @@ public class AdminLogin extends JDialog {
 	private JPasswordField passwordField;
 	private JButton btnOk;
 	private JButton btnCancel;
+	private JLabel lblWrongpass;
 
 	
 
@@ -40,14 +41,14 @@ public class AdminLogin extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		GridBagLayout gbl_contentPanel = new GridBagLayout();
 		gbl_contentPanel.columnWidths = new int[]{0, 0, 0};
-		gbl_contentPanel.rowHeights = new int[]{0, 0, 0, 0, 0};
+		gbl_contentPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
 		gbl_contentPanel.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPanel.setLayout(gbl_contentPanel);
 		{
 			JLabel lblNewLabel = new JLabel("Password:");
 			GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-			gbc_lblNewLabel.insets = new Insets(0, 0, 0, 5);
+			gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
 			gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
 			gbc_lblNewLabel.gridx = 0;
 			gbc_lblNewLabel.gridy = 3;
@@ -56,10 +57,18 @@ public class AdminLogin extends JDialog {
 		{
 			passwordField = new JPasswordField();
 			GridBagConstraints gbc_passwordField = new GridBagConstraints();
+			gbc_passwordField.insets = new Insets(0, 0, 5, 0);
 			gbc_passwordField.fill = GridBagConstraints.HORIZONTAL;
 			gbc_passwordField.gridx = 1;
 			gbc_passwordField.gridy = 3;
 			contentPanel.add(passwordField, gbc_passwordField);
+		}
+		{
+			lblWrongpass = new JLabel("");
+			GridBagConstraints gbc_lblWrongpass = new GridBagConstraints();
+			gbc_lblWrongpass.gridx = 1;
+			gbc_lblWrongpass.gridy = 4;
+			contentPanel.add(lblWrongpass, gbc_lblWrongpass);
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -71,10 +80,17 @@ public class AdminLogin extends JDialog {
 					@Override
 					public void mouseClicked(MouseEvent e) {
 						if(passwordField.equals(em.getPassword())){
-							
+							POS frame = new POS();
+		                    frame.setVisible(true);
+		                    setModal(false);
+		                    setVisible(false);
+							}
+						else {
+							lblWrongpass.setText("forkert kode, prøv igen!");
+						}
 						}
 					}
-				});
+				);
 				btnOk.setActionCommand("OK");
 				buttonPane.add(btnOk);
 				getRootPane().setDefaultButton(btnOk);
