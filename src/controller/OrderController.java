@@ -95,4 +95,9 @@ public class OrderController {
 	public void updateQuantity(int i, int amount) {
 		productController.updateQuantity(i, amount);
 	}
+	
+	public Order findOrderByCustomer(Customer customer) {
+		Order order = orderContainer.findOrderByCustomer(customer);
+		return order;
+	}
 }

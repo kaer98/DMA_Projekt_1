@@ -32,5 +32,20 @@ public class OrderContainer {
 	public ArrayList<Order> getOrders() {
 		return container;
 	}
-
+	
+	// search pattern using searchString
+	public Order findOrderByCustomer(Customer customer) {
+		int index = 0;
+		boolean found = false;
+		Order returnOrder = null;
+		while (index < container.size() && !found) {
+			if (container.get(index).getCustomer().equals(customer)) {
+				found = true;
+				returnOrder = container.get(index);
+			} else {
+				index++;
+			}
+		}
+		return returnOrder;
+	}
 }

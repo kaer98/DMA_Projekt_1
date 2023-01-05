@@ -45,12 +45,12 @@ public class CustomerMenu extends JDialog {
 	private JPanel panel_1;
 	private JTextField textField;
 	private JButton btnSearch;
-	private JList<Customer> cJList;
 	private ArrayList<Customer> cList;
 	private EmployeeController ec;
 	private ProductController pc;
 	private OrderController oc;
 	private Employee em;
+	private JList cJList;
 
 	
 
@@ -80,7 +80,7 @@ public class CustomerMenu extends JDialog {
 		btnAdd = new JButton("New button");
 		panel.add(btnAdd);
 		
-		btnEdit = new JButton("EDIT");
+		btnEdit = new JButton("Edit");
 		btnEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				editClicked();
@@ -116,7 +116,7 @@ public class CustomerMenu extends JDialog {
 		init(em, pc,oc,ec,cc);
 	}
 	
-	
+
 		private void init(Employee em, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc) {
 			this.em = em;
 			this.pc = pc;
@@ -127,16 +127,11 @@ public class CustomerMenu extends JDialog {
 			cJList = new JList<Customer>();
 			displayCustomers();
 			setModal(true);
-			
-			
-		}
-		
+}		
 	
 	private void displayCustomers() {
 		ctm = new CustomerTM(cc.getAll());
 		table.setModel(ctm);
-		CustomerListCellRenderer ccr = new CustomerListCellRenderer();
-		cJList.setCellRenderer(ccr);
 	}
 	
 	private void searchClicked() {
@@ -162,8 +157,7 @@ public class CustomerMenu extends JDialog {
 			//this.setVisible(false);
 			this.setModal(false);
 			Customer c = ctm.getSelectedMember(table.getSelectedRow());
-			CustomerGUI cGUI = new CustomerGUI(c, em ,pc, oc,ec ,cc);
-			
+			CustomerInfo cGUI = new CustomerInfo(c, em ,pc, oc,ec ,cc);
 			cGUI.setVisible(true);
 			cGUI.setModal(true); 
 			cGUI.setAlwaysOnTop(true);

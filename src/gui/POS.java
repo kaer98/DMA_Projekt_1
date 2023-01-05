@@ -49,7 +49,7 @@ public class POS extends JFrame {
 	private ProductTM ptm;
 	private JPanel panel_1;
 	private JTextField textField;
-	private ArrayList<Product> pList;
+	private ArrayList<Product> pList; 
 
 
 	/**
@@ -103,6 +103,7 @@ public class POS extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				startCustomerMenu();
+
 			}
 		});
 		btnNewButton.setBounds(23, 527, 118, 47);
@@ -150,7 +151,7 @@ public class POS extends JFrame {
 		pC.fill();
 		pJList = new JList<Product>();
 		displayProducts();
-	}
+	} 
 	public void startCustomerMenu() {
 		CustomerMenu cm = new CustomerMenu(employee, pC,oc,ec,cc);
 		cm.setVisible(true);
