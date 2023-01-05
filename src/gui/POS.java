@@ -54,6 +54,12 @@ public class POS extends JFrame {
 		panel_2.add(textArea);
 		
 		JButton btnNewButton = new JButton("Lookup customer");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CustomerMenu cMenu = new CustomerMenu();
+				cMenu.setVisible(true);
+			}
+		});
 		btnNewButton.setBounds(23, 527, 118, 47);
 		panel_2.add(btnNewButton);
 		

@@ -83,7 +83,7 @@ public class CustomerMenu extends JFrame {
 		btnAdd = new JButton("New button");
 		panel.add(btnAdd);
 		
-		btnEdit = new JButton("EDIT");
+		btnEdit = new JButton("Edit");
 		btnEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				editClicked();
