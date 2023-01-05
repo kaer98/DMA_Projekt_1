@@ -12,18 +12,25 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 
+import controller.CustomerController;
 import controller.EmployeeController;
+import controller.OrderController;
+import controller.ProductController;
 import model.EContainer;
 import model.Employee;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class Login extends JFrame {
-private EmployeeController ec;
+
 
 	private JPanel contentPane;
 	private JPanel panel;
 	private JButton btnTest;
+	private EmployeeController ec;
+	private ProductController pc;
+	private CustomerController cc;
+	private OrderController oc;
 
 	/**
 	 * Launch the application.
@@ -63,6 +70,9 @@ private EmployeeController ec;
 	
 	private void init() {
 		ec = new EmployeeController();
+		pc = new ProductController();
+		cc = new CustomerController();
+		oc = new OrderController();
 		makeButtons();
 	}
 		
@@ -74,12 +84,12 @@ private EmployeeController ec;
 			btn.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent e) {
 					if(em.isManager() == true) {
-						AdminLogin adminLogin = new AdminLogin(em, ec);
+						AdminLogin adminLogin = new AdminLogin(em, pc, oc, ec, cc);
 					adminLogin.setModal(true);
 					adminLogin.setVisible(true);
 					}
 					else {
-					POS frame = new POS(em);
+					POS frame = new POS(em ,pc, oc, ec, cc);
                     frame.setVisible(true);
 					}
 					setVisible(false);

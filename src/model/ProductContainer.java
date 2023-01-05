@@ -74,6 +74,7 @@ public class ProductContainer {
 		addNewAppliance("Vaskemaskine 8kg HVID", "DIY department", 3, 2, 6, 4600, 5999);
 		addNewAppliance("Tørretubmler 8kg HVID", "DIY department", 3, 2, 5, 3600, 4999);
 		addNewAppliance("Mikroovn 20L SORT", "DIY department", 5, 2, 10, 350, 699);
+		//sort(container);
 	}
 
 	// search pattern using searchString
@@ -92,7 +93,12 @@ public class ProductContainer {
 		return returnProduct;
 
 	}
-
+	
+	public void sort(ArrayList<Product> list) {
+		 
+        list.sort((o1, o2) -> o1.getDescription().compareTo(o2.getDescription()));
+    }
+	
 	// returns content of ArrayList
 	public ArrayList<Product> getAll() {
 		return container;

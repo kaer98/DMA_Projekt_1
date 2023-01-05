@@ -1,7 +1,11 @@
 package gui;
 import model.Customer;
+import model.Employee;
 import model.Order;
 import controller.CustomerController;
+import controller.EmployeeController;
+import controller.OrderController;
+import controller.ProductController;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -49,23 +53,16 @@ public class CustomerGUI extends JDialog {
 	private JTextField txtCountry;
 	private JTextField txtDiscount;
 	private JList<Order> oList;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			CustomerGUI dialog = new CustomerGUI(null);
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	private EmployeeController ec;
+	private ProductController pc;
+	private OrderController oc;
+	private Employee em;
+
 
 	/**
 	 * Create the dialog.
 	 */
-	public CustomerGUI(Customer c) {
+	public CustomerGUI(Customer c, Employee em, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc) {
 		setBounds(150, 150, 450, 450);
 		getContentPane().setLayout(null);
 		contentPanel.setBounds(0, 0, 434, 11);
@@ -252,12 +249,17 @@ public class CustomerGUI extends JDialog {
 		{
 		}
 		
-		init(c);
+		init(c, em,pc,oc,ec,cc);
 	}
 	
-	private void init(Customer c) {
-		this.currCustomer = c;
-		this.cCtrl = new CustomerController();
+
+		private void init(Customer c,Employee em, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc) {
+			this.em = em;
+			this.pc = pc;
+			this.ec = ec;
+			this.oc = oc;
+			this.currCustomer = c;
+			this.cCtrl = cc;
 		
 		OrderListCellRenderer ocr = new OrderListCellRenderer();
 		oList.setCellRenderer(ocr);
@@ -299,7 +301,7 @@ public class CustomerGUI extends JDialog {
 				cCtrl.updateCustomer(currCustomer.getId(), name, phone, email, country, postalcode,
 				city, address, cvr, discount); 
 			}
-			System.out.println(currCustomer.getName());//TODO remove, this is for debugging/trying out
+			System.out.println(currCustomer.getId());//TODO remove, this is for debugging/trying out
 		} catch(IllegalArgumentException iae) {
 			JOptionPane.showMessageDialog(this, "Phone no. is already in use " + phone 
 					+ " maybe " + name + " is already registered");
@@ -336,6 +338,7 @@ public class CustomerGUI extends JDialog {
 	private void cancelClicked() {
 		this.dispose();
 		this.setVisible(false);
+		
 	}
 	
 	

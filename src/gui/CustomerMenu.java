@@ -8,12 +8,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.BorderLayout;
+import java.awt.Dialog;
+
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 
 import controller.*;
 import model.Customer;
+import model.Employee;
 import model.Order;
 
 import javax.swing.JTable;
@@ -27,7 +31,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ListSelectionModel;
-public class CustomerMenu extends JFrame {
+public class CustomerMenu extends JDialog {
 
 	private JPanel contentPane;
 	private JButton btnAdd;
@@ -43,27 +47,19 @@ public class CustomerMenu extends JFrame {
 	private JButton btnSearch;
 	private JList<Customer> cJList;
 	private ArrayList<Customer> cList;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CustomerMenu frame = new CustomerMenu();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private EmployeeController ec;
+	private ProductController pc;
+	private OrderController oc;
+	private Employee em;
+
+	
+
 
 	/**
 	 * Create the frame.
 	 */
-	public CustomerMenu() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public CustomerMenu(Employee em, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc) {
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -117,16 +113,24 @@ public class CustomerMenu extends JFrame {
 		});
 		panel_1.add(btnSearch);		
 		
-		init();
+		init(em, pc,oc,ec,cc);
 	}
 	
-	private void init() {
-		cc = new CustomerController();
-		cc.fill();
-		cJList = new JList<Customer>();
-		displayCustomers();
+	
+		private void init(Employee em, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc) {
+			this.em = em;
+			this.pc = pc;
+			this.cc = cc;
+			this.ec = ec;
+			this.oc = oc;
+			cc.fill();
+			cJList = new JList<Customer>();
+			displayCustomers();
+			setModal(true);
+			
+			
+		}
 		
-	}
 	
 	private void displayCustomers() {
 		ctm = new CustomerTM(cc.getAll());
@@ -155,10 +159,16 @@ public class CustomerMenu extends JFrame {
 	}
 	
 		private void editClicked(){
-			
+			//this.setVisible(false);
+			this.setModal(false);
 			Customer c = ctm.getSelectedMember(table.getSelectedRow());
-			CustomerGUI cGUI = new CustomerGUI(c);
+			CustomerGUI cGUI = new CustomerGUI(c, em ,pc, oc,ec ,cc);
+			
 			cGUI.setVisible(true);
+			cGUI.setModal(true); 
+			cGUI.setAlwaysOnTop(true);
+			cGUI.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
+			
 		}
 	
 

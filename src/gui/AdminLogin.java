@@ -8,7 +8,10 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controller.CustomerController;
 import controller.EmployeeController;
+import controller.OrderController;
+import controller.ProductController;
 import model.Employee;
 
 import javax.swing.JLabel;
@@ -31,14 +34,15 @@ public class AdminLogin extends JDialog {
 	private JLabel lblWrongpass;
 	private Employee em;
 	private EmployeeController ec;
-	
+	private ProductController pc;
+	private CustomerController cc;
+	private OrderController oc;
+
 
 	/**
 	 * Create the dialog.
 	 */
-	public AdminLogin(Employee em, EmployeeController ec) {
-		this.em = em;
-		this.ec = ec;
+	public AdminLogin(Employee em, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc) {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -84,17 +88,17 @@ public class AdminLogin extends JDialog {
 					@Override
 					public void mouseClicked(MouseEvent e) {
 						if(passwordField.getText().equals(em.getPassword())){
-							POS frame = new POS(em);
-		                    frame.setVisible(true);
-		                    setModal(false);
-		                    setVisible(false); 
-							}
+							POS frame = new POS(em, pc, oc, ec, cc);
+							frame.setVisible(true);
+							setModal(false);
+							setVisible(false); 
+						}
 						else {
 							lblWrongpass.setText("forkert kode, prøv igen!");
 						}
-						}
 					}
-				);
+				}
+						);
 				btnOk.setActionCommand("OK");
 				buttonPane.add(btnOk);
 				getRootPane().setDefaultButton(btnOk);
@@ -112,6 +116,14 @@ public class AdminLogin extends JDialog {
 				buttonPane.add(btnCancel);
 			}
 		}
+		init(em, pc,oc, ec, cc);
+	}
+	private void init(Employee em, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc) {
+		this.em = em;
+		this.pc = pc;
+		this.cc = cc;
+		this.ec = ec;
+		this.oc = oc;
 	}
 
 }

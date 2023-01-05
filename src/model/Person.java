@@ -2,7 +2,8 @@ package model;
 
 public abstract class Person {
 	private String name, phoneNo, mailAddress, country, postalCode, city, address;
-	private static int id;
+	private static int count = 0;
+	private int id;
 
 	public Person(String name, String phoneNo, String mailAddress, String country, String postalCode, String city,
 			String address) {
@@ -14,7 +15,7 @@ public abstract class Person {
 		this.postalCode = postalCode;
 		this.city = city;
 		this.address = address;
-		++id;
+		this.id = ++count;
 	}
 	
 //getters for class Person
