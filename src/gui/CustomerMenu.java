@@ -152,7 +152,7 @@ public class CustomerMenu extends JFrame {
 	
 		private void editClicked(){
 			Customer c = ctm.getSelectedMember(table.getSelectedRow());
-			CustomerGUI cGUI = new CustomerGUI(c);
+			CustomerInfo cGUI = new CustomerInfo(c);
 			cGUI.setVisible(true);
 		}
 	

@@ -30,8 +30,9 @@ import java.awt.Insets;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
-public class CustomerGUI extends JDialog {
+public class CustomerInfo extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private CustomerController cCtrl;
@@ -54,7 +55,7 @@ public class CustomerGUI extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			CustomerGUI dialog = new CustomerGUI(null);
+			CustomerInfo dialog = new CustomerInfo(null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -65,8 +66,8 @@ public class CustomerGUI extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public CustomerGUI(Customer c) {
-		setBounds(150, 150, 450, 450);
+	public CustomerInfo(Customer c) {
+		setBounds(150, 150, 375, 500);
 		getContentPane().setLayout(null);
 		contentPanel.setBounds(0, 0, 434, 11);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -83,22 +84,14 @@ public class CustomerGUI extends JDialog {
 		}
 		{
 			JPanel buttonPanel = new JPanel();
-			buttonPanel.setBounds(344, 308, 80, 92);
+			buttonPanel.setBounds(139, 294, 210, 33);
 			getContentPane().add(buttonPanel);
-			GridBagLayout gbl_buttonPanel = new GridBagLayout();
-			gbl_buttonPanel.columnWidths = new int[]{0, 0, 0, 0, 0};
-			gbl_buttonPanel.rowHeights = new int[]{0, 0, 0, 0};
-			gbl_buttonPanel.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
-			gbl_buttonPanel.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-			buttonPanel.setLayout(gbl_buttonPanel);
+			buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 			{
 				btnOK = new JButton("OK");
-				GridBagConstraints gbc_btnOK = new GridBagConstraints();
-				gbc_btnOK.fill = GridBagConstraints.HORIZONTAL;
-				gbc_btnOK.insets = new Insets(0, 0, 5, 5);
-				gbc_btnOK.gridx = 1;
-				gbc_btnOK.gridy = 0;
-				buttonPanel.add(btnOK, gbc_btnOK);
+				btnOK.setVerticalAlignment(SwingConstants.TOP);
+				btnOK.setHorizontalAlignment(SwingConstants.RIGHT);
+				buttonPanel.add(btnOK);
 				btnOK.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						okClicked();
@@ -108,19 +101,14 @@ public class CustomerGUI extends JDialog {
 				getRootPane().setDefaultButton(btnOK);
 			}
 			btnSave = new JButton("Save");
-			GridBagConstraints gbc_btnSave = new GridBagConstraints();
-			gbc_btnSave.fill = GridBagConstraints.HORIZONTAL;
-			gbc_btnSave.insets = new Insets(0, 0, 5, 5);
-			gbc_btnSave.gridx = 1;
-			gbc_btnSave.gridy = 1;
-			buttonPanel.add(btnSave, gbc_btnSave);
+			btnSave.setVerticalAlignment(SwingConstants.TOP);
+			btnSave.setHorizontalAlignment(SwingConstants.RIGHT);
+			buttonPanel.add(btnSave);
 			{
 				btnCancel = new JButton("Cancel");
-				GridBagConstraints gbc_btnCancel = new GridBagConstraints();
-				gbc_btnCancel.insets = new Insets(0, 0, 0, 5);
-				gbc_btnCancel.gridx = 1;
-				gbc_btnCancel.gridy = 2;
-				buttonPanel.add(btnCancel, gbc_btnCancel);
+				btnCancel.setVerticalAlignment(SwingConstants.TOP);
+				btnCancel.setHorizontalAlignment(SwingConstants.RIGHT);
+				buttonPanel.add(btnCancel);
 				btnCancel.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						cancelClicked();
@@ -213,7 +201,7 @@ public class CustomerGUI extends JDialog {
 		getContentPane().add(lblNewLabel_9);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 321, 334, 79);
+		panel.setBounds(10, 358, 334, 92);
 		getContentPane().add(panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{216, 2, 0};
@@ -237,7 +225,7 @@ public class CustomerGUI extends JDialog {
 		gbc_list.gridy = 1;
 		panel.add(oList, gbc_list);
 		
-		JLabel lblNewLabel_1 = new JLabel("Discount.........");
+		JLabel lblNewLabel_1 = new JLabel("Discount............");
 		lblNewLabel_1.setBounds(10, 276, 64, 15);
 		getContentPane().add(lblNewLabel_1);
 		
@@ -247,8 +235,14 @@ public class CustomerGUI extends JDialog {
 		txtDiscount.setColumns(10);
 		
 		JLabel lblNewLabel_10 = new JLabel("Orderlist:");
-		lblNewLabel_10.setBounds(10, 308, 64, 14);
+		lblNewLabel_10.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNewLabel_10.setBounds(10, 343, 64, 14);
 		getContentPane().add(lblNewLabel_10);
+		
+		JLabel errorLabel = new JLabel("");
+		errorLabel.setForeground(Color.RED);
+		errorLabel.setBounds(10, 326, 339, 14);
+		getContentPane().add(errorLabel);
 		{
 		}
 		
@@ -325,6 +319,4 @@ public class CustomerGUI extends JDialog {
 		this.dispose();
 		this.setVisible(false);
 	}
-	
-	
 }
