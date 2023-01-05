@@ -2,6 +2,7 @@ package gui;
 import model.Customer;
 import model.Order;
 import controller.CustomerController;
+import controller.OrderController;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -16,6 +17,7 @@ import java.awt.GridBagLayout;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.BoxLayout;
+import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -29,6 +31,8 @@ import javax.swing.JOptionPane;
 import java.awt.Insets;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 
@@ -36,6 +40,7 @@ public class CustomerInfo extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private CustomerController cCtrl;
+	private OrderController oCtrl;
 	private Customer currCustomer;
 	private JTextField txtName;
 	private JTextField txtCVR;
@@ -258,6 +263,9 @@ public class CustomerInfo extends JDialog {
 		
 		if(currCustomer != null) {
 			displayCustomer();
+			displayOrders(c);
+			
+		
 		}
 	}
 		
@@ -271,7 +279,30 @@ public class CustomerInfo extends JDialog {
 		this.txtCity.setText(currCustomer.getCity());
 		this.txtCountry.setText(currCustomer.getCountry());
 		this.txtDiscount.setText(""+currCustomer.getDiscount());
-
+	}
+	
+//	private void displayOrders(Customer currCustomer) {
+	//		List<Order> orders = currCustomer.getAllOrders();
+	//		DefaultListModel<Order> dlm = new DefaultListModel<>();
+	//		dlm.addAll(orders);
+		//		oList.setModel(dlm);
+	//	}
+	
+	private void displayOrders(Customer currCustomer) {
+		int i = 0;
+		boolean found = false;
+		ArrayList<Order> orders = new ArrayList<>();
+		while(!found && i<oCtrl.getOrders().size()){
+			if(oCtrl.getOrders().get(i).getCustomer().getId()==currCustomer.getId()) {
+				orders.add(oCtrl.getOrders().get(i));
+			}
+			else {
+				i++;
+			}
+		}
+			DefaultListModel<Order> dlm = new DefaultListModel<>();
+			dlm.addAll(orders);
+			oList.setModel(dlm);
 	}
 	
 	private void okClicked() {

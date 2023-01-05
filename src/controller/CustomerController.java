@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import model.Customer;
 import model.CustomerContainer;
+import model.Order;
+import model.Product;
 
 /**
  * Customer controller Class
@@ -14,6 +16,7 @@ import model.CustomerContainer;
  */
 public class CustomerController {
 	private CustomerContainer container;
+	private OrderController orderController;
 
 	public CustomerController() {
 		container = CustomerContainer.getInstance();
@@ -53,4 +56,10 @@ public class CustomerController {
 	public int findCustomerIndex(int id) {
 		return container.findCustomerIndex(id);
 	}
+	
+	public Order findOrderByCustomer(Customer customer) {
+		Order order = orderController.findOrderByCustomer(customer);
+		return order;
+	}
+	
 }
