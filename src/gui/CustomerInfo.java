@@ -38,8 +38,13 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import javax.swing.JTextPane;
+import javax.swing.JFormattedTextField;
+import javax.swing.ListSelectionModel;
 
 public class CustomerInfo extends JDialog {
 
@@ -139,6 +144,8 @@ public class CustomerInfo extends JDialog {
 			txtName.setColumns(10);
 
 			txtCVR = new JTextField();
+			txtCVR.setForeground(new Color(0, 0, 0));
+			txtCVR.setBackground(new Color(255, 255, 255));
 			txtCVR.setBounds(74, 60, 270, 20);
 			getContentPane().add(txtCVR);
 			txtCVR.setColumns(10);
@@ -224,6 +231,7 @@ public class CustomerInfo extends JDialog {
 			panel.add(scrollPane, gbc_scrollPane);
 
 			oList = new JList<Order>();
+			oList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			GridBagConstraints gbc_list = new GridBagConstraints();
 			gbc_list.insets = new Insets(0, 0, 0, 5);
 			gbc_list.gridx = 0;
@@ -243,11 +251,6 @@ public class CustomerInfo extends JDialog {
 			lblNewLabel_10.setFont(new Font("Tahoma", Font.PLAIN, 13));
 			lblNewLabel_10.setBounds(10, 343, 64, 14);
 			getContentPane().add(lblNewLabel_10);
-
-			JLabel errorLabel = new JLabel("");
-			errorLabel.setForeground(Color.RED);
-			errorLabel.setBounds(10, 326, 339, 14);
-			getContentPane().add(errorLabel);
 			{
 			}
 
@@ -288,20 +291,15 @@ public class CustomerInfo extends JDialog {
 		this.txtDiscount.setText(""+currCustomer.getDiscount());
 	}
 
-	//	private void displayOrders(Customer currCustomer) {
-	//		List<Order> orders = currCustomer.getAllOrders();
-	//		DefaultListModel<Order> dlm = new DefaultListModel<>();
-	//		dlm.addAll(orders);
-	//		oList.setModel(dlm);
-	//	}
-
 	private void displayOrders(Customer currCustomer) {
+		oCtrl = new OrderController();
 		int i = 0;
 		boolean found = false;
 		ArrayList<Order> orders = new ArrayList<>();
 		while(!found && i<oCtrl.getOrders().size()){
 			if(oCtrl.getOrders().get(i).getCustomer().getId()==currCustomer.getId()) {
 				orders.add(oCtrl.getOrders().get(i));
+				i++;
 			}
 			else {
 				i++;
@@ -313,6 +311,23 @@ public class CustomerInfo extends JDialog {
 	}
 
 	private void okClicked() {
+		if(txtCVR.getText().length() != 8){
+			JOptionPane.showMessageDialog(null, "Cvr nr. skal være 8 cifre");
+			throw new IllegalArgumentException("Error: Wrong input");
+		}
+		if(!isValid(txtEmail.getText())){
+			JOptionPane.showMessageDialog(null, "Email skal indtastes i korrekt format");
+			throw new IllegalArgumentException("Error: Wrong input");
+		}
+		if(txtPhone.getText().length() != 8) {
+			JOptionPane.showMessageDialog(null, "Telefon nr. skal være 8 cifre");
+			throw new IllegalArgumentException("Error: Wrong input");
+		}
+		if(txtPostalcode.getText().length() != 4) {
+			JOptionPane.showMessageDialog(null, "Postnummer skal indeholde 4 cifre");
+			throw new IllegalArgumentException("Error: Wrong input");
+		}
+		else {
 		String name = txtName.getText();
 		String cvr = txtCVR.getText();
 		String email = txtEmail.getText();
@@ -332,31 +347,63 @@ public class CustomerInfo extends JDialog {
 		}
 
 		cancelClicked();
-	}
-
-	private void saveClicked() {
-		String name = txtName.getText();
-		String cvr = txtCVR.getText();
-		String email = txtEmail.getText();
-		String phone = txtPhone.getText();
-		String address = txtAddress.getText();
-		String postalcode = txtPostalcode.getText();
-		String city = txtCity.getText();
-		String country = txtCountry.getText();
-		double discount = Double.parseDouble(txtDiscount.getText());
-
-		if(currCustomer == null) {
-			currCustomer = cCtrl.addNewCustomer(name, phone, email, country, postalcode,
-					city, address, cvr, discount);
-		} else {
-			cCtrl.updateCustomer(currCustomer.getId(), name, phone, email, country, postalcode,
-					city, address, cvr, discount);
 		}
 	}
 
+	private void saveClicked() {
+		if(txtCVR.getText().length() != 8){
+			JOptionPane.showMessageDialog(null, "Cvr nr. skal være 8 cifre");
+			throw new IllegalArgumentException("Error: Wrong input");
+		}
+		if(!isValid(txtEmail.getText())){
+			JOptionPane.showMessageDialog(null, "Email skal indtastes i korrekt format");
+			throw new IllegalArgumentException("Error: Wrong input");
+		}
+		if(txtPhone.getText().length() != 8) {
+			JOptionPane.showMessageDialog(null, "Telefon nr. skal være 8 cifre");
+			throw new IllegalArgumentException("Error: Wrong input");
+		}
+		if(txtPostalcode.getText().length() != 4) {
+			JOptionPane.showMessageDialog(null, "Postnummer skal indeholde 4 cifre");
+			throw new IllegalArgumentException("Error: Wrong input");
+		}
+		else {
+			String name = txtName.getText();
+			String cvr = txtCVR.getText();
+			String email = txtEmail.getText();
+			String phone = txtPhone.getText();
+			String address = txtAddress.getText();
+			String postalcode = txtPostalcode.getText();
+			String city = txtCity.getText();
+			String country = txtCountry.getText();
+			double discount = Double.parseDouble(txtDiscount.getText());
+	
+			if(currCustomer == null) {
+				currCustomer = cCtrl.addNewCustomer(name, phone, email, country, postalcode,
+						city, address, cvr, discount);
+			} else {
+				cCtrl.updateCustomer(currCustomer.getId(), name, phone, email, country, postalcode,
+						city, address, cvr, discount);
+			}
+		}
+	}
+	
 	private void cancelClicked() {
 		this.dispose();
 		this.setVisible(false);
-
 	}
+	
+	public static boolean isValid(String email){
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+                            "[a-zA-Z0-9_+&*-]+)*@" +
+                            "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                            "A-Z]{2,7}$";
+                              
+        Pattern pat = Pattern.compile(emailRegex);
+        if (email == null)
+            return false;
+        else
+        	return pat.matcher(email).matches();
+    }
+
 }

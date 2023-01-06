@@ -35,7 +35,7 @@ public class CustomerMenu extends JDialog {
 
 	private JPanel contentPane;
 	private JButton btnAdd;
-	private JButton btnEdit;
+	private JButton btnInfo;
 	private JButton btnDelete;
 	private JScrollPane scrollPane;
 	private JPanel panel;
@@ -50,7 +50,6 @@ public class CustomerMenu extends JDialog {
 	private ProductController pc;
 	private OrderController oc;
 	private Employee em;
-	private JList cJList;
 
 	
 
@@ -77,18 +76,28 @@ public class CustomerMenu extends JDialog {
 		panel = new JPanel();
 		contentPane.add(panel, BorderLayout.SOUTH);
 		
-		btnAdd = new JButton("New button");
-		panel.add(btnAdd);
-		
-		btnEdit = new JButton("Edit");
-		btnEdit.addActionListener(new ActionListener() {
+		btnAdd = new JButton("Add");
+		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				editClicked();
+				addClicked();
 			}
 		});
-		panel.add(btnEdit);
+		panel.add(btnAdd);
 		
-		btnDelete = new JButton("New button");
+		btnInfo = new JButton("Info");
+		btnInfo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				infoClicked();
+			}
+		});
+		panel.add(btnInfo);
+		
+		btnDelete = new JButton("Cancel");
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cancelClicked();
+			}
+		});
 		panel.add(btnDelete);
 		
 		panel_1 = new JPanel();
@@ -124,7 +133,6 @@ public class CustomerMenu extends JDialog {
 			this.ec = ec;
 			this.oc = oc;
 			cc.fill();
-			cJList = new JList<Customer>();
 			displayCustomers();
 			setModal(true);
 }		
@@ -153,7 +161,16 @@ public class CustomerMenu extends JDialog {
 		}
 	}
 	
-		private void editClicked(){
+	private void addClicked() {
+		this.setModal(false);
+		CustomerInfo cGUI = new CustomerInfo(null, em ,pc, oc,ec ,cc);
+		cGUI.setVisible(true);
+		cGUI.setModal(true); 
+		cGUI.setAlwaysOnTop(true);
+		cGUI.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
+	}
+	
+	private void infoClicked(){
 			//this.setVisible(false);
 			this.setModal(false);
 			Customer c = ctm.getSelectedMember(table.getSelectedRow());
@@ -162,7 +179,12 @@ public class CustomerMenu extends JDialog {
 			cGUI.setModal(true); 
 			cGUI.setAlwaysOnTop(true);
 			cGUI.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
-			
+		}
+		
+	private void cancelClicked() {
+			this.dispose();
+			this.setVisible(false);
+
 		}
 	
 
