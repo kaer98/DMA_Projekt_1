@@ -55,6 +55,7 @@ import javax.swing.JSeparator;
 public class CustomerInfo extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
+	private CustomerMenu cMenu;
 	private CustomerController cCtrl;
 	private OrderController oCtrl;
 	private Customer currCustomer;
@@ -259,7 +260,7 @@ public class CustomerInfo extends JDialog {
 			getContentPane().add(lblNewLabel_10);
 			
 			JSeparator separator = new JSeparator();
-			separator.setBounds(10, 385, 339, 2);
+			separator.setBounds(10, 385, 334, 2);
 			getContentPane().add(separator);
 			{
 			}
@@ -355,7 +356,6 @@ public class CustomerInfo extends JDialog {
 			cCtrl.updateCustomer(currCustomer.getId(), name, phone, email, country, postalcode,
 					city, address, cvr, discount); 
 		}
-
 		cancelClicked();
 		}
 	}
