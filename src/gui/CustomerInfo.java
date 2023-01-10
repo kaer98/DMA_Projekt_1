@@ -282,6 +282,9 @@ public class CustomerInfo extends JDialog {
 			displayCustomer();
 			displayOrders(c);
 
+		if(!em.isManager()) {
+			txtDiscount.setEditable(false);
+		}
 
 		}
 	}

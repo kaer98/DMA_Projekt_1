@@ -37,47 +37,44 @@ public class AdminLogin extends JDialog {
 	private ProductController pc;
 	private CustomerController cc;
 	private OrderController oc;
+	private JTextField txtUsername;
 
 
 	/**
 	 * Create the dialog.
 	 */
 	public AdminLogin(Employee em, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc) {
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 280, 154);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		GridBagLayout gbl_contentPanel = new GridBagLayout();
-		gbl_contentPanel.columnWidths = new int[]{0, 0, 0};
-		gbl_contentPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
-		gbl_contentPanel.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		contentPanel.setLayout(gbl_contentPanel);
+		contentPanel.setLayout(null);
 		{
 			JLabel lblNewLabel = new JLabel("Password:");
-			GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-			gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-			gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
-			gbc_lblNewLabel.gridx = 0;
-			gbc_lblNewLabel.gridy = 3;
-			contentPanel.add(lblNewLabel, gbc_lblNewLabel);
+			lblNewLabel.setBounds(10, 54, 84, 14);
+			contentPanel.add(lblNewLabel);
 		}
 		{
 			passwordField = new JPasswordField();
-			GridBagConstraints gbc_passwordField = new GridBagConstraints();
-			gbc_passwordField.insets = new Insets(0, 0, 5, 0);
-			gbc_passwordField.fill = GridBagConstraints.HORIZONTAL;
-			gbc_passwordField.gridx = 1;
-			gbc_passwordField.gridy = 3;
-			contentPanel.add(passwordField, gbc_passwordField);
+			passwordField.setBounds(91, 51, 163, 20);
+			contentPanel.add(passwordField);
 		}
 		{
 			lblWrongpass = new JLabel("");
-			GridBagConstraints gbc_lblWrongpass = new GridBagConstraints();
-			gbc_lblWrongpass.gridx = 1;
-			gbc_lblWrongpass.gridy = 4;
-			contentPanel.add(lblWrongpass, gbc_lblWrongpass);
+			lblWrongpass.setBounds(0, 0, 0, 0);
+			contentPanel.add(lblWrongpass);
 		}
+		
+		txtUsername = new JTextField();
+		txtUsername.setBounds(91, 16, 163, 20);
+		contentPanel.add(txtUsername);
+		txtUsername.setColumns(10);
+		txtUsername.setEditable(false);
+		txtUsername.setText(em.getName());
+		
+		JLabel lblNewLabel_1 = new JLabel("Brugernavn:");
+		lblNewLabel_1.setBounds(10, 19, 84, 14);
+		contentPanel.add(lblNewLabel_1);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -125,5 +122,4 @@ public class AdminLogin extends JDialog {
 		this.ec = ec;
 		this.oc = oc;
 	}
-
 }
