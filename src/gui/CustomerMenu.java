@@ -31,7 +31,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ListSelectionModel;
-public class CustomerMenu extends JDialog {
+import javax.swing.SwingConstants;
+public class CustomerMenu extends JDialog{
 
 	private JPanel contentPane;
 	private JButton btnAdd;
@@ -43,8 +44,7 @@ public class CustomerMenu extends JDialog {
 	private CustomerController cc;
 	private JTable table;
 	private JPanel panel_1;
-	private JTextField textField;
-	private JButton btnSearch;
+	private JTextField txtSearch;
 	private ArrayList<Customer> cList;
 	private EmployeeController ec;
 	private ProductController pc;
@@ -58,23 +58,26 @@ public class CustomerMenu extends JDialog {
 	 * Create the frame.
 	 */
 	public CustomerMenu(Employee em, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc) {
+		
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 470, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(new BorderLayout(0, 0));
+		contentPane.setLayout(null);
 		
 		scrollPane = new JScrollPane();
-		contentPane.add(scrollPane, BorderLayout.CENTER);
+		scrollPane.setBounds(20, 37, 414, 175);
+		contentPane.add(scrollPane);
 		
 		table = new JTable();
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(table);
 		
 		panel = new JPanel();
-		contentPane.add(panel, BorderLayout.SOUTH);
+		panel.setBounds(20, 223, 414, 33);
+		contentPane.add(panel);
 		
 		btnAdd = new JButton("Add");
 		btnAdd.addActionListener(new ActionListener() {
@@ -101,26 +104,27 @@ public class CustomerMenu extends JDialog {
 		panel.add(btnDelete);
 		
 		panel_1 = new JPanel();
-		contentPane.add(panel_1, BorderLayout.NORTH);
+		panel_1.setBounds(20, 5, 414, 33);
+		contentPane.add(panel_1);
 		
-		textField = new JTextField();
-		textField.addKeyListener(new KeyAdapter() {
+		txtSearch = new JTextField();
+		txtSearch.setText("Search");
+		txtSearch.setToolTipText("Search");
+		txtSearch.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				searchClicked();
 			}
 		});
-		panel_1.add(textField);
-		textField.setColumns(10);
+		panel_1.add(txtSearch);
+		txtSearch.setColumns(10);
 		
-		btnSearch = new JButton("Søg");
-		btnSearch.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				searchClicked();
-			}
+		txtSearch.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {                                      
+				txtSearch.setText(null);
+			} //This will set the JTextfield blank on mouse click//      
+			
 		});
-		panel_1.add(btnSearch);		
 		
 		init(em, pc,oc,ec,cc);
 	}
@@ -144,7 +148,7 @@ public class CustomerMenu extends JDialog {
 	
 	private void searchClicked() {
 		cList = new ArrayList<>();
-		String s = textField.getText().toLowerCase();
+		String s = txtSearch.getText().toLowerCase();
 		if(s.equalsIgnoreCase("")) {
 			displayCustomers();
 		}
@@ -186,6 +190,4 @@ public class CustomerMenu extends JDialog {
 			this.setVisible(false);
 
 		}
-	
-
 }

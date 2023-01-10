@@ -45,6 +45,12 @@ import java.awt.Color;
 import javax.swing.JTextPane;
 import javax.swing.JFormattedTextField;
 import javax.swing.ListSelectionModel;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.FormSpecs;
+import com.jgoodies.forms.layout.RowSpec;
+import net.miginfocom.swing.MigLayout;
+import javax.swing.JSeparator;
 
 public class CustomerInfo extends JDialog {
 
@@ -77,7 +83,7 @@ public class CustomerInfo extends JDialog {
 	 */
 
 	public CustomerInfo(Customer c,Employee em, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc) {
-		setBounds(150, 150, 375, 500);
+		setBounds(150, 150, 375, 550);
 		getContentPane().setLayout(null);
 		contentPanel.setBounds(0, 0, 434, 11);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -94,14 +100,12 @@ public class CustomerInfo extends JDialog {
 		}
 		{
 			JPanel buttonPanel = new JPanel();
-			buttonPanel.setBounds(139, 294, 210, 33);
+			buttonPanel.setBounds(140, 335, 204, 33);
 			getContentPane().add(buttonPanel);
-			buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 			{
 				btnOK = new JButton("OK");
 				btnOK.setVerticalAlignment(SwingConstants.TOP);
 				btnOK.setHorizontalAlignment(SwingConstants.RIGHT);
-				buttonPanel.add(btnOK);
 				btnOK.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						okClicked();
@@ -113,12 +117,15 @@ public class CustomerInfo extends JDialog {
 			btnSave = new JButton("Save");
 			btnSave.setVerticalAlignment(SwingConstants.TOP);
 			btnSave.setHorizontalAlignment(SwingConstants.RIGHT);
-			buttonPanel.add(btnSave);
+			btnSave.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					saveClicked();
+				}
+			});
 			{
 				btnCancel = new JButton("Cancel");
 				btnCancel.setVerticalAlignment(SwingConstants.TOP);
 				btnCancel.setHorizontalAlignment(SwingConstants.RIGHT);
-				buttonPanel.add(btnCancel);
 				btnCancel.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						cancelClicked();
@@ -126,11 +133,10 @@ public class CustomerInfo extends JDialog {
 				});
 				btnCancel.setActionCommand("Cancel");
 			}
-			btnSave.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					saveClicked();
-				}
-			});
+			buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+			buttonPanel.add(btnOK);
+			buttonPanel.add(btnSave);
+			buttonPanel.add(btnCancel);
 		}
 			
 			JLabel lblNewLabel_2 = new JLabel("Customer Info:");
@@ -146,22 +152,22 @@ public class CustomerInfo extends JDialog {
 			txtCVR = new JTextField();
 			txtCVR.setForeground(new Color(0, 0, 0));
 			txtCVR.setBackground(new Color(255, 255, 255));
-			txtCVR.setBounds(74, 60, 270, 20);
+			txtCVR.setBounds(74, 65, 270, 20);
 			getContentPane().add(txtCVR);
 			txtCVR.setColumns(10);
 
 			txtPhone = new JTextField();
-			txtPhone.setBounds(74, 90, 270, 20); 
+			txtPhone.setBounds(74, 100, 270, 20); 
 			getContentPane().add(txtPhone);
 			txtPhone.setColumns(10);
 
 			txtEmail = new JTextField();
-			txtEmail.setBounds(74, 120, 270, 20);
+			txtEmail.setBounds(74, 135, 270, 20);
 			getContentPane().add(txtEmail);
 			txtEmail.setColumns(10);
 
 			txtAddress = new JTextField();
-			txtAddress.setBounds(74, 150, 270, 20);
+			txtAddress.setBounds(74, 170, 270, 20);
 			getContentPane().add(txtAddress);
 			txtAddress.setColumns(10);
 
@@ -170,50 +176,50 @@ public class CustomerInfo extends JDialog {
 			getContentPane().add(name);
 
 			JLabel lblNewLabel_3 = new JLabel("Phone.........");
-			lblNewLabel_3.setBounds(10, 96, 64, 15);
+			lblNewLabel_3.setBounds(10, 106, 64, 15);
 			getContentPane().add(lblNewLabel_3);
 
 			JLabel lblNewLabel_4 = new JLabel("E-mail.........");
-			lblNewLabel_4.setBounds(10, 126, 64, 15);
+			lblNewLabel_4.setBounds(10, 141, 64, 15);
 			getContentPane().add(lblNewLabel_4);
 
 			JLabel lblNewLabel_5 = new JLabel("Address........");
-			lblNewLabel_5.setBounds(10, 156, 64, 15);
+			lblNewLabel_5.setBounds(10, 176, 64, 15);
 			getContentPane().add(lblNewLabel_5);
 
 			JLabel lblNewLabel_6 = new JLabel("CVR...........");
-			lblNewLabel_6.setBounds(10, 66, 64, 15);
+			lblNewLabel_6.setBounds(10, 71, 64, 15);
 			getContentPane().add(lblNewLabel_6);
 
 			JLabel lblNewLabel_7 = new JLabel("Postalcode...");
-			lblNewLabel_7.setBounds(10, 186, 64, 15);
+			lblNewLabel_7.setBounds(10, 211, 64, 15);
 			getContentPane().add(lblNewLabel_7);
 
-			JLabel lblNewLabel_8 = new JLabel("City.............");
-			lblNewLabel_8.setBounds(10, 216, 64, 15);
+			JLabel lblNewLabel_8 = new JLabel("City................");
+			lblNewLabel_8.setBounds(10, 246, 64, 15);
 			getContentPane().add(lblNewLabel_8);
 
 			txtPostalcode = new JTextField();
-			txtPostalcode.setBounds(74, 180, 270, 20);
+			txtPostalcode.setBounds(74, 205, 270, 20);
 			getContentPane().add(txtPostalcode);
 			txtPostalcode.setColumns(10);
 
 			txtCity = new JTextField();
-			txtCity.setBounds(74, 210, 270, 20);
+			txtCity.setBounds(74, 240, 270, 20);
 			getContentPane().add(txtCity);
 			txtCity.setColumns(10);
 
 			txtCountry = new JTextField();
-			txtCountry.setBounds(74, 240, 270, 20);
+			txtCountry.setBounds(74, 275, 270, 20);
 			getContentPane().add(txtCountry);
 			txtCountry.setColumns(10);
 
 			JLabel lblNewLabel_9 = new JLabel("Country.........");
-			lblNewLabel_9.setBounds(10, 246, 64, 15);
+			lblNewLabel_9.setBounds(10, 281, 64, 15);
 			getContentPane().add(lblNewLabel_9);
 
 			JPanel panel = new JPanel();
-			panel.setBounds(10, 358, 334, 92);
+			panel.setBounds(10, 408, 334, 92);
 			getContentPane().add(panel);
 			GridBagLayout gbl_panel = new GridBagLayout();
 			gbl_panel.columnWidths = new int[]{216, 2, 0};
@@ -239,27 +245,28 @@ public class CustomerInfo extends JDialog {
 			panel.add(oList, gbc_list);
 
 			JLabel lblNewLabel_1 = new JLabel("Discount............");
-			lblNewLabel_1.setBounds(10, 276, 64, 15);
+			lblNewLabel_1.setBounds(10, 316, 64, 15);
 			getContentPane().add(lblNewLabel_1);
 
 			txtDiscount = new JTextField();
-			txtDiscount.setBounds(74, 270, 270, 20);
+			txtDiscount.setBounds(74, 310, 270, 20);
 			getContentPane().add(txtDiscount);
 			txtDiscount.setColumns(10);
 
 			JLabel lblNewLabel_10 = new JLabel("Orderlist:");
 			lblNewLabel_10.setFont(new Font("Tahoma", Font.PLAIN, 13));
-			lblNewLabel_10.setBounds(10, 343, 64, 14);
+			lblNewLabel_10.setBounds(10, 394, 64, 14);
 			getContentPane().add(lblNewLabel_10);
+			
+			JSeparator separator = new JSeparator();
+			separator.setBounds(10, 385, 339, 2);
+			getContentPane().add(separator);
 			{
 			}
 
 			init(c,em,pc,oc,ec,cc);
 		}
-		
-	
-
-
+			
 	private void init(Customer c,Employee em, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc) {
 		this.em = em;
 		this.pc = pc;
@@ -405,5 +412,4 @@ public class CustomerInfo extends JDialog {
         else
         	return pat.matcher(email).matches();
     }
-
 }
