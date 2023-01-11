@@ -132,21 +132,21 @@ public class POS extends JFrame {
 		panel_2.add(panel_3, BorderLayout.SOUTH);
 		panel_2.setLayout(new BorderLayout(0, 0));
 		panel_3.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
 
-		
-		
+
+
+
 		scrollPane_1 = new JScrollPane();
 		panel_2.add(scrollPane_1, BorderLayout.CENTER);
-		
+
 		table = new JTable();
 		scrollPane_1.setViewportView(table);
-		
+
 		panel_5 = new JPanel();
 		panel_2.add(panel_5, BorderLayout.NORTH);
 		panel_4 = new JPanel();
 		panel_2.add(panel_4, BorderLayout.SOUTH);
-		
+
 		btnManager = new JButton("Manager");
 		panel_5.add(btnManager);
 
@@ -161,8 +161,8 @@ public class POS extends JFrame {
 		gbl_panel_4.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		gbl_panel_4.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel_4.setLayout(gbl_panel_4);
-						
-		
+
+
 
 		btnNewButton = new JButton("Lookup customer");
 		btnNewButton.addMouseListener(new MouseAdapter() {
@@ -171,14 +171,14 @@ public class POS extends JFrame {
 				startCustomerMenu();
 			}
 		});
-		
+
 
 		btnNewButton_1 = new JButton("Pay");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		
+
 		lblNewLabel = new JLabel("Pris ex Moms");
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
@@ -186,7 +186,7 @@ public class POS extends JFrame {
 		gbc_lblNewLabel.gridx = 4;
 		gbc_lblNewLabel.gridy = 0;
 		panel_4.add(lblNewLabel, gbc_lblNewLabel);
-		
+
 		txtpriceExTax = new JTextField();
 		GridBagConstraints gbc_txtpriceExTax = new GridBagConstraints();
 		gbc_txtpriceExTax.insets = new Insets(0, 0, 5, 0);
@@ -195,7 +195,7 @@ public class POS extends JFrame {
 		gbc_txtpriceExTax.gridy = 0;
 		panel_4.add(txtpriceExTax, gbc_txtpriceExTax);
 		txtpriceExTax.setColumns(10);
-		
+
 		lblNewLabel_1 = new JLabel("Moms");
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
@@ -214,30 +214,30 @@ public class POS extends JFrame {
 		gbc_btnNewButton.gridx = 2;
 		gbc_btnNewButton.gridy = 3;
 		panel_4.add(btnNewButton, gbc_btnNewButton);
-				
-						btnCheck = new JButton("Check");
-						GridBagConstraints gbc_btnCheck = new GridBagConstraints();
-						gbc_btnCheck.anchor = GridBagConstraints.NORTHWEST;
-						gbc_btnCheck.insets = new Insets(0, 0, 0, 5);
-						gbc_btnCheck.gridx = 3;
-						gbc_btnCheck.gridy = 3;
-						panel_4.add(btnCheck, gbc_btnCheck);
-		
-				btnEdits = new JButton("Edits");
-				GridBagConstraints gbc_btnEdits = new GridBagConstraints();
-				gbc_btnEdits.anchor = GridBagConstraints.NORTHWEST;
-				gbc_btnEdits.insets = new Insets(0, 0, 0, 5);
-				gbc_btnEdits.gridx = 4;
-				gbc_btnEdits.gridy = 3;
-				panel_4.add(btnEdits, gbc_btnEdits);
-		
-				btnSend = new JButton("Send");
-				GridBagConstraints gbc_btnSend = new GridBagConstraints();
-				gbc_btnSend.anchor = GridBagConstraints.NORTHWEST;
-				gbc_btnSend.gridx = 5;
-				gbc_btnSend.gridy = 3;
-				panel_4.add(btnSend, gbc_btnSend);
-	
+
+		btnCheck = new JButton("Check");
+		GridBagConstraints gbc_btnCheck = new GridBagConstraints();
+		gbc_btnCheck.anchor = GridBagConstraints.NORTHWEST;
+		gbc_btnCheck.insets = new Insets(0, 0, 0, 5);
+		gbc_btnCheck.gridx = 3;
+		gbc_btnCheck.gridy = 3;
+		panel_4.add(btnCheck, gbc_btnCheck);
+
+		btnEdits = new JButton("Edits");
+		GridBagConstraints gbc_btnEdits = new GridBagConstraints();
+		gbc_btnEdits.anchor = GridBagConstraints.NORTHWEST;
+		gbc_btnEdits.insets = new Insets(0, 0, 0, 5);
+		gbc_btnEdits.gridx = 4;
+		gbc_btnEdits.gridy = 3;
+		panel_4.add(btnEdits, gbc_btnEdits);
+
+		btnSend = new JButton("Send");
+		GridBagConstraints gbc_btnSend = new GridBagConstraints();
+		gbc_btnSend.anchor = GridBagConstraints.NORTHWEST;
+		gbc_btnSend.gridx = 5;
+		gbc_btnSend.gridy = 3;
+		panel_4.add(btnSend, gbc_btnSend);
+
 		init(em, pc, oc, ec, cc);
 	}
 	private void init(Employee em, ProductController pCtrl, OrderController oCtrl, EmployeeController eCtrl, CustomerController cCtrl) {
@@ -257,7 +257,7 @@ public class POS extends JFrame {
 		CustomerMenu cm = new CustomerMenu(employee, pCtrl,oCtrl,eCtrl,cCtrl);
 		cm.setVisible(true);
 		cm.setModal(true);
-		
+
 	}
 	private void displayOrder() {
 		otm = new OrderTM(salesOrder.getParts());
@@ -265,9 +265,9 @@ public class POS extends JFrame {
 		PartOrderListCellRenderer ocr = new PartOrderListCellRenderer();
 		oJList.setCellRenderer(ocr);
 		txtpriceExTax.setText(""+salesOrder.getTotal());
-		
+
 	}
-	
+
 	private void displayProducts() {
 		ptm = new ProductTM(pCtrl.getAll());
 		ptm.sort();
@@ -304,10 +304,10 @@ public class POS extends JFrame {
 				oCtrl.addNewPartOrderAppliance(apc.getFirst());
 			}
 			else {
-			oCtrl.addNewPartOrderQ(p, 1);	
+				oCtrl.addNewPartOrderQ(p, 1);	
 			}
 			displayOrder();
-			
+
 		}
 	}
 
@@ -321,5 +321,13 @@ public class POS extends JFrame {
 	}
 	public static void setCustomer(Customer c) {
 		customer = c;
+	}
+	
+	private void startApplianceBySerialNumber() {
+		findApplianceCopy fac = new findApplianceCopy();
+		fac.setVisible(true);
+		fac.setModal(true);
+		fac.setAlwaysOnTop(true);
+		fac.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
 	}
 }
