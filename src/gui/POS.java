@@ -48,7 +48,7 @@ public class POS extends JFrame {
 	private JButton btnSend;
 	private ProductTM ptm;
 	private JPanel panel_1;
-	private JTextField textField;
+	private JTextField txtSearch;
 	private ArrayList<Product> pList; 
 
 
@@ -79,15 +79,17 @@ public class POS extends JFrame {
 		ptable = new JTable();
 		scrollPane.setViewportView(ptable);
 		
-		textField = new JTextField();
-		textField.addKeyListener(new KeyAdapter() {
+		txtSearch = new JTextField();
+		txtSearch.setText("Search");
+		txtSearch.setToolTipText("Search");
+		txtSearch.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				searchClicked();
 			}
 		});
-		panel_1.add(textField, BorderLayout.NORTH);
-		textField.setColumns(10);
+		panel_1.add(txtSearch, BorderLayout.NORTH);
+		txtSearch.setColumns(10);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new LineBorder(new Color(0, 0, 0), 3));
@@ -140,6 +142,14 @@ public class POS extends JFrame {
 		btnSend = new JButton("Send");
 		btnSend.setBounds(171, 585, 118, 47);
 		panel_2.add(btnSend);
+		
+		txtSearch.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {                                      
+				txtSearch.setText(null);
+			} //This will set the JTextfield blank on mouse click//      
+			
+		});
+		
 		init(em, pc, oc, ec, cc);
 	}
 	private void init(Employee em, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc) {
@@ -169,7 +179,7 @@ public class POS extends JFrame {
 	}
 	private void searchClicked() {
 		pList = new ArrayList<>();
-		String s = textField.getText().toLowerCase();
+		String s = txtSearch.getText().toLowerCase();
 		if(s.equalsIgnoreCase("")) {
 			displayProducts();
 		}
@@ -185,4 +195,6 @@ public class POS extends JFrame {
 		ptable.setModel(ct);
 		}
 	}
+	
+	
 }
