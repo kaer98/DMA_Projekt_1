@@ -179,7 +179,7 @@ public class Order {
 			}
 			writer.write("Moms (25%): " + dfSharp.format(getTotalWDiscount() * 0.25) + "kr af " + dfSharp.format(getTotalWDiscount())+"kr");
 			writer.write("Total DKK: " + (dfSharp.format(getTotalWDiscount() * 1.25)));
-			
+			writer.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -13,6 +13,7 @@ import model.Appliance;
 import model.Customer;
 import model.Employee;
 import model.Order;
+import model.PartOrder;
 import model.Product;
 import java.awt.Color;
 import java.awt.Dialog;
@@ -27,6 +28,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 public class POS extends JFrame {
 
@@ -37,6 +42,7 @@ public class POS extends JFrame {
 	private OrderController oCtrl;
 	private Employee employee;
 	private JList<Product> pJList;
+	private JList<PartOrder> oJList;
 	private JTable ptable;
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
@@ -45,12 +51,22 @@ public class POS extends JFrame {
 	private JButton btnExit;
 	private JButton btnCheck;
 	private JButton btnEdits;
-	private JButton btnSend;
 	private ProductTM ptm;
 	private JPanel panel_1;
 	private JTextField txtSearch;
 	private ArrayList<Product> pList; 
 	private static Customer customer;
+	private JPanel panel_3;
+	private JButton btnSend;
+	private JScrollPane scrollPane_1;
+	private JTable table;
+	private OrderTM otm;
+	private Order salesOrder;
+	private JPanel panel_5;
+	private JPanel panel_4;
+	private JLabel lblNewLabel;
+	private JTextField txtpriceExTax;
+	private JLabel lblNewLabel_1;
 
 	/**
 	 * Create the frame.
@@ -112,11 +128,41 @@ public class POS extends JFrame {
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new LineBorder(new Color(0, 0, 0), 3));
 		contentPane.add(panel_2);
-		panel_2.setLayout(null);
+		panel_3 = new JPanel();
+		panel_2.add(panel_3, BorderLayout.SOUTH);
+		panel_2.setLayout(new BorderLayout(0, 0));
+		panel_3.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
 
-		JTextArea txtSalesArea = new JTextArea();
-		txtSalesArea.setBounds(23, 61, 390, 428);
-		panel_2.add(txtSalesArea);
+		
+		
+		scrollPane_1 = new JScrollPane();
+		panel_2.add(scrollPane_1, BorderLayout.CENTER);
+		
+		table = new JTable();
+		scrollPane_1.setViewportView(table);
+		
+		panel_5 = new JPanel();
+		panel_2.add(panel_5, BorderLayout.NORTH);
+		panel_4 = new JPanel();
+		panel_2.add(panel_4, BorderLayout.SOUTH);
+		
+		btnManager = new JButton("Manager");
+		panel_5.add(btnManager);
+
+		btnHelp = new JButton("Help");
+		panel_5.add(btnHelp);
+
+		btnExit = new JButton("Exit");
+		panel_5.add(btnExit);
+		GridBagLayout gbl_panel_4 = new GridBagLayout();
+		gbl_panel_4.columnWidths = new int[]{45, 49, 111, 59, 55, 55, 0};
+		gbl_panel_4.rowHeights = new int[]{0, 0, 0, 21, 0};
+		gbl_panel_4.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_4.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		panel_4.setLayout(gbl_panel_4);
+						
+		
 
 		btnNewButton = new JButton("Lookup customer");
 		btnNewButton.addMouseListener(new MouseAdapter() {
@@ -125,40 +171,73 @@ public class POS extends JFrame {
 				startCustomerMenu();
 			}
 		});
-		btnNewButton.setBounds(23, 527, 118, 47);
-		panel_2.add(btnNewButton);
+		
 
 		btnNewButton_1 = new JButton("Pay");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton_1.setBounds(325, 535, 111, 89);
-		panel_2.add(btnNewButton_1);
-
-		btnManager = new JButton("Manager");
-		btnManager.setBounds(10, 11, 89, 23);
-		panel_2.add(btnManager);
-
-		btnHelp = new JButton("Help");
-		btnHelp.setBounds(171, 11, 89, 23);
-		panel_2.add(btnHelp);
-
-		btnExit = new JButton("Exit");
-		btnExit.setBounds(347, 11, 89, 23);
-		panel_2.add(btnExit);
-
-		btnCheck = new JButton("Check");
-		btnCheck.setBounds(23, 585, 118, 47);
-		panel_2.add(btnCheck);
-
-		btnEdits = new JButton("Edits");
-		btnEdits.setBounds(171, 527, 118, 47);
-		panel_2.add(btnEdits);
-
-		btnSend = new JButton("Send");
-		btnSend.setBounds(171, 585, 118, 47);
-		panel_2.add(btnSend);
+		
+		lblNewLabel = new JLabel("Pris ex Moms");
+		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel.gridx = 4;
+		gbc_lblNewLabel.gridy = 0;
+		panel_4.add(lblNewLabel, gbc_lblNewLabel);
+		
+		txtpriceExTax = new JTextField();
+		GridBagConstraints gbc_txtpriceExTax = new GridBagConstraints();
+		gbc_txtpriceExTax.insets = new Insets(0, 0, 5, 0);
+		gbc_txtpriceExTax.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtpriceExTax.gridx = 5;
+		gbc_txtpriceExTax.gridy = 0;
+		panel_4.add(txtpriceExTax, gbc_txtpriceExTax);
+		txtpriceExTax.setColumns(10);
+		
+		lblNewLabel_1 = new JLabel("Moms");
+		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_1.gridx = 4;
+		gbc_lblNewLabel_1.gridy = 1;
+		panel_4.add(lblNewLabel_1, gbc_lblNewLabel_1);
+		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
+		gbc_btnNewButton_1.anchor = GridBagConstraints.NORTHWEST;
+		gbc_btnNewButton_1.insets = new Insets(0, 0, 0, 5);
+		gbc_btnNewButton_1.gridx = 1;
+		gbc_btnNewButton_1.gridy = 3;
+		panel_4.add(btnNewButton_1, gbc_btnNewButton_1);
+		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+		gbc_btnNewButton.anchor = GridBagConstraints.NORTHWEST;
+		gbc_btnNewButton.insets = new Insets(0, 0, 0, 5);
+		gbc_btnNewButton.gridx = 2;
+		gbc_btnNewButton.gridy = 3;
+		panel_4.add(btnNewButton, gbc_btnNewButton);
+				
+						btnCheck = new JButton("Check");
+						GridBagConstraints gbc_btnCheck = new GridBagConstraints();
+						gbc_btnCheck.anchor = GridBagConstraints.NORTHWEST;
+						gbc_btnCheck.insets = new Insets(0, 0, 0, 5);
+						gbc_btnCheck.gridx = 3;
+						gbc_btnCheck.gridy = 3;
+						panel_4.add(btnCheck, gbc_btnCheck);
+		
+				btnEdits = new JButton("Edits");
+				GridBagConstraints gbc_btnEdits = new GridBagConstraints();
+				gbc_btnEdits.anchor = GridBagConstraints.NORTHWEST;
+				gbc_btnEdits.insets = new Insets(0, 0, 0, 5);
+				gbc_btnEdits.gridx = 4;
+				gbc_btnEdits.gridy = 3;
+				panel_4.add(btnEdits, gbc_btnEdits);
+		
+				btnSend = new JButton("Send");
+				GridBagConstraints gbc_btnSend = new GridBagConstraints();
+				gbc_btnSend.anchor = GridBagConstraints.NORTHWEST;
+				gbc_btnSend.gridx = 5;
+				gbc_btnSend.gridy = 3;
+				panel_4.add(btnSend, gbc_btnSend);
+	
 		init(em, pc, oc, ec, cc);
 	}
 	private void init(Employee em, ProductController pCtrl, OrderController oCtrl, EmployeeController eCtrl, CustomerController cCtrl) {
@@ -169,8 +248,10 @@ public class POS extends JFrame {
 		this.employee = em;
 		pCtrl.fill();
 		pJList = new JList<Product>();
+		oJList = new JList<PartOrder>();
 		displayProducts();
-		Order salesOrder = oCtrl.makeOrder();
+		salesOrder = oCtrl.makeOrder();
+		displayOrder();
 	} 
 	public void startCustomerMenu() {
 		CustomerMenu cm = new CustomerMenu(employee, pCtrl,oCtrl,eCtrl,cCtrl);
@@ -178,7 +259,15 @@ public class POS extends JFrame {
 		cm.setModal(true);
 		
 	}
-
+	private void displayOrder() {
+		otm = new OrderTM(salesOrder.getParts());
+		table.setModel(otm);
+		PartOrderListCellRenderer ocr = new PartOrderListCellRenderer();
+		oJList.setCellRenderer(ocr);
+		txtpriceExTax.setText(""+salesOrder.getTotal());
+		
+	}
+	
 	private void displayProducts() {
 		ptm = new ProductTM(pCtrl.getAll());
 		ptm.sort();
@@ -217,6 +306,7 @@ public class POS extends JFrame {
 			else {
 			oCtrl.addNewPartOrderQ(p, 1);	
 			}
+			displayOrder();
 			
 		}
 	}
@@ -232,5 +322,4 @@ public class POS extends JFrame {
 	public static void setCustomer(Customer c) {
 		customer = c;
 	}
-
 }
