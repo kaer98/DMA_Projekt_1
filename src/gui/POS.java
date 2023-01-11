@@ -306,6 +306,7 @@ public class POS extends JFrame {
 			if(p.isAppliance()) {
 				Appliance selectedAppliance = (Appliance) ptm.getSelectedProduct(ptable.getSelectedRow());
 				startApplianceBySerialNumber(selectedAppliance);
+				displayOrder();
 			}
 			else {
 				oCtrl.addNewPartOrderQ(p, 1);	
@@ -328,11 +329,12 @@ public class POS extends JFrame {
 	}
 	
 	private void startApplianceBySerialNumber(Appliance selectedAppliance) {
-		FindApplianceCopy fac = new FindApplianceCopy(selectedAppliance, salesOrder);
+		FindApplianceCopy fac = new FindApplianceCopy(selectedAppliance, oCtrl);
 		fac.setVisible(true);
 		fac.setModal(true);
 		fac.setAlwaysOnTop(true);
 		fac.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
+		displayOrder();
 		
 	}
 	private void finishOrder() {

@@ -2,6 +2,7 @@ package controller;
 
 import java.util.ArrayList;
 
+import model.Appliance;
 import model.ApplianceCopy;
 import model.Product;
 import model.ProductContainer;
@@ -28,8 +29,8 @@ public class ProductController {
 		return product;
 	}
 	
-	public ApplianceCopy findApplianceCopyBySerialNo(Product product, String serialNo) {
-		ApplianceCopy applianceCopy = product.findApplianceCopyBySerialNo(serialNo);
+	public ApplianceCopy findApplianceCopyBySerialNo(Appliance appliance, String serialNo) {
+		ApplianceCopy applianceCopy = appliance.findApplianceCopyBySerialNo(serialNo);
 		return applianceCopy;
 		
 	}
