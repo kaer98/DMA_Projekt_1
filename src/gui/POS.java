@@ -170,6 +170,7 @@ public class POS extends JFrame {
 		pCtrl.fill();
 		pJList = new JList<Product>();
 		displayProducts();
+		Order salesOrder = oCtrl.makeOrder();
 	} 
 	public void startCustomerMenu() {
 		CustomerMenu cm = new CustomerMenu(employee, pCtrl,oCtrl,eCtrl,cCtrl);
@@ -231,10 +232,5 @@ public class POS extends JFrame {
 	public static void setCustomer(Customer c) {
 		customer = c;
 	}
-	
-	private void createSale() {
-		oCtrl.createSale(customer);
-		
-	
-	}
+
 }
