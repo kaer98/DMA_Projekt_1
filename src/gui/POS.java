@@ -97,9 +97,9 @@ public class POS extends JFrame {
 		contentPane.add(panel_2);
 		panel_2.setLayout(null);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(23, 61, 390, 428);
-		panel_2.add(textArea);
+		JTextArea txtSalesArea = new JTextArea();
+		txtSalesArea.setBounds(23, 61, 390, 428);
+		panel_2.add(txtSalesArea);
 		
 		btnNewButton = new JButton("Lookup customer");
 		btnNewButton.addMouseListener(new MouseAdapter() {
@@ -195,14 +195,6 @@ public class POS extends JFrame {
 		ProductTM ct = new ProductTM(pList);
 		ptable.setModel(ct);
 		}
-	}
-	
-	private void makeSale(Customer c){
-		OrderController oCtrl = new OrderController();
-		Order salesOrder = oCtrl.makeOrder();
-		
-		
-		
 	}
 	
 }

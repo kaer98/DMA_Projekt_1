@@ -100,4 +100,17 @@ public class OrderController {
 		Order order = orderContainer.findOrderByCustomer(customer);
 		return order;
 	}
+	
+	public void setCustomerToOrder(Order o, Customer c) {
+		o.setCustomer(c);
+	}
+	
+	private void createSale(Customer c){
+		Order sOrder = makeOrder();
+		setCustomerToOrder(sOrder, c);
+		
+		
+		
+	}
+	
 }
