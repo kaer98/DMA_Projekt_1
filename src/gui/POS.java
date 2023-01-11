@@ -174,10 +174,13 @@ public class POS extends JFrame {
 
 
 		btnNewButton_1 = new JButton("Pay");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		btnNewButton_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				finishOrder();
 			}
 		});
+		
 
 		lblNewLabel = new JLabel("Pris ex Moms");
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
@@ -251,6 +254,7 @@ public class POS extends JFrame {
 		oJList = new JList<PartOrder>();
 		displayProducts();
 		salesOrder = oCtrl.makeOrder();
+		salesOrder.setEmployee(em);
 		displayOrder();
 	} 
 	public void startCustomerMenu() {
@@ -330,5 +334,9 @@ public class POS extends JFrame {
 		fac.setAlwaysOnTop(true);
 		fac.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
 		
+	}
+	private void finishOrder() {
+		salesOrder.setCustomer(customer);
+		salesOrder.invoice();
 	}
 }

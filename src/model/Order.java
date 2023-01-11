@@ -148,20 +148,25 @@ public class Order {
 			double discount = 0;
 			FileWriter writer = new FileWriter(orderNo+".txt");
 			writer.write("#######Vestbjerg Byggecenter A/S#######");
-			writer.write("#######Vestbjerg Byggecenter A/S#######");
+			writer.write(System.lineSeparator());
 			writer.write("Medarbejder: " + employee.getName());
-			writer.write("");
+			writer.write(System.lineSeparator());
 			writer.write("Dato: " + dateTime + " 					Fakturanr.:" + orderNo);
-			writer.write("");
+			writer.write(System.lineSeparator());
 			writer.write("Faktura");
 			if (getFinal() == "Salg")
 				writer.write("Betalingsdato: " + dateTime + " 					Type: " + getFinal());
+			writer.write(System.lineSeparator());
 			if (getFinal() == "Faktura")
 				writer.write("Betalingsdato: " + dateTime.plusDays(14) + " 					Type: " + getFinal());
+			writer.write(System.lineSeparator());
 			if (getFinal() == "Tilbud")
 				writer.write("Tilbud acceptdato: " + dateTime.plusDays(14) + " 					Type: " + getFinal());
+			writer.write(System.lineSeparator());
 			writer.write("Kunde: " + customer.getName() + " \nKundes telefon: " + customer.getPhoneNo());
+			writer.write(System.lineSeparator());
 			writer.write("Kundes e-mail: " + customer.getMailAddress() + " \nKundes adresse: " + customer.getAddress());
+			writer.write(System.lineSeparator());
 			writer.write("Kundes CVR-nr: " + customer.getCvr());
 			for (PartOrder parts : getParts()) {
 				if (parts.getQuantity() != 0 && !parts.getProduct().isAppliance())
@@ -171,7 +176,7 @@ public class Order {
 					writer.write("serienummer: " + parts.getCopy().getSerialNo());
 				}
 			}
-			writer.write(""); 
+			writer.write(System.lineSeparator());
 			writer.write("Subtotal: " + dfSharp.format(getTotal())+"kr");
 			if (customer.getDiscount() != 0) {
 				discount = getTotal() * (customer.getDiscount());

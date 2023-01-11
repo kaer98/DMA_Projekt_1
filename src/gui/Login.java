@@ -30,6 +30,7 @@ public class Login extends JFrame {
 	private ProductController pc;
 	private CustomerController cc;
 	private OrderController oc;
+	
 
 	/**
 	 * Launch the application.
