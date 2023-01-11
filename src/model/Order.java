@@ -1,5 +1,8 @@
 package model;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -138,5 +141,48 @@ public class Order {
 	public void setParts(ArrayList<PartOrder> parts) {
 		this.parts = parts;
 	}
-
+	
+	public void invoice() {
+		File file = new File(orderNo+".txt");
+		try {
+			double discount = 0;
+			FileWriter writer = new FileWriter(orderNo+".txt");
+			writer.write("#######Vestbjerg Byggecenter A/S#######");
+			writer.write("#######Vestbjerg Byggecenter A/S#######");
+			writer.write("Medarbejder: " + employee.getName());
+			writer.write("");
+			writer.write("Dato: " + dateTime + " 					Fakturanr.:" + orderNo);
+			writer.write("");
+			writer.write("Faktura");
+			if (getFinal() == "Salg")
+				writer.write("Betalingsdato: " + dateTime + " 					Type: " + getFinal());
+			if (getFinal() == "Faktura")
+				writer.write("Betalingsdato: " + dateTime.plusDays(14) + " 					Type: " + getFinal());
+			if (getFinal() == "Tilbud")
+				writer.write("Tilbud acceptdato: " + dateTime.plusDays(14) + " 					Type: " + getFinal());
+			writer.write("Kunde: " + customer.getName() + " \nKundes telefon: " + customer.getPhoneNo());
+			writer.write("Kundes e-mail: " + customer.getMailAddress() + " \nKundes adresse: " + customer.getAddress());
+			writer.write("Kundes CVR-nr: " + customer.getCvr());
+			for (PartOrder parts : getParts()) {
+				if (parts.getQuantity() != 0 && !parts.getProduct().isAppliance())
+					writer.write("\nBeskrivelse: " + parts.getProductName() + " Antal: " + parts.getQuantity() + " Stk. Pris: " + parts.getProduct().getRetailPrice() + " Pris: " + dfSharp.format(parts.getTotal()));
+				if (parts.getProduct().isAppliance()) {
+					writer.write("\nBeskrivelse: " + parts.getProductName() + " Pris: " + dfSharp.format(parts.getTotal()));
+					writer.write("serienummer: " + parts.getCopy().getSerialNo());
+				}
+			}
+			writer.write(""); 
+			writer.write("Subtotal: " + dfSharp.format(getTotal())+"kr");
+			if (customer.getDiscount() != 0) {
+				discount = getTotal() * (customer.getDiscount());
+				writer.write("-" + (customer.getDiscount() * 100) + "% rabat " + "(" + discount + ")");
+			}
+			writer.write("Moms (25%): " + dfSharp.format(getTotalWDiscount() * 0.25) + "kr af " + dfSharp.format(getTotalWDiscount())+"kr");
+			writer.write("Total DKK: " + (dfSharp.format(getTotalWDiscount() * 1.25)));
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

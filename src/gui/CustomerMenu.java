@@ -52,7 +52,7 @@ public class CustomerMenu extends JDialog{
 	private ProductController pc;
 	private OrderController oc;
 	private Employee em;
-
+	private JButton btnSelect;
 	
 
 
@@ -87,6 +87,16 @@ public class CustomerMenu extends JDialog{
 				addClicked();
 			}
 		});
+		
+		btnSelect = new JButton("Select");
+		btnSelect.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				selectClicked();
+				
+			}
+		});
+		panel.add(btnSelect);
 		panel.add(btnAdd);
 		
 		btnInfo = new JButton("Info");
@@ -206,4 +216,9 @@ public class CustomerMenu extends JDialog{
 			txtSearch.setText("Search");
 		}
 	}
+	private void selectClicked() {
+		POS.setCustomer(ctm.getSelectedMember(table.getSelectedRow()));
+		cancelClicked();
+	}
+
 }

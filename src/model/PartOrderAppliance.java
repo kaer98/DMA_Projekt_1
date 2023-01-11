@@ -33,4 +33,8 @@ public class PartOrderAppliance extends PartOrder {
 	public double getTotal() {
 		return applianceCopy.getRetailPrice();
 	}
+	
+	public double getPrice() {
+		return applianceCopy.getRetailPrice();
+	}
 }

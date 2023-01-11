@@ -30,4 +30,7 @@ public class PartOrderQ extends PartOrder {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+	public double getPrice() {
+		return getProduct().getRetailPrice();
+	}
 }

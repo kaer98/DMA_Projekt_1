@@ -49,6 +49,7 @@ public class POS extends JFrame {
 	private JPanel panel_1;
 	private JTextField txtSearch;
 	private ArrayList<Product> pList; 
+	private static Customer customer;
 
 	/**
 	 * Create the frame.
@@ -173,6 +174,7 @@ public class POS extends JFrame {
 		CustomerMenu cm = new CustomerMenu(employee, pCtrl,oCtrl,eCtrl,cCtrl);
 		cm.setVisible(true);
 		cm.setModal(true);
+		
 	}
 
 	private void displayProducts() {
@@ -204,7 +206,7 @@ public class POS extends JFrame {
 
 	private void doubleclicked(MouseEvent e) {
 		if (e.getClickCount() == 2 && !e.isConsumed()) {
-			e.consume();
+			e.consume(); 
 		}
 	}
 
@@ -215,5 +217,8 @@ public class POS extends JFrame {
 		else if(txtSearch.getText().equals("") && !txtSearch.hasFocus()) {
 			txtSearch.setText("Search");
 		}
+	}
+	public static void setCustomer(Customer c) {
+		customer = c;
 	}
 }

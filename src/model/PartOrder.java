@@ -26,4 +26,5 @@ public abstract class PartOrder {
 	public abstract int getQuantity();
 
 	public abstract double getTotal();
+	public abstract double getPrice();
 }
