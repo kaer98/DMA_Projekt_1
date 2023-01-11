@@ -222,8 +222,9 @@ public class POS extends JFrame {
 		customer = c;
 	}
 	
-	private void createSale(Customer c) {
-		oCtrl.createSale(c);
+	private void createSale() {
+		oCtrl.createSale(customer);
+		
 	
 	}
 }
