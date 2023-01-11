@@ -23,6 +23,10 @@ import java.awt.event.MouseEvent;
 
 public class Login extends JFrame {
 
+<<<<<<< Updated upstream
+=======
+public class Login extends JFrame {
+>>>>>>> Stashed changes
 
 	private JPanel contentPane;
 	private JPanel panel;
