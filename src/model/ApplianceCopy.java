@@ -1,12 +1,13 @@
 package model;
 
-public class ApplianceCopy {
+public class ApplianceCopy{
 	private Appliance appliance;
 	private String serialNo;
 	private int count;
 
 	// Constructor for creating a Appliance copy of appliance
 	public ApplianceCopy(Appliance appliance, int count) {
+
 		this.appliance = appliance;
 		this.count = count;
 		this.serialNo = genSerialNo();

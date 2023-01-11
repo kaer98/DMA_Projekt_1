@@ -9,6 +9,7 @@ import controller.CustomerController;
 import controller.EmployeeController;
 import controller.OrderController;
 import controller.ProductController;
+import model.Appliance;
 import model.Customer;
 import model.Employee;
 import model.Order;
@@ -207,6 +208,15 @@ public class POS extends JFrame {
 	private void doubleclicked(MouseEvent e) {
 		if (e.getClickCount() == 2 && !e.isConsumed()) {
 			e.consume(); 
+			Product p = ptm.getSelectedProduct(ptable.getSelectedRow());
+			if(p.isAppliance()) {
+				Appliance apc = (Appliance) ptm.getSelectedProduct(ptable.getSelectedRow());
+				oCtrl.addNewPartOrderAppliance(apc.getFirst());
+			}
+			else {
+			oCtrl.addNewPartOrderQ(p, 1);	
+			}
+			
 		}
 	}
 

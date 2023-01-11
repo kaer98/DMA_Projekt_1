@@ -25,8 +25,8 @@ public class Order {
 		this.finalized = "intet";
 	}
 
-	public void addNewPartOrderAppliance(ApplianceCopy product) {
-		parts.add(new PartOrderAppliance(product));
+	public void addNewPartOrderAppliance(ApplianceCopy p) {
+		parts.add(new PartOrderAppliance(p));
 	}
 	/*
 	 * createInvoice() is used to create an invoice.

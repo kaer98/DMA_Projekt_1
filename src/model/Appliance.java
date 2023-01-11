@@ -78,4 +78,21 @@ public class Appliance extends Product {
 	public void updateQuantity(String SerialNo) {
 		appliances.remove(findApplianceCopyBySerialNo(SerialNo));
 	}
+	
+	public ApplianceCopy getFirst() {
+		ApplianceCopy applianceCopy = null;
+		int index = 0; 
+		boolean found = false;
+		while (index < appliances.size() && !found) {
+			applianceCopy = appliances.get(index);
+			if (applianceCopy!=null) {
+				found = true;
+			} else { 
+				index++;
+			}
+		
+	}
+		return applianceCopy;
 }
+}
+

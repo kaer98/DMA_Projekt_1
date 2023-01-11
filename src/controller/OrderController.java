@@ -33,8 +33,8 @@ public class OrderController {
 		parts = new ArrayList<>();
 	}
 
-	public void addNewPartOrderAppliance(ApplianceCopy product) {
-		order.addNewPartOrderAppliance(product);
+	public void addNewPartOrderAppliance(ApplianceCopy p) {
+		order.addNewPartOrderAppliance(p);
 	}
 
 	public void addNewPartOrderQ(Product product, int quantity) {
