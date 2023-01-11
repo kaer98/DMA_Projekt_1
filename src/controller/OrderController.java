@@ -105,10 +105,5 @@ public class OrderController {
 		o.setCustomer(c);
 	}
 	
-	public void createSale(Customer c){
-		Order sOrder = makeOrder();
-		setCustomerToOrder(sOrder, c);
-		
-	}
 	
 }
