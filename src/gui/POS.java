@@ -234,11 +234,12 @@ public class POS extends JFrame {
 	}
 	
 	private void startApplianceBySerialNumber() {
-		findApplianceCopy fac = new findApplianceCopy();
+		findApplianceCopy fac = new findApplianceCopy(salesOrder);
 		fac.setVisible(true);
 		fac.setModal(true);
 		fac.setAlwaysOnTop(true);
 		fac.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
+		
 	}
 
 }
