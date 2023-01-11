@@ -61,7 +61,7 @@ public class POS extends JFrame {
 		setBounds(0, 0, 1370, 700);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
+		
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(1, 3, 3, 3));
 		
@@ -78,6 +78,12 @@ public class POS extends JFrame {
 		panel_1.add(scrollPane, BorderLayout.CENTER);
 		
 		ptable = new JTable();
+		ptable.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				doubleclicked(e);
+			}
+		});
 		scrollPane.setViewportView(ptable);
 		
 		txtSearch = new JTextField();
@@ -87,6 +93,7 @@ public class POS extends JFrame {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				searchClicked();
+				
 			}
 		});
 		panel_1.add(txtSearch, BorderLayout.NORTH);
@@ -147,6 +154,7 @@ public class POS extends JFrame {
 		txtSearch.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {                                      
 				txtSearch.setText(null);
+			
 			} //This will set the JTextfield blank on mouse click//      
 			
 		});
@@ -195,6 +203,13 @@ public class POS extends JFrame {
 		ProductTM ct = new ProductTM(pList);
 		ptable.setModel(ct);
 		}
+	}
+	private void doubleclicked(MouseEvent e) {
+		  if (e.getClickCount() == 2 && !e.isConsumed()) {
+              e.consume();
+              
+      }
+		
 	}
 	
 }
