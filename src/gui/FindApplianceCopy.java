@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controller.ProductController;
+import model.Appliance;
 import model.ApplianceCopy;
 import model.Order;
 import model.Product;
@@ -26,14 +27,14 @@ public class FindApplianceCopy extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtSearch;
 	private Order order;
-	private Product product;
+	private Appliance appliance;
 
 
 
 	/**
 	 * Create the dialog.
 	 */
-	public FindApplianceCopy(Product p, Order o) {
+	public FindApplianceCopy(Appliance a, Order o) {
 		setBounds(100, 100, 264, 120);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -85,7 +86,7 @@ public class FindApplianceCopy extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
-		init(p, o);
+		init(a, o);
 	}
 	
 	private void cancelClicked() {
@@ -93,14 +94,14 @@ public class FindApplianceCopy extends JDialog {
 		this.setVisible(false);
 
 	}
-	private void init(Product p, Order o) {
+	private void init(Appliance a, Order o) {
 		this.order = o;
-		this.product = p;
+		this.appliance = a;
 	}
 	
 	private void okClicked() {
 		ProductController pCtrl = new ProductController();
-		ApplianceCopy applianceCopy = pCtrl.findApplianceCopyBySerialNo(this.product, txtSearch.getText());
+		ApplianceCopy applianceCopy = pCtrl.findApplianceCopyBySerialNo(appliance, txtSearch.getText());
 		order.addNewPartOrderAppliance(applianceCopy);
 		this.dispose();
 		this.setVisible(false);
