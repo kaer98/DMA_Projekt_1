@@ -304,8 +304,8 @@ public class POS extends JFrame {
 			e.consume(); 
 			Product p = ptm.getSelectedProduct(ptable.getSelectedRow());
 			if(p.isAppliance()) {
-				Appliance apc = (Appliance) ptm.getSelectedProduct(ptable.getSelectedRow());
-				oCtrl.addNewPartOrderAppliance(apc.getFirst());
+				Product selectedProduct = (Product) ptm.getSelectedProduct(ptable.getSelectedRow());
+				startApplianceBySerialNumber(selectedProduct);
 			}
 			else {
 				oCtrl.addNewPartOrderQ(p, 1);	
@@ -327,8 +327,8 @@ public class POS extends JFrame {
 		customer = c;
 	}
 	
-	private void startApplianceBySerialNumber() {
-		FindApplianceCopy fac = new FindApplianceCopy(salesOrder);
+	private void startApplianceBySerialNumber(Product product) {
+		FindApplianceCopy fac = new FindApplianceCopy(product, salesOrder);
 		fac.setVisible(true);
 		fac.setModal(true);
 		fac.setAlwaysOnTop(true);
