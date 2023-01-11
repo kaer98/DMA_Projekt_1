@@ -7,6 +7,10 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controller.ProductController;
+import model.ApplianceCopy;
+
 import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -68,6 +72,11 @@ public class findApplianceCopy extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						okClicked();
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
@@ -91,12 +100,18 @@ public class findApplianceCopy extends JDialog {
 
 	}
 	
+	private ApplianceCopy okClicked() {
+		ProductController pCtrl = new ProductController();
+		ApplianceCopy applianceCopy = pCtrl.findApplianceCopyBySerialNo(txtSearch.getText());
+		return applianceCopy;
+	}
+	
 	private void searchbarFocus(){
-		if(txtSearch.getText().equals("Search") && txtSearch.hasFocus()) {
+		if(txtSearch.getText().equals("Serial number") && txtSearch.hasFocus()) {
 			txtSearch.setText(null);
 		}
 		else if(txtSearch.getText().equals("") && !txtSearch.hasFocus()) {
-			txtSearch.setText("Search");
+			txtSearch.setText("Serial number");
 		}
 	}
 
