@@ -324,7 +324,7 @@ public class POS extends JFrame {
 	}
 	
 	private void startApplianceBySerialNumber() {
-		findApplianceCopy fac = new findApplianceCopy(salesOrder);
+		FindApplianceCopy fac = new FindApplianceCopy(salesOrder);
 		fac.setVisible(true);
 		fac.setModal(true);
 		fac.setAlwaysOnTop(true);

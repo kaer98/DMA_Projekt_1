@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 
 import controller.ProductController;
 import model.ApplianceCopy;
+import model.Order;
 
 import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
@@ -19,28 +20,18 @@ import java.awt.event.FocusEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class findApplianceCopy extends JDialog {
+public class FindApplianceCopy extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtSearch;
+	private Order order;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			findApplianceCopy dialog = new findApplianceCopy();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+
 
 	/**
 	 * Create the dialog.
 	 */
-	public findApplianceCopy() {
+	public FindApplianceCopy(Order o) {
 		setBounds(100, 100, 264, 120);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -92,12 +83,16 @@ public class findApplianceCopy extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+		init(o);
 	}
 	
 	private void cancelClicked() {
 		this.dispose();
 		this.setVisible(false);
 
+	}
+	private void init(Order o) {
+		order = o;
 	}
 	
 	private ApplianceCopy okClicked() {
