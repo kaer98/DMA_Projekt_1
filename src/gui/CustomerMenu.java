@@ -32,6 +32,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 public class CustomerMenu extends JDialog{
 
 	private JPanel contentPane;
@@ -108,6 +110,18 @@ public class CustomerMenu extends JDialog{
 		contentPane.add(panel_1);
 		
 		txtSearch = new JTextField();
+		txtSearch.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				searchbarFocus();
+			}
+		});
+		txtSearch.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				searchbarFocus();
+			}
+		});
 		txtSearch.setText("Search");
 		txtSearch.setToolTipText("Search");
 		txtSearch.addKeyListener(new KeyAdapter() {
@@ -118,13 +132,6 @@ public class CustomerMenu extends JDialog{
 		});
 		panel_1.add(txtSearch);
 		txtSearch.setColumns(10);
-		
-		txtSearch.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {                                      
-				txtSearch.setText(null);
-			} //This will set the JTextfield blank on mouse click//      
-			
-		});
 		
 		init(em, pc,oc,ec,cc);
 	}
@@ -190,4 +197,13 @@ public class CustomerMenu extends JDialog{
 			this.setVisible(false);
 
 		}
+	
+	private void searchbarFocus(){
+		if(txtSearch.getText().equals("Search") && txtSearch.hasFocus()) {
+			txtSearch.setText(null);
+		}
+		else if(txtSearch.getText().equals("") && !txtSearch.hasFocus()) {
+			txtSearch.setText("Search");
+		}
+	}
 }

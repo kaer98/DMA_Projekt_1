@@ -28,6 +28,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class POS extends JFrame {
 
@@ -64,23 +66,35 @@ public class POS extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(1, 3, 3, 3));
-		
+
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0), 3));
 		contentPane.add(panel);
 		panel.setLayout(new GridLayout(10, 2, 2, 2));
-		
+
 		panel_1 = new JPanel();
 		contentPane.add(panel_1);
 		panel_1.setLayout(new BorderLayout(0, 0));
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		panel_1.add(scrollPane, BorderLayout.CENTER);
-		
+
 		ptable = new JTable();
 		scrollPane.setViewportView(ptable);
-		
+
 		txtSearch = new JTextField();
+		txtSearch.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				searchbarFocus();
+			}
+		});
+		txtSearch.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				searchbarFocus();
+			}
+		});
 		txtSearch.setText("Search");
 		txtSearch.setToolTipText("Search");
 		txtSearch.addKeyListener(new KeyAdapter() {
@@ -91,16 +105,16 @@ public class POS extends JFrame {
 		});
 		panel_1.add(txtSearch, BorderLayout.NORTH);
 		txtSearch.setColumns(10);
-		
+
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new LineBorder(new Color(0, 0, 0), 3));
 		contentPane.add(panel_2);
 		panel_2.setLayout(null);
-		
+
 		JTextArea txtSalesArea = new JTextArea();
 		txtSalesArea.setBounds(23, 61, 390, 428);
 		panel_2.add(txtSalesArea);
-		
+
 		btnNewButton = new JButton("Lookup customer");
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -111,7 +125,7 @@ public class POS extends JFrame {
 		});
 		btnNewButton.setBounds(23, 527, 118, 47);
 		panel_2.add(btnNewButton);
-		
+
 		btnNewButton_1 = new JButton("Pay");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -119,38 +133,31 @@ public class POS extends JFrame {
 		});
 		btnNewButton_1.setBounds(325, 535, 111, 89);
 		panel_2.add(btnNewButton_1);
-		
+
 		btnManager = new JButton("Manager");
 		btnManager.setBounds(10, 11, 89, 23);
 		panel_2.add(btnManager);
-		
+
 		btnHelp = new JButton("Help");
 		btnHelp.setBounds(171, 11, 89, 23);
 		panel_2.add(btnHelp);
-		
+
 		btnExit = new JButton("Exit");
 		btnExit.setBounds(347, 11, 89, 23);
 		panel_2.add(btnExit);
-		
+
 		btnCheck = new JButton("Check");
 		btnCheck.setBounds(23, 585, 118, 47);
 		panel_2.add(btnCheck);
-		
+
 		btnEdits = new JButton("Edits");
 		btnEdits.setBounds(171, 527, 118, 47);
 		panel_2.add(btnEdits);
-		
+
 		btnSend = new JButton("Send");
 		btnSend.setBounds(171, 585, 118, 47);
 		panel_2.add(btnSend);
-		
-		txtSearch.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {                                      
-				txtSearch.setText(null);
-			} //This will set the JTextfield blank on mouse click//      
-			
-		});
-		
+
 		init(em, pc, oc, ec, cc);
 	}
 	private void init(Employee em, ProductController pCtrl, OrderController oCtrl, EmployeeController eCtrl, CustomerController cCtrl) {
@@ -167,10 +174,9 @@ public class POS extends JFrame {
 		CustomerMenu cm = new CustomerMenu(employee, pCtrl,oCtrl,eCtrl,cCtrl);
 		cm.setVisible(true);
 		cm.setModal(true);
-		
+
 	}
-	
-	
+
 	private void displayProducts() {
 		ptm = new ProductTM(pCtrl.getAll());
 		ptm.sort();
@@ -178,6 +184,7 @@ public class POS extends JFrame {
 		ProductListCellRenderer pcr = new ProductListCellRenderer();
 		pJList.setCellRenderer(pcr);
 	}
+
 	private void searchClicked() {
 		pList = new ArrayList<>();
 		String s = txtSearch.getText().toLowerCase();
@@ -185,16 +192,25 @@ public class POS extends JFrame {
 			displayProducts();
 		}
 		else {
-		Iterator<Product> it = pCtrl.getAll().iterator();
-		while(it.hasNext()) {
-			Product p = it.next();
-			if(p.getDescription().toLowerCase().contains(s)|| p.getLocation().toLowerCase().contains(s)|| p.getBarcode().toLowerCase().contains(s)) {
-				pList.add(p);
+			Iterator<Product> it = pCtrl.getAll().iterator();
+			while(it.hasNext()) {
+				Product p = it.next();
+				if(p.getDescription().toLowerCase().contains(s)|| p.getLocation().toLowerCase().contains(s)|| p.getBarcode().toLowerCase().contains(s)) {
+					pList.add(p);
+				}
 			}
-		}
-		ProductTM ct = new ProductTM(pList);
-		ptable.setModel(ct);
+			ProductTM ct = new ProductTM(pList);
+			ptable.setModel(ct);
 		}
 	}
-	
+
+	private void searchbarFocus() {
+		if(txtSearch.getText().equals("Search") && txtSearch.hasFocus()) {
+			txtSearch.setText(null);
+		}
+		else if(txtSearch.getText().equals("") && !txtSearch.hasFocus()) {
+			txtSearch.setText("Search");
+		}
+	}
+
 }
