@@ -14,6 +14,7 @@ import controller.OrderController;
 import controller.ProductController;
 import model.Customer;
 import model.Employee;
+import model.Order;
 import model.Product;
 
 import java.awt.Color;
@@ -31,10 +32,10 @@ import java.awt.event.MouseEvent;
 public class POS extends JFrame {
 
 	private JPanel contentPane;
-	private ProductController pC;
-	private EmployeeController ec;
-	private CustomerController cc;
-	private OrderController oc;
+	private ProductController pCtrl;
+	private EmployeeController eCtrl;
+	private CustomerController cCtrl;
+	private OrderController oCtrl;
 	private Employee employee;
 	private JList<Product> pJList;
 	private JTable ptable;
@@ -152,18 +153,18 @@ public class POS extends JFrame {
 		
 		init(em, pc, oc, ec, cc);
 	}
-	private void init(Employee em, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc) {
-		this.pC = pc;
-		this.cc = cc;
-		this.ec = ec;
-		this.oc = oc;
+	private void init(Employee em, ProductController pCtrl, OrderController oCtrl, EmployeeController eCtrl, CustomerController cCtrl) {
+		this.pCtrl = pCtrl;
+		this.cCtrl = cCtrl;
+		this.eCtrl = eCtrl;
+		this.oCtrl = oCtrl;
 		this.employee = em;
-		pC.fill();
+		pCtrl.fill();
 		pJList = new JList<Product>();
 		displayProducts();
 	} 
 	public void startCustomerMenu() {
-		CustomerMenu cm = new CustomerMenu(employee, pC,oc,ec,cc);
+		CustomerMenu cm = new CustomerMenu(employee, pCtrl,oCtrl,eCtrl,cCtrl);
 		cm.setVisible(true);
 		cm.setModal(true);
 		
@@ -171,7 +172,7 @@ public class POS extends JFrame {
 	
 	
 	private void displayProducts() {
-		ptm = new ProductTM(pC.getAll());
+		ptm = new ProductTM(pCtrl.getAll());
 		ptm.sort();
 		ptable.setModel(ptm); 
 		ProductListCellRenderer pcr = new ProductListCellRenderer();
@@ -184,7 +185,7 @@ public class POS extends JFrame {
 			displayProducts();
 		}
 		else {
-		Iterator<Product> it = pC.getAll().iterator();
+		Iterator<Product> it = pCtrl.getAll().iterator();
 		while(it.hasNext()) {
 			Product p = it.next();
 			if(p.getDescription().toLowerCase().contains(s)|| p.getLocation().toLowerCase().contains(s)|| p.getBarcode().toLowerCase().contains(s)) {
@@ -196,5 +197,12 @@ public class POS extends JFrame {
 		}
 	}
 	
+	private void makeSale(Customer c){
+		OrderController oCtrl = new OrderController();
+		Order salesOrder = oCtrl.makeOrder();
+		
+		
+		
+	}
 	
 }
