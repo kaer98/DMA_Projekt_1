@@ -95,10 +95,12 @@ public class FindApplianceCopy extends JDialog {
 		order = o;
 	}
 	
-	private ApplianceCopy okClicked() {
+	private void okClicked() {
 		ProductController pCtrl = new ProductController();
 		ApplianceCopy applianceCopy = pCtrl.findApplianceCopyBySerialNo(txtSearch.getText());
-		return applianceCopy;
+		order.addNewPartOrderAppliance(applianceCopy);
+		this.dispose();
+		this.setVisible(false);
 	}
 	
 	private void searchbarFocus(){
