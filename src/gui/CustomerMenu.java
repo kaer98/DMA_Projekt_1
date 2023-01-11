@@ -19,6 +19,7 @@ import controller.*;
 import model.Customer;
 import model.Employee;
 import model.Order;
+import model.Product;
 
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -53,6 +54,7 @@ public class CustomerMenu extends JDialog{
 	private OrderController oc;
 	private Employee em;
 	private JButton btnSelect;
+	private JList<Customer> cJList;
 	
 
 
@@ -154,6 +156,7 @@ public class CustomerMenu extends JDialog{
 			this.ec = ec;
 			this.oc = oc;
 			cc.fill();
+			cJList = new JList<Customer>();
 			displayCustomers();
 			setModal(true);
 }		
@@ -161,6 +164,9 @@ public class CustomerMenu extends JDialog{
 	private void displayCustomers() {
 		ctm = new CustomerTM(cc.getAll());
 		table.setModel(ctm);
+		 
+		CustomerListCellRendere ccr = new CustomerListCellRendere();
+		cJList.setCellRenderer(ccr);
 	}
 	
 	private void searchClicked() {
