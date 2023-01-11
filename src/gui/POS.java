@@ -216,4 +216,12 @@ public class POS extends JFrame {
 			txtSearch.setText("Search");
 		}
 	}
+	
+	private void createSale(Customer c) {
+		oCtrl.createSale(c);
+		
+		
+		
+	}
+	
 }

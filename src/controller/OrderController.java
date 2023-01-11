@@ -105,11 +105,9 @@ public class OrderController {
 		o.setCustomer(c);
 	}
 	
-	private void createSale(Customer c){
+	public void createSale(Customer c){
 		Order sOrder = makeOrder();
 		setCustomerToOrder(sOrder, c);
-		
-		
 		
 	}
 	
