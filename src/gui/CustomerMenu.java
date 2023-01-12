@@ -18,9 +18,6 @@ import javax.swing.JDialog;
 import controller.*;
 import model.Customer;
 import model.Employee;
-import model.Order;
-import model.Product;
-
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
@@ -32,7 +29,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ListSelectionModel;
-import javax.swing.SwingConstants;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 public class CustomerMenu extends JDialog{

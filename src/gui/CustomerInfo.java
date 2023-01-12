@@ -404,18 +404,6 @@ public class CustomerInfo extends JDialog {
 			displayCustomer();
 			displayOrders(c);
 
-		    NumberFormat format = NumberFormat.getInstance();
-		    NumberFormatter formatter = new NumberFormatter(format);
-		    formatter.setValueClass(Integer.class);
-		    formatter.setMinimum(0);
-		    formatter.setMaximum(Integer.MAX_VALUE);
-		    formatter.setAllowsInvalid(false);
-		    // If you want the value to be committed on each keystroke instead of focus lost
-		    formatter.setCommitsOnValidEdit(true);
-		    JFormattedTextField field = new JFormattedTextField(formatter);
-
-		    JOptionPane.showMessageDialog(null, field);
-
 		}
 	}
 
