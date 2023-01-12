@@ -1,15 +1,19 @@
 package model;
 
+import java.util.Random;
+
 public abstract class PartOrder {
 
 	private Product product;
-
+	private int id;
 	public PartOrder() {
 
 	}
 
 	public PartOrder(Product product) {
 		this.product = product;
+		Random rand = new Random();
+		id = rand.nextInt(9999999);
 	}
 
 	public abstract ApplianceCopy getCopy();
@@ -17,7 +21,9 @@ public abstract class PartOrder {
 	public Product getProduct() {
 		return product;
 	}
-
+	public int getId() {
+		return id;
+	}
 	public String getProductName() {
 		return product.getDescription();
 	}

@@ -140,6 +140,13 @@ public class POS extends JFrame {
 		panel_2.add(scrollPane_1, BorderLayout.CENTER);
 
 		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				removePartOrder(e);
+				
+			}
+		});
 		scrollPane_1.setViewportView(table);
 
 		panel_5 = new JPanel();
@@ -315,6 +322,15 @@ public class POS extends JFrame {
 
 		}
 	}
+	private void removePartOrder(MouseEvent e) {
+		if (e.getClickCount() == 2 && !e.isConsumed()) {
+			e.consume(); 
+			PartOrder po = otm.getSelectedProduct(table.getSelectedRow());	
+			salesOrder.removePart(po);
+	}
+		displayOrder();
+		
+		}
 
 	private void searchbarFocus() {
 		if(txtSearch.getText().equals("Search") && txtSearch.hasFocus()) {

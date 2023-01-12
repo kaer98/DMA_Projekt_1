@@ -137,6 +137,20 @@ public class Order {
 	public void setOrderNo(int orderNo) {
 		Order.orderNo = orderNo;
 	}
+	public void removePart(PartOrder po) {
+		boolean found = false;
+		int i = 0;
+		while(i<parts.size() && !found) {
+			if(parts.get(i).getId()==po.getId()) {
+				parts.remove(i);{
+					found=true;
+				}
+			}
+			else {
+				i++;
+			}
+		}
+	}
 
 	public void setParts(ArrayList<PartOrder> parts) {
 		this.parts = parts;
