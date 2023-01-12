@@ -12,8 +12,6 @@ import controller.OrderController;
 import controller.ProductController;
 import model.Appliance;
 import model.ApplianceCopy;
-import model.Order;
-import model.Product;
 
 import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
@@ -27,7 +25,6 @@ public class FindApplianceCopy extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtSearch;
-	private Order order;
 	private Appliance appliance;
 	private OrderController oCtrl;
 

@@ -15,12 +15,14 @@ import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextArea;
 import javax.swing.JLabel;
 import java.awt.GridBagLayout;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
@@ -76,6 +78,14 @@ public class CustomerInfo extends JDialog {
 	private ProductController pc;
 	private OrderController oc;
 	private Employee em;
+	private JLabel labCVR;
+	private JLabel labEmail;
+	private JLabel labPhone;
+	private JLabel labPostalcode;
+	private JLabel labAddress;
+	private JLabel labCity;
+	private JLabel labCountry;
+	private JLabel labDiscount;
 
 
 
@@ -262,6 +272,51 @@ public class CustomerInfo extends JDialog {
 			JSeparator separator = new JSeparator();
 			separator.setBounds(10, 385, 334, 2);
 			getContentPane().add(separator);
+			
+			labCVR = new JLabel("");
+			labCVR.setForeground(new Color(255, 0, 0));
+			labCVR.setBounds(74, 85, 270, 14);
+			getContentPane().add(labCVR);
+			
+			labPhone = new JLabel("");
+			labPhone.setForeground(new Color(255, 0, 0));
+			labPhone.setBounds(74, 120, 270, 14);
+			getContentPane().add(labPhone);
+			
+			labPostalcode = new JLabel("");
+			labPostalcode.setForeground(new Color(255, 0, 0));
+			labPostalcode.setBounds(74, 224, 270, 14);
+			getContentPane().add(labPostalcode);
+			
+			labEmail = new JLabel("");
+			labEmail.setForeground(new Color(255, 0, 0));
+			labEmail.setBounds(74, 155, 270, 14);
+			getContentPane().add(labEmail);
+			
+			JLabel labName = new JLabel("");
+			labName.setForeground(new Color(255, 0, 0));
+			labName.setBounds(74, 49, 270, 14);
+			getContentPane().add(labName);
+			
+			labAddress = new JLabel("");
+			labAddress.setForeground(Color.RED);
+			labAddress.setBounds(74, 190, 270, 14);
+			getContentPane().add(labAddress);
+			
+			labCity = new JLabel("");
+			labCity.setForeground(Color.RED);
+			labCity.setBounds(74, 260, 270, 14);
+			getContentPane().add(labCity);
+			
+			labCountry = new JLabel("");
+			labCountry.setForeground(Color.RED);
+			labCountry.setBounds(74, 291, 270, 14);
+			getContentPane().add(labCountry);
+			
+			labDiscount = new JLabel("");
+			labDiscount.setForeground(Color.RED);
+			labDiscount.setBounds(10, 369, 270, 14);
+			getContentPane().add(labDiscount);
 			{
 			}
 
@@ -322,62 +377,39 @@ public class CustomerInfo extends JDialog {
 	}
 
 	private void okClicked() {
-		if(txtCVR.getText().length() != 8){
-			JOptionPane.showMessageDialog(null, "Cvr nr. skal være 8 cifre");
-			throw new IllegalArgumentException("Error: Wrong input");
-		}
-		if(!isValid(txtEmail.getText())){
-			JOptionPane.showMessageDialog(null, "Email skal indtastes i korrekt format");
-			throw new IllegalArgumentException("Error: Wrong input");
-		}
-		if(txtPhone.getText().length() != 8) {
-			JOptionPane.showMessageDialog(null, "Telefon nr. skal være 8 cifre");
-			throw new IllegalArgumentException("Error: Wrong input");
-		}
-		if(txtPostalcode.getText().length() != 4) {
-			JOptionPane.showMessageDialog(null, "Postnummer skal indeholde 4 cifre");
-			throw new IllegalArgumentException("Error: Wrong input");
-		}
-		else {
-		String name = txtName.getText();
-		String cvr = txtCVR.getText();
-		String email = txtEmail.getText();
-		String phone = txtPhone.getText();
-		String address = txtAddress.getText();
-		String postalcode = txtPostalcode.getText();
-		String city = txtCity.getText();
-		String country = txtCountry.getText();
-		double discount = Double.parseDouble(txtDiscount.getText());
-
-		if(currCustomer == null) {
-			currCustomer = cCtrl.addNewCustomer(name, phone, email, country, postalcode,
-					city, address, cvr, discount);
-		} else {
-			cCtrl.updateCustomer(currCustomer.getId(), name, phone, email, country, postalcode,
-					city, address, cvr, discount); 
-		}
+		saveClicked();
 		cancelClicked();
-		}
+		
 	}
 
 	private void saveClicked() {
+		int wrongInputTracker = 0;
+		
 		if(txtCVR.getText().length() != 8){
-			JOptionPane.showMessageDialog(null, "Cvr nr. skal være 8 cifre");
-			throw new IllegalArgumentException("Error: Wrong input");
+			labCVR.setText( "Cvr nr. skal være 8 cifre");
+			Border border = BorderFactory.createLineBorder(Color.RED, 1);
+			txtCVR.setBorder(border);
+			wrongInputTracker++;
 		}
 		if(!isValid(txtEmail.getText())){
-			JOptionPane.showMessageDialog(null, "Email skal indtastes i korrekt format");
-			throw new IllegalArgumentException("Error: Wrong input");
+			labEmail.setText("Email skal indtastes i korrekt format");
+			Border border = BorderFactory.createLineBorder(Color.RED, 1);
+			txtEmail.setBorder(border);
+			wrongInputTracker++;
 		}
 		if(txtPhone.getText().length() != 8) {
-			JOptionPane.showMessageDialog(null, "Telefon nr. skal være 8 cifre");
-			throw new IllegalArgumentException("Error: Wrong input");
+			labPhone.setText("Telefon nr. skal være 8 cifre");
+			Border border = BorderFactory.createLineBorder(Color.RED, 1);
+			txtPhone.setBorder(border);
+			wrongInputTracker++;
 		}
 		if(txtPostalcode.getText().length() != 4) {
-			JOptionPane.showMessageDialog(null, "Postnummer skal indeholde 4 cifre");
-			throw new IllegalArgumentException("Error: Wrong input");
+			labPostalcode.setText("Postnummer skal indeholde 4 cifre");
+			Border border = BorderFactory.createLineBorder(Color.RED, 1);
+			txtPostalcode.setBorder(border);
+			wrongInputTracker++;
 		}
-		else {
+		if(wrongInputTracker == 0) {
 			String name = txtName.getText();
 			String cvr = txtCVR.getText();
 			String email = txtEmail.getText();
@@ -387,14 +419,19 @@ public class CustomerInfo extends JDialog {
 			String city = txtCity.getText();
 			String country = txtCountry.getText();
 			double discount = Double.parseDouble(txtDiscount.getText());
-	
+			
 			if(currCustomer == null) {
 				currCustomer = cCtrl.addNewCustomer(name, phone, email, country, postalcode,
 						city, address, cvr, discount);
-			} else {
+			} 
+			else {
 				cCtrl.updateCustomer(currCustomer.getId(), name, phone, email, country, postalcode,
-						city, address, cvr, discount);
+				city, address, cvr, discount); 
 			}
+		}
+			
+		else {
+			throw new IllegalArgumentException("Error: Wrong input");
 		}
 	}
 	
