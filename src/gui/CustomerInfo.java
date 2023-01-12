@@ -17,6 +17,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.NumberFormatter;
 import javax.swing.JTextArea;
 import javax.swing.JLabel;
 import java.awt.GridBagLayout;
@@ -55,6 +56,7 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.JSeparator;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.NumberFormat;
 
 public class CustomerInfo extends JDialog {
 
@@ -74,7 +76,6 @@ public class CustomerInfo extends JDialog {
 	private JTextField txtPostalcode;
 	private JTextField txtCity;
 	private JTextField txtCountry;
-	private JTextField txtDiscount;
 	private JList<Order> oList;
 	private EmployeeController ec;
 	private ProductController pc;
@@ -90,6 +91,7 @@ public class CustomerInfo extends JDialog {
 	private JLabel labDiscount;
 	private JLabel labName;
 	private Border borderB;
+	private JFormattedTextField txtDiscount;
 
 
 	/**
@@ -320,18 +322,6 @@ public class CustomerInfo extends JDialog {
 			lblNewLabel_1.setBounds(10, 316, 64, 15);
 			getContentPane().add(lblNewLabel_1);
 
-			txtDiscount = new JTextField();
-			txtDiscount.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					txtDiscount.setBorder(borderB);
-					labDiscount.setText("");
-				}
-			});
-			txtDiscount.setBounds(74, 310, 270, 20);
-			getContentPane().add(txtDiscount);
-			txtDiscount.setColumns(10);
-
 			JLabel lblNewLabel_10 = new JLabel("Orderlist:");
 			lblNewLabel_10.setFont(new Font("Tahoma", Font.PLAIN, 13));
 			lblNewLabel_10.setBounds(10, 394, 64, 14);
@@ -385,6 +375,10 @@ public class CustomerInfo extends JDialog {
 			labDiscount.setForeground(Color.RED);
 			labDiscount.setBounds(10, 369, 270, 14);
 			getContentPane().add(labDiscount);
+			
+			txtDiscount = new JFormattedTextField();
+			txtDiscount.setBounds(74, 310, 270, 20);
+			getContentPane().add(txtDiscount);
 			{
 			}
 
@@ -402,13 +396,25 @@ public class CustomerInfo extends JDialog {
 		OrderListCellRenderer ocr = new OrderListCellRenderer();
 		oList.setCellRenderer(ocr);
 
+		if(!em.isManager()) {
+			txtDiscount.setEditable(false);
+		}
+		
 		if(currCustomer != null) {
 			displayCustomer();
 			displayOrders(c);
 
-		if(!em.isManager()) {
-			txtDiscount.setEditable(false);
-		}
+		    NumberFormat format = NumberFormat.getInstance();
+		    NumberFormatter formatter = new NumberFormatter(format);
+		    formatter.setValueClass(Integer.class);
+		    formatter.setMinimum(0);
+		    formatter.setMaximum(Integer.MAX_VALUE);
+		    formatter.setAllowsInvalid(false);
+		    // If you want the value to be committed on each keystroke instead of focus lost
+		    formatter.setCommitsOnValidEdit(true);
+		    JFormattedTextField field = new JFormattedTextField(formatter);
+
+		    JOptionPane.showMessageDialog(null, field);
 
 		}
 	}
@@ -496,12 +502,6 @@ public class CustomerInfo extends JDialog {
 		if(txtCity.getText().length() == 0) {
 			labCity.setText("Mangler input");
 			txtCity.setBorder(border);
-			wrongInputTracker++;
-		}
-		
-		if(txtDiscount.getText().length() == 0) {
-			labDiscount.setText("Mangler input");
-			txtDiscount.setBorder(border);
 			wrongInputTracker++;
 		}
 		
