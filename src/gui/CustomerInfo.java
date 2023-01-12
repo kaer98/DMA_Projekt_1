@@ -35,6 +35,8 @@ import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.ListSelectionModel;
 import javax.swing.JSeparator;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class CustomerInfo extends JDialog {
 
@@ -64,7 +66,7 @@ public class CustomerInfo extends JDialog {
 	private JLabel labCountry;
 	private JLabel labDiscount;
 	private JLabel labName;
-
+	private Border borderB;
 
 
 	/**
@@ -134,11 +136,27 @@ public class CustomerInfo extends JDialog {
 			getContentPane().add(lblNewLabel_2);
 
 			txtName = new JTextField();
+			Border borderDefault = txtName.getBorder();
+			Border borderB = borderDefault;
+			txtName.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					txtName.setBorder(borderB);
+					labName.setText("");
+				}
+			});
 			txtName.setBounds(74, 30, 270, 20);
 			getContentPane().add(txtName);
 			txtName.setColumns(10);
 
 			txtCVR = new JTextField();
+			txtCVR.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					txtCVR.setBorder(borderB);
+					labCVR.setText("");
+				}
+			});
 			txtCVR.setForeground(new Color(0, 0, 0));
 			txtCVR.setBackground(new Color(255, 255, 255));
 			txtCVR.setBounds(74, 65, 270, 20);
@@ -146,16 +164,37 @@ public class CustomerInfo extends JDialog {
 			txtCVR.setColumns(10);
 
 			txtPhone = new JTextField();
+			txtPhone.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					txtPhone.setBorder(borderB);
+					labPhone.setText("");
+				}
+			});
 			txtPhone.setBounds(74, 100, 270, 20); 
 			getContentPane().add(txtPhone);
 			txtPhone.setColumns(10);
 
 			txtEmail = new JTextField();
+			txtEmail.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					txtEmail.setBorder(borderB);
+					labEmail.setText("");
+				}
+			});
 			txtEmail.setBounds(74, 135, 270, 20);
 			getContentPane().add(txtEmail);
 			txtEmail.setColumns(10);
 
 			txtAddress = new JTextField();
+			txtAddress.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					txtAddress.setBorder(borderB);
+					labAddress.setText("");
+				}
+			});
 			txtAddress.setBounds(74, 170, 270, 20);
 			getContentPane().add(txtAddress);
 			txtAddress.setColumns(10);
@@ -189,16 +228,37 @@ public class CustomerInfo extends JDialog {
 			getContentPane().add(lblNewLabel_8);
 
 			txtPostalcode = new JTextField();
+			txtPostalcode.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					txtPostalcode.setBorder(borderB);
+					labPostalcode.setText("");
+				}
+			});
 			txtPostalcode.setBounds(74, 205, 270, 20);
 			getContentPane().add(txtPostalcode);
 			txtPostalcode.setColumns(10);
 
 			txtCity = new JTextField();
+			txtCity.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					txtCity.setBorder(borderB);
+					labCity.setText("");
+				}
+			});
 			txtCity.setBounds(74, 240, 270, 20);
 			getContentPane().add(txtCity);
 			txtCity.setColumns(10);
 
 			txtCountry = new JTextField();
+			txtCountry.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					txtCountry.setBorder(borderB);
+					labCountry.setText("");
+				}
+			});
 			txtCountry.setBounds(74, 275, 270, 20);
 			getContentPane().add(txtCountry);
 			txtCountry.setColumns(10);
@@ -238,6 +298,13 @@ public class CustomerInfo extends JDialog {
 			getContentPane().add(lblNewLabel_1);
 
 			txtDiscount = new JTextField();
+			txtDiscount.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					txtDiscount.setBorder(borderB);
+					labDiscount.setText("");
+				}
+			});
 			txtDiscount.setBounds(74, 310, 270, 20);
 			getContentPane().add(txtDiscount);
 			txtDiscount.setColumns(10);
@@ -412,6 +479,7 @@ public class CustomerInfo extends JDialog {
 		}
 		
 		if(wrongInputTracker == 0) {
+			
 			String name = txtName.getText();
 			String cvr = txtCVR.getText();
 			String email = txtEmail.getText();
