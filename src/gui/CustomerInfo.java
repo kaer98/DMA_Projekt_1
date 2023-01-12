@@ -17,47 +17,28 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTextArea;
 import javax.swing.JLabel;
 import java.awt.GridBagLayout;
-import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.GridLayout;
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import java.awt.GridBagConstraints;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
-
 import java.awt.Insets;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Pattern;
-import java.util.regex.Matcher;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
-import javax.swing.JTextPane;
-import javax.swing.JFormattedTextField;
 import javax.swing.ListSelectionModel;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.FormSpecs;
-import com.jgoodies.forms.layout.RowSpec;
-import net.miginfocom.swing.MigLayout;
 import javax.swing.JSeparator;
 
 public class CustomerInfo extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private CustomerMenu cMenu;
 	private CustomerController cCtrl;
 	private OrderController oCtrl;
 	private Customer currCustomer;
@@ -74,10 +55,6 @@ public class CustomerInfo extends JDialog {
 	private JTextField txtCountry;
 	private JTextField txtDiscount;
 	private JList<Order> oList;
-	private EmployeeController ec;
-	private ProductController pc;
-	private OrderController oc;
-	private Employee em;
 	private JLabel labCVR;
 	private JLabel labEmail;
 	private JLabel labPhone;
@@ -321,14 +298,10 @@ public class CustomerInfo extends JDialog {
 			{
 			}
 
-			init(c,em,pc,oc,ec,cc);
+			init(c,em,cc);
 		}
 			
-	private void init(Customer c,Employee em, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc) {
-		this.em = em;
-		this.pc = pc;
-		this.ec = ec;
-		this.oc = oc;
+	private void init(Customer c,Employee em, CustomerController cc) {
 		this.currCustomer = c;
 		this.cCtrl = cc;
 

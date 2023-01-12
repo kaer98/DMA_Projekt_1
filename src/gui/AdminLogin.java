@@ -16,11 +16,6 @@ import model.Employee;
 
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
-import javax.swing.SwingConstants;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import java.awt.GridLayout;
 import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -33,10 +28,6 @@ public class AdminLogin extends JDialog {
 	private JButton btnCancel;
 	private JLabel lblWrongpass;
 	private Employee em;
-	private EmployeeController ec;
-	private ProductController pc;
-	private CustomerController cc;
-	private OrderController oc;
 	private JTextField txtUsername;
 
 
@@ -113,13 +104,9 @@ public class AdminLogin extends JDialog {
 				buttonPane.add(btnCancel);
 			}
 		}
-		init(em, pc,oc, ec, cc);
+		init(em);
 	}
-	private void init(Employee em, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc) {
+	private void init(Employee em) {
 		this.em = em;
-		this.pc = pc;
-		this.cc = cc;
-		this.ec = ec;
-		this.oc = oc;
 	}
 }
