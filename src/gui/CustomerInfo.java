@@ -86,6 +86,7 @@ public class CustomerInfo extends JDialog {
 	private JLabel labCity;
 	private JLabel labCountry;
 	private JLabel labDiscount;
+	private JLabel labName;
 
 
 
@@ -293,7 +294,7 @@ public class CustomerInfo extends JDialog {
 			labEmail.setBounds(74, 155, 270, 14);
 			getContentPane().add(labEmail);
 			
-			JLabel labName = new JLabel("");
+			labName = new JLabel("");
 			labName.setForeground(new Color(255, 0, 0));
 			labName.setBounds(74, 49, 270, 14);
 			getContentPane().add(labName);
@@ -384,31 +385,59 @@ public class CustomerInfo extends JDialog {
 
 	private void saveClicked() {
 		int wrongInputTracker = 0;
+		Border border = BorderFactory.createLineBorder(Color.RED, 1);
+		
+		if(txtName.getText().length() == 0) {
+			labName.setText("Mangler input");
+			txtName.setBorder(border);
+			wrongInputTracker++;
+		}
 		
 		if(txtCVR.getText().length() != 8){
 			labCVR.setText( "Cvr nr. skal være 8 cifre");
-			Border border = BorderFactory.createLineBorder(Color.RED, 1);
 			txtCVR.setBorder(border);
 			wrongInputTracker++;
 		}
 		if(!isValid(txtEmail.getText())){
 			labEmail.setText("Email skal indtastes i korrekt format");
-			Border border = BorderFactory.createLineBorder(Color.RED, 1);
 			txtEmail.setBorder(border);
 			wrongInputTracker++;
 		}
 		if(txtPhone.getText().length() != 8) {
 			labPhone.setText("Telefon nr. skal være 8 cifre");
-			Border border = BorderFactory.createLineBorder(Color.RED, 1);
 			txtPhone.setBorder(border);
 			wrongInputTracker++;
 		}
 		if(txtPostalcode.getText().length() != 4) {
 			labPostalcode.setText("Postnummer skal indeholde 4 cifre");
-			Border border = BorderFactory.createLineBorder(Color.RED, 1);
 			txtPostalcode.setBorder(border);
 			wrongInputTracker++;
 		}
+			
+		if(txtAddress.getText().length() == 0) {
+			labAddress.setText("Mangler input");
+			txtAddress.setBorder(border);
+			wrongInputTracker++;
+		}
+		
+		if(txtCity.getText().length() == 0) {
+			labCity.setText("Mangler input");
+			txtCity.setBorder(border);
+			wrongInputTracker++;
+		}
+		
+		if(txtCity.getText().length() == 0) {
+			labCity.setText("Mangler input");
+			txtCity.setBorder(border);
+			wrongInputTracker++;
+		}
+		
+		if(txtDiscount.getText().length() == 0) {
+			labDiscount.setText("Mangler input");
+			txtDiscount.setBorder(border);
+			wrongInputTracker++;
+		}
+		
 		if(wrongInputTracker == 0) {
 			String name = txtName.getText();
 			String cvr = txtCVR.getText();
