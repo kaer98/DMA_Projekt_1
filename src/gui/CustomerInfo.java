@@ -53,6 +53,8 @@ import com.jgoodies.forms.layout.FormSpecs;
 import com.jgoodies.forms.layout.RowSpec;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JSeparator;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class CustomerInfo extends JDialog {
 
@@ -87,7 +89,7 @@ public class CustomerInfo extends JDialog {
 	private JLabel labCountry;
 	private JLabel labDiscount;
 	private JLabel labName;
-
+	private Border borderB = BorderFactory.createLineBorder(Color.BLACK, 1);
 
 
 	/**
@@ -157,6 +159,12 @@ public class CustomerInfo extends JDialog {
 			getContentPane().add(lblNewLabel_2);
 
 			txtName = new JTextField();
+			txtName.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					txtName.setBorder(borderB);
+				}
+			});
 			txtName.setBounds(74, 30, 270, 20);
 			getContentPane().add(txtName);
 			txtName.setColumns(10);
@@ -439,6 +447,7 @@ public class CustomerInfo extends JDialog {
 		}
 		
 		if(wrongInputTracker == 0) {
+			
 			String name = txtName.getText();
 			String cvr = txtCVR.getText();
 			String email = txtEmail.getText();
