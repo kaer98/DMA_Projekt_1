@@ -1,0 +1,18 @@
+#######Vestbjerg Byggecenter A/S#######
+Medarbejder: Klaus
+Dato: 2023-01-12 					Fakturanr.:1
+Faktura
+
+
+Kunde: Ib 
+Kundes telefon: 01010101
+Kundes e-mail: ib@ucn.dk 
+Kundes adresse: Ib vej 2
+Kundes CVR-nr: 5555555
+Beskrivelse: Opvaskemaskine 55x90 Pris: 3799 serienummer: Opva1
+Beskrivelse: Reol 254x40x190 HVID Antal: 1 Stk. Pris: 2475.0 Pris: 2475
+Beskrivelse: Reol 254x40x190 HVID Antal: 1 Stk. Pris: 2475.0 Pris: 2475
+Beskrivelse: Reol 254x40x190 HVID Antal: 1 Stk. Pris: 2475.0 Pris: 2475
+Subtotal: 11224kr-22.0% rabat (2469.28)
+ Moms (25%): 2188,68kr af 8754,72kr
+Total DKK: 10943,4

@@ -173,16 +173,18 @@ public class Order {
 					writer.write("\nBeskrivelse: " + parts.getProductName() + " Antal: " + parts.getQuantity() + " Stk. Pris: " + parts.getProduct().getRetailPrice() + " Pris: " + dfSharp.format(parts.getTotal()));
 				if (parts.getProduct().isAppliance()) {
 					writer.write("\nBeskrivelse: " + parts.getProductName() + " Pris: " + dfSharp.format(parts.getTotal()));
-					writer.write("serienummer: " + parts.getCopy().getSerialNo());
+					writer.write(" serienummer: " + parts.getCopy().getSerialNo());
 				}
 			}
 			writer.write(System.lineSeparator());
 			writer.write("Subtotal: " + dfSharp.format(getTotal())+"kr");
 			if (customer.getDiscount() != 0) {
 				discount = getTotal() * (customer.getDiscount());
-				writer.write("-" + (customer.getDiscount() * 100) + "% rabat " + "(" + discount + ")");
+				writer.write("-" + dfSharp.format((customer.getDiscount()) * 100) + "% rabat " + "(" + discount + ")");
 			}
+			writer.write(System.lineSeparator());
 			writer.write("Moms (25%): " + dfSharp.format(getTotalWDiscount() * 0.25) + "kr af " + dfSharp.format(getTotalWDiscount())+"kr");
+			writer.write(System.lineSeparator());
 			writer.write("Total DKK: " + (dfSharp.format(getTotalWDiscount() * 1.25)));
 			writer.close();
 		} catch (IOException e) {
