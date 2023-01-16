@@ -316,12 +316,19 @@ public class POS extends JFrame {
 				displayOrder();
 			}
 			else {
-				oCtrl.addNewPartOrderQ(p, 1);	
+				PartOrder part = oCtrl.findPartOrderByProductName(p.getDescription());
+				if(part != null) {
+					part.setQuantity(part.getQuantity()+1);
+				}	
+				else {
+					oCtrl.addNewPartOrderQ(p, 1);	
+				}
 			}
 			displayOrder();
 
 		}
 	}
+	
 	private void removePartOrder(MouseEvent e) {
 		if (e.getClickCount() == 2 && !e.isConsumed()) {
 			e.consume(); 

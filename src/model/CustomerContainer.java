@@ -88,6 +88,7 @@ public class CustomerContainer {
 			return null;
 		}
 	}
+	
 	public int findCustomerIndex(int id) {
 		int i = 0;
 		boolean found = false;

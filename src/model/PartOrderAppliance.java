@@ -37,4 +37,10 @@ public class PartOrderAppliance extends PartOrder {
 	public double getPrice() {
 		return applianceCopy.getRetailPrice();
 	}
+
+	@Override
+	public void setQuantity(int quantity) {
+		// TODO Auto-generated method stub
+		
+	}
 }
