@@ -20,6 +20,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
 
 public class FindApplianceCopy extends JDialog {
 
@@ -27,6 +28,7 @@ public class FindApplianceCopy extends JDialog {
 	private JTextField txtSearch;
 	private Appliance appliance;
 	private OrderController oCtrl;
+	private JLabel lblError;
 
 
 	/**
@@ -58,6 +60,10 @@ public class FindApplianceCopy extends JDialog {
 			contentPanel.add(txtSearch);
 			txtSearch.setColumns(10);
 		}
+		
+		lblError = new JLabel("");
+		lblError.setBounds(20, 29, 45, 13);
+		contentPanel.add(lblError);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -100,9 +106,14 @@ public class FindApplianceCopy extends JDialog {
 	private void okClicked() {
 		ProductController pCtrl = new ProductController();
 		ApplianceCopy applianceCopy = pCtrl.findApplianceCopyBySerialNo(appliance, txtSearch.getText());
-		oCtrl.addNewPartOrderAppliance(applianceCopy);
-		this.dispose();
-		this.setVisible(false);
+		if(applianceCopy == null) {
+			lblError.setText("ikke fundet, prøv igen!");
+		}
+		else {
+			oCtrl.addNewPartOrderAppliance(applianceCopy);
+			this.dispose();
+			this.setVisible(false);	
+		}
 	}
 	
 	private void searchbarFocus(){
@@ -113,5 +124,4 @@ public class FindApplianceCopy extends JDialog {
 			txtSearch.setText("Serial number");
 		}
 	}
-
 }
