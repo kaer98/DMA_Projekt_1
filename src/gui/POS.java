@@ -334,8 +334,11 @@ public class POS extends JFrame {
 		displayProducts();
 		salesOrder = oCtrl.makeOrder();
 		salesOrder.setEmployee(em);
+		salesOrder.setCustomer(oCtrl.findCustomerByPhoneNo("00000000"));	
+		
 		if(!em.isManager()) {
 			txtCDiscount.setEditable(false);
+
 		}
 		
 		displayOrder();
@@ -351,13 +354,6 @@ public class POS extends JFrame {
 		table.setModel(otm);
 		PartOrderListCellRenderer ocr = new PartOrderListCellRenderer();
 		oJList.setCellRenderer(ocr);
-		
-	//	if(customer != null);
-		//	txtSubtotal.setText(String.valueOf(salesOrder.getTotal()));
-		//	txtSubtotalDiscount.setText(String.valueOf(salesOrder.getTotal() * customer.getDiscount()));
-		//	txtTax.setText(String.valueOf(Double.parseDouble(txtSubtotalDiscount.getText())*0.25));
-		//	txtCDiscount.setText(String.valueOf(customer.getDiscount()));
-		//	txtTotal.setText(String.valueOf(Double.parseDouble(txtTax.getText()) + Double.parseDouble(txtSubtotalDiscount.getText())));
 	}
 
 	private void displayProducts() {
