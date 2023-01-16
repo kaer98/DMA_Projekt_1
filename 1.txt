@@ -1,0 +1,16 @@
+#######Vestbjerg Byggecenter A/S#######
+Medarbejder: Klaus
+Dato: 2023-01-16 					Fakturanr.:1
+Faktura
+
+
+Kunde: Jeppe 
+Kundes telefon: 11111111
+Kundes e-mail: jeppe@ucn.dk 
+Kundes adresse: Jeppe vej 3
+Kundes CVR-nr: 33333333
+Beskrivelse: LED-spot 2,2W Antal: 2 Stk. Pris: 99.0 Pris: 198
+Beskrivelse: Lofttrappe 280x70x120 Antal: 1 Stk. Pris: 2300.0 Pris: 2300
+Subtotal: 2498kr-50% rabat (1249.0)
+Moms (25%): 312,25kr af 1249kr
+Total DKK: 1561,25

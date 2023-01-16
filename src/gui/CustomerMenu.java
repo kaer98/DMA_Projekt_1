@@ -19,6 +19,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.awt.event.KeyAdapter;
@@ -49,6 +50,7 @@ public class CustomerMenu extends JDialog{
 	private JButton btnSelect;
 	private JList<Customer> cJList;
 	private Order o;
+	private Customer currCustomer;
 	
 
 	/**
@@ -219,9 +221,13 @@ public class CustomerMenu extends JDialog{
 			txtSearch.setText("Search");
 		}
 	}
+	
+	public Customer getC() {
+		return currCustomer;
+	}
 	private void selectClicked() {
-		oc.setCustomerToOrder(o, ctm.getSelectedMember(table.getSelectedRow()));
+		currCustomer = ctm.getSelectedMember(table.getSelectedRow());
 		cancelClicked();
 	}
-
+	
 }
