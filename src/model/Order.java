@@ -156,6 +156,11 @@ public class Order {
 		this.parts = parts;
 	}
 	
+	public void updateQuantity() {
+		
+		
+	}
+	
 	public void invoice() {
 		File file = new File(orderNo+".txt");
 		try {
