@@ -27,10 +27,13 @@ public abstract class PartOrder {
 	public String getProductName() {
 		return product.getDescription();
 	}
+	
+	public abstract void setQuantity(int quantity);
 
 	// Abstract methods to get quantity of Product and total of the order
 	public abstract int getQuantity();
 
 	public abstract double getTotal();
+	
 	public abstract double getPrice();
 }

@@ -156,6 +156,25 @@ public class Order {
 		this.parts = parts;
 	}
 	
+	public PartOrder findPartOrderByProductName(String pName) {
+		PartOrder part = null;
+		int index = 0;
+		boolean found = false;
+		while (index < parts.size() && !found) {
+			part = parts.get(index);
+			if (part.getProductName().contains(pName)) {
+				found = true;
+			} else {
+				index++;
+			}
+		}
+		if (found) {
+			return parts.get(index);
+		} else {
+			return null;
+		}
+	}
+	
 	public void invoice() {
 		File file = new File(orderNo+".txt");
 		try {

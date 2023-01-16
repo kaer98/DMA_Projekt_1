@@ -101,6 +101,11 @@ public class OrderController {
 		return order;
 	}
 	
+	public PartOrder findPartOrderByProductName(String pName) {
+		PartOrder part = order.findPartOrderByProductName(pName);
+		return part;
+	}
+	
 	public void setCustomerToOrder(Order o, Customer c) {
 		o.setCustomer(c);
 	}
