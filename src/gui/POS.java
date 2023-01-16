@@ -352,12 +352,12 @@ public class POS extends JFrame {
 		PartOrderListCellRenderer ocr = new PartOrderListCellRenderer();
 		oJList.setCellRenderer(ocr);
 		
-		//not implemented yet, because customer is null
-	//	txtSubtotal.setText(String.valueOf(salesOrder.getTotal()));
-	//	txtSubtotalDiscount.setText(String.valueOf(salesOrder.getTotal() * customer.getDiscount()));
-	//	txtTax.setText(String.valueOf(Double.parseDouble(txtSubtotalDiscount.getText())*0.25));
-	//	txtCDiscount.setText(String.valueOf(customer.getDiscount()));
-	//	txtTotal.setText(String.valueOf(Double.parseDouble(txtTax.getText()) + Double.parseDouble(txtSubtotalDiscount.getText())))
+	//	if(customer != null);
+		//	txtSubtotal.setText(String.valueOf(salesOrder.getTotal()));
+		//	txtSubtotalDiscount.setText(String.valueOf(salesOrder.getTotal() * customer.getDiscount()));
+		//	txtTax.setText(String.valueOf(Double.parseDouble(txtSubtotalDiscount.getText())*0.25));
+		//	txtCDiscount.setText(String.valueOf(customer.getDiscount()));
+		//	txtTotal.setText(String.valueOf(Double.parseDouble(txtTax.getText()) + Double.parseDouble(txtSubtotalDiscount.getText())));
 	}
 
 	private void displayProducts() {
