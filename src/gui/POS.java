@@ -181,13 +181,11 @@ public class POS extends JFrame {
 
 
 		btnNewButton_1 = new JButton("Pay");
-		btnNewButton_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				finishOrder();
 			}
-		});
-		
+		});		
 
 		lblNewLabel = new JLabel("Pris ex Moms");
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
@@ -313,7 +311,6 @@ public class POS extends JFrame {
 			if(p.isAppliance()) {
 				Appliance selectedAppliance = (Appliance) ptm.getSelectedProduct(ptable.getSelectedRow());
 				startApplianceBySerialNumber(selectedAppliance);
-				displayOrder();
 			}
 			else {
 				PartOrder part = oCtrl.findPartOrderByProductName(p.getDescription());
