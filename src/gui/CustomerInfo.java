@@ -17,6 +17,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.MaskFormatter;
 import javax.swing.text.NumberFormatter;
 import javax.swing.JTextArea;
 import javax.swing.JLabel;
@@ -406,6 +407,8 @@ public class CustomerInfo extends JDialog {
 
 		}
 	}
+	
+
 
 	private void displayCustomer() {
 		this.txtName.setText(currCustomer.getName());

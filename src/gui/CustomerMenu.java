@@ -1,13 +1,8 @@
 package gui;
 
-import java.awt.EventQueue;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.BorderLayout;
 import java.awt.Dialog;
 
 import javax.swing.JList;
@@ -51,14 +46,14 @@ public class CustomerMenu extends JDialog{
 	private Employee em;
 	private JButton btnSelect;
 	private JList<Customer> cJList;
-	
+
 
 
 	/**
 	 * Create the frame.
 	 */
 	public CustomerMenu(Employee em, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc) {
-		
+
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 470, 300);
 		contentPane = new JPanel();
@@ -66,37 +61,37 @@ public class CustomerMenu extends JDialog{
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(20, 37, 414, 175);
 		contentPane.add(scrollPane);
-		
+
 		table = new JTable();
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(table);
-		
+
 		panel = new JPanel();
 		panel.setBounds(20, 223, 414, 33);
 		contentPane.add(panel);
-		
+
 		btnAdd = new JButton("Add");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				addClicked();
 			}
 		});
-		
+
 		btnSelect = new JButton("Select");
 		btnSelect.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				selectClicked();
-				
+
 			}
 		});
 		panel.add(btnSelect);
 		panel.add(btnAdd);
-		
+
 		btnInfo = new JButton("Info");
 		btnInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -104,7 +99,7 @@ public class CustomerMenu extends JDialog{
 			}
 		});
 		panel.add(btnInfo);
-		
+
 		btnDelete = new JButton("Cancel");
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -112,11 +107,11 @@ public class CustomerMenu extends JDialog{
 			}
 		});
 		panel.add(btnDelete);
-		
+
 		panel_1 = new JPanel();
 		panel_1.setBounds(20, 5, 414, 33);
 		contentPane.add(panel_1);
-		
+
 		txtSearch = new JTextField();
 		txtSearch.addFocusListener(new FocusAdapter() {
 			@Override
@@ -140,31 +135,31 @@ public class CustomerMenu extends JDialog{
 		});
 		panel_1.add(txtSearch);
 		txtSearch.setColumns(10);
-		
+
 		init(em, pc,oc,ec,cc);
 	}
-	
 
-		private void init(Employee em, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc) {
-			this.em = em;
-			this.pc = pc;
-			this.cc = cc;
-			this.ec = ec;
-			this.oc = oc;
-			cc.fill();
-			cJList = new JList<Customer>();
-			displayCustomers();
-			setModal(true);
-}		
-	
+
+	private void init(Employee em, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc) {
+		this.em = em;
+		this.pc = pc;
+		this.cc = cc;
+		this.ec = ec;
+		this.oc = oc;
+		cc.fill();
+		cJList = new JList<Customer>();
+		displayCustomers();
+		setModal(true);
+	}		
+
 	private void displayCustomers() {
 		ctm = new CustomerTM(cc.getAll());
 		table.setModel(ctm);
-		 
+
 		CustomerListCellRendere ccr = new CustomerListCellRendere();
 		cJList.setCellRenderer(ccr);
 	}
-	
+
 	private void searchClicked() {
 		cList = new ArrayList<>();
 		String s = txtSearch.getText().toLowerCase();
@@ -172,18 +167,18 @@ public class CustomerMenu extends JDialog{
 			displayCustomers();
 		}
 		else {
-		Iterator<Customer> it = cc.getAll().iterator();
-		while(it.hasNext()) {
-			Customer c = it.next();
-			if(c.getName().toLowerCase().contains(s)|| c.getMailAddress().toLowerCase().contains(s)|| c.getPhoneNo().toLowerCase().contains(s)||c.getCvr().toLowerCase().contains(s)) {
-				cList.add(c);
+			Iterator<Customer> it = cc.getAll().iterator();
+			while(it.hasNext()) {
+				Customer c = it.next();
+				if(c.getName().toLowerCase().contains(s)|| c.getMailAddress().toLowerCase().contains(s)|| c.getPhoneNo().toLowerCase().contains(s)||c.getCvr().toLowerCase().contains(s)) {
+					cList.add(c);
+				}
 			}
-		}
-		CustomerTM ct = new CustomerTM(cList);
-		table.setModel(ct);
+			CustomerTM ct = new CustomerTM(cList);
+			table.setModel(ct);
 		}
 	}
-	
+
 	private void addClicked() {
 		this.setModal(false);
 		CustomerInfo cGUI = new CustomerInfo(null, em ,pc, oc,ec ,cc);
@@ -192,24 +187,24 @@ public class CustomerMenu extends JDialog{
 		cGUI.setAlwaysOnTop(true);
 		cGUI.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
 	}
-	
-	private void infoClicked(){
-			//this.setVisible(false);
-			this.setModal(false);
-			Customer c = ctm.getSelectedMember(table.getSelectedRow());
-			CustomerInfo cGUI = new CustomerInfo(c, em ,pc, oc,ec ,cc);
-			cGUI.setVisible(true);
-			cGUI.setModal(true); 
-			cGUI.setAlwaysOnTop(true);
-			cGUI.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
-		}
-		
-	private void cancelClicked() {
-			this.dispose();
-			this.setVisible(false);
 
-		}
-	
+	private void infoClicked(){
+		//this.setVisible(false);
+		this.setModal(false);
+		Customer c = ctm.getSelectedMember(table.getSelectedRow());
+		CustomerInfo cGUI = new CustomerInfo(c, em ,pc, oc,ec ,cc);
+		cGUI.setVisible(true);
+		cGUI.setModal(true); 
+		cGUI.setAlwaysOnTop(true);
+		cGUI.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
+	}
+
+	private void cancelClicked() {
+		this.dispose();
+		this.setVisible(false);
+
+	}
+
 	private void searchbarFocus(){
 		if(txtSearch.getText().equals("Search") && txtSearch.hasFocus()) {
 			txtSearch.setText(null);
