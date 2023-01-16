@@ -18,6 +18,8 @@ import javax.swing.JDialog;
 import controller.*;
 import model.Customer;
 import model.Employee;
+import model.Order;
+
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
@@ -51,13 +53,14 @@ public class CustomerMenu extends JDialog{
 	private Employee em;
 	private JButton btnSelect;
 	private JList<Customer> cJList;
+	private Order o;
 	
 
 
 	/**
 	 * Create the frame.
 	 */
-	public CustomerMenu(Employee em, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc) {
+	public CustomerMenu(Employee em, Order o, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc) {
 		
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 470, 300);
@@ -141,12 +144,13 @@ public class CustomerMenu extends JDialog{
 		panel_1.add(txtSearch);
 		txtSearch.setColumns(10);
 		
-		init(em, pc,oc,ec,cc);
+		init(em,o,pc,oc,ec,cc);
 	}
 	
 
-		private void init(Employee em, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc) {
+		private void init(Employee em, Order o, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc) {
 			this.em = em;
+			this.o = o;
 			this.pc = pc;
 			this.cc = cc;
 			this.ec = ec;
@@ -219,7 +223,7 @@ public class CustomerMenu extends JDialog{
 		}
 	}
 	private void selectClicked() {
-		POS.setCustomer(ctm.getSelectedMember(table.getSelectedRow()));
+		oc.setCustomerToOrder(o, ctm.getSelectedMember(table.getSelectedRow()));
 		cancelClicked();
 	}
 

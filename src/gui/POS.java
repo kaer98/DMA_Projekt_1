@@ -55,7 +55,7 @@ public class POS extends JFrame {
 	private JPanel panel_1;
 	private JTextField txtSearch;
 	private ArrayList<Product> pList; 
-	private static Customer customer;
+	private Customer customer;
 	private JPanel panel_3;
 	private JButton btnSend;
 	private JScrollPane scrollPane_1;
@@ -65,8 +65,15 @@ public class POS extends JFrame {
 	private JPanel panel_5;
 	private JPanel panel_4;
 	private JLabel lblNewLabel;
-	private JTextField txtpriceExTax;
 	private JLabel lblNewLabel_1;
+	private JLabel lblNewLabel_2;
+	private JLabel lblNewLabel_3;
+	private JTextField txtCDiscount;
+	private JTextField txtSubtotalDiscount;
+	private JTextField txtTax;
+	private JTextField txtTotal;
+	private JTextField txtSubtotal;
+	private JLabel lblNewLabel_4;
 
 	/**
 	 * Create the frame.
@@ -164,9 +171,9 @@ public class POS extends JFrame {
 		panel_5.add(btnExit);
 		GridBagLayout gbl_panel_4 = new GridBagLayout();
 		gbl_panel_4.columnWidths = new int[]{45, 49, 111, 59, 55, 55, 0};
-		gbl_panel_4.rowHeights = new int[]{0, 0, 0, 21, 0};
+		gbl_panel_4.rowHeights = new int[]{0, 0, 0, 0, 21, 0};
 		gbl_panel_4.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_panel_4.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_4.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel_4.setLayout(gbl_panel_4);
 
 
@@ -186,41 +193,108 @@ public class POS extends JFrame {
 				finishOrder();
 			}
 		});		
-
-		lblNewLabel = new JLabel("Pris ex Moms");
+		
+		lblNewLabel = new JLabel("Subtotal");
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel.gridx = 4;
 		gbc_lblNewLabel.gridy = 0;
 		panel_4.add(lblNewLabel, gbc_lblNewLabel);
-
-		txtpriceExTax = new JTextField();
-		GridBagConstraints gbc_txtpriceExTax = new GridBagConstraints();
-		gbc_txtpriceExTax.insets = new Insets(0, 0, 5, 0);
-		gbc_txtpriceExTax.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtpriceExTax.gridx = 5;
-		gbc_txtpriceExTax.gridy = 0;
-		panel_4.add(txtpriceExTax, gbc_txtpriceExTax);
-		txtpriceExTax.setColumns(10);
-
-		lblNewLabel_1 = new JLabel("Moms");
+		
+		txtSubtotal = new JTextField();
+		GridBagConstraints gbc_txtSubtotal = new GridBagConstraints();
+		gbc_txtSubtotal.anchor = GridBagConstraints.WEST;
+		gbc_txtSubtotal.insets = new Insets(0, 0, 5, 0);
+		gbc_txtSubtotal.gridx = 5;
+		gbc_txtSubtotal.gridy = 0;
+		panel_4.add(txtSubtotal, gbc_txtSubtotal);
+		txtSubtotal.setColumns(10);
+		txtSubtotal.setEditable(false);
+				
+		lblNewLabel_4 = new JLabel("Subtotal med rabat");
+		GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
+		gbc_lblNewLabel_4.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_4.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_4.gridx = 4;
+		gbc_lblNewLabel_4.gridy = 1;
+		panel_4.add(lblNewLabel_4, gbc_lblNewLabel_4);
+				
+		txtSubtotalDiscount = new JTextField();
+		GridBagConstraints gbc_txtSubtotalDiscount = new GridBagConstraints();
+		gbc_txtSubtotalDiscount.anchor = GridBagConstraints.WEST;
+		gbc_txtSubtotalDiscount.insets = new Insets(0, 0, 5, 0);
+		gbc_txtSubtotalDiscount.gridx = 5;
+		gbc_txtSubtotalDiscount.gridy = 1;
+		panel_4.add(txtSubtotalDiscount, gbc_txtSubtotalDiscount);
+		txtSubtotalDiscount.setColumns(10);
+		txtSubtotalDiscount.setEditable(false);
+		
+		lblNewLabel_1 = new JLabel("MOMS 25%");
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+		gbc_lblNewLabel_1.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_1.gridx = 4;
-		gbc_lblNewLabel_1.gridy = 1;
+		gbc_lblNewLabel_1.gridy = 2;
 		panel_4.add(lblNewLabel_1, gbc_lblNewLabel_1);
+		
+		txtTax = new JTextField();
+		GridBagConstraints gbc_txtTax = new GridBagConstraints();
+		gbc_txtTax.anchor = GridBagConstraints.WEST;
+		gbc_txtTax.insets = new Insets(0, 0, 5, 0);
+		gbc_txtTax.gridx = 5;
+		gbc_txtTax.gridy = 2;
+		panel_4.add(txtTax, gbc_txtTax);
+		txtTax.setColumns(10);
+		txtTax.setEditable(false);
+		
+		lblNewLabel_2 = new JLabel("Kunderabat");
+		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
+		gbc_lblNewLabel_2.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_2.gridx = 2;
+		gbc_lblNewLabel_2.gridy = 3;
+		panel_4.add(lblNewLabel_2, gbc_lblNewLabel_2);
+		
+		txtCDiscount = new JTextField();
+		GridBagConstraints gbc_txtCDiscount = new GridBagConstraints();
+		gbc_txtCDiscount.anchor = GridBagConstraints.WEST;
+		gbc_txtCDiscount.insets = new Insets(0, 0, 5, 5);
+		gbc_txtCDiscount.gridx = 3;
+		gbc_txtCDiscount.gridy = 3;
+		panel_4.add(txtCDiscount, gbc_txtCDiscount);
+		txtCDiscount.setColumns(10);
+		
+		
+		lblNewLabel_3 = new JLabel("Total DKK");
+		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
+		gbc_lblNewLabel_3.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_3.gridx = 4;
+		gbc_lblNewLabel_3.gridy = 3;
+		panel_4.add(lblNewLabel_3, gbc_lblNewLabel_3);
+		
+		txtTotal = new JTextField();
+		GridBagConstraints gbc_txtTotal = new GridBagConstraints();
+		gbc_txtTotal.anchor = GridBagConstraints.WEST;
+		gbc_txtTotal.insets = new Insets(0, 0, 5, 0);
+		gbc_txtTotal.gridx = 5;
+		gbc_txtTotal.gridy = 3;
+		panel_4.add(txtTotal, gbc_txtTotal);
+		txtTotal.setColumns(10);
+		txtTotal.setEditable(false);
+		
 		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
 		gbc_btnNewButton_1.anchor = GridBagConstraints.NORTHWEST;
 		gbc_btnNewButton_1.insets = new Insets(0, 0, 0, 5);
 		gbc_btnNewButton_1.gridx = 1;
-		gbc_btnNewButton_1.gridy = 3;
+		gbc_btnNewButton_1.gridy = 4;
 		panel_4.add(btnNewButton_1, gbc_btnNewButton_1);
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.anchor = GridBagConstraints.NORTHWEST;
 		gbc_btnNewButton.insets = new Insets(0, 0, 0, 5);
 		gbc_btnNewButton.gridx = 2;
-		gbc_btnNewButton.gridy = 3;
+		gbc_btnNewButton.gridy = 4;
 		panel_4.add(btnNewButton, gbc_btnNewButton);
 
 		btnCheck = new JButton("Check");
@@ -228,7 +302,7 @@ public class POS extends JFrame {
 		gbc_btnCheck.anchor = GridBagConstraints.NORTHWEST;
 		gbc_btnCheck.insets = new Insets(0, 0, 0, 5);
 		gbc_btnCheck.gridx = 3;
-		gbc_btnCheck.gridy = 3;
+		gbc_btnCheck.gridy = 4;
 		panel_4.add(btnCheck, gbc_btnCheck);
 
 		btnEdits = new JButton("Edits");
@@ -236,14 +310,14 @@ public class POS extends JFrame {
 		gbc_btnEdits.anchor = GridBagConstraints.NORTHWEST;
 		gbc_btnEdits.insets = new Insets(0, 0, 0, 5);
 		gbc_btnEdits.gridx = 4;
-		gbc_btnEdits.gridy = 3;
+		gbc_btnEdits.gridy = 4;
 		panel_4.add(btnEdits, gbc_btnEdits);
 
 		btnSend = new JButton("Send");
 		GridBagConstraints gbc_btnSend = new GridBagConstraints();
 		gbc_btnSend.anchor = GridBagConstraints.NORTHWEST;
 		gbc_btnSend.gridx = 5;
-		gbc_btnSend.gridy = 3;
+		gbc_btnSend.gridy = 4;
 		panel_4.add(btnSend, gbc_btnSend);
 
 		init(em, pc, oc, ec, cc);
@@ -260,10 +334,14 @@ public class POS extends JFrame {
 		displayProducts();
 		salesOrder = oCtrl.makeOrder();
 		salesOrder.setEmployee(em);
+		if(!em.isManager()) {
+			txtCDiscount.setEditable(false);
+		}
+		
 		displayOrder();
 	} 
 	public void startCustomerMenu() {
-		CustomerMenu cm = new CustomerMenu(employee, pCtrl,oCtrl,eCtrl,cCtrl);
+		CustomerMenu cm = new CustomerMenu(employee, salesOrder, pCtrl,oCtrl,eCtrl,cCtrl);
 		cm.setVisible(true);
 		cm.setModal(true);
 
@@ -273,8 +351,13 @@ public class POS extends JFrame {
 		table.setModel(otm);
 		PartOrderListCellRenderer ocr = new PartOrderListCellRenderer();
 		oJList.setCellRenderer(ocr);
-		txtpriceExTax.setText(""+salesOrder.getTotal());
-
+		
+		//not implemented yet, because customer is null
+	//	txtSubtotal.setText(String.valueOf(salesOrder.getTotal()));
+	//	txtSubtotalDiscount.setText(String.valueOf(salesOrder.getTotal() * customer.getDiscount()));
+	//	txtTax.setText(String.valueOf(Double.parseDouble(txtSubtotalDiscount.getText())*0.25));
+	//	txtCDiscount.setText(String.valueOf(customer.getDiscount()));
+	//	txtTotal.setText(String.valueOf(Double.parseDouble(txtTax.getText()) + Double.parseDouble(txtSubtotalDiscount.getText())))
 	}
 
 	private void displayProducts() {
@@ -343,9 +426,6 @@ public class POS extends JFrame {
 		else if(txtSearch.getText().equals("") && !txtSearch.hasFocus()) {
 			txtSearch.setText("Search");
 		}
-	}
-	public static void setCustomer(Customer c) {
-		customer = c;
 	}
 	
 	private void startApplianceBySerialNumber(Appliance selectedAppliance) {
