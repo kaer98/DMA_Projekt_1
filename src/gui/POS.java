@@ -26,6 +26,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.DecimalFormat;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.FlowLayout;
@@ -400,6 +401,10 @@ public class POS extends JFrame {
 														panel_6.add(btnNewButton_1);
 														
 																btnSend = new JButton("Send");
+																btnSend.addActionListener(new ActionListener() {
+																	public void actionPerformed(ActionEvent e) {
+																	}
+																});
 																panel_6.add(btnSend);
 														btnNewButton_1.addActionListener(new ActionListener() {
 															public void actionPerformed(ActionEvent e) {
@@ -444,11 +449,7 @@ public class POS extends JFrame {
 			txtCMail.setText(currCustomer.getMailAddress());
 			txtCAddress.setText(currCustomer.getAddress());
 			txtCCity.setText(currCustomer.getPostalCode() + ",  " + currCustomer.getCity());
-			double withDiscount = salesOrder.getTotal()* (1+Double.parseDouble(txtCDiscount.getText()));
-			txtSubtotal.setText("" + salesOrder.getTotal());
-			txtSubtotalDiscount.setText("" + withDiscount);
-			txtTax.setText("" + withDiscount *0.25);
-			txtTotal.setText("" + (withDiscount*0.25 + withDiscount));
+			updatePrices();
 		}
 
 	}
@@ -457,11 +458,7 @@ public class POS extends JFrame {
 		table.setModel(otm);
 		PartOrderListCellRenderer ocr = new PartOrderListCellRenderer();
 		oJList.setCellRenderer(ocr);
-		double withDiscount = salesOrder.getTotal()* (1+Double.parseDouble(txtCDiscount.getText()));
-		txtSubtotal.setText("" + salesOrder.getTotal());
-		txtSubtotalDiscount.setText("" + withDiscount);
-		txtTax.setText("" + withDiscount *0.25);
-		txtTotal.setText("" + (withDiscount*0.25 + withDiscount));
+		updatePrices();
 
 	}
 
@@ -471,6 +468,15 @@ public class POS extends JFrame {
 		ptable.setModel(ptm); 
 		ProductListCellRenderer pcr = new ProductListCellRenderer();
 		pJList.setCellRenderer(pcr);
+	}
+	
+	private void updatePrices() {
+		DecimalFormat numberFormat = new DecimalFormat("#.00");
+		double withDiscount = salesOrder.getTotal()* (1+Double.parseDouble(txtCDiscount.getText()));
+		txtSubtotal.setText("" + numberFormat.format(salesOrder.getTotal()));
+		txtSubtotalDiscount.setText("" + numberFormat.format(withDiscount));
+		txtTax.setText("" + numberFormat.format(withDiscount *0.25));
+		txtTotal.setText("" + numberFormat.format((withDiscount*0.25 + withDiscount)));
 	}
 
 	private void searchClicked() {
