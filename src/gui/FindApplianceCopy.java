@@ -21,6 +21,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import java.awt.Color;
 
 public class FindApplianceCopy extends JDialog {
 
@@ -62,7 +63,8 @@ public class FindApplianceCopy extends JDialog {
 		}
 		
 		lblError = new JLabel("");
-		lblError.setBounds(20, 29, 45, 13);
+		lblError.setForeground(new Color(255, 0, 0));
+		lblError.setBounds(10, 30, 220, 13);
 		contentPanel.add(lblError);
 		{
 			JPanel buttonPane = new JPanel();
@@ -107,7 +109,7 @@ public class FindApplianceCopy extends JDialog {
 		ProductController pCtrl = new ProductController();
 		ApplianceCopy applianceCopy = pCtrl.findApplianceCopyBySerialNo(appliance, txtSearch.getText());
 		if(applianceCopy == null) {
-			lblError.setText("ikke fundet, prøv igen!");
+			lblError.setText("Ikke fundet, prøv igen!");
 		}
 		else {
 			oCtrl.addNewPartOrderAppliance(applianceCopy);

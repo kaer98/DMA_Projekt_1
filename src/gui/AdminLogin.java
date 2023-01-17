@@ -21,6 +21,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.DropMode;
 
 public class AdminLogin extends JDialog {
 
@@ -47,14 +48,14 @@ public class AdminLogin extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
-			JLabel lblNewLabel = new JLabel("Password:");
-			lblNewLabel.setBounds(10, 54, 84, 14);
-			contentPanel.add(lblNewLabel);
-		}
-		{
 			passwordField = new JPasswordField();
 			passwordField.setBounds(91, 51, 163, 20);
 			contentPanel.add(passwordField);
+		}
+		{
+			JLabel lblNewLabel = new JLabel("Password:");
+			lblNewLabel.setBounds(10, 54, 84, 14);
+			contentPanel.add(lblNewLabel);
 		}
 		{
 			lblWrongpass = new JLabel("");
