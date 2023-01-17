@@ -19,6 +19,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AdminLogin extends JDialog {
 
@@ -29,6 +31,10 @@ public class AdminLogin extends JDialog {
 	private JLabel lblWrongpass;
 	private Employee em;
 	private JTextField txtUsername;
+	private ProductController pc;
+	private OrderController oc;
+	private EmployeeController ec;
+	private CustomerController cc;
 
 
 	/**
@@ -72,41 +78,51 @@ public class AdminLogin extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				btnOk = new JButton("OK");
-				btnOk.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						if(passwordField.getText().equals(em.getPassword())){
-							POS frame = new POS(em, pc, oc, ec, cc);
-							frame.setVisible(true);
-							setModal(false);
-							setVisible(false); 
-						}
-						else {
-							lblWrongpass.setText("forkert kode, prøv igen!");
-						}
+				btnOk.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						okClicked();
 					}
-				}
-						);
+				});
+			
 				btnOk.setActionCommand("OK");
 				buttonPane.add(btnOk);
 				getRootPane().setDefaultButton(btnOk);
 			}
 			{
 				btnCancel = new JButton("Cancel");
-				btnCancel.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						setVisible(false);
-						dispose();
+				btnCancel.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						cancelClicked();
 					}
 				});
 				btnCancel.setActionCommand("Cancel");
 				buttonPane.add(btnCancel);
 			}
 		}
-		init(em);
+		init(em, pc, oc, ec, cc);
 	}
-	private void init(Employee em) {
+	private void init(Employee em, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc) {
 		this.em = em;
+		this.pc = pc;
+		this.oc = oc;
+		this.ec = ec;
+		this.cc = cc;
+	}
+	
+	private void okClicked() {
+		if(passwordField.getText().equals(em.getPassword())){
+			POS frame = new POS(em, pc, oc, ec, cc);
+			frame.setVisible(true);
+			setModal(false);
+			setVisible(false); 
+		}
+		else {
+			lblWrongpass.setText("forkert kode, prøv igen!");
+		}
+	}
+	
+	private void cancelClicked() {
+		setVisible(false);
+		dispose();
 	}
 }
