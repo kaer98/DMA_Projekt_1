@@ -169,7 +169,7 @@ public class Order {
 			}
 		}
 		if (found) {
-			return parts.get(index);
+			return part;
 		} else {
 			return null;
 		}
