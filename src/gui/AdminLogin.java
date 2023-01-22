@@ -19,6 +19,10 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.DropMode;
+import java.awt.Color;
 
 public class AdminLogin extends JDialog {
 
@@ -26,34 +30,33 @@ public class AdminLogin extends JDialog {
 	private JPasswordField passwordField;
 	private JButton btnOk;
 	private JButton btnCancel;
-	private JLabel lblWrongpass;
 	private Employee em;
 	private JTextField txtUsername;
+	private ProductController pc;
+	private OrderController oc;
+	private EmployeeController ec;
+	private CustomerController cc;
+	private JLabel lblWrongpass;
 
 
 	/**
 	 * Create the dialog.
 	 */
 	public AdminLogin(Employee em, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc) {
-		setBounds(100, 100, 280, 154);
+		setBounds(100, 100, 280, 162);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		{
-			JLabel lblNewLabel = new JLabel("Password:");
-			lblNewLabel.setBounds(10, 54, 84, 14);
-			contentPanel.add(lblNewLabel);
-		}
 		{
 			passwordField = new JPasswordField();
 			passwordField.setBounds(91, 51, 163, 20);
 			contentPanel.add(passwordField);
 		}
 		{
-			lblWrongpass = new JLabel("");
-			lblWrongpass.setBounds(0, 0, 0, 0);
-			contentPanel.add(lblWrongpass);
+			JLabel lblNewLabel = new JLabel("Password:");
+			lblNewLabel.setBounds(10, 54, 84, 14);
+			contentPanel.add(lblNewLabel);
 		}
 		
 		txtUsername = new JTextField();
@@ -66,47 +69,62 @@ public class AdminLogin extends JDialog {
 		JLabel lblNewLabel_1 = new JLabel("Brugernavn:");
 		lblNewLabel_1.setBounds(10, 19, 84, 14);
 		contentPanel.add(lblNewLabel_1);
+		
+		lblWrongpass = new JLabel("");
+		lblWrongpass.setForeground(new Color(255, 0, 0));
+		lblWrongpass.setBounds(91, 68, 163, 14);
+		contentPanel.add(lblWrongpass);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				btnOk = new JButton("OK");
-				btnOk.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						if(passwordField.getText().equals(em.getPassword())){
-							POS frame = new POS(em, pc, oc, ec, cc);
-							frame.setVisible(true);
-							setModal(false);
-							setVisible(false); 
-						}
-						else {
-							lblWrongpass.setText("forkert kode, prøv igen!");
-						}
+				btnOk.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						okClicked();
 					}
-				}
-						);
+				});
+			
 				btnOk.setActionCommand("OK");
 				buttonPane.add(btnOk);
 				getRootPane().setDefaultButton(btnOk);
 			}
 			{
 				btnCancel = new JButton("Cancel");
-				btnCancel.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						setVisible(false);
-						dispose();
+				btnCancel.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						cancelClicked();
 					}
 				});
 				btnCancel.setActionCommand("Cancel");
 				buttonPane.add(btnCancel);
 			}
 		}
-		init(em);
+		init(em, pc, oc, ec, cc);
 	}
-	private void init(Employee em) {
+	private void init(Employee em, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc) {
 		this.em = em;
+		this.pc = pc;
+		this.oc = oc;
+		this.ec = ec;
+		this.cc = cc;
+	}
+	
+	private void okClicked() {
+		if(passwordField.getText().equals(em.getPassword())){
+			POS frame = new POS(em, pc, oc, ec, cc);
+			frame.setVisible(true);
+			setModal(false);
+			setVisible(false); 
+		}
+		else {
+			lblWrongpass.setText("Forkert kode, prøv igen!");
+		}
+	}
+	
+	private void cancelClicked() {
+		setVisible(false);
+		dispose();
 	}
 }

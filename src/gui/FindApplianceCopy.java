@@ -21,6 +21,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import java.awt.Color;
 
 public class FindApplianceCopy extends JDialog {
 
@@ -35,34 +36,22 @@ public class FindApplianceCopy extends JDialog {
 	 * Create the dialog.
 	 */
 	public FindApplianceCopy(Appliance a, OrderController o) {
+		setTitle("Indtast serienummer");
 		setBounds(100, 100, 264, 120);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		{
-			txtSearch = new JTextField();
-			txtSearch.addFocusListener(new FocusAdapter() {
-				@Override
-				public void focusLost(FocusEvent e) {
-					searchbarFocus();
-				}
-			});
-			txtSearch.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mousePressed(MouseEvent e) {
-					searchbarFocus();
-				}
-			});
-			txtSearch.setToolTipText("Input appliance serial number");
-			txtSearch.setText("Serial number");
-			txtSearch.setBounds(10, 11, 230, 20);
-			contentPanel.add(txtSearch);
-			txtSearch.setColumns(10);
-		}
+		txtSearch = new JTextField();
+		txtSearch.setToolTipText("Input appliance serial number");
+		txtSearch.setBounds(10, 11, 230, 20);
+		contentPanel.add(txtSearch);
+		txtSearch.setColumns(10);
+		
 		
 		lblError = new JLabel("");
-		lblError.setBounds(20, 29, 45, 13);
+		lblError.setForeground(new Color(255, 0, 0));
+		lblError.setBounds(10, 30, 220, 13);
 		contentPanel.add(lblError);
 		{
 			JPanel buttonPane = new JPanel();
@@ -107,21 +96,12 @@ public class FindApplianceCopy extends JDialog {
 		ProductController pCtrl = new ProductController();
 		ApplianceCopy applianceCopy = pCtrl.findApplianceCopyBySerialNo(appliance, txtSearch.getText());
 		if(applianceCopy == null) {
-			lblError.setText("ikke fundet, prøv igen!");
+			lblError.setText("Ikke fundet, prøv igen!");
 		}
 		else {
 			oCtrl.addNewPartOrderAppliance(applianceCopy);
 			this.dispose();
 			this.setVisible(false);	
-		}
-	}
-	
-	private void searchbarFocus(){
-		if(txtSearch.getText().equals("Serial number") && txtSearch.hasFocus()) {
-			txtSearch.setText(null);
-		}
-		else if(txtSearch.getText().equals("") && !txtSearch.hasFocus()) {
-			txtSearch.setText("Serial number");
 		}
 	}
 }
