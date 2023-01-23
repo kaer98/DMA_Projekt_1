@@ -87,10 +87,12 @@ public class Login extends JFrame {
 						AdminLogin adminLogin = new AdminLogin(em, pc, oc, ec, cc);
 					adminLogin.setModal(true);
 					adminLogin.setVisible(true);
+					adminLogin.setAlwaysOnTop(true);
 					}
 					else {
 					POS frame = new POS(em ,pc, oc, ec, cc);
                     frame.setVisible(true);
+                    frame.setAlwaysOnTop(true);
 					}
 					setVisible(false);
 				}

@@ -29,8 +29,8 @@ public class ProductController {
 		return product;
 	}
 	
-	public ApplianceCopy findApplianceCopyBySerialNo(Appliance appliance, String serialNo) {
-		ApplianceCopy applianceCopy = appliance.findApplianceCopyBySerialNo(serialNo);
+	public ApplianceCopy findApplianceCopyBySerialNo(Product product2, String serialNo) {
+		ApplianceCopy applianceCopy = product2.findApplianceCopyBySerialNo(serialNo);
 		return applianceCopy;
 		
 	}

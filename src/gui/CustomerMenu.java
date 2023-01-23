@@ -81,6 +81,7 @@ public class CustomerMenu extends JDialog{
 		contentPane.add(panel);
 
 		btnAdd = new JButton("Add");
+		btnAdd.setToolTipText("Click to add a new customer in the system");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				addClicked();
@@ -88,6 +89,7 @@ public class CustomerMenu extends JDialog{
 		});
 
 		btnSelect = new JButton("Select");
+		btnSelect.setToolTipText("Click to add customer to order");
 		btnSelect.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -99,6 +101,7 @@ public class CustomerMenu extends JDialog{
 		panel.add(btnAdd);
 
 		btnInfo = new JButton("Info");
+		btnInfo.setToolTipText("Click to view and edit customer information");
 		btnInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				infoClicked();

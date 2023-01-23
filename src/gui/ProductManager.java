@@ -12,6 +12,8 @@ import controller.OrderController;
 import controller.ProductController;
 import model.Appliance;
 import model.ApplianceCopy;
+import model.PartOrder;
+import model.Product;
 
 import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
@@ -23,11 +25,11 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Color;
 
-public class FindApplianceCopy extends JDialog {
+public class ProductManager extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField txtSearch;
-	private Appliance appliance;
+	private JTextField txtAmount;
+	private PartOrder po;
 	private OrderController oCtrl;
 	private JLabel lblError;
 
@@ -35,18 +37,19 @@ public class FindApplianceCopy extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public FindApplianceCopy(Appliance a, OrderController o) {
-		setTitle("Indtast serienummer");
+	public ProductManager(PartOrder po, OrderController o, String title) {
+		setTitle(title);
 		setBounds(100, 100, 264, 120);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		txtSearch = new JTextField();
-		txtSearch.setToolTipText("Input appliance serial number");
-		txtSearch.setBounds(10, 11, 230, 20);
-		contentPanel.add(txtSearch);
-		txtSearch.setColumns(10);
+		txtAmount = new JTextField();
+		txtAmount.setToolTipText("Input appliance serial number");
+		txtAmount.setBounds(10, 11, 230, 20);
+		contentPanel.add(txtAmount);
+		txtAmount.setColumns(10);
+		
 		
 		
 		lblError = new JLabel("");
@@ -79,7 +82,7 @@ public class FindApplianceCopy extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
-		init(a, o);
+		init(po, o);
 	}
 	
 	private void cancelClicked() {
@@ -87,21 +90,21 @@ public class FindApplianceCopy extends JDialog {
 		this.setVisible(false);
 
 	}
-	private void init(Appliance a, OrderController o) {
+	private void init(PartOrder po, OrderController o) {
 		this.oCtrl = o;
-		this.appliance = a;
+		this.po = po;;
+		
 	}
 	
 	private void okClicked() {
-		ProductController pCtrl = new ProductController();
-		ApplianceCopy applianceCopy = pCtrl.findApplianceCopyBySerialNo(appliance, txtSearch.getText());
-		if(applianceCopy == null) {
-			lblError.setText("Ikke fundet, prøv igen!");
-		}
-		else {
-			oCtrl.addNewPartOrderAppliance(applianceCopy);
+		int amount = Integer.parseInt(txtAmount.getText());
+		if(amount > 0 && amount <= po.getProduct().getQuantity()) {
+			oCtrl.partOrderSetQuantity(amount, po);
 			this.dispose();
 			this.setVisible(false);	
+		}
+		else {
+			lblError.setText("Ikke nok på lager af det valgte produkt");
 		}
 	}
 }

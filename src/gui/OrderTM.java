@@ -56,6 +56,9 @@ public Object getValueAt(int rowIndex, int columnIndex) {
 
 }
 
+public void clearData(){
+	data.clear();
+}
 
 public PartOrder getSelectedProduct(int i) {
 	return data.get(i);

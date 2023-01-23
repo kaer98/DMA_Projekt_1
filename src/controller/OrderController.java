@@ -37,6 +37,10 @@ public class OrderController {
 		order.addNewPartOrderAppliance(p);
 	}
 
+	public void clearList() {
+		parts.clear();
+	}
+	
 	public void addNewPartOrderQ(Product product, int quantity) {
 		order.addNewPartOrderQ(product, quantity);
 	}
@@ -110,5 +114,9 @@ public class OrderController {
 		o.setCustomer(c);
 	}
 	
+	public void partOrderSetQuantity(int amount, PartOrder po) {
+		PartOrder currPO = po;
+		currPO.setQuantity(amount);
+	}
 	
 }

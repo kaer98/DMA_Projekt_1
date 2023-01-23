@@ -1,0 +1,25 @@
+#######Vestbjerg Byggecenter A/S#######
+Medarbejder: Klaus
+Dato: 2023-01-23 					Fakturanr.:1
+Faktura
+
+
+Kunde: Michael 
+Kundes telefon: 81818181
+Kundes e-mail: michael@ucn.dk 
+Kundes adresse: Michael vej 8
+Kundes CVR-nr: 77777777
+Beskrivelse: Opvaskemaskine 57x60x82 Pris: 4350 serienummer: Opva0
+Beskrivelse: Dampspærretape 5x250 Antal: 2 Stk. Pris: 170.0 Pris: 340
+Beskrivelse: Induktionskogeplade 59x52 Pris: 1800 serienummer: Indu0
+Beskrivelse: Gipsplade 90x240 Antal: 2 Stk. Pris: 125.0 Pris: 250
+Beskrivelse: LED-spot 2,2W Antal: 1 Stk. Pris: 99.0 Pris: 99
+Beskrivelse: Dampspærre 50x5000 Antal: 1 Stk. Pris: 1300.0 Pris: 1300
+Beskrivelse: Rulleklæber 15l Antal: 1 Stk. Pris: 400.0 Pris: 400
+Beskrivelse: Vægmonteret emhætte 90x47 Antal: 1 Stk. Pris: 1999.0 Pris: 1999
+Beskrivelse: Skruer 6cm 350 stk Antal: 1 Stk. Pris: 220.0 Pris: 220
+Beskrivelse: Lofttrappe 280x70x120 Antal: 1 Stk. Pris: 2300.0 Pris: 2300
+Beskrivelse: Tørretubmler 8kg HVID Pris: 4999 serienummer: Tørr1
+Subtotal: 18057kr-22% rabat (3972.54)
+Moms (25%): 3521,12kr af 14084,46kr
+Total DKK: 17605,58

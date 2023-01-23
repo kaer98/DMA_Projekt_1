@@ -121,6 +121,7 @@ public class CustomerInfo extends JDialog {
 			getContentPane().add(buttonPanel);
 			{
 				btnOK = new JButton("OK");
+				btnOK.setToolTipText("Save and close");
 				btnOK.setVerticalAlignment(SwingConstants.TOP);
 				btnOK.setHorizontalAlignment(SwingConstants.RIGHT);
 				btnOK.addActionListener(new ActionListener() {

@@ -14,6 +14,7 @@ import model.Customer;
 import model.Employee;
 import model.Order;
 import model.PartOrder;
+import model.PartOrderQ;
 import model.Product;
 import java.awt.Color;
 import java.awt.Dialog;
@@ -46,18 +47,14 @@ public class POS extends JFrame {
 	private JList<Product> pJList;
 	private JList<PartOrder> oJList;
 	private JTable ptable;
-	private JButton btnNewButton;
-	private JButton btnNewButton_1;
-	private JButton btnManager;
-	private JButton btnHelp;
-	private JButton btnExit;
-	private JButton btnCheck;
-	private JButton btnEdits;
+	private JButton btnLookupCustomer;
+	private JButton btnPay;
+	private JButton btnClear;
+	private JButton btnEdit;
 	private ProductTM ptm;
 	private JPanel panel_1;
 	private JTextField txtSearch;
 	private ArrayList<Product> pList; 
-	private Customer customer;
 	private JPanel panel_3;
 	private JButton btnSend;
 	private JScrollPane scrollPane_1;
@@ -87,7 +84,7 @@ public class POS extends JFrame {
 	private JLabel txtCAddress;
 	private JLabel lblNewLabel_6;
 	private JLabel txtCCity;
-
+	private JButton btnLogOut;
 	/**
 	 * Create the frame.
 	 */
@@ -99,11 +96,6 @@ public class POS extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(1, 3, 3, 3));
-
-		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(new Color(0, 0, 0), 3));
-		contentPane.add(panel);
-		panel.setLayout(new GridLayout(10, 2, 2, 2));
 
 		panel_1 = new JPanel();
 		contentPane.add(panel_1);
@@ -171,17 +163,16 @@ public class POS extends JFrame {
 
 		panel_5 = new JPanel();
 		panel_2.add(panel_5, BorderLayout.NORTH);
+		
+		btnLogOut = new JButton("Log out");
+		btnLogOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				logOutClicked();
+			}
+		});
+		panel_5.add(btnLogOut);
 		panel_4 = new JPanel();
 		panel_2.add(panel_4, BorderLayout.SOUTH);
-
-		btnManager = new JButton("Manager");
-		panel_5.add(btnManager);
-
-		btnHelp = new JButton("Help");
-		panel_5.add(btnHelp);
-
-		btnExit = new JButton("Exit");
-		panel_5.add(btnExit);
 		GridBagLayout gbl_panel_4 = new GridBagLayout();
 		gbl_panel_4.columnWidths = new int[]{45, 49, 111, 0, 59, 55, 55, 0};
 		gbl_panel_4.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 21, 0};
@@ -377,36 +368,50 @@ public class POS extends JFrame {
 		gbc_panel_6.gridx = 0;
 		gbc_panel_6.gridy = 6;
 		panel_4.add(panel_6, gbc_panel_6);
-		panel_6.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+				panel_6.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		
+		
+				btnLookupCustomer = new JButton("Lookup customer");
+				btnLookupCustomer.setHorizontalAlignment(SwingConstants.LEFT);
+				panel_6.add(btnLookupCustomer);
+				btnLookupCustomer.setToolTipText("Click to add customer to order");
+				btnLookupCustomer.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						startCustomerMenu();
+					}
+				});
+
+		btnEdit = new JButton("Edit");
+		btnEdit.setHorizontalAlignment(SwingConstants.RIGHT);
+		btnEdit.setToolTipText("Click to edit product in basket");
+		panel_6.add(btnEdit);
+		
+				btnClear = new JButton("Clear");
+				btnClear.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						clearClicked();
+					}
+				});
+				panel_6.add(btnClear);
+				btnClear.setToolTipText("Click to clear customer basket ");
 
 
-
-		btnNewButton = new JButton("Lookup customer");
-		panel_6.add(btnNewButton);
-		btnNewButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				startCustomerMenu();
-			}
-		});
-
-		btnEdits = new JButton("Edits");
-		panel_6.add(btnEdits);
-
-		btnCheck = new JButton("Check");
-		panel_6.add(btnCheck);
-
-
-		btnNewButton_1 = new JButton("Pay");
-		panel_6.add(btnNewButton_1);
+		btnPay = new JButton("Pay");
+		btnPay.setHorizontalAlignment(SwingConstants.RIGHT);
+		btnPay.setToolTipText("Click to make payment through cc terminal");
+		panel_6.add(btnPay);
 
 		btnSend = new JButton("Send");
+		btnSend.setHorizontalAlignment(SwingConstants.RIGHT);
+		btnSend.setToolTipText("Click to send an invoice for postponed payment(registered companies only!!)");
 		btnSend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		panel_6.add(btnSend);
-		btnNewButton_1.addActionListener(new ActionListener() {
+		btnPay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				finishOrder();
 			}
@@ -471,7 +476,7 @@ public class POS extends JFrame {
 	}
 
 	private void updatePrices() {
-		DecimalFormat numberFormat = new DecimalFormat("#.00");
+		DecimalFormat numberFormat = new DecimalFormat("#0.00");
 		double withDiscount = salesOrder.getTotal()* (1+Double.parseDouble(txtCDiscount.getText()));
 		txtSubtotal.setText("" + numberFormat.format(salesOrder.getTotal()));
 		txtSubtotalDiscount.setText("" + numberFormat.format(withDiscount));
@@ -497,14 +502,36 @@ public class POS extends JFrame {
 			ptable.setModel(ptm);
 		}
 	}
+	
+	private void clearClicked() {
+		otm.clearData();
+		displayOrder();
+	}
+	
+	private void logOutClicked() {
+		this.dispose();
+		this.setVisible(false);
+		Login loginGUI = new Login();
+		loginGUI.setVisible(true);
+	}
+	
+	private void editClicked() {
+		if(!ptm.getSelectedProduct(table.getSelectedRow()).isAppliance()) {
+			
+		}
 
+		
+		
+		
+	}
+	
 	private void doubleclicked(MouseEvent e) {
 		if (e.getClickCount() == 2 && !e.isConsumed()) {
 			e.consume(); 
 			Product p = ptm.getSelectedProduct(ptable.getSelectedRow());
 			if(p.isAppliance()) {
 				Appliance selectedAppliance = (Appliance) ptm.getSelectedProduct(ptable.getSelectedRow());
-				startApplianceBySerialNumber(selectedAppliance);
+				startApplianceManager(selectedAppliance);
 			}
 			else {
 				PartOrder part = oCtrl.findPartOrderByProductName(p.getDescription());
@@ -539,17 +566,26 @@ public class POS extends JFrame {
 		}
 	}
 
-	private void startApplianceBySerialNumber(Appliance selectedAppliance) {
-		FindApplianceCopy fac = new FindApplianceCopy(selectedAppliance, oCtrl);
-		fac.setVisible(true);
-		fac.setModal(true);
-		fac.setAlwaysOnTop(true);
-		fac.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
+	private void startApplianceManager(Appliance selectedAppliance) {
+		ApplianceManager am = new ApplianceManager(selectedAppliance, oCtrl, "Serienummer");
+		am.setVisible(true);
+		am.setModal(true);
+		am.setAlwaysOnTop(true);
+		am.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
 		displayOrder();
 
 	}
+	
+	private void startProductManager(PartOrder po) {
+		ProductManager pm = new ProductManager(po, oCtrl, "Indtast ny mængde");
+		pm.setVisible(true);
+		pm.setModal(true);
+		pm.setAlwaysOnTop(true);
+		pm.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
+		displayOrder();
+	}
+	
 	private void finishOrder() {
-
 		salesOrder.invoice();
 	}
 }
