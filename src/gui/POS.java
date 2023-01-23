@@ -384,6 +384,11 @@ public class POS extends JFrame {
 				});
 
 		btnEdit = new JButton("Edit");
+		btnEdit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				editClicked();
+			}
+		});
 		btnEdit.setHorizontalAlignment(SwingConstants.RIGHT);
 		btnEdit.setToolTipText("Click to edit product in basket");
 		panel_6.add(btnEdit);
@@ -517,12 +522,10 @@ public class POS extends JFrame {
 	
 	private void editClicked() {
 		if(!ptm.getSelectedProduct(table.getSelectedRow()).isAppliance()) {
-			
+			startProductManager(oJList.getSelectedValue());
 		}
-
-		
-		
-		
+		else {
+		}
 	}
 	
 	private void doubleclicked(MouseEvent e) {
@@ -543,7 +546,6 @@ public class POS extends JFrame {
 				}
 			}
 			displayOrder();
-
 		}
 	}
 

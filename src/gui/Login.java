@@ -92,7 +92,6 @@ public class Login extends JFrame {
 					else {
 					POS frame = new POS(em ,pc, oc, ec, cc);
                     frame.setVisible(true);
-                    frame.setAlwaysOnTop(true);
 					}
 					setVisible(false);
 				}
