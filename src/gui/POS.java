@@ -605,8 +605,6 @@ public class POS extends JFrame {
 			txtSearch.setText("Search");
 		}
 	}
-
-
 	
 	private void finishOrder() {
 		salesOrder.invoice();

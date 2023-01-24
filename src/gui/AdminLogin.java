@@ -37,12 +37,13 @@ public class AdminLogin extends JDialog {
 	private EmployeeController ec;
 	private CustomerController cc;
 	private JLabel lblWrongpass;
+	private Login login;
 
 
 	/**
 	 * Create the dialog.
 	 */
-	public AdminLogin(Employee em, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc) {
+	public AdminLogin(Employee em, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc, Login login) {
 		setBounds(100, 100, 280, 162);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -101,14 +102,15 @@ public class AdminLogin extends JDialog {
 				buttonPane.add(btnCancel);
 			}
 		}
-		init(em, pc, oc, ec, cc);
+		init(em, pc, oc, ec, cc, login);
 	}
-	private void init(Employee em, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc) {
+	private void init(Employee em, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc, Login login) {
 		this.em = em;
 		this.pc = pc;
 		this.oc = oc;
 		this.ec = ec;
 		this.cc = cc;
+		this.login = login;
 	}
 	
 	private void okClicked() {
@@ -121,6 +123,7 @@ public class AdminLogin extends JDialog {
 		else {
 			lblWrongpass.setText("Forkert kode, prøv igen!");
 		}
+		login.setVisible(false);
 	}
 	
 	private void cancelClicked() {

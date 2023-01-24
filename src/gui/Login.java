@@ -25,12 +25,11 @@ public class Login extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel panel;
-	private JButton btnTest;
 	private EmployeeController ec;
 	private ProductController pc;
 	private CustomerController cc;
 	private OrderController oc;
-	
+	private Login login;
 
 	/**
 	 * Launch the application.
@@ -73,6 +72,7 @@ public class Login extends JFrame {
 		pc = new ProductController();
 		cc = new CustomerController();
 		oc = new OrderController();
+		login = this;
 		makeButtons();
 	}
 		
@@ -84,16 +84,16 @@ public class Login extends JFrame {
 			btn.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent e) {
 					if(em.isManager() == true) {
-						AdminLogin adminLogin = new AdminLogin(em, pc, oc, ec, cc);
+						AdminLogin adminLogin = new AdminLogin(em, pc, oc, ec, cc, login);
 					adminLogin.setModal(true);
 					adminLogin.setVisible(true);
 					adminLogin.setAlwaysOnTop(true);
 					}
 					else {
-					POS frame = new POS(em ,pc, oc, ec, cc);
-                    frame.setVisible(true);
+						POS frame = new POS(em ,pc, oc, ec, cc);
+						frame.setVisible(true);
+						setVisible(false);
 					}
-					setVisible(false);
 				}
 			}); 
 			panel.add(btn);

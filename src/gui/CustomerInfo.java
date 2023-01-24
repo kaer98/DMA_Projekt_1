@@ -99,7 +99,7 @@ public class CustomerInfo extends JDialog {
 	 * Create the dialog.
 	 */
 
-	public CustomerInfo(Customer c,Employee em, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc) {
+	public CustomerInfo(Customer c,Employee em, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc, CustomerMenu cMenu) {
 		setBounds(150, 150, 375, 550);
 		getContentPane().setLayout(null);
 		contentPanel.setBounds(0, 0, 434, 11);
@@ -384,16 +384,17 @@ public class CustomerInfo extends JDialog {
 			{
 			}
 
-			init(c,em,pc,oc,ec,cc);
+			init(c,em,pc,oc,ec,cc, cMenu);
 		}
 			
-	private void init(Customer c,Employee em, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc) {
+	private void init(Customer c,Employee em, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc, CustomerMenu cMenu) {
 		this.em = em;
 		this.pc = pc;
 		this.ec = ec;
 		this.oc = oc;
 		this.currCustomer = c;
 		this.cCtrl = cc;
+		this.cMenu = cMenu;
 
 		OrderListCellRenderer ocr = new OrderListCellRenderer();
 		oList.setCellRenderer(ocr);
@@ -522,6 +523,7 @@ public class CustomerInfo extends JDialog {
 		else {
 			throw new IllegalArgumentException("Error: Wrong input");
 		}
+		cMenu.displayCustomers();
 	}
 	
 	private void cancelClicked() {

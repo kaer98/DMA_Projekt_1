@@ -161,7 +161,7 @@ public class CustomerMenu extends JDialog{
 			setModal(true);
 }		
 
-	private void displayCustomers() {
+	public void displayCustomers() {
 		ctm = new CustomerTM(cc.getAll());
 		table.setModel(ctm);
 
@@ -190,7 +190,7 @@ public class CustomerMenu extends JDialog{
 
 	private void addClicked() {
 		this.setModal(false);
-		CustomerInfo cGUI = new CustomerInfo(null, em ,pc, oc,ec ,cc);
+		CustomerInfo cGUI = new CustomerInfo(null, em ,pc, oc,ec ,cc, this);
 		cGUI.setVisible(true);
 		cGUI.setModal(true); 
 		cGUI.setAlwaysOnTop(true);
@@ -201,7 +201,7 @@ public class CustomerMenu extends JDialog{
 		//this.setVisible(false);
 		this.setModal(false);
 		Customer c = ctm.getSelectedMember(table.getSelectedRow());
-		CustomerInfo cGUI = new CustomerInfo(c, em ,pc, oc,ec ,cc);
+		CustomerInfo cGUI = new CustomerInfo(c, em ,pc, oc,ec ,cc, this);
 		cGUI.setVisible(true);
 		cGUI.setModal(true); 
 		cGUI.setAlwaysOnTop(true);
