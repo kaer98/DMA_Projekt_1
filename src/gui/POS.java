@@ -153,14 +153,8 @@ public class POS extends JFrame {
 		panel_2.add(scrollPane_1, BorderLayout.CENTER);
 
 		table = new JTable();
-		table.addContainerListener(new ContainerAdapter() {
-			@Override
-			public void componentAdded(ContainerEvent e) {
-				displayOrder();
-				displayPrices();
-			}
-		});
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		scrollPane_1.setViewportView(table);
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -168,7 +162,7 @@ public class POS extends JFrame {
 
 			}
 		});
-		scrollPane_1.setViewportView(table);
+
 
 		panel_5 = new JPanel();
 		panel_2.add(panel_5, BorderLayout.NORTH);
@@ -569,9 +563,7 @@ public class POS extends JFrame {
 	}
 	
 	private void doubleclicked(MouseEvent e) {
-		if (e.getClickCount() == 1 && !e.isConsumed()) {
-		}
-		else if (e.getClickCount() == 2 && !e.isConsumed()) {
+		if (e.getClickCount() == 2 && !e.isConsumed()) {
 			e.consume(); 
 			Product p = ptm.getSelectedProduct(ptable.getSelectedRow());
 			if(p.isAppliance()) {
@@ -596,9 +588,8 @@ public class POS extends JFrame {
 			e.consume(); 
 			PartOrder po = otm.getSelectedProduct(table.getSelectedRow());	
 			salesOrder.removePart(po);
+			displayOrder();
 		}
-		displayOrder();
-
 	}
 
 	private void searchbarFocus() {
