@@ -25,30 +25,31 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Color;
 
-public class ProductManager extends JDialog {
+public class PartApplianceManager extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField txtAmount;
-	private PartOrder po;
+	private JTextField txtSearch;
 	private OrderController oCtrl;
 	private JLabel lblError;
+	private PartOrder po;
+	private POS pos;
 
 
 	/**
 	 * Create the dialog.
 	 */
-	public ProductManager(PartOrder po, OrderController o, String title) {
-		setTitle(title);
+	public PartApplianceManager(PartOrder po, OrderController o, POS pos) {
+		setTitle("Indtast serienummer på hvidevarer");
 		setBounds(100, 100, 264, 120);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		txtAmount = new JTextField();
-		txtAmount.setToolTipText("Input appliance serial number");
-		txtAmount.setBounds(10, 11, 230, 20);
-		contentPanel.add(txtAmount);
-		txtAmount.setColumns(10);
+		txtSearch = new JTextField();
+		txtSearch.setToolTipText("Input appliance serial number");
+		txtSearch.setBounds(10, 11, 230, 20);
+		contentPanel.add(txtSearch);
+		txtSearch.setColumns(10);
 		
 		
 		
@@ -82,7 +83,7 @@ public class ProductManager extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
-		init(po, o);
+		init(po, o, pos);
 	}
 	
 	private void cancelClicked() {
@@ -90,21 +91,25 @@ public class ProductManager extends JDialog {
 		this.setVisible(false);
 
 	}
-	private void init(PartOrder po, OrderController o) {
+	private void init(PartOrder po, OrderController o, POS pos) {
 		this.oCtrl = o;
-		this.po = po;;
+		this.po = po;
+		this.pos = pos;
 		
 	}
 	
 	private void okClicked() {
-		int amount = Integer.parseInt(txtAmount.getText());
-		if(amount > 0 && amount <= po.getProduct().getQuantity()) {
-			oCtrl.partOrderSetQuantity(amount, po);
+		ProductController pCtrl = new ProductController();
+		ApplianceCopy applianceCopy = pCtrl.findApplianceCopyBySerialNo(po.getProduct(), txtSearch.getText());
+		if(applianceCopy == null) {
+			lblError.setText("Ikke fundet, prøv igen!");
+		}
+		else {
+			oCtrl.addNewPartOrderAppliance(applianceCopy);
 			this.dispose();
 			this.setVisible(false);	
 		}
-		else {
-			lblError.setText("Ikke nok på lager af det valgte produkt");
-		}
+		pos.displayOrder();
+		pos.displayPrices();
 	}
 }

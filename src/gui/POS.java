@@ -1,6 +1,5 @@
 package gui;
 
-import java.awt.EventQueue;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
@@ -14,7 +13,6 @@ import model.Customer;
 import model.Employee;
 import model.Order;
 import model.PartOrder;
-import model.PartOrderQ;
 import model.Product;
 import java.awt.Color;
 import java.awt.Dialog;
@@ -34,7 +32,8 @@ import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import java.awt.color.CMMException;
+import java.awt.event.ContainerAdapter;
+import java.awt.event.ContainerEvent;
 
 public class POS extends JFrame {
 
@@ -152,6 +151,14 @@ public class POS extends JFrame {
 		panel_2.add(scrollPane_1, BorderLayout.CENTER);
 
 		table = new JTable();
+		table.addContainerListener(new ContainerAdapter() {
+			@Override
+			public void componentAdded(ContainerEvent e) {
+				displayOrder();
+				displayPrices();
+			}
+		});
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -459,17 +466,44 @@ public class POS extends JFrame {
 			txtCMail.setText(currCustomer.getMailAddress());
 			txtCAddress.setText(currCustomer.getAddress());
 			txtCCity.setText(currCustomer.getPostalCode() + ",  " + currCustomer.getCity());
-			updatePrices();
+			displayPrices();
 		}
+	}
+	
+	private void startApplianceManager(Appliance a) {
+		ApplianceManager am = new ApplianceManager(a, oCtrl, this);
+		am.setVisible(true);
+		am.setModal(true);
+		am.setAlwaysOnTop(true);
+		am.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
+		displayOrder();
 
 	}
-	private void displayOrder() {
+	
+	private void startPartQuantityManager(PartOrder po) {
+		PartQuantityManager pm = new PartQuantityManager(po, oCtrl, this);
+		pm.setVisible(true);
+		pm.setModal(true);
+		pm.setAlwaysOnTop(true);
+		pm.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
+		displayOrder();
+	}
+	
+	private void startPartApplianceManager(PartOrder po) {
+		PartApplianceManager pam = new PartApplianceManager(po, oCtrl, this);
+		pam.setVisible(true);
+		pam.setModal(true);
+		pam.setAlwaysOnTop(true);
+		pam.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
+		displayOrder();
+	}
+	
+	public void displayOrder() {
 		otm = new OrderTM(salesOrder.getParts());
 		table.setModel(otm);
 		PartOrderListCellRenderer ocr = new PartOrderListCellRenderer();
 		oJList.setCellRenderer(ocr);
-		updatePrices();
-
+		displayPrices();
 	}
 
 	private void displayProducts() {
@@ -480,9 +514,9 @@ public class POS extends JFrame {
 		pJList.setCellRenderer(pcr);
 	}
 
-	private void updatePrices() {
+	public void displayPrices() {
 		DecimalFormat numberFormat = new DecimalFormat("#0.00");
-		double withDiscount = salesOrder.getTotal()* (1+Double.parseDouble(txtCDiscount.getText()));
+		double withDiscount = salesOrder.getTotal()* ((100 - Double.parseDouble(txtCDiscount.getText()))/100);
 		txtSubtotal.setText("" + numberFormat.format(salesOrder.getTotal()));
 		txtSubtotalDiscount.setText("" + numberFormat.format(withDiscount));
 		txtTax.setText("" + numberFormat.format(withDiscount *0.25));
@@ -521,11 +555,15 @@ public class POS extends JFrame {
 	}
 	
 	private void editClicked() {
-		if(!ptm.getSelectedProduct(table.getSelectedRow()).isAppliance()) {
-			startProductManager(oJList.getSelectedValue());
+		boolean isAppliance = otm.getSelectedProduct(table.getSelectedRow()).getProduct().isAppliance();
+		if(isAppliance) {
+			startPartApplianceManager(otm.getSelectedProduct(table.getSelectedRow()));
 		}
 		else {
+			startPartQuantityManager(otm.getSelectedProduct(table.getSelectedRow()));
 		}
+		displayOrder();
+		displayPrices();
 	}
 	
 	private void doubleclicked(MouseEvent e) {
@@ -568,24 +606,7 @@ public class POS extends JFrame {
 		}
 	}
 
-	private void startApplianceManager(Appliance selectedAppliance) {
-		ApplianceManager am = new ApplianceManager(selectedAppliance, oCtrl, "Serienummer");
-		am.setVisible(true);
-		am.setModal(true);
-		am.setAlwaysOnTop(true);
-		am.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
-		displayOrder();
 
-	}
-	
-	private void startProductManager(PartOrder po) {
-		ProductManager pm = new ProductManager(po, oCtrl, "Indtast ny mængde");
-		pm.setVisible(true);
-		pm.setModal(true);
-		pm.setAlwaysOnTop(true);
-		pm.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
-		displayOrder();
-	}
 	
 	private void finishOrder() {
 		salesOrder.invoice();

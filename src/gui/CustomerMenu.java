@@ -49,7 +49,6 @@ public class CustomerMenu extends JDialog{
 	private Employee em;
 	private JButton btnSelect;
 	private JList<Customer> cJList;
-	private Order o;
 	private Customer currCustomer;
 	
 
@@ -152,7 +151,6 @@ public class CustomerMenu extends JDialog{
 
 		private void init(Employee em, Order o, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc) {
 			this.em = em;
-			this.o = o;
 			this.pc = pc;
 			this.cc = cc;
 			this.ec = ec;
