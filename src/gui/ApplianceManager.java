@@ -104,10 +104,12 @@ public class ApplianceManager extends JDialog {
 		}
 		else {
 			oCtrl.addNewPartOrderAppliance(applianceCopy);
+			oCtrl.findProductByBarcode(appliance.getBarcode()).updateQuantity(applianceCopy.getSerialNo());;
 			this.dispose();
 			this.setVisible(false);	
 		}
 		pos.displayOrder();
+		pos.displayProducts();
 		pos.displayPrices();
 	}
 }

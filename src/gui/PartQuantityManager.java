@@ -100,6 +100,7 @@ public class PartQuantityManager extends JDialog {
 		int amount = Integer.parseInt(txtAmount.getText());
 		if(amount > 0 && amount <= po.getProduct().getQuantity()) {
 			oCtrl.partOrderSetQuantity(amount, po);
+			oCtrl.findProductByBarcode(po.getProduct().getBarcode()).setQuantity(oCtrl.findProductByBarcode(po.getProduct().getBarcode()).getQuantity()-amount);
 			this.dispose();
 			this.setVisible(false);	
 		}
@@ -107,6 +108,7 @@ public class PartQuantityManager extends JDialog {
 			lblError.setText("Ikke nok på lager af det valgte produkt");
 		}
 		pos.displayOrder();
+		pos.displayProducts();
 		pos.displayPrices();
 	}
 }

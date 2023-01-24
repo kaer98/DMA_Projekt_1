@@ -55,7 +55,11 @@ public class ProductController {
 		return productContainer.getQuantity(i);
 	}
 
-	public void updateQuantity(int amount, int i) {
-		productContainer.updateQuantity(i, amount);
+	public void updateQuantity(int amount, Product p) {
+		productContainer.updateQuantity(amount, p);
+	}
+	
+	public void updateQuantity(String serialNo) {
+		product.updateQuantity(serialNo);
 	}
 }

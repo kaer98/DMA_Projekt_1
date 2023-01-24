@@ -87,6 +87,8 @@ public class POS extends JFrame {
 	private JLabel txtCCity;
 	private JButton btnLogOut;
 	private JLabel lblCustomerMissing;
+	private JPanel panel;
+	private JLabel lblProductsMissing;
 	/**
 	 * Create the frame.
 	 */
@@ -143,6 +145,14 @@ public class POS extends JFrame {
 				searchClicked();
 			}
 		});
+		
+		panel = new JPanel();
+		panel_1.add(panel, BorderLayout.SOUTH);
+		
+		lblProductsMissing = new JLabel("");
+		lblProductsMissing.setForeground(new Color(255, 0, 0));
+		lblProductsMissing.setHorizontalAlignment(SwingConstants.LEFT);
+		panel.add(lblProductsMissing);
 		panel_1.add(txtSearch, BorderLayout.NORTH);
 		txtSearch.setColumns(10);
 
@@ -523,7 +533,7 @@ public class POS extends JFrame {
 		btnEdit.setEnabled(false);
 	}
 
-	private void displayProducts() {
+	public void displayProducts() {
 		ptm = new ProductTM(pCtrl.getAll());
 		ptm.sort();
 		ptable.setModel(ptm); 
@@ -596,13 +606,28 @@ public class POS extends JFrame {
 			else {
 				PartOrder part = oCtrl.findPartOrderByProductName(p.getDescription());
 				if(part != null) {
-					part.setQuantity(part.getQuantity()+1);
+					if(oCtrl.findProductByBarcode(p.getBarcode()).getQuantity()>0) {
+						part.setQuantity(part.getQuantity()+1);
+						oCtrl.findProductByBarcode(p.getBarcode()).setQuantity(oCtrl.findProductByBarcode(p.getBarcode()).getQuantity()-1);
+					}
+					else {
+						lblProductsMissing.setText("Der er ikke flere på lager");
+					}
 				}	
 				else {
-					oCtrl.addNewPartOrderQ(p, 1);	
+					if(oCtrl.findProductByBarcode(p.getBarcode()).getQuantity()>0) {
+						oCtrl.addNewPartOrderQ(p, 1);	
+						oCtrl.findProductByBarcode(p.getBarcode()).setQuantity(oCtrl.findProductByBarcode(p.getBarcode()).getQuantity()-1);
+					}
+					else {
+						lblProductsMissing.setText("Der er ikke flere på lager");
+					}
+
 				}
+
 			}
 			displayOrder();
+			displayProducts();
 		}
 	}
 

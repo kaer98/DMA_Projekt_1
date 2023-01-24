@@ -96,9 +96,6 @@ public class OrderController {
 		parts.clear();
 	}
 
-	public void updateQuantity(int i, int amount) {
-		productController.updateQuantity(i, amount);
-	}
 	
 	public Order findOrderByCustomer(Customer customer) {
 		Order order = orderContainer.findOrderByCustomer(customer);
@@ -123,5 +120,4 @@ public class OrderController {
 		PartOrder currPO = po;
 		currPO.setQuantity(amount);
 	}
-	
 }
