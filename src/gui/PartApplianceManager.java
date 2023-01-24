@@ -105,7 +105,7 @@ public class PartApplianceManager extends JDialog {
 			lblError.setText("Ikke fundet, prøv igen!");
 		}
 		else {
-			oCtrl.addNewPartOrderAppliance(applianceCopy);
+			oCtrl.setProduct(applianceCopy, po);
 			this.dispose();
 			this.setVisible(false);	
 		}

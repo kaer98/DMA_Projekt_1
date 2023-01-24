@@ -114,6 +114,11 @@ public class OrderController {
 		o.setCustomer(c);
 	}
 	
+	public void setProduct(ApplianceCopy ac, PartOrder po) {
+		PartOrder currPO = po;
+		currPO.setProduct(ac);
+	}
+	
 	public void partOrderSetQuantity(int amount, PartOrder po) {
 		PartOrder currPO = po;
 		currPO.setQuantity(amount);

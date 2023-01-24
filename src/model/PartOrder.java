@@ -36,4 +36,10 @@ public abstract class PartOrder {
 	public abstract double getTotal();
 	
 	public abstract double getPrice();
+
+	public void setProduct(ApplianceCopy product) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

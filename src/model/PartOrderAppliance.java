@@ -3,9 +3,9 @@ package model;
 public class PartOrderAppliance extends PartOrder {
 	private ApplianceCopy applianceCopy;
 
-	public PartOrderAppliance(ApplianceCopy product) {
+	public PartOrderAppliance(ApplianceCopy ac) {
 		super();
-		this.applianceCopy = product;
+		this.applianceCopy = ac;
 	}
 
 	@Override
@@ -41,6 +41,12 @@ public class PartOrderAppliance extends PartOrder {
 	@Override
 	public void setQuantity(int quantity) {
 		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void setProduct(ApplianceCopy ac) {
+		this.applianceCopy = ac;
 		
 	}
 }

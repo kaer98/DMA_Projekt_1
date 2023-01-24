@@ -33,4 +33,6 @@ public class PartOrderQ extends PartOrder {
 	public double getPrice() {
 		return getProduct().getRetailPrice();
 	}
+
+
 }
