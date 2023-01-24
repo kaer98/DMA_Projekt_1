@@ -119,11 +119,11 @@ public class AdminLogin extends JDialog {
 			frame.setVisible(true);
 			setModal(false);
 			setVisible(false); 
+			login.setVisible(false);
 		}
 		else {
 			lblWrongpass.setText("Forkert kode, prøv igen!");
 		}
-		login.setVisible(false);
 	}
 	
 	private void cancelClicked() {
