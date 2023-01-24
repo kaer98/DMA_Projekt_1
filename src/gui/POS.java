@@ -86,6 +86,7 @@ public class POS extends JFrame {
 	private JLabel lblNewLabel_6;
 	private JLabel txtCCity;
 	private JButton btnLogOut;
+	private JLabel lblCustomerMissing;
 	/**
 	 * Create the frame.
 	 */
@@ -106,6 +107,13 @@ public class POS extends JFrame {
 		panel_1.add(scrollPane, BorderLayout.CENTER);
 
 		ptable = new JTable();
+		ptable.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				btnEdit.setEnabled(false);
+				table.clearSelection();
+			}
+		});
 		ptable.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -153,16 +161,22 @@ public class POS extends JFrame {
 		panel_2.add(scrollPane_1, BorderLayout.CENTER);
 
 		table = new JTable();
+		table.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				ptable.clearSelection();
+			}
+		});
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane_1.setViewportView(table);
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				btnEdit.setEnabled(true);
 				removePartOrder(e);
 
 			}
 		});
-
 
 		panel_5 = new JPanel();
 		panel_2.add(panel_5, BorderLayout.NORTH);
@@ -419,6 +433,10 @@ public class POS extends JFrame {
 			}
 		});
 		panel_6.add(btnSend);
+		
+		lblCustomerMissing = new JLabel("");
+		lblCustomerMissing.setForeground(new Color(255, 0, 0));
+		panel_6.add(lblCustomerMissing);
 		btnPay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				finishOrder();
@@ -456,13 +474,15 @@ public class POS extends JFrame {
 		cm.setModal(true);
 		if(cm.isVisible()!=true) {
 			Customer currCustomer = cm.getC();
-			salesOrder.setCustomer(currCustomer);
-			txtCDiscount.setText(""+currCustomer.getDiscount()*100);
-			txtCName.setText(currCustomer.getName());
-			txtCMail.setText(currCustomer.getMailAddress());
-			txtCAddress.setText(currCustomer.getAddress());
-			txtCCity.setText(currCustomer.getPostalCode() + ",  " + currCustomer.getCity());
-			displayPrices();
+			if(currCustomer != null) {
+				salesOrder.setCustomer(currCustomer);
+				txtCDiscount.setText(""+currCustomer.getDiscount()*100);
+				txtCName.setText(currCustomer.getName());
+				txtCMail.setText(currCustomer.getMailAddress());
+				txtCAddress.setText(currCustomer.getAddress());
+				txtCCity.setText(currCustomer.getPostalCode() + ",  " + currCustomer.getCity());
+				displayPrices();
+			}
 		}
 	}
 	
@@ -500,6 +520,7 @@ public class POS extends JFrame {
 		PartOrderListCellRenderer ocr = new PartOrderListCellRenderer();
 		oJList.setCellRenderer(ocr);
 		displayPrices();
+		btnEdit.setEnabled(false);
 	}
 
 	private void displayProducts() {
@@ -541,6 +562,8 @@ public class POS extends JFrame {
 	private void clearClicked() {
 		otm.clearData();
 		displayOrder();
+		table.clearSelection();
+		ptable.clearSelection();
 	}
 	
 	private void logOutClicked() {
@@ -602,6 +625,10 @@ public class POS extends JFrame {
 	}
 	
 	private void finishOrder() {
-		salesOrder.invoice();
+		if(salesOrder.getCustomer() != null)
+			salesOrder.invoice();
+		else{
+			lblCustomerMissing.setText("Mangler kunde!");
+		}
 	}
 }

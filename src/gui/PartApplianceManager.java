@@ -39,7 +39,7 @@ public class PartApplianceManager extends JDialog {
 	 * Create the dialog.
 	 */
 	public PartApplianceManager(PartOrder po, OrderController o, POS pos) {
-		setTitle("Indtast serienummer på hvidevarer");
+		setTitle("Indtast serienummer på " + po.getProduct().getDescription());
 		setBounds(100, 100, 264, 120);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
