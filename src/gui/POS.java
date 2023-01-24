@@ -4,6 +4,8 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
+
 import controller.CustomerController;
 import controller.EmployeeController;
 import controller.OrderController;
@@ -567,7 +569,9 @@ public class POS extends JFrame {
 	}
 	
 	private void doubleclicked(MouseEvent e) {
-		if (e.getClickCount() == 2 && !e.isConsumed()) {
+		if (e.getClickCount() == 1 && !e.isConsumed()) {
+		}
+		else if (e.getClickCount() == 2 && !e.isConsumed()) {
 			e.consume(); 
 			Product p = ptm.getSelectedProduct(ptable.getSelectedRow());
 			if(p.isAppliance()) {
