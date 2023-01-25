@@ -183,8 +183,8 @@ public class CustomerMenu extends JDialog{
 					cList.add(c);
 				}
 			}
-			CustomerTM ct = new CustomerTM(cList);
-			table.setModel(ct);
+			ctm = new CustomerTM(cList);
+			table.setModel(ctm);
 		}
 	}
 
