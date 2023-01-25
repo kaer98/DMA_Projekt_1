@@ -628,6 +628,7 @@ public class POS extends JFrame {
 			}
 			displayOrder();
 			displayProducts();
+			displayPrices();
 		}
 	}
 	private void clearOrder() {
@@ -647,6 +648,8 @@ public class POS extends JFrame {
 			pCtrl.findProductByBarcode(po.getProduct().getBarcode()).setQuantity(q+po.getQuantity());
 			salesOrder.removePart(po);
 			displayOrder();
+			displayProducts();
+			displayPrices();
 		}
 	}
 
