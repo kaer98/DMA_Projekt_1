@@ -642,10 +642,14 @@ public class POS extends JFrame {
 	private void removePartOrder(MouseEvent e) {
 		if (e.getClickCount() == 2 && !e.isConsumed()) {
 			e.consume(); 
-			
 			PartOrder po = otm.getSelectedProduct(table.getSelectedRow());	
-			int q = pCtrl.findProductByBarcode(po.getProduct().getBarcode()).getQuantity();
-			pCtrl.findProductByBarcode(po.getProduct().getBarcode()).setQuantity(q+po.getQuantity());
+			if(!po.getProduct().isAppliance()) {
+				int q = pCtrl.findProductByBarcode(po.getProduct().getBarcode()).getQuantity();
+				pCtrl.findProductByBarcode(po.getProduct().getBarcode()).setQuantity(q+po.getQuantity());
+			}
+			else {
+				
+			}
 			salesOrder.removePart(po);
 			displayOrder();
 			displayProducts();
