@@ -102,7 +102,7 @@ public class PartApplianceManager extends JDialog {
 	
 	private void okClicked() {
 		ApplianceCopy oldAC = po.getCopy();
-		pCtrl.addApplianceCopy(po.getCopy(), po.getCopy().getAppliance());
+		pCtrl.addApplianceCopy(oldAC, po.getCopy().getAppliance());
 		ApplianceCopy applianceCopy = pCtrl.findApplianceCopyBySerialNo(po.getProduct(), txtSearch.getText());
 		if(applianceCopy == null) {
 			lblError.setText("Ikke fundet, prøv igen!");
