@@ -30,6 +30,7 @@ public class PartApplianceManager extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtSearch;
 	private OrderController oCtrl;
+	private ProductController pCtrl;
 	private JLabel lblError;
 	private PartOrder po;
 	private POS pos;
@@ -38,7 +39,7 @@ public class PartApplianceManager extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public PartApplianceManager(PartOrder po, OrderController o, POS pos) {
+	public PartApplianceManager(PartOrder po, OrderController o, POS pos, ProductController p) {
 		setTitle("Indtast serienummer på " + po.getProduct().getDescription());
 		setBounds(100, 100, 264, 120);
 		getContentPane().setLayout(new BorderLayout());
@@ -83,7 +84,7 @@ public class PartApplianceManager extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
-		init(po, o, pos);
+		init(po, o, pos, p);
 	}
 	
 	private void cancelClicked() {
@@ -91,16 +92,17 @@ public class PartApplianceManager extends JDialog {
 		this.setVisible(false);
 
 	}
-	private void init(PartOrder po, OrderController o, POS pos) {
+	private void init(PartOrder po, OrderController o, POS pos, ProductController p) {
 		this.oCtrl = o;
 		this.po = po;
 		this.pos = pos;
+		this.pCtrl = p;
 		
 	}
 	
 	private void okClicked() {
 		ApplianceCopy oldAC = po.getCopy();
-		ProductController pCtrl = new ProductController();
+		pCtrl.addApplianceCopy(po.getCopy(), po.getCopy().getAppliance());
 		ApplianceCopy applianceCopy = pCtrl.findApplianceCopyBySerialNo(po.getProduct(), txtSearch.getText());
 		if(applianceCopy == null) {
 			lblError.setText("Ikke fundet, prøv igen!");

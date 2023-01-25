@@ -516,7 +516,7 @@ public class POS extends JFrame {
 	}
 	
 	private void startPartApplianceManager(PartOrder po) {
-		PartApplianceManager pam = new PartApplianceManager(po, oCtrl, this);
+		PartApplianceManager pam = new PartApplianceManager(po, oCtrl, this, pCtrl);
 		pam.setVisible(true);
 		pam.setModal(true);
 		pam.setAlwaysOnTop(true);
