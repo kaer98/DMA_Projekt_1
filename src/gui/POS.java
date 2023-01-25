@@ -633,10 +633,19 @@ public class POS extends JFrame {
 	}
 	private void clearOrder() {
 		for(int i = 0; i<otm.getRowCount();i++ ) {
-			int q1 = pCtrl.findProductByBarcode(otm.getSelectedProduct(i).getProduct().getBarcode()).getQuantity();
-			pCtrl.findProductByBarcode(otm.getSelectedProduct(i).getProduct().getBarcode()).setQuantity(q1+otm.getSelectedProduct(i).getQuantity());;
+			PartOrder po = otm.getSelectedProduct(i);	
+			if(!po.getProduct().isAppliance()) {
+				int q1 = pCtrl.findProductByBarcode(otm.getSelectedProduct(i).getProduct().getBarcode()).getQuantity();
+				pCtrl.findProductByBarcode(otm.getSelectedProduct(i).getProduct().getBarcode()).setQuantity(q1+otm.getSelectedProduct(i).getQuantity());
+			}
+			else {
+				pCtrl.addApplianceCopy(po.getCopy(), po.getCopy().getAppliance());
+			}
 		}
 		clearClicked();
+		displayOrder();
+		displayProducts();
+		displayPrices();
 	}
 	
 	private void removePartOrder(MouseEvent e) {

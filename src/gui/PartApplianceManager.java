@@ -102,7 +102,6 @@ public class PartApplianceManager extends JDialog {
 	
 	private void okClicked() {
 		ApplianceCopy oldAC = po.getCopy();
-		pCtrl.addApplianceCopy(po.getCopy(), po.getCopy().getAppliance());
 		ApplianceCopy applianceCopy = pCtrl.findApplianceCopyBySerialNo(po.getProduct(), txtSearch.getText());
 		if(applianceCopy == null) {
 			lblError.setText("Ikke fundet, prøv igen!");
@@ -110,6 +109,7 @@ public class PartApplianceManager extends JDialog {
 		else {
 			pCtrl.addApplianceCopy(oldAC, oldAC.getAppliance());
 			oCtrl.setProduct(applianceCopy, po);
+			pCtrl.findProductByBarcode(applianceCopy.getAppliance().getBarcode()).updateQuantity(applianceCopy.getSerialNo());
 			this.dispose();
 			this.setVisible(false);	
 		}
