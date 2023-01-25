@@ -99,17 +99,20 @@ public class PartApplianceManager extends JDialog {
 	}
 	
 	private void okClicked() {
+		ApplianceCopy oldAC = po.getCopy();
 		ProductController pCtrl = new ProductController();
 		ApplianceCopy applianceCopy = pCtrl.findApplianceCopyBySerialNo(po.getProduct(), txtSearch.getText());
 		if(applianceCopy == null) {
 			lblError.setText("Ikke fundet, prøv igen!");
 		}
 		else {
+			pCtrl.addApplianceCopy(oldAC, oldAC.getAppliance());
 			oCtrl.setProduct(applianceCopy, po);
 			this.dispose();
 			this.setVisible(false);	
 		}
 		pos.displayOrder();
 		pos.displayPrices();
+		pos.displayProducts();
 	}
 }

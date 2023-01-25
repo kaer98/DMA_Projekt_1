@@ -19,6 +19,7 @@ public class ProductController {
 	private ArrayList<Product> products;
 	private ProductContainer productContainer;
 	private Product product;
+	private Appliance appliance;
 
 	public ProductController() {
 		productContainer = ProductContainer.getInstance();
@@ -61,5 +62,9 @@ public class ProductController {
 	
 	public void updateQuantity(String serialNo) {
 		product.updateQuantity(serialNo);
+	}
+	
+	public void addApplianceCopy(ApplianceCopy ac, Appliance a) {
+		a.addApplianceCopy(ac);
 	}
 }
