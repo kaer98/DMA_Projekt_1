@@ -8,12 +8,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Order {
-	private static int orderNo;
+	private static int count;
 	private static final DecimalFormat dfSharp = new DecimalFormat("#.##");
 	private ArrayList<PartOrder> parts;
 	private LocalDate dateTime;
 	private Customer customer;
 	private Employee employee;
+	private int orderNo;
 	private String finalized;
 	private double total;
 
@@ -21,7 +22,8 @@ public class Order {
 		this.parts = new ArrayList<>();
 		this.dateTime = LocalDate.now();
 		this.employee = employee;
-		++Order.orderNo;
+		++count;
+		orderNo+=count;
 		this.finalized = "intet";
 	}
 
@@ -134,9 +136,7 @@ public class Order {
 		finalized = string;
 	}
 
-	public void setOrderNo(int orderNo) {
-		Order.orderNo = orderNo;
-	}
+	
 	public void removePart(PartOrder po) {
 		boolean found = false;
 		int i = 0;

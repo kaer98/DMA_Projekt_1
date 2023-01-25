@@ -423,7 +423,7 @@ public class POS extends JFrame {
 				btnClear = new JButton("Clear");
 				btnClear.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						clearClicked();
+						clearOrder();
 					}
 				});
 				panel_6.add(btnClear);
@@ -630,7 +630,14 @@ public class POS extends JFrame {
 			displayProducts();
 		}
 	}
-
+	private void clearOrder() {
+		for(int i = 0; i<otm.getRowCount();i++ ) {
+			int q1 = pCtrl.findProductByBarcode(otm.getSelectedProduct(i).getProduct().getBarcode()).getQuantity();
+			pCtrl.findProductByBarcode(otm.getSelectedProduct(i).getProduct().getBarcode()).setQuantity(q1+otm.getSelectedProduct(i).getQuantity());;
+		}
+		clearClicked();
+	}
+	
 	private void removePartOrder(MouseEvent e) {
 		if (e.getClickCount() == 2 && !e.isConsumed()) {
 			e.consume(); 
@@ -653,8 +660,10 @@ public class POS extends JFrame {
 	}
 	
 	private void finishOrder() {
-		if(salesOrder.getCustomer() != null)
+		if(salesOrder.getCustomer() != null) {
 			salesOrder.invoice();
+			clearClicked();
+		}
 		else{
 			lblCustomerMissing.setText("Mangler kunde!");
 		}
