@@ -99,6 +99,8 @@ public class PartQuantityManager extends JDialog {
 	private void okClicked() {
 		int amount = Integer.parseInt(txtAmount.getText());
 		if(amount > 0 && amount <= po.getProduct().getQuantity()) {
+			int q = oCtrl.findProductByBarcode(po.getProduct().getBarcode()).getQuantity();
+			oCtrl.findProductByBarcode(po.getProduct().getBarcode()).setQuantity(q+po.getQuantity());
 			oCtrl.partOrderSetQuantity(amount, po);
 			oCtrl.findProductByBarcode(po.getProduct().getBarcode()).setQuantity(oCtrl.findProductByBarcode(po.getProduct().getBarcode()).getQuantity()-amount);
 			this.dispose();
