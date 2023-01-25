@@ -648,6 +648,7 @@ public class POS extends JFrame {
 				pCtrl.findProductByBarcode(po.getProduct().getBarcode()).setQuantity(q+po.getQuantity());
 			}
 			else {
+				pCtrl.addApplianceCopy(po.getCopy(), po.getCopy().getAppliance());
 				
 			}
 			salesOrder.removePart(po);
