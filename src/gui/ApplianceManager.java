@@ -38,14 +38,14 @@ public class ApplianceManager extends JDialog {
 	 */
 	public ApplianceManager(Appliance a, OrderController o, POS pos) {
 		setTitle("Indtast serienummer på " + a.getDescription());
-		setBounds(100, 100, 264, 120);
+		setBounds(100, 100, 401, 120);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		txtSearch = new JTextField();
 		txtSearch.setToolTipText("Input appliance serial number");
-		txtSearch.setBounds(10, 11, 230, 20);
+		txtSearch.setBounds(10, 11, 365, 20);
 		contentPanel.add(txtSearch);
 		txtSearch.setColumns(10);
 		
