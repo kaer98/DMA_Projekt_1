@@ -99,7 +99,7 @@ public class ApplianceManager extends JDialog {
 	private void okClicked() {
 		ProductController pCtrl = new ProductController();
 		ApplianceCopy applianceCopy = pCtrl.findApplianceCopyBySerialNo(appliance, txtSearch.getText());
-		if(applianceCopy == null) {
+		if(applianceCopy == null || txtSearch.getText().contentEquals("")) {
 			lblError.setText("Ikke fundet, prøv igen!");
 		}
 		else {

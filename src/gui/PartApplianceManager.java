@@ -103,7 +103,7 @@ public class PartApplianceManager extends JDialog {
 	private void okClicked() {
 		ApplianceCopy oldAC = po.getCopy();
 		ApplianceCopy applianceCopy = pCtrl.findApplianceCopyBySerialNo(po.getProduct(), txtSearch.getText());
-		if(applianceCopy == null) {
+		if(applianceCopy == null || txtSearch.getText().contentEquals("")) {
 			lblError.setText("Ikke fundet, prøv igen!");
 		}
 		else {

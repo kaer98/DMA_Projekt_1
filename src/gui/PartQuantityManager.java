@@ -97,17 +97,21 @@ public class PartQuantityManager extends JDialog {
 	}
 	
 	private void okClicked() {
-		int amount = Integer.parseInt(txtAmount.getText());
-		if(amount > 0 && amount <= po.getProduct().getQuantity()) {
-			int q = oCtrl.findProductByBarcode(po.getProduct().getBarcode()).getQuantity();
-			oCtrl.findProductByBarcode(po.getProduct().getBarcode()).setQuantity(q+po.getQuantity());
-			oCtrl.partOrderSetQuantity(amount, po);
-			oCtrl.findProductByBarcode(po.getProduct().getBarcode()).setQuantity(oCtrl.findProductByBarcode(po.getProduct().getBarcode()).getQuantity()-amount);
-			this.dispose();
-			this.setVisible(false);	
-		}
-		else {
-			lblError.setText("Ikke nok på lager af det valgte produkt");
+		try {
+			int amount = Integer.parseInt(txtAmount.getText());
+			if(amount > 0 && amount <= po.getProduct().getQuantity()) {
+				int q = oCtrl.findProductByBarcode(po.getProduct().getBarcode()).getQuantity();
+				oCtrl.findProductByBarcode(po.getProduct().getBarcode()).setQuantity(q+po.getQuantity());
+				oCtrl.partOrderSetQuantity(amount, po);
+				oCtrl.findProductByBarcode(po.getProduct().getBarcode()).setQuantity(oCtrl.findProductByBarcode(po.getProduct().getBarcode()).getQuantity()-amount);
+				this.dispose();
+				this.setVisible(false);	
+			}
+			else {
+				lblError.setText("Ikke nok på lager af det valgte produkt");
+			}
+		} catch(Exception e) {
+			lblError.setText("Du kan kun indtaste hele tal!");
 		}
 		pos.displayOrder();
 		pos.displayProducts();

@@ -449,7 +449,7 @@ public class POS extends JFrame {
 		panel_6.add(lblCustomerMissing);
 		btnPay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				finishOrder();
+				payClicked();
 			}
 		});		
 
@@ -676,9 +676,10 @@ public class POS extends JFrame {
 		}
 	}
 	
-	private void finishOrder() {
+	private void payClicked() {
 		if(salesOrder.getCustomer() != null) {
 			salesOrder.invoice();
+			cCtrl.findCustomerByPhoneNo(salesOrder.getCustomer().getPhoneNo()).addOrderToCustomer(salesOrder);
 			clearClicked();
 		}
 		else{

@@ -529,28 +529,14 @@ public class CustomerInfo extends JDialog {
 																																						gbc_panel_1.gridx = 0;
 																																						gbc_panel_1.gridy = 1;
 																																						panel.add(panel_1, gbc_panel_1);
-																																						GridBagLayout gbl_panel_1 = new GridBagLayout();
-																																						gbl_panel_1.columnWidths = new int[]{216, 2, 0};
-																																						gbl_panel_1.rowHeights = new int[]{2, 0, 0};
-																																						gbl_panel_1.columnWeights = new double[]{1.0, 0.0, Double.MIN_VALUE};
-																																						gbl_panel_1.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-																																						panel_1.setLayout(gbl_panel_1);
+																																									panel_1.setLayout(new BorderLayout(0, 0));
 																																						
 																																									JScrollPane scrollPane = new JScrollPane();
-																																									GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-																																									gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
-																																									gbc_scrollPane.anchor = GridBagConstraints.NORTHWEST;
-																																									gbc_scrollPane.gridx = 1;
-																																									gbc_scrollPane.gridy = 0;
-																																									panel_1.add(scrollPane, gbc_scrollPane);
+																																									panel_1.add(scrollPane);
 																																									
 																																												oList = new JList<Order>();
 																																												oList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-																																												GridBagConstraints gbc_list = new GridBagConstraints();
-																																												gbc_list.insets = new Insets(0, 0, 0, 5);
-																																												gbc_list.gridx = 0;
-																																												gbc_list.gridy = 1;
-						panel_1.add(oList, gbc_list);
+																																												panel_1.add(oList);
 			{
 			}
 
@@ -575,8 +561,7 @@ public class CustomerInfo extends JDialog {
 		
 		if(currCustomer != null) {
 			displayCustomer();
-			displayOrders(c);
-
+			displayOrders(cCtrl.findCustomerByPhoneNo(currCustomer.getPhoneNo()));
 		}
 	}
 	
@@ -595,19 +580,9 @@ public class CustomerInfo extends JDialog {
 	}
 
 	private void displayOrders(Customer currCustomer) {
-		oCtrl = new OrderController();
-		int i = 0;
-		boolean found = false;
-		ArrayList<Order> orders = new ArrayList<>();
-		while(!found && i<oCtrl.getOrders().size()){
-			if(oCtrl.getOrders().get(i).getCustomer().getId()==currCustomer.getId()) {
-				orders.add(oCtrl.getOrders().get(i));
-				i++;
-			}
-			else {
-				i++;
-			}
-		}
+		OrderListCellRenderer ocr = new OrderListCellRenderer();
+		oList.setCellRenderer(ocr);
+		ArrayList<Order> orders = currCustomer.getAllOrders();
 		DefaultListModel<Order> dlm = new DefaultListModel<>();
 		dlm.addAll(orders);
 		oList.setModel(dlm);
