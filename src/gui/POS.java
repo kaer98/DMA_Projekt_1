@@ -510,7 +510,7 @@ public class POS extends JFrame {
 	}
 	
 	private void startPartQuantityManager(PartOrder po) {
-		PartQuantityManager pm = new PartQuantityManager(po, oCtrl, this);
+		PartQuantityManager pm = new PartQuantityManager(salesOrder, po, oCtrl, this);
 		pm.setVisible(true);
 		pm.setModal(true);
 		pm.setAlwaysOnTop(true);

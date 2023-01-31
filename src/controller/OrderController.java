@@ -120,4 +120,9 @@ public class OrderController {
 		PartOrder currPO = po;
 		currPO.setQuantity(amount);
 	}
+	
+	public void removePartFromOrder(Order o, PartOrder po){
+		o.removePart(po);
+	}
+	
 }

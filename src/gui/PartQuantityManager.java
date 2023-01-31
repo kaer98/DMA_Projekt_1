@@ -12,6 +12,7 @@ import controller.OrderController;
 import controller.ProductController;
 import model.Appliance;
 import model.ApplianceCopy;
+import model.Order;
 import model.PartOrder;
 import model.Product;
 
@@ -36,11 +37,12 @@ public class PartQuantityManager extends JDialog {
 	private OrderController oCtrl;
 	private JLabel lblError;
 	private POS pos;
+	private Order o;
 
 	/**
 	 * Create the dialog.
 	 */
-	public PartQuantityManager(PartOrder po, OrderController o, POS pos) {
+	public PartQuantityManager(Order o, PartOrder po, OrderController oCtrl, POS pos) {
 		setTitle("Indtast ønsket antal");
 		setBounds(100, 100, 304, 130);
 		getContentPane().setLayout(new BorderLayout());
@@ -103,7 +105,7 @@ public class PartQuantityManager extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
-		init(po, o, pos);
+		init(o, po, oCtrl, pos);
 	}
 	
 	private void cancelClicked() {
@@ -111,8 +113,9 @@ public class PartQuantityManager extends JDialog {
 		this.setVisible(false);
 
 	}
-	private void init(PartOrder po, OrderController o, POS pos) {
-		this.oCtrl = o;
+	private void init(Order o, PartOrder po, OrderController oCtrl, POS pos) {
+		this.o = o;
+		this.oCtrl = oCtrl;
 		this.po = po;;
 		this.pos = pos;
 	}
@@ -120,11 +123,16 @@ public class PartQuantityManager extends JDialog {
 	private void okClicked() {
 		try {
 			int amount = Integer.parseInt(txtAmount.getText());
-			if(amount > 0 && amount <= po.getProduct().getQuantity()) {
+			if(amount > 0 && amount <= po.getProduct().getQuantity() + po.getQuantity()) {
 				int q = oCtrl.findProductByBarcode(po.getProduct().getBarcode()).getQuantity();
 				oCtrl.findProductByBarcode(po.getProduct().getBarcode()).setQuantity(q+po.getQuantity());
 				oCtrl.partOrderSetQuantity(amount, po);
 				oCtrl.findProductByBarcode(po.getProduct().getBarcode()).setQuantity(oCtrl.findProductByBarcode(po.getProduct().getBarcode()).getQuantity()-amount);
+				this.dispose();
+				this.setVisible(false);	
+			}
+			if(amount == 0) {
+				oCtrl.removePartFromOrder(o, po);
 				this.dispose();
 				this.setVisible(false);	
 			}
