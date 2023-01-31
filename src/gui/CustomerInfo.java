@@ -418,7 +418,7 @@ public class CustomerInfo extends JDialog {
 								
 								verticalStrut_1 = Box.createVerticalStrut(20);
 								GridBagConstraints gbc_verticalStrut_1 = new GridBagConstraints();
-								gbc_verticalStrut_1.gridheight = 20;
+								gbc_verticalStrut_1.gridheight = 18;
 								gbc_verticalStrut_1.insets = new Insets(0, 0, 5, 5);
 								gbc_verticalStrut_1.gridx = 0;
 								gbc_verticalStrut_1.gridy = 1;

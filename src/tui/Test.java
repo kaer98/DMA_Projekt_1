@@ -10,7 +10,7 @@ private OrderController orderController;
 private CustomerController customerController;
 private ProductController productController;
 private EmployeeController employeeController;
-private EContainer eContainer;
+private EmployeeContainer employeeContainer;
 private boolean success;
 	@Before
 	public void setup() {
@@ -18,7 +18,7 @@ private boolean success;
 		customerController = new CustomerController();
 		productController = new ProductController();
 		employeeController = new EmployeeController();
-		eContainer = EContainer.getInstance();
+		employeeContainer = EmployeeContainer.getInstance();
 		
 	}
 	
@@ -26,12 +26,12 @@ private boolean success;
 	public void testAddProductToOrder() {
 		//arrange 
 		Product p = new SimpleProduct("description", "loacation", 5, 2, 10, 10, 20);
-		Order o = new Order(eContainer.getAll().get(0));
+		Order o = new Order(employeeContainer.getAll().get(0));
 		success = false;
 		
 		
 		//act
-		PartOrder po = new PartOrderQ(p,1);
+		PartOrder po = new PartOrderSimpleAppliance(p,1);
 		o.addPartOrder(po);
 		orderController.addOrder(o);
 		
@@ -56,7 +56,7 @@ private boolean success;
 	@org.junit.Test
 	public void testAddCustomerToOrder() {
 		//arrange
-		Order o = new Order(eContainer.getAll().get(0));
+		Order o = new Order(employeeContainer.getAll().get(0));
 		Customer c = new Customer("name", "phoneNo", "mailAddress", "country", "postalCode", "city", "address", "cvr", 0);
 		success = false;
 		

@@ -2,14 +2,14 @@ package controller;
 
 import java.util.ArrayList;
 
-import model.EContainer;
+import model.EmployeeContainer;
 import model.Employee;
 
 public class EmployeeController {
-	private EContainer container;
+	private EmployeeContainer container;
 
 	public EmployeeController() {
-		container = EContainer.getInstance();
+		container = EmployeeContainer.getInstance();
 	}
 
 	// Method for finding customer by phoneNo in class CustomerContainer

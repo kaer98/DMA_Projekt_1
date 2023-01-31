@@ -35,7 +35,7 @@ public class Order {
 	 */
 
 	public void addNewPartOrderQ(Product product, int quantity) {
-		parts.add(new PartOrderQ(product, quantity));
+		parts.add(new PartOrderSimpleAppliance(product, quantity));
 	}
 
 	public void addPartOrder(PartOrder partOrder) {

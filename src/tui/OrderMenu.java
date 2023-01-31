@@ -7,7 +7,7 @@ import model.ApplianceCopy;
 import model.Order;
 import model.PartOrder;
 import model.PartOrderAppliance;
-import model.PartOrderQ;
+import model.PartOrderSimpleAppliance;
 import model.Product;
 
 /**
@@ -105,7 +105,7 @@ public class OrderMenu {
 					}
 				} while (amount < 0 || amount > p.getQuantity());
 
-				po.add(new PartOrderQ(p, amount));
+				po.add(new PartOrderSimpleAppliance(p, amount));
 				p.updateQuantity(amount);
 			}
 			break;

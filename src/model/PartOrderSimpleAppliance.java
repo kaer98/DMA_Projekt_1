@@ -1,9 +1,9 @@
 package model;
 
-public class PartOrderQ extends PartOrder {
+public class PartOrderSimpleAppliance extends PartOrder {
 	private int quantity;
 
-	public PartOrderQ(Product product, int quantity) {
+	public PartOrderSimpleAppliance(Product product, int quantity) {
 		super(product);
 		this.quantity = quantity;
 	}
