@@ -139,7 +139,7 @@ public class CustomerInfo extends JDialog {
 														gbc_separator_7.gridy = 0;
 														getContentPane().add(separator_7, gbc_separator_7);
 														
-														JLabel lblNewLabel_2 = new JLabel("Customer Info:");
+														JLabel lblNewLabel_2 = new JLabel("Kundeinformation:");
 														lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
 														GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
 														gbc_lblNewLabel_2.gridwidth = 2;
@@ -185,7 +185,7 @@ public class CustomerInfo extends JDialog {
 											gbc_labName.gridy = 2;
 											getContentPane().add(labName, gbc_labName);
 								
-											labCVR = new JLabel("CVR");
+											labCVR = new JLabel("CVR nr.");
 											labCVR.setHorizontalAlignment(SwingConstants.LEFT);
 											GridBagConstraints gbc_labCVR = new GridBagConstraints();
 											gbc_labCVR.anchor = GridBagConstraints.EAST;
@@ -468,7 +468,7 @@ public class CustomerInfo extends JDialog {
 							btnOK.setActionCommand("OK");
 							getRootPane().setDefaultButton(btnOK);
 						}
-						btnSave = new JButton("Save");
+						btnSave = new JButton("Gem");
 						btnSave.setVerticalAlignment(SwingConstants.TOP);
 						btnSave.setHorizontalAlignment(SwingConstants.RIGHT);
 						btnSave.addActionListener(new ActionListener() {
@@ -477,7 +477,7 @@ public class CustomerInfo extends JDialog {
 							}
 						});
 						{
-							btnCancel = new JButton("Cancel");
+							btnCancel = new JButton("Annuller");
 							btnCancel.setVerticalAlignment(SwingConstants.TOP);
 							btnCancel.setHorizontalAlignment(SwingConstants.RIGHT);
 							btnCancel.addActionListener(new ActionListener() {

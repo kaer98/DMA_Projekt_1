@@ -24,6 +24,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Color;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import javax.swing.BoxLayout;
 
 public class PartApplianceManager extends JDialog {
 
@@ -31,9 +35,9 @@ public class PartApplianceManager extends JDialog {
 	private JTextField txtSearch;
 	private OrderController oCtrl;
 	private ProductController pCtrl;
-	private JLabel lblError;
 	private PartOrder po;
 	private POS pos;
+	private JLabel lblError;
 
 
 	/**
@@ -41,22 +45,20 @@ public class PartApplianceManager extends JDialog {
 	 */
 	public PartApplianceManager(PartOrder po, OrderController o, POS pos, ProductController p) {
 		setTitle("Indtast serienummer på " + po.getProduct().getDescription());
-		setBounds(100, 100, 264, 120);
+		setBounds(100, 100, 379, 118);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		txtSearch = new JTextField();
+		txtSearch.setBounds(10, 11, 343, 20);
 		txtSearch.setToolTipText("Input appliance serial number");
-		txtSearch.setBounds(10, 11, 230, 20);
 		contentPanel.add(txtSearch);
 		txtSearch.setColumns(10);
 		
-		
-		
 		lblError = new JLabel("");
 		lblError.setForeground(new Color(255, 0, 0));
-		lblError.setBounds(10, 30, 220, 13);
+		lblError.setBounds(10, 29, 181, 13);
 		contentPanel.add(lblError);
 		{
 			JPanel buttonPane = new JPanel();
@@ -74,7 +76,7 @@ public class PartApplianceManager extends JDialog {
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				JButton cancelButton = new JButton("Annuller");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						cancelClicked();

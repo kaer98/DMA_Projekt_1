@@ -17,11 +17,8 @@ import model.Employee;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.DropMode;
 import java.awt.Color;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -123,7 +120,7 @@ public class AdminLogin extends JDialog {
 				getRootPane().setDefaultButton(btnOk);
 			}
 			{
-				btnCancel = new JButton("Cancel");
+				btnCancel = new JButton("Annuller");
 				btnCancel.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						cancelClicked();

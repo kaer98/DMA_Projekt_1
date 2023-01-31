@@ -11,7 +11,7 @@ import model.Customer;
 public class CustomerTM extends AbstractTableModel {
 
 	private List<Customer> data;
-	private static final String[] COL_NAMES = {"Name", "Email", "Phone", "CVR"};
+	private static final String[] COL_NAMES = {"Navn", "E-mail", "Tlf nr.", "CVR nr."};
 	
 	public CustomerTM() {
 		this.data = new ArrayList<>();

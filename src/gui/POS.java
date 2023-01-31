@@ -137,7 +137,7 @@ public class POS extends JFrame {
 				searchbarFocus();
 			}
 		});
-		txtSearch.setText("Search");
+		txtSearch.setText("Søg");
 		txtSearch.setToolTipText("Search");
 		txtSearch.addKeyListener(new KeyAdapter() {
 			@Override
@@ -191,7 +191,7 @@ public class POS extends JFrame {
 		panel_5 = new JPanel();
 		panel_2.add(panel_5, BorderLayout.NORTH);
 		
-		btnLogOut = new JButton("Log out");
+		btnLogOut = new JButton("Log ud");
 		btnLogOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				logOutClicked();
@@ -399,7 +399,7 @@ public class POS extends JFrame {
 		
 		
 		
-				btnLookupCustomer = new JButton("Lookup customer");
+				btnLookupCustomer = new JButton("Find kunde");
 				btnLookupCustomer.setHorizontalAlignment(SwingConstants.LEFT);
 				panel_6.add(btnLookupCustomer);
 				btnLookupCustomer.setToolTipText("Click to add customer to order");
@@ -410,7 +410,7 @@ public class POS extends JFrame {
 					}
 				});
 
-		btnEdit = new JButton("Edit");
+		btnEdit = new JButton("Rediger");
 		btnEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				editClicked();
@@ -420,7 +420,7 @@ public class POS extends JFrame {
 		btnEdit.setToolTipText("Click to edit product in basket");
 		panel_6.add(btnEdit);
 		
-				btnClear = new JButton("Clear");
+				btnClear = new JButton("Ryd ordre");
 				btnClear.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						clearOrder();
@@ -430,12 +430,12 @@ public class POS extends JFrame {
 				btnClear.setToolTipText("Click to clear customer basket ");
 
 
-		btnPay = new JButton("Pay");
+		btnPay = new JButton("Betal");
 		btnPay.setHorizontalAlignment(SwingConstants.RIGHT);
 		btnPay.setToolTipText("Click to make payment through cc terminal");
 		panel_6.add(btnPay);
 
-		btnSend = new JButton("Send");
+		btnSend = new JButton("Send regning");
 		btnSend.setHorizontalAlignment(SwingConstants.RIGHT);
 		btnSend.setToolTipText("Click to send an invoice for postponed payment(registered companies only!!)");
 		btnSend.addActionListener(new ActionListener() {
@@ -574,6 +574,12 @@ public class POS extends JFrame {
 		displayOrder();
 		table.clearSelection();
 		ptable.clearSelection();
+		salesOrder.setCustomer(null);
+		txtCDiscount.setText("");
+		txtCName.setText("");
+		txtCMail.setText("");
+		txtCAddress.setText("");
+		txtCCity.setText("");
 	}
 	
 	private void logOutClicked() {
@@ -632,20 +638,24 @@ public class POS extends JFrame {
 		}
 	}
 	private void clearOrder() {
-		for(int i = 0; i<otm.getRowCount();i++ ) {
-			PartOrder po = otm.getSelectedProduct(i);	
-			if(!po.getProduct().isAppliance()) {
-				int q1 = pCtrl.findProductByBarcode(otm.getSelectedProduct(i).getProduct().getBarcode()).getQuantity();
-				pCtrl.findProductByBarcode(otm.getSelectedProduct(i).getProduct().getBarcode()).setQuantity(q1+otm.getSelectedProduct(i).getQuantity());
+		try {
+			for(int i = 0; i<otm.getRowCount();i++ ) {
+				PartOrder po = otm.getSelectedProduct(i);	
+				if(!po.getProduct().isAppliance()) {
+					int q1 = pCtrl.findProductByBarcode(otm.getSelectedProduct(i).getProduct().getBarcode()).getQuantity();
+					pCtrl.findProductByBarcode(otm.getSelectedProduct(i).getProduct().getBarcode()).setQuantity(q1+otm.getSelectedProduct(i).getQuantity());
+				}
+				else {
+					pCtrl.addApplianceCopy(po.getCopy(), po.getCopy().getAppliance());
+				}
 			}
-			else {
-				pCtrl.addApplianceCopy(po.getCopy(), po.getCopy().getAppliance());
-			}
+			clearClicked();
+			displayOrder();
+			displayProducts();
+			displayPrices();
+		}catch(Exception e) {
+			
 		}
-		clearClicked();
-		displayOrder();
-		displayProducts();
-		displayPrices();
 	}
 	
 	private void removePartOrder(MouseEvent e) {
@@ -668,11 +678,11 @@ public class POS extends JFrame {
 	}
 
 	private void searchbarFocus() {
-		if(txtSearch.getText().equals("Search") && txtSearch.hasFocus()) {
+		if(txtSearch.getText().equals("Søg") && txtSearch.hasFocus()) {
 			txtSearch.setText(null);
 		}
 		else if(txtSearch.getText().equals("") && !txtSearch.hasFocus()) {
-			txtSearch.setText("Search");
+			txtSearch.setText("Søg");
 		}
 	}
 	
@@ -683,7 +693,7 @@ public class POS extends JFrame {
 			clearClicked();
 		}
 		else{
-			lblCustomerMissing.setText("Mangler kunde!");
+			lblCustomerMissing.setText("Husk at vælge en kunde");
 		}
 	}
 }

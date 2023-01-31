@@ -70,7 +70,7 @@ public class CustomerMenu extends JDialog{
 		
 
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 443, 297);
+		setBounds(100, 100, 501, 297);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -103,7 +103,7 @@ public class CustomerMenu extends JDialog{
 										searchbarFocus();
 									}
 								});
-								txtSearch.setText("Search");
+								txtSearch.setText("Søg");
 								txtSearch.setToolTipText("Search");
 								txtSearch.addKeyListener(new KeyAdapter() {
 									@Override
@@ -158,7 +158,7 @@ public class CustomerMenu extends JDialog{
 				gbc_panel.gridy = 3;
 				contentPane.add(panel, gbc_panel);
 				
-						btnAdd = new JButton("Add");
+						btnAdd = new JButton("Tilføj ny kunde");
 						btnAdd.setToolTipText("Click to add a new customer in the system");
 						btnAdd.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
@@ -166,7 +166,7 @@ public class CustomerMenu extends JDialog{
 							}
 						});
 						
-								btnSelect = new JButton("Select");
+								btnSelect = new JButton("Vælg kunde");
 								btnSelect.setToolTipText("Click to add customer to order");
 								btnSelect.addMouseListener(new MouseAdapter() {
 									@Override
@@ -178,7 +178,7 @@ public class CustomerMenu extends JDialog{
 								panel.add(btnSelect);
 								panel.add(btnAdd);
 								
-										btnInfo = new JButton("Info");
+										btnInfo = new JButton("Info/Rediger");
 										btnInfo.setToolTipText("Click to view and edit customer information");
 										btnInfo.addActionListener(new ActionListener() {
 											public void actionPerformed(ActionEvent e) {
@@ -187,7 +187,7 @@ public class CustomerMenu extends JDialog{
 										});
 										panel.add(btnInfo);
 										
-												btnDelete = new JButton("Cancel");
+												btnDelete = new JButton("Annuller");
 												btnDelete.addActionListener(new ActionListener() {
 													public void actionPerformed(ActionEvent e) {
 														cancelClicked();
@@ -271,11 +271,11 @@ public class CustomerMenu extends JDialog{
 	}
 
 	private void searchbarFocus(){
-		if(txtSearch.getText().equals("Search") && txtSearch.hasFocus()) {
+		if(txtSearch.getText().equals("Søg") && txtSearch.hasFocus()) {
 			txtSearch.setText(null);
 		}
 		else if(txtSearch.getText().equals("") && !txtSearch.hasFocus()) {
-			txtSearch.setText("Search");
+			txtSearch.setText("Søg");
 		}
 	}
 	

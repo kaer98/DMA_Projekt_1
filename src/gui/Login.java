@@ -61,7 +61,7 @@ public class Login extends JFrame {
 		panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 				
-		JLabel lblLogin = new JLabel("Login");
+		JLabel lblLogin = new JLabel("Log ind");
 		lblLogin.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(lblLogin, BorderLayout.NORTH);
 		init();
