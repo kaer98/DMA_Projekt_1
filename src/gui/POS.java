@@ -441,6 +441,7 @@ public class POS extends JFrame {
 		btnSend.setToolTipText("Click to send an invoice for postponed payment(registered companies only!!)");
 		btnSend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				payClicked();
 			}
 		});
 		panel_6.add(btnSend);
@@ -691,7 +692,7 @@ public class POS extends JFrame {
 	
 	private void payClicked() {
 		if(salesOrder.getCustomer() != null) {
-			salesOrder.invoice();
+			createInvoice(salesOrder);
 			cCtrl.findCustomerByPhoneNo(salesOrder.getCustomer().getPhoneNo()).addOrderToCustomer(salesOrder);
 			clearClicked();
 		}
@@ -699,4 +700,39 @@ public class POS extends JFrame {
 			lblCustomerMissing.setText("Husk at vælge en kunde!");
 		}
 	}
+	
+	private void createInvoice(Order salesOrder) {
+		System.out.println("#######Vestbjerg Byggecenter A/S#######");
+		System.out.println("Medarbejder: " + employee.getName());
+		System.out.println();
+		System.out.println("Dato: " + salesOrder.getDateTime() + " 					Fakturanr.:" + salesOrder.getOrderNo());
+		System.out.println();
+		System.out.println("Faktura");
+		if (salesOrder.getFinal() == "Salg")
+			System.out.println("Betalingsdato: " + salesOrder.getDateTime() + " 					Type: " + salesOrder.getFinal());
+		if (salesOrder.getFinal() == "Faktura")
+			System.out.println("Betalingsdato: " + salesOrder.getDateTime().plusDays(14) + " 					Type: " + salesOrder.getFinal());
+		if (salesOrder.getFinal() == "Tilbud")
+			System.out.println("Tilbud acceptdato: " + salesOrder.getDateTime().plusDays(14) + " 					Type: " + salesOrder.getFinal());
+		System.out.println("Kunde: " + salesOrder.getCustomer().getName() + " \nKundes telefon: " + salesOrder.getCustomer().getPhoneNo());
+		System.out.println("Kundes e-mail: " + salesOrder.getCustomer().getMailAddress() + " \nKundes adresse: " + salesOrder.getCustomer().getAddress());
+		System.out.println("Kundes CVR-nr: " + salesOrder.getCustomer().getCvr());
+		for (PartOrder parts : salesOrder.getParts()) {
+			if (parts.getQuantity() != 0 && !parts.getProduct().isAppliance())
+				System.out.println("\n" + parts.getQuantity() + "x " + parts.getProductName() + ", á " + parts.getProduct().getRetailPrice() + ", pris " + parts.getTotal());
+			if (parts.getProduct().isAppliance()) {
+				System.out.println("\n1x " + parts.getProductName() +  ", pris " + parts.getTotal());
+				System.out.println("Serienummer: " + parts.getCopy().getSerialNo());
+
+			}
+		}
+		System.out.println("\n\n\nSubtotal: " + txtSubtotal.getText() + "kr");
+		if (!txtCDiscount.getText().contentEquals("0.00")) {
+			System.out.println("Subtotal med rabat(" + txtCDiscount.getText() + "%):" + txtSubtotalDiscount.getText() + "kr");
+		}
+		System.out.println("Moms(25%): " + txtTax.getText() + "kr");
+		System.out.println("\nTotal DKK: " + txtTotal.getText() + "kr");
+
+	}
+
 }

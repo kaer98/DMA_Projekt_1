@@ -122,7 +122,7 @@ public class OrderMenu {
 				break;
 			}
 			orderController.addOrder(order);
-			order.createInvoice();
+			order.invoice();
 			if (order.getFinal() != "Tilbud") {
 				int choice1 = payMenu();
 				switch (choice1) {
@@ -130,13 +130,13 @@ public class OrderMenu {
 					order.setFinal("Betalt");
 					order.getEmployee().tickSale();
 					order.getEmployee().setTotalSales(order.getTotal());
-					order.createInvoice();
+					order.invoice();
 					break;
 				case 2:
 					order.setFinal("Faktura");
 					order.getEmployee().tickSale();
 					order.getEmployee().setTotalSales(order.getTotal());
-					order.createInvoice();
+					order.invoice();
 				}
 			}
 			break;
