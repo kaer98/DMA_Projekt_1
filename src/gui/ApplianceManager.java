@@ -44,6 +44,12 @@ public class ApplianceManager extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		txtSearch = new JTextField();
+		txtSearch.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				lblError.setText("");
+			}
+		});
 		txtSearch.setToolTipText("Input appliance serial number");
 		txtSearch.setBounds(10, 11, 365, 20);
 		contentPanel.add(txtSearch);

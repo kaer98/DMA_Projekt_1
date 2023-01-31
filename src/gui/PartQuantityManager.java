@@ -24,6 +24,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Color;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 public class PartQuantityManager extends JDialog {
 
@@ -39,23 +42,41 @@ public class PartQuantityManager extends JDialog {
 	 */
 	public PartQuantityManager(PartOrder po, OrderController o, POS pos) {
 		setTitle("Indtast ønsket antal");
-		setBounds(100, 100, 264, 120);
+		setBounds(100, 100, 304, 130);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		contentPanel.setLayout(null);
+		GridBagLayout gbl_contentPanel = new GridBagLayout();
+		gbl_contentPanel.columnWidths = new int[]{230, 0};
+		gbl_contentPanel.rowHeights = new int[]{32, 0, 0};
+		gbl_contentPanel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_contentPanel.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
+		contentPanel.setLayout(gbl_contentPanel);
 		txtAmount = new JTextField();
+		txtAmount.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				lblError.setText("");
+			}
+		});
 		txtAmount.setToolTipText("Input appliance serial number");
-		txtAmount.setBounds(10, 11, 230, 20);
-		contentPanel.add(txtAmount);
+		GridBagConstraints gbc_txtAmount = new GridBagConstraints();
+		gbc_txtAmount.insets = new Insets(0, 0, 5, 0);
+		gbc_txtAmount.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtAmount.gridx = 0;
+		gbc_txtAmount.gridy = 0;
+		contentPanel.add(txtAmount, gbc_txtAmount);
 		txtAmount.setColumns(10);
 		
 		
 		
 		lblError = new JLabel("");
 		lblError.setForeground(new Color(255, 0, 0));
-		lblError.setBounds(10, 30, 220, 13);
-		contentPanel.add(lblError);
+		GridBagConstraints gbc_lblError = new GridBagConstraints();
+		gbc_lblError.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblError.gridx = 0;
+		gbc_lblError.gridy = 1;
+		contentPanel.add(lblError, gbc_lblError);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));

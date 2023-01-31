@@ -23,6 +23,8 @@ import java.awt.Color;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class AdminLogin extends JDialog {
 
@@ -44,7 +46,7 @@ public class AdminLogin extends JDialog {
 	 * Create the dialog.
 	 */
 	public AdminLogin(Employee em, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc, Login login) {
-		setBounds(100, 100, 301, 141);
+		setBounds(100, 100, 301, 150);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.NORTH);
@@ -76,8 +78,7 @@ public class AdminLogin extends JDialog {
 		{
 			JLabel lblNewLabel = new JLabel("Kodeord:");
 			GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-			gbc_lblNewLabel.fill = GridBagConstraints.HORIZONTAL;
-			gbc_lblNewLabel.anchor = GridBagConstraints.SOUTH;
+			gbc_lblNewLabel.fill = GridBagConstraints.BOTH;
 			gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
 			gbc_lblNewLabel.gridx = 0;
 			gbc_lblNewLabel.gridy = 1;
@@ -85,6 +86,12 @@ public class AdminLogin extends JDialog {
 		}
 		{
 			passwordField = new JPasswordField();
+			passwordField.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					lblWrongpass.setText("");
+				}
+			});
 			GridBagConstraints gbc_passwordField = new GridBagConstraints();
 			gbc_passwordField.fill = GridBagConstraints.HORIZONTAL;
 			gbc_passwordField.insets = new Insets(0, 0, 5, 0);
