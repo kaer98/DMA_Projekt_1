@@ -39,7 +39,7 @@ public class SendManager extends JDialog {
 				getRootPane().setDefaultButton(btnOffer);
 			}
 			{
-				JButton btnInvoice = new JButton("Send som faktura");
+				JButton btnInvoice = new JButton("Send som regning");
 				btnInvoice.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						invoiceClicked();

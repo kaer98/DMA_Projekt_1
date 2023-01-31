@@ -114,6 +114,9 @@ public class CustomerInfo extends JDialog {
 	private JSeparator separator_6;
 	private JSeparator separator_9;
 	private JSeparator separator_10;
+	private Component verticalStrut_1;
+	private Component verticalStrut_2;
+	private Component verticalStrut_3;
 
 
 	/**
@@ -123,9 +126,9 @@ public class CustomerInfo extends JDialog {
 	public CustomerInfo(Customer c,Employee em, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc, CustomerMenu cMenu) {
 		setBounds(150, 150, 401, 540);
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{74, 262, 0, 0};
+		gridBagLayout.columnWidths = new int[]{0, 74, 0, 262, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 20, 0, 0, 20, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 21, 0, 33, 0, 14, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
 					
@@ -134,26 +137,42 @@ public class CustomerInfo extends JDialog {
 														separator_7 = new JSeparator();
 														GridBagConstraints gbc_separator_7 = new GridBagConstraints();
 														gbc_separator_7.insets = new Insets(0, 0, 5, 5);
-														gbc_separator_7.gridx = 1;
+														gbc_separator_7.gridx = 3;
 														gbc_separator_7.gridy = 0;
 														getContentPane().add(separator_7, gbc_separator_7);
 														
-														JLabel lblNewLabel_2 = new JLabel(" Kundeinformation:");
+														verticalStrut_2 = Box.createVerticalStrut(20);
+														GridBagConstraints gbc_verticalStrut_2 = new GridBagConstraints();
+														gbc_verticalStrut_2.gridheight = 31;
+														gbc_verticalStrut_2.insets = new Insets(0, 0, 5, 5);
+														gbc_verticalStrut_2.gridx = 0;
+														gbc_verticalStrut_2.gridy = 0;
+														getContentPane().add(verticalStrut_2, gbc_verticalStrut_2);
+														
+														JLabel lblNewLabel_2 = new JLabel("Kundeinformation:");
 														lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
 														GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
-														gbc_lblNewLabel_2.gridwidth = 2;
+														gbc_lblNewLabel_2.gridwidth = 3;
 														gbc_lblNewLabel_2.fill = GridBagConstraints.HORIZONTAL;
 														gbc_lblNewLabel_2.anchor = GridBagConstraints.SOUTH;
 														gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
-														gbc_lblNewLabel_2.gridx = 0;
+														gbc_lblNewLabel_2.gridx = 1;
 														gbc_lblNewLabel_2.gridy = 1;
 														getContentPane().add(lblNewLabel_2, gbc_lblNewLabel_2);
+																	
+																	verticalStrut_1 = Box.createVerticalStrut(20);
+																	GridBagConstraints gbc_verticalStrut_1 = new GridBagConstraints();
+																	gbc_verticalStrut_1.gridheight = 31;
+																	gbc_verticalStrut_1.insets = new Insets(0, 0, 5, 5);
+																	gbc_verticalStrut_1.gridx = 4;
+																	gbc_verticalStrut_1.gridy = 0;
+																	getContentPane().add(verticalStrut_1, gbc_verticalStrut_1);
 														
 																	lab1 = new JLabel("Navn");
 																	GridBagConstraints gbc_lab1 = new GridBagConstraints();
 																	gbc_lab1.anchor = GridBagConstraints.EAST;
 																	gbc_lab1.insets = new Insets(0, 0, 5, 5);
-																	gbc_lab1.gridx = 0;
+																	gbc_lab1.gridx = 1;
 																	gbc_lab1.gridy = 2;
 																	getContentPane().add(lab1, gbc_lab1);
 														
@@ -170,7 +189,7 @@ public class CustomerInfo extends JDialog {
 														GridBagConstraints gbc_txtName = new GridBagConstraints();
 														gbc_txtName.insets = new Insets(0, 0, 5, 5);
 														gbc_txtName.fill = GridBagConstraints.HORIZONTAL;
-														gbc_txtName.gridx = 1;
+														gbc_txtName.gridx = 3;
 														gbc_txtName.gridy = 2;
 														getContentPane().add(txtName, gbc_txtName);
 											
@@ -180,14 +199,14 @@ public class CustomerInfo extends JDialog {
 											gbc_labName.anchor = GridBagConstraints.SOUTH;
 											gbc_labName.fill = GridBagConstraints.HORIZONTAL;
 											gbc_labName.insets = new Insets(0, 0, 5, 5);
-											gbc_labName.gridx = 1;
+											gbc_labName.gridx = 3;
 											gbc_labName.gridy = 3;
 											getContentPane().add(labName, gbc_labName);
 											
 											separator = new JSeparator();
 											GridBagConstraints gbc_separator = new GridBagConstraints();
 											gbc_separator.insets = new Insets(0, 0, 5, 5);
-											gbc_separator.gridx = 1;
+											gbc_separator.gridx = 3;
 											gbc_separator.gridy = 4;
 											getContentPane().add(separator, gbc_separator);
 								
@@ -196,7 +215,7 @@ public class CustomerInfo extends JDialog {
 											GridBagConstraints gbc_lab2 = new GridBagConstraints();
 											gbc_lab2.anchor = GridBagConstraints.EAST;
 											gbc_lab2.insets = new Insets(0, 0, 5, 5);
-											gbc_lab2.gridx = 0;
+											gbc_lab2.gridx = 1;
 											gbc_lab2.gridy = 5;
 											getContentPane().add(lab2, gbc_lab2);
 								
@@ -213,7 +232,7 @@ public class CustomerInfo extends JDialog {
 											GridBagConstraints gbc_txtCVR = new GridBagConstraints();
 											gbc_txtCVR.fill = GridBagConstraints.HORIZONTAL;
 											gbc_txtCVR.insets = new Insets(0, 0, 5, 5);
-											gbc_txtCVR.gridx = 1;
+											gbc_txtCVR.gridx = 3;
 											gbc_txtCVR.gridy = 5;
 											getContentPane().add(txtCVR, gbc_txtCVR);
 											txtCVR.setColumns(10);
@@ -240,14 +259,14 @@ public class CustomerInfo extends JDialog {
 																																labCVR.setForeground(new Color(255, 0, 0));
 																																GridBagConstraints gbc_labCVR = new GridBagConstraints();
 																																gbc_labCVR.insets = new Insets(0, 0, 5, 5);
-																																gbc_labCVR.gridx = 1;
+																																gbc_labCVR.gridx = 3;
 																																gbc_labCVR.gridy = 6;
 																																getContentPane().add(labCVR, gbc_labCVR);
 																																
 																																separator_1 = new JSeparator();
 																																GridBagConstraints gbc_separator_1 = new GridBagConstraints();
 																																gbc_separator_1.insets = new Insets(0, 0, 5, 5);
-																																gbc_separator_1.gridx = 1;
+																																gbc_separator_1.gridx = 3;
 																																gbc_separator_1.gridy = 7;
 																																getContentPane().add(separator_1, gbc_separator_1);
 																													
@@ -255,13 +274,13 @@ public class CustomerInfo extends JDialog {
 																																GridBagConstraints gbc_lab3 = new GridBagConstraints();
 																																gbc_lab3.anchor = GridBagConstraints.EAST;
 																																gbc_lab3.insets = new Insets(0, 0, 5, 5);
-																																gbc_lab3.gridx = 0;
+																																gbc_lab3.gridx = 1;
 																																gbc_lab3.gridy = 8;
 																																getContentPane().add(lab3, gbc_lab3);
 																													GridBagConstraints gbc_txtPhone = new GridBagConstraints();
 																													gbc_txtPhone.fill = GridBagConstraints.HORIZONTAL;
 																													gbc_txtPhone.insets = new Insets(0, 0, 5, 5);
-																													gbc_txtPhone.gridx = 1;
+																													gbc_txtPhone.gridx = 3;
 																													gbc_txtPhone.gridy = 8;
 																													getContentPane().add(txtPhone, gbc_txtPhone);
 																													txtPhone.setColumns(10);
@@ -270,14 +289,14 @@ public class CustomerInfo extends JDialog {
 											labPhone.setForeground(new Color(255, 0, 0));
 											GridBagConstraints gbc_labPhone = new GridBagConstraints();
 											gbc_labPhone.insets = new Insets(0, 0, 5, 5);
-											gbc_labPhone.gridx = 1;
+											gbc_labPhone.gridx = 3;
 											gbc_labPhone.gridy = 9;
 											getContentPane().add(labPhone, gbc_labPhone);
 											
 											separator_2 = new JSeparator();
 											GridBagConstraints gbc_separator_2 = new GridBagConstraints();
 											gbc_separator_2.insets = new Insets(0, 0, 5, 5);
-											gbc_separator_2.gridx = 1;
+											gbc_separator_2.gridx = 3;
 											gbc_separator_2.gridy = 10;
 											getContentPane().add(separator_2, gbc_separator_2);
 								
@@ -285,14 +304,14 @@ public class CustomerInfo extends JDialog {
 											GridBagConstraints gbc_lab4 = new GridBagConstraints();
 											gbc_lab4.anchor = GridBagConstraints.EAST;
 											gbc_lab4.insets = new Insets(0, 0, 5, 5);
-											gbc_lab4.gridx = 0;
+											gbc_lab4.gridx = 1;
 											gbc_lab4.gridy = 11;
 											getContentPane().add(lab4, gbc_lab4);
 											
 											GridBagConstraints gbc_txtEmail = new GridBagConstraints();
 											gbc_txtEmail.fill = GridBagConstraints.HORIZONTAL;
 											gbc_txtEmail.insets = new Insets(0, 0, 5, 5);
-											gbc_txtEmail.gridx = 1;
+											gbc_txtEmail.gridx = 3;
 											gbc_txtEmail.gridy = 11;
 											getContentPane().add(txtEmail, gbc_txtEmail);
 											txtEmail.setColumns(10);
@@ -301,14 +320,14 @@ public class CustomerInfo extends JDialog {
 											labEmail.setForeground(new Color(255, 0, 0));
 											GridBagConstraints gbc_labEmail = new GridBagConstraints();
 											gbc_labEmail.insets = new Insets(0, 0, 5, 5);
-											gbc_labEmail.gridx = 1;
+											gbc_labEmail.gridx = 3;
 											gbc_labEmail.gridy = 12;
 											getContentPane().add(labEmail, gbc_labEmail);
 											
 											separator_3 = new JSeparator();
 											GridBagConstraints gbc_separator_3 = new GridBagConstraints();
 											gbc_separator_3.insets = new Insets(0, 0, 5, 5);
-											gbc_separator_3.gridx = 1;
+											gbc_separator_3.gridx = 3;
 											gbc_separator_3.gridy = 13;
 											getContentPane().add(separator_3, gbc_separator_3);
 								
@@ -316,7 +335,7 @@ public class CustomerInfo extends JDialog {
 											GridBagConstraints gbc_lab5 = new GridBagConstraints();
 											gbc_lab5.anchor = GridBagConstraints.EAST;
 											gbc_lab5.insets = new Insets(0, 0, 5, 5);
-											gbc_lab5.gridx = 0;
+											gbc_lab5.gridx = 1;
 											gbc_lab5.gridy = 14;
 											getContentPane().add(lab5, gbc_lab5);
 											
@@ -331,7 +350,7 @@ public class CustomerInfo extends JDialog {
 														GridBagConstraints gbc_txtAddress = new GridBagConstraints();
 														gbc_txtAddress.fill = GridBagConstraints.HORIZONTAL;
 														gbc_txtAddress.insets = new Insets(0, 0, 5, 5);
-														gbc_txtAddress.gridx = 1;
+														gbc_txtAddress.gridx = 3;
 														gbc_txtAddress.gridy = 14;
 														getContentPane().add(txtAddress, gbc_txtAddress);
 														txtAddress.setColumns(10);
@@ -340,7 +359,7 @@ public class CustomerInfo extends JDialog {
 														labAddress.setForeground(Color.RED);
 														GridBagConstraints gbc_labAddress = new GridBagConstraints();
 														gbc_labAddress.insets = new Insets(0, 0, 5, 5);
-														gbc_labAddress.gridx = 1;
+														gbc_labAddress.gridx = 3;
 														gbc_labAddress.gridy = 15;
 														getContentPane().add(labAddress, gbc_labAddress);
 														
@@ -356,7 +375,7 @@ public class CustomerInfo extends JDialog {
 																				separator_4 = new JSeparator();
 																				GridBagConstraints gbc_separator_4 = new GridBagConstraints();
 																				gbc_separator_4.insets = new Insets(0, 0, 5, 5);
-																				gbc_separator_4.gridx = 1;
+																				gbc_separator_4.gridx = 3;
 																				gbc_separator_4.gridy = 16;
 																				getContentPane().add(separator_4, gbc_separator_4);
 																	
@@ -364,13 +383,13 @@ public class CustomerInfo extends JDialog {
 																				GridBagConstraints gbc_lab6 = new GridBagConstraints();
 																				gbc_lab6.anchor = GridBagConstraints.EAST;
 																				gbc_lab6.insets = new Insets(0, 0, 5, 5);
-																				gbc_lab6.gridx = 0;
+																				gbc_lab6.gridx = 1;
 																				gbc_lab6.gridy = 17;
 																				getContentPane().add(lab6, gbc_lab6);
 																	GridBagConstraints gbc_txtPostalcode = new GridBagConstraints();
 																	gbc_txtPostalcode.fill = GridBagConstraints.HORIZONTAL;
 																	gbc_txtPostalcode.insets = new Insets(0, 0, 5, 5);
-																	gbc_txtPostalcode.gridx = 1;
+																	gbc_txtPostalcode.gridx = 3;
 																	gbc_txtPostalcode.gridy = 17;
 																	getContentPane().add(txtPostalcode, gbc_txtPostalcode);
 																	txtPostalcode.setColumns(10);
@@ -381,14 +400,14 @@ public class CustomerInfo extends JDialog {
 														gbc_labPostalcode.anchor = GridBagConstraints.SOUTH;
 														gbc_labPostalcode.fill = GridBagConstraints.HORIZONTAL;
 														gbc_labPostalcode.insets = new Insets(0, 0, 5, 5);
-														gbc_labPostalcode.gridx = 1;
+														gbc_labPostalcode.gridx = 3;
 														gbc_labPostalcode.gridy = 18;
 														getContentPane().add(labPostalcode, gbc_labPostalcode);
 														
 														separator_5 = new JSeparator();
 														GridBagConstraints gbc_separator_5 = new GridBagConstraints();
 														gbc_separator_5.insets = new Insets(0, 0, 5, 5);
-														gbc_separator_5.gridx = 1;
+														gbc_separator_5.gridx = 3;
 														gbc_separator_5.gridy = 19;
 														getContentPane().add(separator_5, gbc_separator_5);
 											
@@ -396,7 +415,7 @@ public class CustomerInfo extends JDialog {
 														GridBagConstraints gbc_lab7 = new GridBagConstraints();
 														gbc_lab7.anchor = GridBagConstraints.EAST;
 														gbc_lab7.insets = new Insets(0, 0, 5, 5);
-														gbc_lab7.gridx = 0;
+														gbc_lab7.gridx = 1;
 														gbc_lab7.gridy = 20;
 														getContentPane().add(lab7, gbc_lab7);
 											
@@ -411,7 +430,7 @@ public class CustomerInfo extends JDialog {
 														GridBagConstraints gbc_txtCity = new GridBagConstraints();
 														gbc_txtCity.fill = GridBagConstraints.HORIZONTAL;
 														gbc_txtCity.insets = new Insets(0, 0, 5, 5);
-														gbc_txtCity.gridx = 1;
+														gbc_txtCity.gridx = 3;
 														gbc_txtCity.gridy = 20;
 														getContentPane().add(txtCity, gbc_txtCity);
 														txtCity.setColumns(10);
@@ -420,7 +439,7 @@ public class CustomerInfo extends JDialog {
 											labCity.setForeground(Color.RED);
 											GridBagConstraints gbc_labCity = new GridBagConstraints();
 											gbc_labCity.insets = new Insets(0, 0, 5, 5);
-											gbc_labCity.gridx = 1;
+											gbc_labCity.gridx = 3;
 											gbc_labCity.gridy = 21;
 											getContentPane().add(labCity, gbc_labCity);
 											
@@ -436,7 +455,7 @@ public class CustomerInfo extends JDialog {
 																	separator_6 = new JSeparator();
 																	GridBagConstraints gbc_separator_6 = new GridBagConstraints();
 																	gbc_separator_6.insets = new Insets(0, 0, 5, 5);
-																	gbc_separator_6.gridx = 1;
+																	gbc_separator_6.gridx = 3;
 																	gbc_separator_6.gridy = 22;
 																	getContentPane().add(separator_6, gbc_separator_6);
 														
@@ -444,13 +463,13 @@ public class CustomerInfo extends JDialog {
 																	GridBagConstraints gbc_lab8 = new GridBagConstraints();
 																	gbc_lab8.anchor = GridBagConstraints.EAST;
 																	gbc_lab8.insets = new Insets(0, 0, 5, 5);
-																	gbc_lab8.gridx = 0;
+																	gbc_lab8.gridx = 1;
 																	gbc_lab8.gridy = 23;
 																	getContentPane().add(lab8, gbc_lab8);
 														GridBagConstraints gbc_txtCountry = new GridBagConstraints();
 														gbc_txtCountry.fill = GridBagConstraints.HORIZONTAL;
 														gbc_txtCountry.insets = new Insets(0, 0, 5, 5);
-														gbc_txtCountry.gridx = 1;
+														gbc_txtCountry.gridx = 3;
 														gbc_txtCountry.gridy = 23;
 														getContentPane().add(txtCountry, gbc_txtCountry);
 														txtCountry.setColumns(10);
@@ -461,14 +480,14 @@ public class CustomerInfo extends JDialog {
 								gbc_labCountry.anchor = GridBagConstraints.SOUTH;
 								gbc_labCountry.fill = GridBagConstraints.HORIZONTAL;
 								gbc_labCountry.insets = new Insets(0, 0, 5, 5);
-								gbc_labCountry.gridx = 1;
+								gbc_labCountry.gridx = 3;
 								gbc_labCountry.gridy = 24;
 								getContentPane().add(labCountry, gbc_labCountry);
 								
 								separator_9 = new JSeparator();
 								GridBagConstraints gbc_separator_9 = new GridBagConstraints();
 								gbc_separator_9.insets = new Insets(0, 0, 5, 5);
-								gbc_separator_9.gridx = 1;
+								gbc_separator_9.gridx = 3;
 								gbc_separator_9.gridy = 25;
 								getContentPane().add(separator_9, gbc_separator_9);
 					
@@ -476,15 +495,23 @@ public class CustomerInfo extends JDialog {
 								GridBagConstraints gbc_lab9 = new GridBagConstraints();
 								gbc_lab9.anchor = GridBagConstraints.EAST;
 								gbc_lab9.insets = new Insets(0, 0, 5, 5);
-								gbc_lab9.gridx = 0;
+								gbc_lab9.gridx = 1;
 								gbc_lab9.gridy = 26;
 								getContentPane().add(lab9, gbc_lab9);
+					
+					verticalStrut_3 = Box.createVerticalStrut(20);
+					GridBagConstraints gbc_verticalStrut_3 = new GridBagConstraints();
+					gbc_verticalStrut_3.gridheight = 25;
+					gbc_verticalStrut_3.insets = new Insets(0, 0, 5, 5);
+					gbc_verticalStrut_3.gridx = 2;
+					gbc_verticalStrut_3.gridy = 2;
+					getContentPane().add(verticalStrut_3, gbc_verticalStrut_3);
 					
 					txtDiscount = new JFormattedTextField();
 					GridBagConstraints gbc_txtDiscount = new GridBagConstraints();
 					gbc_txtDiscount.fill = GridBagConstraints.HORIZONTAL;
 					gbc_txtDiscount.insets = new Insets(0, 0, 5, 5);
-					gbc_txtDiscount.gridx = 1;
+					gbc_txtDiscount.gridx = 3;
 					gbc_txtDiscount.gridy = 26;
 					getContentPane().add(txtDiscount, gbc_txtDiscount);
 					
@@ -492,14 +519,14 @@ public class CustomerInfo extends JDialog {
 					GridBagConstraints gbc_verticalStrut = new GridBagConstraints();
 					gbc_verticalStrut.gridheight = 30;
 					gbc_verticalStrut.insets = new Insets(0, 0, 5, 0);
-					gbc_verticalStrut.gridx = 2;
+					gbc_verticalStrut.gridx = 5;
 					gbc_verticalStrut.gridy = 0;
 					getContentPane().add(verticalStrut, gbc_verticalStrut);
 					
 					separator_10 = new JSeparator();
 					GridBagConstraints gbc_separator_10 = new GridBagConstraints();
 					gbc_separator_10.insets = new Insets(0, 0, 5, 5);
-					gbc_separator_10.gridx = 1;
+					gbc_separator_10.gridx = 3;
 					gbc_separator_10.gridy = 27;
 					getContentPane().add(separator_10, gbc_separator_10);
 					{
@@ -507,7 +534,7 @@ public class CustomerInfo extends JDialog {
 						GridBagConstraints gbc_buttonPanel = new GridBagConstraints();
 						gbc_buttonPanel.anchor = GridBagConstraints.NORTHEAST;
 						gbc_buttonPanel.insets = new Insets(0, 0, 5, 5);
-						gbc_buttonPanel.gridx = 1;
+						gbc_buttonPanel.gridx = 3;
 						gbc_buttonPanel.gridy = 28;
 						getContentPane().add(buttonPanel, gbc_buttonPanel);
 						{
@@ -550,9 +577,9 @@ public class CustomerInfo extends JDialog {
 																																
 																																separator_8 = new JSeparator();
 																																GridBagConstraints gbc_separator_8 = new GridBagConstraints();
-																																gbc_separator_8.gridwidth = 2;
+																																gbc_separator_8.gridwidth = 3;
 																																gbc_separator_8.insets = new Insets(0, 0, 5, 5);
-																																gbc_separator_8.gridx = 0;
+																																gbc_separator_8.gridx = 1;
 																																gbc_separator_8.gridy = 29;
 																																getContentPane().add(separator_8, gbc_separator_8);
 																																
@@ -560,7 +587,7 @@ public class CustomerInfo extends JDialog {
 																																GridBagConstraints gbc_panel = new GridBagConstraints();
 																																gbc_panel.gridwidth = 3;
 																																gbc_panel.fill = GridBagConstraints.BOTH;
-																																gbc_panel.gridx = 0;
+																																gbc_panel.gridx = 1;
 																																gbc_panel.gridy = 30;
 																																getContentPane().add(panel, gbc_panel);
 																																GridBagLayout gbl_panel = new GridBagLayout();
@@ -570,7 +597,7 @@ public class CustomerInfo extends JDialog {
 																																gbl_panel.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
 																																panel.setLayout(gbl_panel);
 																																
-																																			JLabel lblNewLabel_10 = new JLabel(" Ordreliste:");
+																																			JLabel lblNewLabel_10 = new JLabel("Ordreliste:");
 																																			GridBagConstraints gbc_lblNewLabel_10 = new GridBagConstraints();
 																																			gbc_lblNewLabel_10.anchor = GridBagConstraints.SOUTHWEST;
 																																			gbc_lblNewLabel_10.insets = new Insets(0, 0, 5, 0);
@@ -585,10 +612,10 @@ public class CustomerInfo extends JDialog {
 																																						gbc_panel_1.gridx = 0;
 																																						gbc_panel_1.gridy = 1;
 																																						panel.add(panel_1, gbc_panel_1);
-																																									panel_1.setLayout(new BorderLayout(0, 0));
-																																						
-																																									JScrollPane scrollPane = new JScrollPane();
-																																									panel_1.add(scrollPane);
+																																															panel_1.setLayout(new BorderLayout(0, 0));
+																																												
+																																															JScrollPane scrollPane = new JScrollPane();
+																																															panel_1.add(scrollPane);
 																																									
 																																												oList = new JList<Order>();
 																																												oList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
