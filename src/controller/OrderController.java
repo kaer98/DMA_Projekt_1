@@ -95,7 +95,6 @@ public class OrderController {
 	public void newList() {
 		parts.clear();
 	}
-
 	
 	public Order findOrderByCustomer(Customer customer) {
 		Order order = orderContainer.findOrderByCustomer(customer);

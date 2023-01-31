@@ -469,12 +469,7 @@ public class POS extends JFrame {
 		pJList = new JList<Product>();
 		oJList = new JList<PartOrder>();
 		displayProducts();
-		if(salesOrder == null) {
-			salesOrder = oCtrl.makeOrder(1);
-		}
-		else {
-			salesOrder = oCtrl.makeOrder(salesOrder.getOrderNo()+1);
-		}
+		salesOrder = oCtrl.makeOrder();
 		salesOrder.setEmployee(em);
 		txtCDiscount.setText(""+00.00);
 
@@ -697,9 +692,11 @@ public class POS extends JFrame {
 	
 	private void payClicked() {
 		if(salesOrder.getCustomer() != null) {
+			oCtrl.addOrder(salesOrder);
 			createInvoice();
 			cCtrl.findCustomerByPhoneNo(salesOrder.getCustomer().getPhoneNo()).addOrderToCustomer(salesOrder);
 			clearClicked();
+			salesOrder = oCtrl.makeOrder();
 		}
 		else{
 			lblCustomerMissing.setText("Husk at vælge en kunde!");
