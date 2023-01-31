@@ -441,7 +441,7 @@ public class POS extends JFrame {
 		btnSend.setToolTipText("Click to send an invoice for postponed payment(registered companies only!!)");
 		btnSend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				payClicked();
+				startSendManager();
 			}
 		});
 		panel_6.add(btnSend);
@@ -526,6 +526,14 @@ public class POS extends JFrame {
 		pam.setAlwaysOnTop(true);
 		pam.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
 		displayOrder();
+	}
+	
+	private void startSendManager(){
+		SendManager sm = new SendManager(this, salesOrder);
+		sm.setVisible(true);
+		sm.setModal(true);
+		sm.setAlwaysOnTop(true);
+		sm.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
 	}
 	
 	public void displayOrder() {
@@ -690,7 +698,7 @@ public class POS extends JFrame {
 		}
 	}
 	
-	private void payClicked() {
+	public void finishOrder() {
 		if(salesOrder.getCustomer() != null) {
 			oCtrl.addOrder(salesOrder);
 			createInvoice();
@@ -703,6 +711,11 @@ public class POS extends JFrame {
 		}
 	}
 	
+	private void payClicked() {
+		salesOrder.setFinal("Salg");
+		finishOrder();
+	}
+
 	private void createInvoice() {
 		System.out.println("#######Vestbjerg Byggecenter A/S#######");
 		System.out.println("Medarbejder: " + employee.getName());
@@ -719,6 +732,7 @@ public class POS extends JFrame {
 		System.out.println("Kunde: " + salesOrder.getCustomer().getName() + " \nKundes telefon: " + salesOrder.getCustomer().getPhoneNo());
 		System.out.println("Kundes e-mail: " + salesOrder.getCustomer().getMailAddress() + " \nKundes adresse: " + salesOrder.getCustomer().getAddress());
 		System.out.println("Kundes CVR-nr: " + salesOrder.getCustomer().getCvr());
+		System.out.println();
 		for (PartOrder parts : salesOrder.getParts()) {
 			if (parts.getQuantity() != 0 && !parts.getProduct().isAppliance())
 				System.out.println("\n" + parts.getQuantity() + "x " + parts.getProductName() + ", á " + parts.getProduct().getRetailPrice() + ", pris " + parts.getTotal());
