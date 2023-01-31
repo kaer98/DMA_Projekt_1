@@ -469,7 +469,12 @@ public class POS extends JFrame {
 		pJList = new JList<Product>();
 		oJList = new JList<PartOrder>();
 		displayProducts();
-		salesOrder = oCtrl.makeOrder();
+		if(salesOrder == null) {
+			salesOrder = oCtrl.makeOrder(1);
+		}
+		else {
+			salesOrder = oCtrl.makeOrder(salesOrder.getOrderNo()+1);
+		}
 		salesOrder.setEmployee(em);
 		txtCDiscount.setText(""+00.00);
 
@@ -692,7 +697,7 @@ public class POS extends JFrame {
 	
 	private void payClicked() {
 		if(salesOrder.getCustomer() != null) {
-			createInvoice(salesOrder);
+			createInvoice();
 			cCtrl.findCustomerByPhoneNo(salesOrder.getCustomer().getPhoneNo()).addOrderToCustomer(salesOrder);
 			clearClicked();
 		}
@@ -701,7 +706,7 @@ public class POS extends JFrame {
 		}
 	}
 	
-	private void createInvoice(Order salesOrder) {
+	private void createInvoice() {
 		System.out.println("#######Vestbjerg Byggecenter A/S#######");
 		System.out.println("Medarbejder: " + employee.getName());
 		System.out.println();
