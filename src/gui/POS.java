@@ -406,6 +406,7 @@ public class POS extends JFrame {
 				btnLookupCustomer.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
+						lblCustomerMissing.setText("");
 						startCustomerMenu();
 					}
 				});
@@ -445,6 +446,8 @@ public class POS extends JFrame {
 		panel_6.add(btnSend);
 		
 		lblCustomerMissing = new JLabel("");
+
+
 		lblCustomerMissing.setForeground(new Color(255, 0, 0));
 		panel_6.add(lblCustomerMissing);
 		btnPay.addActionListener(new ActionListener() {
@@ -542,12 +545,12 @@ public class POS extends JFrame {
 	}
 
 	public void displayPrices() {
-		DecimalFormat numberFormat = new DecimalFormat("#0.00");
-		double withDiscount = salesOrder.getTotal()* ((100 - Double.parseDouble(txtCDiscount.getText()))/100);
-		txtSubtotal.setText("" + numberFormat.format(salesOrder.getTotal()));
-		txtSubtotalDiscount.setText("" + numberFormat.format(withDiscount));
-		txtTax.setText("" + numberFormat.format(withDiscount *0.25));
-		txtTotal.setText("" + numberFormat.format((withDiscount*0.25 + withDiscount)));
+			DecimalFormat numberFormat = new DecimalFormat("#0.00");
+			txtSubtotal.setText("" + numberFormat.format(salesOrder.getTotal()));
+			double withDiscount = salesOrder.getTotal()* ((100 - Double.parseDouble(txtCDiscount.getText()))/100);
+			txtSubtotalDiscount.setText("" + numberFormat.format(withDiscount));
+			txtTax.setText("" + numberFormat.format(withDiscount *0.25));
+			txtTotal.setText("" + numberFormat.format((withDiscount*0.25 + withDiscount)));
 	}
 
 	private void searchClicked() {
@@ -575,7 +578,7 @@ public class POS extends JFrame {
 		table.clearSelection();
 		ptable.clearSelection();
 		salesOrder.setCustomer(null);
-		txtCDiscount.setText("");
+		txtCDiscount.setText("0.00");
 		txtCName.setText("");
 		txtCMail.setText("");
 		txtCAddress.setText("");
@@ -693,7 +696,7 @@ public class POS extends JFrame {
 			clearClicked();
 		}
 		else{
-			lblCustomerMissing.setText("Husk at vælge en kunde");
+			lblCustomerMissing.setText("Husk at vælge en kunde!");
 		}
 	}
 }
