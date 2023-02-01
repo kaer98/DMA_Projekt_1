@@ -102,4 +102,9 @@ public class CustomerContainer {
 		}
 		return i;		
 	}
+	
+	public void removeCustomer(Customer c) {
+		container.remove(c);
+	}
+	
 }

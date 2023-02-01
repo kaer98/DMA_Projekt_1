@@ -62,4 +62,7 @@ public class CustomerController {
 		return order;
 	}
 	
+	public void removeCustomer(Customer c) {
+		container.removeCustomer(c);
+	}
 }

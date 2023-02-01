@@ -41,7 +41,7 @@ public class CustomerMenu extends JDialog{
 	private JPanel contentPane;
 	private JButton btnAdd;
 	private JButton btnInfo;
-	private JButton btnDelete;
+	private JButton btnCancel;
 	private JScrollPane scrollPane;
 	private JPanel panel;
 	private CustomerTM ctm;
@@ -60,6 +60,7 @@ public class CustomerMenu extends JDialog{
 	private JLabel txtError;
 	private Component verticalStrut;
 	private Component verticalStrut_1;
+	private JButton btnDelete;
 	
 
 	/**
@@ -70,7 +71,7 @@ public class CustomerMenu extends JDialog{
 		
 
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 501, 297);
+		setBounds(100, 100, 603, 298);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -187,13 +188,21 @@ public class CustomerMenu extends JDialog{
 										});
 										panel.add(btnInfo);
 										
-												btnDelete = new JButton("Annuller");
-												btnDelete.addActionListener(new ActionListener() {
+												btnCancel = new JButton("Annuller");
+												btnCancel.addActionListener(new ActionListener() {
 													public void actionPerformed(ActionEvent e) {
 														cancelClicked();
 													}
 												});
+												
+												btnDelete = new JButton("Slet kunde");
+												btnDelete.addActionListener(new ActionListener() {
+													public void actionPerformed(ActionEvent e) {
+														deleteClicked();
+													}
+												});
 												panel.add(btnDelete);
+												panel.add(btnCancel);
 
 		
 		init(em,o,pc,oc,ec,cc);
@@ -268,6 +277,11 @@ public class CustomerMenu extends JDialog{
 		this.dispose();
 		this.setVisible(false);
 
+	}
+	
+	private void deleteClicked() {
+		cc.removeCustomer(ctm.getSelectedMember(table.getSelectedRow()));
+		displayCustomers();
 	}
 
 	private void searchbarFocus(){
