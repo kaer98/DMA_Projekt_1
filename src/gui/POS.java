@@ -527,7 +527,7 @@ public class POS extends JFrame {
 			Customer currCustomer = cm.getC();
 			if(currCustomer != null) {
 				salesOrder.setCustomer(currCustomer);
-				txtCDiscount.setText(""+currCustomer.getDiscount()*100);
+				txtCDiscount.setText(""+currCustomer.getDiscount());
 				txtCName.setText(currCustomer.getName());
 				txtCMail.setText(currCustomer.getMailAddress());
 				txtCAddress.setText(currCustomer.getAddress());
