@@ -297,7 +297,11 @@ public class CustomerMenu extends JDialog{
 		return currCustomer;
 	}
 	private void selectClicked() {
-		currCustomer = ctm.getSelectedMember(table.getSelectedRow());
-		cancelClicked();
+		try {
+			currCustomer = ctm.getSelectedMember(table.getSelectedRow());
+			cancelClicked();
+		} catch(Exception e) {
+			txtError.setText("Vælg kunde først!");
+		}
 	}
 }
