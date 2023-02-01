@@ -647,7 +647,6 @@ public class CustomerInfo extends JDialog {
 			displayOrders(cCtrl.findCustomerByPhoneNo(currCustomer.getPhoneNo()));
 		}
 	}
-	
 
 
 	private void displayCustomer() {
@@ -724,6 +723,10 @@ public class CustomerInfo extends JDialog {
 			labCountry.setText("Mangler input");
 			txtCountry.setBorder(border);
 			wrongInputTracker++;
+		}
+		
+		if(txtDiscount.getText().length() == 0) {
+			txtDiscount.setText("00.00");
 		}
 		
 		if(wrongInputTracker == 0) {
