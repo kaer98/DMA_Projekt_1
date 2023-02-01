@@ -4,8 +4,6 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
 import javax.swing.border.LineBorder;
-import javax.swing.table.DefaultTableModel;
-
 import controller.CustomerController;
 import controller.EmployeeController;
 import controller.OrderController;
@@ -21,6 +19,7 @@ import java.awt.Dialog;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.concurrent.TimeUnit;
 import java.awt.event.ActionEvent;
 import java.awt.BorderLayout;
 import java.awt.event.KeyAdapter;
@@ -95,7 +94,7 @@ public class POS extends JFrame {
 	private Component verticalStrut_2;
 	private Component verticalStrut_3;
 	/**
-	 * Create the frame.
+	 * Create the frame..
 	 */
 	public POS(Employee em, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -504,9 +503,13 @@ public class POS extends JFrame {
 		this.eCtrl = eCtrl;
 		this.oCtrl = oCtrl;
 		this.employee = em;
-		pCtrl.fill();
+
+		if(pCtrl.size() == 0) {
+			pCtrl.fill();
+		}
+		
 		pJList = new JList<Product>();
-		oJList = new JList<PartOrder>();
+		oJList = new JList<PartOrder>();		
 		displayProducts();
 		salesOrder = oCtrl.makeOrder();
 		salesOrder.setEmployee(em);
@@ -632,7 +635,6 @@ public class POS extends JFrame {
 	}
 	
 	private void logOutClicked() {
-		this.dispose();
 		this.setVisible(false);
 		Login loginGUI = new Login();
 		loginGUI.setVisible(true);

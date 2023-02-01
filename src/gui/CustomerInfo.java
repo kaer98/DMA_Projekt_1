@@ -98,7 +98,6 @@ public class CustomerInfo extends JDialog {
 	private JLabel lab3;
 	private JLabel lab2;
 	private JLabel lab1;
-	private Component verticalStrut;
 	private JLabel labCVR;
 	private JLabel labPhone;
 	private JLabel labEmail;
@@ -117,6 +116,8 @@ public class CustomerInfo extends JDialog {
 	private Component verticalStrut_1;
 	private Component verticalStrut_2;
 	private Component verticalStrut_3;
+	private JSeparator separator_11;
+	private JSeparator separator_12;
 
 
 	/**
@@ -124,12 +125,12 @@ public class CustomerInfo extends JDialog {
 	 */
 
 	public CustomerInfo(Customer c,Employee em, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc, CustomerMenu cMenu) {
-		setBounds(150, 150, 401, 540);
+		setBounds(150, 150, 401, 575);
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 74, 0, 262, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 20, 0, 0, 20, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 21, 0, 33, 0, 14, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.columnWidths = new int[]{0, 74, 0, 262, 0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 20, 0, 0, 20, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 21, 0, 33, 0, 0, 0, 14, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
 					
 
@@ -143,8 +144,8 @@ public class CustomerInfo extends JDialog {
 														
 														verticalStrut_2 = Box.createVerticalStrut(20);
 														GridBagConstraints gbc_verticalStrut_2 = new GridBagConstraints();
-														gbc_verticalStrut_2.gridheight = 31;
-														gbc_verticalStrut_2.insets = new Insets(0, 0, 5, 5);
+														gbc_verticalStrut_2.gridheight = 33;
+														gbc_verticalStrut_2.insets = new Insets(0, 0, 0, 5);
 														gbc_verticalStrut_2.gridx = 0;
 														gbc_verticalStrut_2.gridy = 0;
 														getContentPane().add(verticalStrut_2, gbc_verticalStrut_2);
@@ -162,8 +163,7 @@ public class CustomerInfo extends JDialog {
 																	
 																	verticalStrut_1 = Box.createVerticalStrut(20);
 																	GridBagConstraints gbc_verticalStrut_1 = new GridBagConstraints();
-																	gbc_verticalStrut_1.gridheight = 31;
-																	gbc_verticalStrut_1.insets = new Insets(0, 0, 5, 5);
+																	gbc_verticalStrut_1.gridheight = 33;
 																	gbc_verticalStrut_1.gridx = 4;
 																	gbc_verticalStrut_1.gridy = 0;
 																	getContentPane().add(verticalStrut_1, gbc_verticalStrut_1);
@@ -515,14 +515,6 @@ public class CustomerInfo extends JDialog {
 					gbc_txtDiscount.gridy = 26;
 					getContentPane().add(txtDiscount, gbc_txtDiscount);
 					
-					verticalStrut = Box.createVerticalStrut(20);
-					GridBagConstraints gbc_verticalStrut = new GridBagConstraints();
-					gbc_verticalStrut.gridheight = 30;
-					gbc_verticalStrut.insets = new Insets(0, 0, 5, 0);
-					gbc_verticalStrut.gridx = 5;
-					gbc_verticalStrut.gridy = 0;
-					getContentPane().add(verticalStrut, gbc_verticalStrut);
-					
 					separator_10 = new JSeparator();
 					GridBagConstraints gbc_separator_10 = new GridBagConstraints();
 					gbc_separator_10.insets = new Insets(0, 0, 5, 5);
@@ -575,20 +567,35 @@ public class CustomerInfo extends JDialog {
 						buttonPanel.add(btnCancel);
 					}
 																																
+																																separator_11 = new JSeparator();
+																																GridBagConstraints gbc_separator_11 = new GridBagConstraints();
+																																gbc_separator_11.insets = new Insets(0, 0, 5, 5);
+																																gbc_separator_11.gridx = 3;
+																																gbc_separator_11.gridy = 29;
+																																getContentPane().add(separator_11, gbc_separator_11);
+																																
+																																separator_12 = new JSeparator();
+																																GridBagConstraints gbc_separator_12 = new GridBagConstraints();
+																																gbc_separator_12.insets = new Insets(0, 0, 5, 5);
+																																gbc_separator_12.gridx = 3;
+																																gbc_separator_12.gridy = 30;
+																																getContentPane().add(separator_12, gbc_separator_12);
+																																
 																																separator_8 = new JSeparator();
 																																GridBagConstraints gbc_separator_8 = new GridBagConstraints();
 																																gbc_separator_8.gridwidth = 3;
 																																gbc_separator_8.insets = new Insets(0, 0, 5, 5);
 																																gbc_separator_8.gridx = 1;
-																																gbc_separator_8.gridy = 29;
+																																gbc_separator_8.gridy = 31;
 																																getContentPane().add(separator_8, gbc_separator_8);
 																																
 																																panel = new JPanel();
 																																GridBagConstraints gbc_panel = new GridBagConstraints();
+																																gbc_panel.insets = new Insets(0, 0, 0, 5);
 																																gbc_panel.gridwidth = 3;
 																																gbc_panel.fill = GridBagConstraints.BOTH;
 																																gbc_panel.gridx = 1;
-																																gbc_panel.gridy = 30;
+																																gbc_panel.gridy = 32;
 																																getContentPane().add(panel, gbc_panel);
 																																GridBagLayout gbl_panel = new GridBagLayout();
 																																gbl_panel.columnWidths = new int[]{0, 0};

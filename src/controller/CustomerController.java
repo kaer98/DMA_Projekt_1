@@ -8,7 +8,7 @@ import model.Order;
 import model.Product;
 
 /**
- * Customer controller Class
+ * Customer controller ClassS
  *
  * @author Rasmus,Cawan,Frederik,Oskar
  * @version 1.0
@@ -64,5 +64,9 @@ public class CustomerController {
 	
 	public void removeCustomer(Customer c) {
 		container.removeCustomer(c);
+	}
+	
+	public int size() {
+		return container.size();
 	}
 }

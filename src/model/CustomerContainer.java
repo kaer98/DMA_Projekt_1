@@ -107,4 +107,8 @@ public class CustomerContainer {
 		container.remove(c);
 	}
 	
+	public int size() {
+		return container.size();
+	}
+	
 }

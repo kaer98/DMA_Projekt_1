@@ -64,14 +64,14 @@ public class CustomerMenu extends JDialog{
 
 
 	/**
-	 * Create the frame.
+	 * Create the frame..
 	 */
 
 	public CustomerMenu(Employee em, Order o, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc) {
 
 
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 603, 298);
+		setBounds(100, 100, 603, 307);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -215,7 +215,16 @@ public class CustomerMenu extends JDialog{
 		this.cc = cc;
 		this.ec = ec;
 		this.oc = oc;
-		cc.fill();
+		
+		try {
+			if(cc.size() == 0) {
+				cc.fill();
+	
+			}
+		}catch(Exception e) {
+			
+		}
+		
 		cJList = new JList<Customer>();
 		displayCustomers();
 		setModal(true);
@@ -274,7 +283,6 @@ public class CustomerMenu extends JDialog{
 	}
 
 	private void cancelClicked() {
-		this.dispose();
 		this.setVisible(false);
 
 	}

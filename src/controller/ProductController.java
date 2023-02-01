@@ -67,4 +67,8 @@ public class ProductController {
 	public void addApplianceCopy(ApplianceCopy ac, Appliance a) {
 		a.addApplianceCopy(ac);
 	}
+	
+	public int size() {
+		return productContainer.size();
+	}
 }

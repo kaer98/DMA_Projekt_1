@@ -114,4 +114,8 @@ public class ProductContainer {
 	public boolean isEmpty() {
 		return container.isEmpty();
 	}
+	
+	public int size() {
+		return container.size();
+	}
 }
