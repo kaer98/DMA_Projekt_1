@@ -61,14 +61,14 @@ public class CustomerMenu extends JDialog{
 	private Component verticalStrut;
 	private Component verticalStrut_1;
 	private JButton btnDelete;
-	
+
 
 	/**
 	 * Create the frame.
 	 */
 
 	public CustomerMenu(Employee em, Order o, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc) {
-		
+
 
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 603, 298);
@@ -82,144 +82,144 @@ public class CustomerMenu extends JDialog{
 		gbl_contentPane.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
-				
-						panel_1 = new JPanel();
-						GridBagConstraints gbc_panel_1 = new GridBagConstraints();
-						gbc_panel_1.fill = GridBagConstraints.BOTH;
-						gbc_panel_1.insets = new Insets(0, 0, 5, 5);
-						gbc_panel_1.gridx = 1;
-						gbc_panel_1.gridy = 0;
-						contentPane.add(panel_1, gbc_panel_1);
-						
-								txtSearch = new JTextField();
-								txtSearch.addFocusListener(new FocusAdapter() {
-									@Override
-									public void focusLost(FocusEvent e) {
-										searchbarFocus();
-									}
-								});
-								txtSearch.addMouseListener(new MouseAdapter() {
-									@Override
-									public void mousePressed(MouseEvent e) {
-										searchbarFocus();
-									}
-								});
-								txtSearch.setText("Søg");
-								txtSearch.setToolTipText("Search");
-								txtSearch.addKeyListener(new KeyAdapter() {
-									@Override
-									public void keyTyped(KeyEvent e) {
-										searchClicked();
-									}
-								});
-								panel_1.add(txtSearch);
-								txtSearch.setColumns(10);
-				
-				verticalStrut_1 = Box.createVerticalStrut(20);
-				GridBagConstraints gbc_verticalStrut_1 = new GridBagConstraints();
-				gbc_verticalStrut_1.insets = new Insets(0, 0, 5, 5);
-				gbc_verticalStrut_1.gridx = 0;
-				gbc_verticalStrut_1.gridy = 1;
-				contentPane.add(verticalStrut_1, gbc_verticalStrut_1);
-		
-				scrollPane = new JScrollPane();
-				GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-				gbc_scrollPane.fill = GridBagConstraints.BOTH;
-				gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
-				gbc_scrollPane.gridx = 1;
-				gbc_scrollPane.gridy = 1;
-				contentPane.add(scrollPane, gbc_scrollPane);
-				
-						table = new JTable();
-						table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-						scrollPane.setViewportView(table);
-				
-				verticalStrut = Box.createVerticalStrut(20);
-				GridBagConstraints gbc_verticalStrut = new GridBagConstraints();
-				gbc_verticalStrut.insets = new Insets(0, 0, 5, 0);
-				gbc_verticalStrut.gridx = 2;
-				gbc_verticalStrut.gridy = 1;
-				contentPane.add(verticalStrut, gbc_verticalStrut);
-				
-				txtError = new JLabel("");
-				txtError.setForeground(Color.RED);
-				GridBagConstraints gbc_txtError = new GridBagConstraints();
-				gbc_txtError.insets = new Insets(0, 0, 5, 5);
-				gbc_txtError.gridx = 1;
-				gbc_txtError.gridy = 2;
-				contentPane.add(txtError, gbc_txtError);
-		
-				panel = new JPanel();
-				GridBagConstraints gbc_panel = new GridBagConstraints();
-				gbc_panel.gridwidth = 2;
-				gbc_panel.insets = new Insets(0, 0, 0, 5);
-				gbc_panel.anchor = GridBagConstraints.NORTH;
-				gbc_panel.fill = GridBagConstraints.HORIZONTAL;
-				gbc_panel.gridx = 1;
-				gbc_panel.gridy = 3;
-				contentPane.add(panel, gbc_panel);
-				
-						btnAdd = new JButton("Tilføj ny kunde");
-						btnAdd.setToolTipText("Click to add a new customer in the system");
-						btnAdd.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent e) {
-								addClicked();
-							}
-						});
-						
-								btnSelect = new JButton("Vælg kunde");
-								btnSelect.setToolTipText("Click to add customer to order");
-								btnSelect.addMouseListener(new MouseAdapter() {
-									@Override
-									public void mouseClicked(MouseEvent e) {
-										selectClicked();
 
-									}
-								});
-								panel.add(btnSelect);
-								panel.add(btnAdd);
-								
-										btnInfo = new JButton("Info/Rediger");
-										btnInfo.setToolTipText("Click to view and edit customer information");
-										btnInfo.addActionListener(new ActionListener() {
-											public void actionPerformed(ActionEvent e) {
-												infoClicked();
-											}
-										});
-										panel.add(btnInfo);
-										
-												btnCancel = new JButton("Annuller");
-												btnCancel.addActionListener(new ActionListener() {
-													public void actionPerformed(ActionEvent e) {
-														cancelClicked();
-													}
-												});
-												
-												btnDelete = new JButton("Slet kunde");
-												btnDelete.addActionListener(new ActionListener() {
-													public void actionPerformed(ActionEvent e) {
-														deleteClicked();
-													}
-												});
-												panel.add(btnDelete);
-												panel.add(btnCancel);
+		panel_1 = new JPanel();
+		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
+		gbc_panel_1.fill = GridBagConstraints.BOTH;
+		gbc_panel_1.insets = new Insets(0, 0, 5, 5);
+		gbc_panel_1.gridx = 1;
+		gbc_panel_1.gridy = 0;
+		contentPane.add(panel_1, gbc_panel_1);
 
-		
+		txtSearch = new JTextField();
+		txtSearch.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				searchbarFocus();
+			}
+		});
+		txtSearch.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				searchbarFocus();
+			}
+		});
+		txtSearch.setText("Søg");
+		txtSearch.setToolTipText("Search");
+		txtSearch.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				searchClicked();
+			}
+		});
+		panel_1.add(txtSearch);
+		txtSearch.setColumns(10);
+
+		verticalStrut_1 = Box.createVerticalStrut(20);
+		GridBagConstraints gbc_verticalStrut_1 = new GridBagConstraints();
+		gbc_verticalStrut_1.insets = new Insets(0, 0, 5, 5);
+		gbc_verticalStrut_1.gridx = 0;
+		gbc_verticalStrut_1.gridy = 1;
+		contentPane.add(verticalStrut_1, gbc_verticalStrut_1);
+
+		scrollPane = new JScrollPane();
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
+		gbc_scrollPane.gridx = 1;
+		gbc_scrollPane.gridy = 1;
+		contentPane.add(scrollPane, gbc_scrollPane);
+
+		table = new JTable();
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		scrollPane.setViewportView(table);
+
+		verticalStrut = Box.createVerticalStrut(20);
+		GridBagConstraints gbc_verticalStrut = new GridBagConstraints();
+		gbc_verticalStrut.insets = new Insets(0, 0, 5, 0);
+		gbc_verticalStrut.gridx = 2;
+		gbc_verticalStrut.gridy = 1;
+		contentPane.add(verticalStrut, gbc_verticalStrut);
+
+		txtError = new JLabel("");
+		txtError.setForeground(Color.RED);
+		GridBagConstraints gbc_txtError = new GridBagConstraints();
+		gbc_txtError.insets = new Insets(0, 0, 5, 5);
+		gbc_txtError.gridx = 1;
+		gbc_txtError.gridy = 2;
+		contentPane.add(txtError, gbc_txtError);
+
+		panel = new JPanel();
+		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.gridwidth = 2;
+		gbc_panel.insets = new Insets(0, 0, 0, 5);
+		gbc_panel.anchor = GridBagConstraints.NORTH;
+		gbc_panel.fill = GridBagConstraints.HORIZONTAL;
+		gbc_panel.gridx = 1;
+		gbc_panel.gridy = 3;
+		contentPane.add(panel, gbc_panel);
+
+		btnAdd = new JButton("Tilføj ny kunde");
+		btnAdd.setToolTipText("Click to add a new customer in the system");
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				addClicked();
+			}
+		});
+
+		btnSelect = new JButton("Vælg kunde");
+		btnSelect.setToolTipText("Click to add customer to order");
+		btnSelect.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				selectClicked();
+
+			}
+		});
+		panel.add(btnSelect);
+		panel.add(btnAdd);
+
+		btnInfo = new JButton("Info/Rediger");
+		btnInfo.setToolTipText("Click to view and edit customer information");
+		btnInfo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				infoClicked();
+			}
+		});
+		panel.add(btnInfo);
+
+		btnCancel = new JButton("Annuller");
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cancelClicked();
+			}
+		});
+
+		btnDelete = new JButton("Slet kunde");
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				deleteClicked();
+			}
+		});
+		panel.add(btnDelete);
+		panel.add(btnCancel);
+
+
 		init(em,o,pc,oc,ec,cc);
 	}
 
 
-		private void init(Employee em, Order o, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc) {
-			this.em = em;
-			this.pc = pc;
-			this.cc = cc;
-			this.ec = ec;
-			this.oc = oc;
-			cc.fill();
-			cJList = new JList<Customer>();
-			displayCustomers();
-			setModal(true);
-}		
+	private void init(Employee em, Order o, ProductController pc, OrderController oc, EmployeeController ec, CustomerController cc) {
+		this.em = em;
+		this.pc = pc;
+		this.cc = cc;
+		this.ec = ec;
+		this.oc = oc;
+		cc.fill();
+		cJList = new JList<Customer>();
+		displayCustomers();
+		setModal(true);
+	}		
 
 	public void displayCustomers() {
 		ctm = new CustomerTM(cc.getAll());
@@ -278,7 +278,7 @@ public class CustomerMenu extends JDialog{
 		this.setVisible(false);
 
 	}
-	
+
 	private void deleteClicked() {
 		cc.removeCustomer(ctm.getSelectedMember(table.getSelectedRow()));
 		displayCustomers();
@@ -292,7 +292,7 @@ public class CustomerMenu extends JDialog{
 			txtSearch.setText("Søg");
 		}
 	}
-	
+
 	public Customer getC() {
 		return currCustomer;
 	}

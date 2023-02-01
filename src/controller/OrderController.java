@@ -59,7 +59,7 @@ public class OrderController {
 
 	public void fill() {
 		productController.fill();
-		customerController.fill();
+		//customerController.fill();
 	}
 	
 	public Customer findCustomerByPhoneNo(String phoneNo) {
