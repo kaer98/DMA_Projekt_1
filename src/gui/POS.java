@@ -497,6 +497,7 @@ public class POS extends JFrame {
 
 		init(em, pc, oc, ec, cc);
 	}
+	
 	private void init(Employee em, ProductController pCtrl, OrderController oCtrl, EmployeeController eCtrl, CustomerController cCtrl) {
 		this.pCtrl = pCtrl;
 		this.cCtrl = cCtrl;
@@ -510,8 +511,6 @@ public class POS extends JFrame {
 		salesOrder = oCtrl.makeOrder();
 		salesOrder.setEmployee(em);
 		txtCDiscount.setText(""+00.00);
-
-
 
 		if(!em.isManager()) {
 			txtCDiscount.setEditable(false);
@@ -567,7 +566,7 @@ public class POS extends JFrame {
 	}
 	
 	private void startSendManager(){
-		SendManager sm = new SendManager(this, salesOrder);
+		SendManager sm = new SendManager(this, salesOrder, oCtrl);
 		sm.setVisible(true);
 		sm.setModal(true);
 		sm.setAlwaysOnTop(true);
@@ -750,7 +749,7 @@ public class POS extends JFrame {
 	}
 	
 	private void payClicked() {
-		salesOrder.setFinal("Salg");
+		oCtrl.finishOrder("Salg", salesOrder);
 		finishOrder();
 	}
 

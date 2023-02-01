@@ -124,4 +124,7 @@ public class OrderController {
 		o.removePart(po);
 	}
 	
+	public void finishOrder(String string, Order o) {
+		o.setFinal(string);
+	}
 }

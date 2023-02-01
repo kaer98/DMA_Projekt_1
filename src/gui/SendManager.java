@@ -19,8 +19,9 @@ public class SendManager extends JDialog {
 	
 	private POS pos;
 	private Order o;
+	private OrderController oCtrl;
 	
-	public SendManager(POS pos, Order o) {
+	public SendManager(POS pos, Order o, OrderController oCtrl) {
 		setBounds(100, 100, 293, 77);
 		getContentPane().setLayout(new BorderLayout());
 		{
@@ -49,22 +50,23 @@ public class SendManager extends JDialog {
 				buttonPane.add(btnInvoice);
 			}
 		}
-		init(pos, o);
+		init(pos, o, oCtrl);
 	}
-	private void init(POS pos, Order o) {
+	private void init(POS pos, Order o, OrderController oCtrl) {
 		this.pos = pos;
 		this.o = o;	
+		this.oCtrl = oCtrl;
 	}
 	
 	private void offerClicked(){
-		o.setFinal("Tilbud");
+		oCtrl.finishOrder("Tilbud", o);
 		pos.finishOrder();
 		this.dispose();
 		this.setVisible(false);	
 	}
 	
 	private void invoiceClicked(){
-		o.setFinal("Faktura");
+		oCtrl.finishOrder("Faktura", o);
 		pos.finishOrder();
 		this.dispose();
 		this.setVisible(false);	
