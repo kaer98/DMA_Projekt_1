@@ -288,7 +288,11 @@ public class CustomerMenu extends JDialog{
 	}
 
 	private void deleteClicked() {
-		cc.removeCustomer(ctm.getSelectedMember(table.getSelectedRow()));
+		try{
+			cc.removeCustomer(ctm.getSelectedMember(table.getSelectedRow()));
+		}catch(Exception e){
+			txtError.setText("Vælg kunde først!");
+		}
 		displayCustomers();
 	}
 

@@ -196,8 +196,7 @@ public class CustomerInfo extends JDialog {
 											labName = new JLabel("");
 											labName.setForeground(new Color(255, 0, 0));
 											GridBagConstraints gbc_labName = new GridBagConstraints();
-											gbc_labName.anchor = GridBagConstraints.SOUTH;
-											gbc_labName.fill = GridBagConstraints.HORIZONTAL;
+											gbc_labName.anchor = GridBagConstraints.SOUTHWEST;
 											gbc_labName.insets = new Insets(0, 0, 5, 5);
 											gbc_labName.gridx = 3;
 											gbc_labName.gridy = 3;
@@ -258,6 +257,7 @@ public class CustomerInfo extends JDialog {
 																																labCVR = new JLabel("");
 																																labCVR.setForeground(new Color(255, 0, 0));
 																																GridBagConstraints gbc_labCVR = new GridBagConstraints();
+																																gbc_labCVR.anchor = GridBagConstraints.WEST;
 																																gbc_labCVR.insets = new Insets(0, 0, 5, 5);
 																																gbc_labCVR.gridx = 3;
 																																gbc_labCVR.gridy = 6;
@@ -288,6 +288,7 @@ public class CustomerInfo extends JDialog {
 											labPhone = new JLabel("");
 											labPhone.setForeground(new Color(255, 0, 0));
 											GridBagConstraints gbc_labPhone = new GridBagConstraints();
+											gbc_labPhone.anchor = GridBagConstraints.WEST;
 											gbc_labPhone.insets = new Insets(0, 0, 5, 5);
 											gbc_labPhone.gridx = 3;
 											gbc_labPhone.gridy = 9;
@@ -319,6 +320,7 @@ public class CustomerInfo extends JDialog {
 											labEmail = new JLabel("");
 											labEmail.setForeground(new Color(255, 0, 0));
 											GridBagConstraints gbc_labEmail = new GridBagConstraints();
+											gbc_labEmail.anchor = GridBagConstraints.WEST;
 											gbc_labEmail.insets = new Insets(0, 0, 5, 5);
 											gbc_labEmail.gridx = 3;
 											gbc_labEmail.gridy = 12;
@@ -358,6 +360,7 @@ public class CustomerInfo extends JDialog {
 														labAddress = new JLabel("");
 														labAddress.setForeground(Color.RED);
 														GridBagConstraints gbc_labAddress = new GridBagConstraints();
+														gbc_labAddress.anchor = GridBagConstraints.WEST;
 														gbc_labAddress.insets = new Insets(0, 0, 5, 5);
 														gbc_labAddress.gridx = 3;
 														gbc_labAddress.gridy = 15;
@@ -397,8 +400,7 @@ public class CustomerInfo extends JDialog {
 														labPostalcode = new JLabel("");
 														labPostalcode.setForeground(new Color(255, 0, 0));
 														GridBagConstraints gbc_labPostalcode = new GridBagConstraints();
-														gbc_labPostalcode.anchor = GridBagConstraints.SOUTH;
-														gbc_labPostalcode.fill = GridBagConstraints.HORIZONTAL;
+														gbc_labPostalcode.anchor = GridBagConstraints.SOUTHWEST;
 														gbc_labPostalcode.insets = new Insets(0, 0, 5, 5);
 														gbc_labPostalcode.gridx = 3;
 														gbc_labPostalcode.gridy = 18;
@@ -438,6 +440,7 @@ public class CustomerInfo extends JDialog {
 											labCity = new JLabel("");
 											labCity.setForeground(Color.RED);
 											GridBagConstraints gbc_labCity = new GridBagConstraints();
+											gbc_labCity.anchor = GridBagConstraints.WEST;
 											gbc_labCity.insets = new Insets(0, 0, 5, 5);
 											gbc_labCity.gridx = 3;
 											gbc_labCity.gridy = 21;
@@ -477,8 +480,7 @@ public class CustomerInfo extends JDialog {
 								labCountry = new JLabel("");
 								labCountry.setForeground(Color.RED);
 								GridBagConstraints gbc_labCountry = new GridBagConstraints();
-								gbc_labCountry.anchor = GridBagConstraints.SOUTH;
-								gbc_labCountry.fill = GridBagConstraints.HORIZONTAL;
+								gbc_labCountry.anchor = GridBagConstraints.SOUTHWEST;
 								gbc_labCountry.insets = new Insets(0, 0, 5, 5);
 								gbc_labCountry.gridx = 3;
 								gbc_labCountry.gridy = 24;
